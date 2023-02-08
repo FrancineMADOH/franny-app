@@ -12,6 +12,7 @@
     "tsc": "tsc",
     "up": "db-migrate up",
     "down": "db-migrate down",
+    "test-simple": "npx tsc && jasmine",
     "test": "npx tsc && db-migrate reset --env test && db-migrate --env test up && jasmine"
   },
   "repository": {
