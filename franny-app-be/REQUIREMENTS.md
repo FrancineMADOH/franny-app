@@ -9,6 +9,7 @@ The purpose of this API is to have users being ale to create,update an delete bl
 - Index: List all the users `/api/users/`[GET]
 - Delete: Delete a particular user `/api/users/delete`[DELETE]
 - Create new userss : `/api/users/` [POST]
+- check if a user exist `/api/users/:email` [GET]
 
 ### POSTS
 
@@ -24,10 +25,11 @@ The purpose of this API is to have users being ale to create,update an delete bl
 
 ### COMMENTS
 
+- create: Add a new comment to an article `/api/comments`[POST]
 - index: Display all he comments relaed to an article `/api/comments`[GET]
 - update: Update a comment `/api/comment/:id`[PUT]
 - delete: Delete a comment `/api/comments/:id`[DELETE]
-- topten: Display the top 10 recent comment of an article `/api/comments/topten`[GET]
+- count: Count the total number of comment of an article ``[GET]
 
 ### ADMINS
 

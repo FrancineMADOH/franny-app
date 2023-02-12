@@ -8,13 +8,33 @@ const {
     POSTGRES_DB,
     POSTGRES_USER,
     POSTGRES_PASSWORD,
+    ENV
 } = process.env;
 
-const client =   new Pool({
-    host:POSTGRES_HOST,
-    user:POSTGRES_USER,
-    database:POSTGRES_DB,
-    password:POSTGRES_PASSWORD
-});
+console.log(ENV);
+
+let client = new Pool();
+
+if(ENV==="dev"){
+
+     client =   new Pool({
+        host:POSTGRES_HOST,
+        user:POSTGRES_USER,
+        database:POSTGRES_DB,
+        password:POSTGRES_PASSWORD
+    });
+}
+
+if(ENV==="test"){
+
+    client =   new Pool({
+       host:POSTGRES_HOST,
+       user:POSTGRES_USER,
+       database:POSTGRES_DB,
+       password:POSTGRES_PASSWORD
+   });
+}
+
+
 
 export default client;
