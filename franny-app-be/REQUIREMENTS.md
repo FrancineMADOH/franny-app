@@ -8,6 +8,7 @@ The purpose of this API is to have users being ale to create,update an delete bl
 
 - Index: List all the users `/api/users/`[GET]
 - Delete: Delete a particular user `/api/users/delete`[DELETE]
+- Create new userss : `/api/users/` [POST]
 
 ### POSTS
 
@@ -41,43 +42,42 @@ The purpose of this API is to have users being ale to create,update an delete bl
 
 ---
 
-|COLUMNS | TYPE |
-|************\_************|************\_************|
-|username | VARCHAR |
-|email | VARCHAR |
-|hasaccount | BOOLEAN |
-|************\_************|************\_************|
+|COLUMNS    | TYPE                  |
+|***********|***********************|
+|username   | VARCHAR               |
+|email      | VARCHAR               |
+|hasaccount | BOOLEAN               |
+*************************************
 
 ### POSTS
 
 ---
 
 | Columns                                                | Type            |
-| ------------------------------------------------------ | --------------- |
+|******************************************************* |*****************|
 | title                                                  | VARCHAR         |
-| description                                            | TEXT            |
+| summary                                                | TEXT            |
 | content                                                | TEXT            |
 | author                                                 | INT FOREIGN KEY |
 | createdAt                                              | DATE            |
 | illustration                                           | BUFFER          |
 | slug                                                   | VARCHAR         |
-| comments                                               | INT FOREIGN KEY |
 | applause                                               | INT             |
 | category                                               | VARCHAR         |
-| ************************\_\_\_************************ |
+|**************************************************************************|
 
 ### Comments
 
 ---
 
 | Column                                                   | Type            |
-| -------------------------------------------------------- | --------------- |
+|********************************************************* |*****************|
 | auteur                                                   | VARCHAR         |
 | email                                                    | VARCHAR         |
 | comment                                                  | TEXT            |
 | commentdate                                              | DATE            |
 | post                                                     | INT FOREIGN KEY |
-| ************************\_\_\_\_************************ |
+| ******************************************************** |******************
 
 ### ADMINS
 
@@ -93,4 +93,5 @@ The purpose of this API is to have users being ale to create,update an delete bl
 | avatar                       | BUFFER                           |
 | activdate                    | DATE                             |
 | superuser                    | BOOLEAN                          |
-| **********\_\_\_\_********** | ************\_\_\_\_************ |
+| username                     | BOOLEAN                          |
+| **************************** | ******************************** |
