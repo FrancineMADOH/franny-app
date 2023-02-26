@@ -33,6 +33,7 @@ The purpose of this API is to have users being ale to create,update an delete bl
 
 ### ADMINS
 
+- create: Create a new admin  `api/admins/` [POST]
 - index: List all the admin `api/admins/`[GET]
 - update: Update an admin data `api/admin/:adminname`[PUT]
 - show: Show the login detail of a particular user`api/admin/:adminname`[GET]

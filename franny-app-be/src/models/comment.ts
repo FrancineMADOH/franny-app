@@ -20,19 +20,19 @@ import client from "../database";
 
 
    //index
-   async index():Promise<Comment[]>{
+   async index(post:number):Promise<Comment[]>{
     const conn = await client.connect();
-    const sql_command =  "SELECT * FROM comments;";
-    const result = await conn.query(sql_command);
+    const sql_command =  "SELECT * FROM comments WHERE post_id = $1;";
+    const result = await conn.query(sql_command,[post]);
     conn.release();
     return result.rows;
    }
 
    //count
-   async count():Promise<number>{
+   async count(post:number):Promise<number>{
     const conn = await client.connect();
-    const sql_command =  "SELECT * FROM comments;";
-    const result = await conn.query(sql_command);
+    const sql_command =  "SELECT COUNT(*) FROM comments WHERE post_id = $1;";
+    const result = await conn.query(sql_command,[post]);
     conn.release();
     return result.rowCount;
    }
