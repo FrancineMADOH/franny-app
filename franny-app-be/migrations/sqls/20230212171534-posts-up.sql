@@ -5,7 +5,7 @@ CREATE TABLE posts(
    summary TEXT NOT NULL,
    content TEXT NOT NULL,
    author INT NOT NULL,
-   create_at DATE ,
+   create_at VARCHAR(50) ,
    illustration VARCHAR (200),
    slug VARCHAR(200),
    applause INT DEFAULT 0,

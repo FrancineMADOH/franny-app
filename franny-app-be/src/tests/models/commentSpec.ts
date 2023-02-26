@@ -6,7 +6,7 @@ const comment:Comment = {
     email:"francine@email.com",
     comment_body: "La famille est le premier maillon du changement",
     comment_date:new Date().toLocaleDateString(),
-    post_id:1
+    post_id:2
 };
 
 describe("Comment store model definition", async()=>{
@@ -48,9 +48,21 @@ describe("Comments store tests suite", async()=>{
         });
     });
 
-    it("Index method return a list of all comments", async()=>{
-        const result = await store.index();
-        expect(result.length).toEqual(2);
+    it("Index method return a list of all comments of the specified post", async()=>{
+        const result = await store.index(2);
+        expect(result[0]).toEqual({
+            comment_id:1,
+            email:"francine@email.com",
+            comment_body: "La famille est le premier maillon du changement",
+            comment_date:new Date().toLocaleDateString(),
+            post_id:2
+        });
+    });
+
+    it("Count method reurn the number of comment on the specified post", async()=>{
+        const result = await store.count(1);
+        expect(result).toBeInstanceOf(Number);
+        expect(result).toBe(1);
     });
 
     it("Delete method remove the specified comment", async()=>{
