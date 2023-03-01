@@ -22,7 +22,7 @@ import client from "../database";
    //index
    async index(post:number):Promise<Comment[]>{
     const conn = await client.connect();
-    const sql_command =  "SELECT * FROM comments WHERE post_id = $1;";
+    const sql_command =  "SELECT * FROM comments WHERE post_id = $1 ORDER BY CAST(comment_date AS DATE) DESC;";
     const result = await conn.query(sql_command,[post]);
     conn.release();
     return result.rows;

@@ -27,7 +27,7 @@ The purpose of this API is to have users being ale to create,update an delete bl
 
 - create: Add a new comment to an article `/api/comments`[POST]
 - index: Display all he comments relaed to an article `/api/comments`[GET]
-- update: Update a comment `/api/comment/:id`[PUT]
+- count: Count a comment `/api/comments/count`[GET]
 - delete: Delete a comment `/api/comments/:id`[DELETE]
 - count: Count the total number of comment of an article ``[GET]
 
