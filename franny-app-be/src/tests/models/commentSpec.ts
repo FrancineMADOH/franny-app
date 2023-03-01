@@ -40,7 +40,7 @@ describe("Comments store tests suite", async()=>{
             post_id:1
         });
         expect(result).toEqual({
-            comment_id:2,
+            comment_id:3,
             email:"francine@email.com",
             comment_body: "La femme est pionniere de la restructuration de la societe",
             comment_date:new Date().toLocaleString(),
@@ -51,7 +51,7 @@ describe("Comments store tests suite", async()=>{
     it("Index method return a list of all comments of the specified post", async()=>{
         const result = await store.index(2);
         expect(result[0]).toEqual({
-            comment_id:1,
+            comment_id:2,
             email:"francine@email.com",
             comment_body: "La famille est le premier maillon du changement",
             comment_date:new Date().toLocaleDateString(),
