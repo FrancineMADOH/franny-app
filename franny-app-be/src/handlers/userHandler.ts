@@ -9,10 +9,10 @@ export class userHandler {
         try{
             const email = req.body.email;
             const name = req.body.name;
-            const check = await usStore.check(email);
-            const userexist = check === undefined;
-            console.log(userexist === undefined);
-            console.log("userexist");
+            // const check = await usStore.check(email);
+            // const userexist = check === undefined;
+            // console.log(userexist === undefined);
+            // console.log("userexist");
 
             const new_user  =  await usStore.create(name,email);
             res.status(201);

@@ -21,7 +21,7 @@ describe("User routes test suite", async()=>{
         expect(res.status).toBe(200);
     });
 
-    it("Delete an article via the main route", async()=>{
+    it("Delete an user via the main route", async()=>{
         const res = await request.delete("/api/users");
         expect(res.status).toBe(200);
     });

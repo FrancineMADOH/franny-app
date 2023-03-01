@@ -46,10 +46,10 @@ async index():Promise<Admin[]>{
 }
 
 //update
-async update(pass:string,email:string):Promise<Admin>{
+async update(email:string,pass:string):Promise<Admin>{
     const conn = await client.connect();
     const sql_command = "UPDATE admins SET admin_password = $1 WHERE email = $2 RETURNING *;";
-    const result = await conn.query(sql_command, [pass,email]);
+    const result = await conn.query(sql_command, [email,pass]);
     conn.release();
     return result.rows[0];
 }

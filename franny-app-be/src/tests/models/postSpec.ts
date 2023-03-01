@@ -83,7 +83,7 @@ describe("Post store tests suite", async()=>{
         });
 
         expect(result).toEqual({
-            post_id:2,
+            post_id:3,
             title:"cool article",
             summary:"everything in this article is cool",
             content:"This article content is cool a super article is about to be lunched",
@@ -102,9 +102,9 @@ describe("Post store tests suite", async()=>{
     });
 
     it("show method return the specified post", async()=>{
-        const result = await store.show(1);
+        const result = await store.show(2);
         expect(result).toEqual({
-            post_id:1,
+            post_id:2,
             title:"Non les enfants ne prennent pas de decision" ,
             summary:"sommaire de larticle sur la responsabilite des enfants" ,
             content:"le contenu de l'article" ,
@@ -128,10 +128,10 @@ describe("Post store tests suite", async()=>{
             slug:"cool-article updated",
             applause:20,
             category:"Maternity"
-        },2);
+        },3);
 
         expect(result).toEqual({
-            post_id:2,
+            post_id:3,
             title:"New  article updated",
             summary:"everything in this article is cool updated",
             content:"This article content is cool a super article is about to be lunched updated",
