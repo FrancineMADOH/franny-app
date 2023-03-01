@@ -67,7 +67,7 @@ describe("Admin store test suite", async()=>{
             superuser:false
         });
         expect(result).toEqual({
-            admin_id:2,
+            admin_id:3,
             admin_name:"Francine Madoh",
             username:"Franca",
             twitter_url:"twitter_url",
@@ -83,12 +83,12 @@ describe("Admin store test suite", async()=>{
 
     it("Return a list of admins", async()=>{
         const result = await store.index();
-        expect(result.length).toEqual(2);
+        expect(result.length).toEqual(3);
     });
     it("It show the specified admin", async()=>{
         const result = await store.show("francinemadoh@mail.com");
         expect(result).toEqual({
-            admin_id:2,
+            admin_id:3,
             admin_name:"Francine Madoh",
             username:"Franca",
             twitter_url:"twitter_url",
@@ -112,7 +112,7 @@ describe("Admin store test suite", async()=>{
     it("Delete the specified admin", async()=>{
         const result = await store.delete("francinemadoh@mail.com") ;
         expect(result).toEqual({
-            admin_id:2,
+            admin_id:3,
             admin_name:"Francine Madoh",
             username:"Franca",
             twitter_url:"twitter_url",
