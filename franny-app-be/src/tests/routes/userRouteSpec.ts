@@ -1,6 +1,7 @@
 import supertest from "supertest";
 import { User } from "../../models/user";
 import app from "../..";
+import { tokenAdmin } from "./adminRouteSpec";
 
 const user:User = {
     user_name:"Faiza",
@@ -22,7 +23,9 @@ describe("User routes test suite", async()=>{
     });
 
     it("Delete an user via the main route", async()=>{
-        const res = await request.delete("/api/users");
+        const res = await request.delete("/api/users")
+        .set("Authorization", `Bearer ${tokenAdmin}`)
+        ;
         expect(res.status).toBe(200);
     });
 

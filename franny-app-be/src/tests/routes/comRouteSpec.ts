@@ -1,6 +1,7 @@
 import supertest  from "supertest";
 import { Comment } from "../../models/comment";
 import app from "../..";
+import { tokenAdmin } from "./adminRouteSpec";
 
 const request = supertest(app);
 const comment:Comment = {
@@ -29,7 +30,8 @@ describe("Comment routes tests suite", async()=>{
     });
 
     it("Delete a comment via the comments route", async():Promise<void>=>{
-        const res = await request.delete("/api/comments");
+        const res = await request.delete("/api/comments")
+        .set("Authorization", `Bearer ${tokenAdmin}`);
         expect(res.status).toBe(200);
     });
 

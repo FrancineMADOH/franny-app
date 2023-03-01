@@ -12,6 +12,7 @@ export class postHandler {
             res.json(new_post);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -22,6 +23,7 @@ export class postHandler {
             res.status(200).json(posts);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -34,6 +36,7 @@ export class postHandler {
 
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -45,6 +48,7 @@ export class postHandler {
             res.json(posts);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -55,6 +59,7 @@ export class postHandler {
             res.status(200).json(posts);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -66,6 +71,7 @@ export class postHandler {
             res.status(200).json(posts);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -78,6 +84,7 @@ export class postHandler {
             res.json(posts);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -91,6 +98,7 @@ export class postHandler {
             res.status(200).json(post_up);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -102,6 +110,7 @@ export class postHandler {
             res.status(200).json(post);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 }

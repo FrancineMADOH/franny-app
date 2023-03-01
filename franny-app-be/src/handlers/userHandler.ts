@@ -17,6 +17,7 @@ export class userHandler {
             res.json(new_user);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -28,6 +29,7 @@ export class userHandler {
             res.json(users);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -39,6 +41,7 @@ export class userHandler {
             res.json(del_user);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
