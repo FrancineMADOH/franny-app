@@ -1,7 +1,7 @@
 import supertest from "supertest";
 import app from "../..";
 import { Post } from "../../models/post";
-
+import { tokenAdmin } from "./adminRouteSpec";
 const request =  supertest(app);
 
 const post:Post = {
@@ -20,7 +20,9 @@ const post:Post = {
 
 describe("Post routes tests suite", async()=>{
     it("Create new post", async()=>{
-        const res = await request.post("/api/posts").send(post);
+        const res = await request.post("/api/posts")
+        .set("Authorization", `Bearer ${tokenAdmin}`)
+        .send(post);
         expect(res.status).toBe(201);
     });
 
@@ -56,12 +58,16 @@ describe("Post routes tests suite", async()=>{
 
   
     it("Update post by id", async()=>{
-        const res = await request.put("/api/posts/1").send(post);
+        const res = await request.put("/api/posts/1")
+        .set("Authorization", `Bearer ${tokenAdmin}`)
+        .send(post);
         expect(res.status).toBe(200);
     });
 
     it("Delete post by her id", async()=>{
-        const res = await request.delete("/api/posts/1").send(post);
+        const res = await request.delete("/api/posts/1")
+        .set("Authorization", `Bearer ${tokenAdmin}`)
+        .send(post);
         expect(res.status).toBe(200);
     });
 

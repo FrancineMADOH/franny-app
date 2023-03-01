@@ -13,6 +13,7 @@ export class commentHandler {
             res.json(new_comment);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -23,6 +24,7 @@ export class commentHandler {
             res.json(comments);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -34,6 +36,7 @@ export class commentHandler {
             res.json(comment_count);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
@@ -44,6 +47,7 @@ export class commentHandler {
             res.json(del_article);
         }catch(err){
             console.log(err);
+            res.status(500).json(err);
         }
     }
 
