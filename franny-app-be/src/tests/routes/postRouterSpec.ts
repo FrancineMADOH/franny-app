@@ -1,4 +1,3 @@
-import {Request,Response } from "express";
 import supertest from "supertest";
 import app from "../..";
 import { Post } from "../../models/post";

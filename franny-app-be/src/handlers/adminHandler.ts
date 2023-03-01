@@ -43,7 +43,8 @@ export class adminHandler {
     async show(req:Request, res:Response){
         try{
             const email = req.body.email;
-            const admin = await adStore.show(email);
+            const pass = req.body.pass;
+            const admin = await adStore.show(email,pass);
             res.status(200);
             res.json(admin);
         }catch(err){

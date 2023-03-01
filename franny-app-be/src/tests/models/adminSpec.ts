@@ -1,5 +1,15 @@
 import client from "../../database";
 import { Admin, adminStore } from "../../models/admin";
+import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+import _ from "lodash";
+
+dotenv.config();
+const {
+    BCRYPT_PASSWORD,
+    SALT_ROUND
+} = process.env;
+
 
 const store = new adminStore();
 
@@ -38,6 +48,7 @@ describe("Admin store test suite", async()=>{
     beforeAll(async()=>{
         const conn = await client.connect();
         const sql_command = "INSERT INTO admins(admin_name,username,twitter_url,linkedin_url,facebook_url,email,admin_password,avatar,activ_date,superuser) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING * ;";
+        const hashedpw = bcrypt.hashSync(admin.admin_password + BCRYPT_PASSWORD, parseInt(SALT_ROUND as string));
         await conn.query(sql_command,[
         admin.admin_name,
         admin.username,
@@ -45,7 +56,7 @@ describe("Admin store test suite", async()=>{
         admin.linkedin_url,
         admin.facebook_url,
         admin.email,
-        admin.admin_password,
+        hashedpw,
         admin.avatar,
         admin.activ_date,
         admin.superuser
@@ -66,7 +77,20 @@ describe("Admin store test suite", async()=>{
             activ_date:"date-activ",
             superuser:false
         });
-        expect(result).toEqual({
+        const expectAdmin = _.pick(result, [
+            "admin_id",
+            "admin_name",
+            "username",
+            "twitter_url",
+            "linkedin_url",
+            "facebook_url",
+            "email",
+            "avatar",
+            "activ_date",
+            "superuser"
+        ]);
+        const matchingPW = bcrypt.compareSync("admin"+ BCRYPT_PASSWORD,result.admin_password); 
+        expect(expectAdmin).toEqual({
             admin_id:3,
             admin_name:"Francine Madoh",
             username:"Franca",
@@ -74,20 +98,33 @@ describe("Admin store test suite", async()=>{
             linkedin_url:"url_linkedin",
             facebook_url:"facebook_url",
             email:"francinemadoh@mail.com",
-            admin_password:"admin",
             avatar:"avatar",
             activ_date:"date-activ",
             superuser:false
         });
+        expect(matchingPW).toBeTrue();
     });
 
     it("Return a list of admins", async()=>{
         const result = await store.index();
         expect(result.length).toEqual(3);
     });
-    it("It show the specified admin", async()=>{
-        const result = await store.show("francinemadoh@mail.com");
-        expect(result).toEqual({
+
+    it("It Authenticate the admin using email and password", async()=>{
+        const result = await store.show("francinemadoh@mail.com","admin");
+        const expectAdmin = _.pick(result, [
+            "admin_id",
+            "admin_name",
+            "username",
+            "twitter_url",
+            "linkedin_url",
+            "facebook_url",
+            "email",
+            "avatar",
+            "activ_date",
+            "superuser"
+        ]);
+        expect(expectAdmin).toEqual({
             admin_id:3,
             admin_name:"Francine Madoh",
             username:"Franca",
@@ -95,7 +132,6 @@ describe("Admin store test suite", async()=>{
             linkedin_url:"url_linkedin",
             facebook_url:"facebook_url",
             email:"francinemadoh@mail.com",
-            admin_password:"admin",
             avatar:"avatar",
             activ_date:"date-activ",
             superuser:false
@@ -103,15 +139,29 @@ describe("Admin store test suite", async()=>{
     });
 
 
-    it("update the admin password", async()=>{
-        const result = await store.update("new-password", "francinemadoh@mail.com");
-        expect(result.admin_password).toBe("new-password");
+    it("Update the admin password", async()=>{
+        const result = await store.update("francinemadoh@mail.com","new-password");
+        const matchingPW = bcrypt.compareSync("new-password"+ BCRYPT_PASSWORD,result.admin_password); 
+        expect(matchingPW).toBeTrue();
     });
 
     
     it("Delete the specified admin", async()=>{
         const result = await store.delete("francinemadoh@mail.com") ;
-        expect(result).toEqual({
+
+        const expectAdmin = _.pick(result, [
+            "admin_id",
+            "admin_name",
+            "username",
+            "twitter_url",
+            "linkedin_url",
+            "facebook_url",
+            "email",
+            "avatar",
+            "activ_date",
+            "superuser"
+        ]);
+        expect(expectAdmin).toEqual({
             admin_id:3,
             admin_name:"Francine Madoh",
             username:"Franca",
@@ -119,11 +169,11 @@ describe("Admin store test suite", async()=>{
             linkedin_url:"url_linkedin",
             facebook_url:"facebook_url",
             email:"francinemadoh@mail.com",
-            admin_password:"new-password",
             avatar:"avatar",
             activ_date:"date-activ",
             superuser:false
         });
+        
     });
 
     afterAll(async()=>{

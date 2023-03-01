@@ -1,4 +1,8 @@
 import client from "../database";
+import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export type Admin = {
     admin_id?:number,
@@ -14,12 +18,19 @@ export type Admin = {
     superuser:boolean
 }
 
+const {
+    BCRYPT_PASSWORD,
+    SALT_ROUND
+} = process.env;
+
 export class adminStore {
 
 //create
 async create(a:Admin):Promise<Admin>{
     const conn = await client.connect();
     const sql_command = "INSERT INTO admins(admin_name,username,twitter_url,linkedin_url,facebook_url,email,admin_password,avatar,activ_date,superuser) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING * ;";
+    const hashedpw = bcrypt.hashSync(a.admin_password + BCRYPT_PASSWORD, parseInt(SALT_ROUND as string));
+
     const result = await conn.query(sql_command,[
         a.admin_name,
         a.username,
@@ -27,7 +38,7 @@ async create(a:Admin):Promise<Admin>{
         a.linkedin_url,
         a.facebook_url,
         a.email,
-        a.admin_password,
+        hashedpw,
         a.avatar,
         a.activ_date,
         a.superuser
@@ -48,19 +59,26 @@ async index():Promise<Admin[]>{
 //update
 async update(email:string,pass:string):Promise<Admin>{
     const conn = await client.connect();
-    const sql_command = "UPDATE admins SET admin_password = $1 WHERE email = $2 RETURNING *;";
-    const result = await conn.query(sql_command, [email,pass]);
+    const sql_command = "UPDATE admins SET admin_password = $2 WHERE email = $1 RETURNING *;";
+    const hashedpw = bcrypt.hashSync(pass + BCRYPT_PASSWORD, parseInt(SALT_ROUND as string));
+    const result = await conn.query(sql_command, [email,hashedpw]);
     conn.release();
     return result.rows[0];
 }
 
 //show
-async show(email:string):Promise<Admin>{
+async show(email:string, pass:string):Promise<Admin|null>{
     const conn = await client.connect();
     const sql_command = "SELECT * FROM admins WHERE email=$1;";
     const result = await conn.query(sql_command,[email]);
     conn.release();
-    return result.rows[0];
+    if(result.rows.length){
+        const admin:Admin = result.rows[0];
+        if(bcrypt.compareSync(pass + BCRYPT_PASSWORD, admin.admin_password)){
+            return admin;
+        }
+    }
+    return null;
 }
 
 //delete

@@ -35,7 +35,7 @@ describe("Admin routes test suite", async()=>{
     });
 
     it("Get the specified admin", async()=>{
-        const res = await request.get("/api/admins/:sophia@mail.com");
+        const res = await request.get("/api/admins/:sophia@mail.com").send("newpw");
         expect(res.status).toBe(200);
     });
 
