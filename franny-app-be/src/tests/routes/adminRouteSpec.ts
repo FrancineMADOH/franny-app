@@ -12,9 +12,9 @@ const admin:Admin = {
     admin_id:1,
     admin_name:"Sophia Kendrick" ,
     username:"sophia" ,                               
-    twitter_url:"www.twitter.com",                    
-    linkedin_url:"www.linkedin.com",  
-    facebook_url:"www.facebook.com",               
+    twitter_url:"https://www.twitter.com",                    
+    linkedin_url:"https://www.linkedin.com",  
+    facebook_url:"https://www.facebook.com",               
     email:"sophia@mail.com",                 
     admin_password:"newpword",               
     avatar:"/avatar.jpg",                     
@@ -42,29 +42,31 @@ describe("Admin routes test suite", async()=>{
     });
 
     it("Require authentication", async()=>{
-        const res = await request.get("/api/admins/sophia@mail.com");
+        const res = await request.get("/api/admins/signin");
         expect(res.status).toBe(401);
     });
 
     it("Get the specified admin", async()=>{
-        const res = await request.get("/api/admins/:sophia@mail.com")
+        const user = {email:"sophia@mail.com",admin_password:"newpword"};
+        const res = await request.get("/api/admins/signin")
         .set("Authorization", `Bearer ${tokenAdmin}`)
-        .send("newpword");
+        .send(user);
         expect(res.status).toBe(200);
-        expect(res.text).toEqual("Invalid Email/Password combination");
     });
 
     it("It update the specified admin", async()=>{
-        const res = await request.put("/api/admins/${email}")
+        const user = {email:"sophia@mail.com",password:"newpw1234"};
+        const res = await request.put("/api/admins/reset")
         .set("Authorization", `Bearer ${tokenAdmin}`)
-        .send("newpw") ;
+        .send(user) ;
         expect(res.status).toBe(200);
     });
 
 
     it("Delete the specified admin", async()=>{
-        const res = await request.delete("/api/admins/:sophia@mail.com")
-        .set("Authorization", `Bearer ${tokenAdmin}`);
+        const user = {email:"sophia@mail.com",password:"newpw1234"};
+        const res = await request.delete("/api/admins/delete")
+        .set("Authorization", `Bearer ${tokenAdmin}`).send(user.email);
         expect(res.status).toBe(200);
     });
 });

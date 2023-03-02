@@ -6,9 +6,9 @@ const request =  supertest(app);
 
 const post:Post = {
     //post_id?:number ,
-    title:"string" ,
-    summary:"string" ,
-    content:"string" ,
+    title:"Non aux violences faites aux enfants" ,
+    summary:"Rester silencieux fait de nous des complices" ,
+    content:"Rester silencieux fait de nous des complices nous devons denoncer" ,
     author:3 ,
     create_at:"2023-02-28"  ,
     illustration:"/fran/jpeg" ,

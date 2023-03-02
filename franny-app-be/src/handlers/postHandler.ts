@@ -1,13 +1,17 @@
 import {Request,Response } from "express";
 import { postStore} from "../models/post";
+import { postValidation, slugifyPost } from "../middlewares/validation";
 
 const poststore = new postStore();
  
 export class postHandler {
     async create(req:Request, res:Response){
         try{
+            const {error } = postValidation(req.body);
+            if(error) return res.status(400).send(error.details[0].message);
             const data = req.body;
-            const new_post = await poststore.create(data);
+            const post = slugifyPost(data);
+            const new_post = await poststore.create(post);
             res.status(201);
             res.json(new_post);
         }catch(err){
@@ -92,6 +96,9 @@ export class postHandler {
     //update
     async update(req:Request, res:Response){
         try{
+            const {error } = postValidation(req.body);
+            if(error) return res.status(400).send(error.details[0].message);
+
             const post = req.body;
             const id = parseInt(req.params.id);
             const post_up = await poststore.update(post,id);
