@@ -7,9 +7,9 @@ const methods = new adminHandler();
 
 adminRouter.post("",verifyToken ,methods.create);
 adminRouter.get("",verifyToken,methods.index);
-adminRouter.get("/:email",verifyToken , methods.show);
-adminRouter.put("/:email",verifyToken,methods.update);
-adminRouter.delete("/:email",verifyToken, methods.delete);
+adminRouter.get("/signin",verifyToken , methods.show);
+adminRouter.put("/reset",verifyToken,methods.update);
+adminRouter.delete("/delete",verifyToken, methods.delete);
 
 
 export default adminRouter;

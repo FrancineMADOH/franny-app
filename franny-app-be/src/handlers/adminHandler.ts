@@ -2,11 +2,13 @@ import { Request,Response } from "express";
 import dotenv from "dotenv";
 import { adminStore, Admin } from "../models/admin";
 import { genToken } from "../middlewares/auth";
+import { signupValidation, signinValidation, resetPasswordValidation } from "../middlewares/validation";
 
 dotenv.config();
 const adStore = new adminStore();
 
 export class adminHandler {
+
     async create(req:Request, res:Response){
         
         const admin:Admin = {
@@ -23,8 +25,10 @@ export class adminHandler {
         };
        
         try{
+            const {error} = signupValidation(req.body);
+            if(error) return res.status(400).send(error.details[0].message);
+            
             const new_admin = await adStore.create(admin);
-    
             const token = genToken(new_admin);
             res.status(201);
             res.json(token);
@@ -49,11 +53,11 @@ export class adminHandler {
      //show
      async show(req:Request, res:Response){
         try{
-            
+            const {error} = signinValidation(req.body);
+            if(error) return res.status(400).send(error.details[0].message);
             const email = req.body.email;
-            const pass = req.body.password;
+            const pass = req.body.admin_password;
             const admin = await adStore.show(email,pass);
-            console.log(admin);
 
             if(admin){
                 const token = genToken(admin);
@@ -72,6 +76,9 @@ export class adminHandler {
     //update
     async update(req:Request, res:Response){
         try{
+            const {error} = resetPasswordValidation(req.body);
+            if(error) return res.status(400).send(error.details[0].message);
+
             const email = req.body.email;
             const pass = req.body.password;
             const update_admin = await adStore.update(email,pass);

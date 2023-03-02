@@ -1,5 +1,6 @@
 import  {Request, Response} from "express";
 import { commentStore } from "../models/comment";
+import { commentValidation } from "../middlewares/validation";
 
 const comStore = new commentStore();
 
@@ -7,6 +8,8 @@ export class commentHandler {
 
     async create(req:Request, res:Response){
         try{
+            const {error } = commentValidation(req.body);
+            if(error) return res.status(400).send(error.details[0].message);
             const data = req.body;
             const new_comment  =  await comStore.create(data);
             res.status(201);
