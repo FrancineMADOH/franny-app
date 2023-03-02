@@ -10,23 +10,35 @@ const adStore = new adminStore();
 export class adminHandler {
 
     async create(req:Request, res:Response){
-        
-        const admin:Admin = {
-            admin_name:req.body.admin_name ,
-            username:req.body.username ,                               
-            twitter_url:req.body.twitter_url,                    
-            linkedin_url:req.body.linkedin_url,  
-            facebook_url:req.body.facebook_url,               
-            email:req.body.email,                 
-            admin_password:req.body.admin_password,               
-            avatar:req.body.avatar,                     
-            activ_date:req.body.activ_date,              
-            superuser:false
-        };
-       
+      
         try{
             const {error} = signupValidation(req.body);
-            if(error) return res.status(400).send(error.details[0].message);
+            if(error) console.log(error); //return res.status(400).send(error.details[0].message);
+            
+            // if(!req.file){
+            //     return res.status(400).send("Please upload a profile picture");
+            // }
+            // const img = req.file.path;
+            // const encode_image = img?.toString();
+            // const avatar  = {
+            //     data: Buffer.from(encode_image,"base64"),
+            //     contentType: req.file.mimetype
+            // };
+            // console.log(avatar);
+
+            const admin:Admin = {
+                admin_name:req.body.admin_name ,
+                username:req.body.username ,                               
+                twitter_url:req.body.twitter_url,                    
+                linkedin_url:req.body.linkedin_url,  
+                facebook_url:req.body.facebook_url,               
+                email:req.body.email,                 
+                admin_password:req.body.admin_password,               
+                avatar:req.body.avatar,                     
+                activ_date:req.body.activ_date,              
+                superuser:false
+            };
+
             
             const new_admin = await adStore.create(admin);
             const token = genToken(new_admin);
