@@ -8,6 +8,7 @@ const request = supertest(app);
 dotenv.config();
 
 
+
 const admin:Admin = {
     admin_id:1,
     admin_name:"Sophia Kendrick" ,
@@ -17,7 +18,7 @@ const admin:Admin = {
     facebook_url:"https://www.facebook.com",               
     email:"sophia@mail.com",                 
     admin_password:"newpword",               
-    avatar:"/avatar.jpg",                     
+    avatar:"file",                   
     activ_date:"2023-02-28",              
     superuser:false
 };
@@ -32,6 +33,7 @@ describe("Admin routes test suite", async()=>{
         const res = await request.post("/api/admins")
         .set("Authorization", `Bearer ${tokenAdmin}`)
         .send(admin);
+        console.log(res.files);
         expect(res.status).toBe(201);
     });
 

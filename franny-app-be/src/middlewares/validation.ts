@@ -15,7 +15,7 @@ export  const signupValidation = (data:Admin)=>{
         facebook_url:joi.string().uri(),               
         email:joi.string().min(6).required().email(),                 
         admin_password:joi.string().min(8).required(),
-        avatar:  joi.string().required(),
+        avatar:  joi.binary().optional(),
         activ_date: joi.string().required(),
         superuser: joi.boolean()          
     });
@@ -47,7 +47,7 @@ export const postValidation = (data:Post)=>{
         content:joi.string().max(4000).required(),
         author:  joi.number(),
         create_at: joi.string().max(20).required(),
-        illustration: joi.string().max(20).required(),
+        illustration: joi.string().required(),
         slug: joi.string().max(150).required(),
         applause: joi.number(),
         category: joi.string().max(10).required()

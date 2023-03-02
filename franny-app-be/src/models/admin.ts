@@ -13,7 +13,7 @@ export type Admin = {
     facebook_url:string,               
     email:string,                 
     admin_password:string,               
-    avatar:string,                     
+    avatar:string //{data:Buffer,contentType:string }  
     activ_date:string,              
     superuser:boolean
 }

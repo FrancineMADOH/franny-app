@@ -21,7 +21,7 @@ const admin:Admin = {
     facebook_url:"@francinemadoh",               
     email:"francine@mail",                 
     admin_password:"admin",               
-    avatar:"/avatar.jpeg",                     
+    avatar:"file",                     
     activ_date:"2023-01-01",              
     superuser:false
 };
@@ -73,7 +73,7 @@ describe("Admin store test suite", async()=>{
             facebook_url:"facebook_url",
             email:"francinemadoh@mail.com",
             admin_password:"admin",
-            avatar:"avatar",
+            avatar:"file",
             activ_date:"date-activ",
             superuser:false
         });
@@ -98,7 +98,7 @@ describe("Admin store test suite", async()=>{
             linkedin_url:"url_linkedin",
             facebook_url:"facebook_url",
             email:"francinemadoh@mail.com",
-            avatar:"avatar",
+            avatar:"file",
             activ_date:"date-activ",
             superuser:false
         });
@@ -132,7 +132,7 @@ describe("Admin store test suite", async()=>{
             linkedin_url:"url_linkedin",
             facebook_url:"facebook_url",
             email:"francinemadoh@mail.com",
-            avatar:"avatar",
+            avatar:"file",
             activ_date:"date-activ",
             superuser:false
         });
@@ -169,7 +169,7 @@ describe("Admin store test suite", async()=>{
             linkedin_url:"url_linkedin",
             facebook_url:"facebook_url",
             email:"francinemadoh@mail.com",
-            avatar:"avatar",
+            avatar:"file",
             activ_date:"date-activ",
             superuser:false
         });

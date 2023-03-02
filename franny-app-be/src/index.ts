@@ -1,3 +1,4 @@
+import path from "path";
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -12,6 +13,7 @@ const corsOptions = {
   optionsSuccessStatus:200
 };
 
+app.use(express.static(path.join(__dirname, "../public")));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
