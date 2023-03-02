@@ -39,6 +39,53 @@ The purpose of this API is to have users being ale to create,update an delete bl
 - show: Show the login detail of a particular user`api/admin/:adminname`[GET]
 - delete: Delete an admin `api/admin/delete`[DELETE]
 
+### BEAUTYFYERS
+
+- create: Create a new beautifyer new beautifyer `api/admins/beautifyers`[POST]
+- update: Update  a beautifyer `/api/admins/beautyfyer/:id` [PUT]
+- delete: Remove  a beautifyer   `/api/admins/beautyfyer/:id` [DELETE]
+- index: Get the list of beautifyer `` [GET]
+
+### RENDEZVOUS
+
+- create: Create a new rendezvous `api/beauty/`    [POST]
+- update: Update a rendezvous `/api/admins/beauty/:id` [PUT]
+- delete: Delete a rendez vous `api/admins/beauty` [DELETE]
+- count: Count the number of rendezvous `api/admins/beauty/count`  [GET]
+- active: select activ rendezvous   `api/admins/beauty/active`  [GET]
+- cancelled: Cancel the select rendezvous `api/admins/beauty/cancelled` [GET]
+- countActive: count active rendezvous    `api/admins/beauty/countactive`    [GET]
+- countCancelled: count cancelled rendezvous    `api/admins/beauty/countcancelled`  [GET]
+- category: get rendezvous by category `api/admins/beauty/category`   [GET]
+
+### REVIEW
+
+- create: Create an review `api/beauty/review` [POST]
+- index: Get the list of reviews `api/beauty/review` [GET]
+- show: Show the specified review `api/admin/reviews/:id`    [GET]
+- category: get the review by category  `api/admins/reviews/category`  [GET]
+
+### FAQ
+
+- create: Create a new faq ``   [POST]
+- index: List all the faq  ``    [GET]
+- delete: Delete the specified faq ``   [DELETE]
+
+### PRESTATIONS
+
+- create: Create a new prestation
+- index: List all prestations
+- update: Update a specified prestation
+
+### SEANCES
+
+- create: Create a new seance `POST` [POST]
+- show: Show a seance by id `` [GET]
+- update: Update a seance   ``  [PUT]
+- delete: Delete detail about a seance  `` [DELETE]
+
+
+
 ## DATA SHAPES
 
 ### USERS
@@ -98,3 +145,77 @@ The purpose of this API is to have users being ale to create,update an delete bl
 | superuser                    | BOOLEAN                          |
 | username                     | BOOLEAN                          |
 | **************************** | ******************************** |
+
+
+### PRESTATIONS
+
+|COLUMNS       | TYPE                  |
+|**************|***********************|
+|title         | VARCHAR               |
+|prix          | VARCHAR               |
+|duree         | VARCHAR               |
+|category      | VARCHAR               |
+****************************************
+
+### SEANCES
+
+|COLUMNS       | TYPE                  |
+|**************|***********************|
+|prestation_id | VARCHAR               |
+|description   | VARCHAR               |
+|tache         | VARCHAR               |
+|warning       | VARCHAR               |
+|silver        | VARCHAR               |
+|gold          | VARCHAR               |         
+****************************************
+
+### FAQ
+
+|COLUMNS       | TYPE                  |
+|**************|***********************|
+|question      | VARCHAR               |
+|reponse       | VARCHAR               |
+****************************************
+
+### REVIEW
+
+
+|COLUMNS       | TYPE                  |
+|**************|***********************|
+|rdvid         | VARCHAR               |
+|realisatrice  | INT                   |
+|date          | VARCHAR               |
+|note          | INT                   |     
+|commentaire   | VARCHAR               |   
+|user          | VARCHAR               |
+****************************************
+
+
+### BEAUTYFYERS
+
+|COLUMNS       | TYPE                  |
+|**************|***********************|
+|bname         |  VARCHAR              |
+|email         |  VARCHAR              |
+|quartier      |  VARCHAR              |
+|phone         |  INT                  |
+|description   |  VARCHAR              |
+|recruitdate   |  VARCHAR              |
+|createby      |  VARCHAR              |
+****************************************
+
+### RENDEZVOUS
+
+
+|COLUMNS       | TYPE                  |
+|**************|***********************|
+|rdvdate       | VARCHAR               |
+|doneby        | INT                   |
+|prestation    | INT                   |
+|state         | VARCHAR               |
+|rdvcode       | VARCHAR               |
+|rdvtype       | VARCHAR               |
+|user          | VARCHAR               |
+|ville         | VARCHAR               |
+|quartier      | VARCHAR               |
+****************************************
