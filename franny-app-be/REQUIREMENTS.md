@@ -103,31 +103,31 @@ The purpose of this API is to have users being ale to create,update an delete bl
 
 ---
 
-| Columns                                                | Type            |
-|******************************************************* |*****************|
-| title                                                  | VARCHAR         |
-| summary                                                | TEXT            |
-| content                                                | TEXT            |
-| author                                                 | INT FOREIGN KEY |
-| createdAt                                              | DATE            |
-| illustration                                           | BUFFER          |
-| slug                                                   | VARCHAR         |
-| applause                                               | INT             |
-| category                                               | VARCHAR         |
-|**************************************************************************|
+| Columns              |Type                           |
+|*******************************************************
+| title                | VARCHAR                       |
+| summary              | TEXT                          |
+| content              | TEXT                          |
+| author               | INT FOREIGN KEY               |
+| createdAt            | DATE                          |
+| illustration         | BUFFER                        |
+| slug                 | VARCHAR                       |
+| applause             | INT                           |
+| category             | VARCHAR                       |
+|******************************************************|
 
 ### Comments
 
 ---
 
-| Column                                                   | Type            |
-|********************************************************* |*****************|
-| auteur                                                   | VARCHAR         |
-| email                                                    | VARCHAR         |
-| comment                                                  | TEXT            |
-| commentdate                                              | DATE            |
-| post                                                     | INT FOREIGN KEY |
-| ******************************************************** |******************
+| Column                 | Type                          |
+|********************************************************|
+| auteur                 |          VARCHAR              |
+| email                  | VARCHAR                       |
+| comment                | TEXT                          |
+| commentdate            | DATE                          |
+| post                   | INT FOREIGN KEY               |
+| ******************************************************** 
 
 ### ADMINS
 
@@ -177,12 +177,12 @@ The purpose of this API is to have users being ale to create,update an delete bl
 |reponse       | VARCHAR               |
 ****************************************
 
-### REVIEW
+### REVIEWS
 
 
 |COLUMNS       | TYPE                  |
 |**************|***********************|
-|rdvid         | VARCHAR               |
+|rdvid         | INT               |
 |realisatrice  | INT                   |
 |date          | VARCHAR               |
 |note          | INT                   |     
