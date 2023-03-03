@@ -30,15 +30,17 @@ describe("User store models test suite", async()=>{
         conn.release();
     });
 
-    it("Create method should add a new user to the db",async()=>{
-        const result = await store.create(user.user_name,user.user_email);
-        expect(result).toEqual({user_id:2, user_name:"francine", user_email:"francine@gmail.com"});
-    });
-
-    it("Check method shoud return the specified user", async()=>{
-        const result = await store.check("francineidene@gmail.com");
+    it("Check method should return the specified user", async()=>{
+        const result = await store.check("faiza@mail.com");
         expect(result).not.toBeDefined();
     });
+
+    it("Create method should add a new user to the db",async()=>{
+        const result = await store.create("francine","francinei@gmail.com");
+        expect(result).toEqual({user_id:3, user_name:"francine", user_email:"francinei@gmail.com"});
+    });
+
+    
 
     it("Index method return a list of all users", async()=>{
         const result = await store.index();

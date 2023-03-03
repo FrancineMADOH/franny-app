@@ -1,0 +1,123 @@
+import {Request,Response } from "express";
+import { postStore} from "../models/post";
+import { postValidation, slugifyPost } from "../middlewares/validation";
+
+const poststore = new postStore();
+ 
+export class postHandler {
+    async create(req:Request, res:Response){
+        try{
+            const {error } = postValidation(req.body);
+            if(error) return res.status(400).send(error.details[0].message);
+            const data = req.body;
+            const post = slugifyPost(data);
+            const new_post = await poststore.create(post);
+            res.status(201);
+            res.json(new_post);
+        }catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+
+    //index
+    async index(req:Request, res:Response){
+        try{
+            const posts = await poststore.index();
+            res.status(200).json(posts);
+        }catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+
+    //show
+    async show(req:Request, res:Response){
+        try{
+            const id = parseInt( req.params.id);
+            const post = await poststore.show(id);
+            res.status(200).json(post);
+
+        }catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+
+    //topten
+    async topten(req:Request, res:Response){
+        try{
+            const posts = await poststore.topten();
+            res.status(200);
+            res.json(posts);
+        }catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+
+     //topapplause
+     async topapplause(req:Request, res:Response){
+        try{
+            const posts = await poststore.topapplause();
+            res.status(200).json(posts);
+        }catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+
+    //search
+    async search(req:Request, res:Response){
+        try{
+            const term = req.params.term;
+            const posts = await poststore.search(term);
+            res.status(200).json(posts);
+        }catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+
+    //category
+    async category(req:Request, res:Response){
+        try{
+            const category = req.params.category;
+            const posts =  await poststore.category(category);
+            res.status(200);
+            res.json(posts);
+        }catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+
+
+    //update
+    async update(req:Request, res:Response){
+        try{
+            const {error } = postValidation(req.body);
+            if(error) return res.status(400).send(error.details[0].message);
+
+            const post = req.body;
+            const id = parseInt(req.params.id);
+            const post_up = await poststore.update(post,id);
+            res.status(200).json(post_up);
+        }catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+
+    //delete
+    async delete(req:Request, res:Response){
+        try{
+            const id = parseInt(req.params.id);
+            const post = await poststore.delete(id);
+            res.status(200).json(post);
+        }catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+}
