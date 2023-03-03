@@ -16,7 +16,7 @@ export class userStore {
     async create(user_name:string,user_email:string): Promise<User>{
         try{
             const conn = await client.connect();
-            const sql_command = "INSERT INTO users(user_name,user_email) VALUES($1,$2) RETURNING * ;";
+            const sql_command = "INSERT INTO users(user_name,user_email) VALUES($1,$2) RETURNING *;";
             const result = await conn.query(sql_command,[user_name,user_email]);
             conn.release();
             return result.rows[0];
@@ -24,8 +24,6 @@ export class userStore {
             throw new Error(`Failed to insert user with email ${user_email}`);
         }
     }
-    
-    //index
 
     async index(): Promise<User[]>{
         try{
