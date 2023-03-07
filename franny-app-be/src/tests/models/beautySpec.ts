@@ -92,7 +92,6 @@ describe("Beautifyer model tests suite", async()=>{
 
     it("Delete the specified beautifyer", async()=>{
         const result = await store.delete(2);
-        console.log(result);
         expect(result).toEqual({
             beautif_id:2,
             bname:"Francine",
