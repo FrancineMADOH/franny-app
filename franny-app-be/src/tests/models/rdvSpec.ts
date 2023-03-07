@@ -67,7 +67,7 @@ describe("Rendezvous model tests suite", async()=>{
         });
 
         expect(result).toEqual({
-            rdv_id: 2,
+            rdv_id: 3,
             rdvdate:"2023-03-01",
             doneby:10,
             prestation: 2,
@@ -87,9 +87,9 @@ describe("Rendezvous model tests suite", async()=>{
     });
 
     it("Update the selected rdv", async()=>{
-        const result = await store.update("2023-03-08",8,2,1,"Mvog-bi",2);
+        const result = await store.update("2023-03-08",8,2,1,"Mvog-bi",3);
         expect(result).toEqual({
-            rdv_id: 2,
+            rdv_id: 3,
             rdvdate:"2023-03-08",
             doneby:8,
             prestation: 2,
@@ -122,10 +122,10 @@ describe("Rendezvous model tests suite", async()=>{
     //     //expect(result).toEqual();
     // });
 
-    it("Delete a  Faq questions", async()=>{
-        const result = await store.delete(2);
+    it("Delete the specified rendezvous", async()=>{
+        const result = await store.delete(3);
         expect(result).toEqual({
-            rdv_id: 2,
+            rdv_id: 3,
             rdvdate:"2023-03-08",
             doneby:8,
             prestation: 2,
@@ -136,7 +136,7 @@ describe("Rendezvous model tests suite", async()=>{
             ville:"Yaounde",
             quartier:"Mvog-bi"  
         });
-        expect(result.rdv_id).toBe(2);
+        expect(result.rdv_id).toBe(3);
     });
 
     afterAll(async()=>{

@@ -48,7 +48,7 @@ describe("Review model tests suite", async()=>{
         });
 
         expect(result).toEqual({
-            review_id:2,
+            review_id:3,
             rdvid: 2,  
             user_id: "grande@mail.com",           
             done_by:1 ,                  
@@ -59,13 +59,13 @@ describe("Review model tests suite", async()=>{
     });
     it("Return a list of  Faq questions", async()=>{
         const result = await store.index();
-        expect(result.length).toBe(2);
+        expect(result.length).toBe(3);
     });
 
     it("Return a specified review", async()=>{
-        const result = await store.show(1);
+        const result = await store.show(2);
         expect(result).toEqual({
-            review_id:1,
+            review_id:2,
             rdvid: 1,  
             user_id: "francine@mail.com",           
             done_by:1 ,                  
