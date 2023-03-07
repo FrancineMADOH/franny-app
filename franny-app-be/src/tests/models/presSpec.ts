@@ -46,7 +46,7 @@ describe("Prestation model tests suite", async()=>{
         });
 
         expect(result).toEqual({
-            pres_id:2,
+            pres_id:3,
             title: "Rasta",
             price:9000,
             duration: "120 mn",
@@ -59,13 +59,13 @@ describe("Prestation model tests suite", async()=>{
     });
     it("Return a list of  prestations", async()=>{
         const result = await store.index();
-        expect(result.length).toBe(2);
+        expect(result.length).toBe(3);
     });
 
     it("Update the specified prestation", async()=>{
-        const result = await store.update(10000,2);
+        const result = await store.update(10000,3);
         expect(result).toEqual({
-            pres_id:2,
+            pres_id:3,
             title: "Rasta",
             price:10000,
             duration: "120 mn",

@@ -57,7 +57,7 @@ describe("Beautifyer model tests suite", async()=>{
         });
 
         expect(result).toEqual({
-            beautif_id:2,
+            beautif_id:3,
             bname:"Francine",
             email:"francine@mail.com",
             quartier:"Mvog-betsi",
@@ -75,9 +75,9 @@ describe("Beautifyer model tests suite", async()=>{
     });
 
     it("Return the specified beautifyer", async()=>{
-        const result = await store.show(2);
+        const result = await store.show(3);
         expect(result).toEqual({
-            beautif_id:2,
+            beautif_id:3,
             bname:"Francine",
             email:"francine@mail.com",
             quartier:"Mvog-betsi",
@@ -91,9 +91,9 @@ describe("Beautifyer model tests suite", async()=>{
     });
 
     it("Delete the specified beautifyer", async()=>{
-        const result = await store.delete(2);
+        const result = await store.delete(3);
         expect(result).toEqual({
-            beautif_id:2,
+            beautif_id:3,
             bname:"Francine",
             email:"francine@mail.com",
             quartier:"Mvog-betsi",
@@ -103,7 +103,7 @@ describe("Beautifyer model tests suite", async()=>{
             ville:"Yaounde",
             create_by: "francadmin@gmail.com"
         });
-        expect(result.beautif_id).toBe(2);
+        expect(result.beautif_id).toBe(3);
     });
 
     afterAll(async()=>{

@@ -38,7 +38,7 @@ describe("Faq model tests suite", async()=>{
         });
 
         expect(result).toEqual({
-            faq_id:2,
+            faq_id:3,
             question: "Effectuez vous des soins la nuit ?",
             reponse: "La limite des heures de service est 22h",
             category: "Coiffure"
@@ -46,13 +46,13 @@ describe("Faq model tests suite", async()=>{
     });
     it("Return a list of  Faq questions", async()=>{
         const result = await store.index();
-        expect(result.length).toBe(2);
+        expect(result.length).toBe(3);
     });
 
     it("Return Faq questions by its category", async()=>{
         const result = await store.category("Coiffure");
         expect(result).toEqual([{
-            faq_id:2,
+            faq_id:3,
             question: "Effectuez vous des soins la nuit ?",
             reponse: "La limite des heures de service est 22h",
             category: "Coiffure"
@@ -60,14 +60,14 @@ describe("Faq model tests suite", async()=>{
     });
 
     it("Delete a  Faq questions", async()=>{
-        const result = await store.delete(2);
+        const result = await store.delete(3);
         expect(result).toEqual({
-            faq_id:2,
+            faq_id:3,
             question: "Effectuez vous des soins la nuit ?",
             reponse: "La limite des heures de service est 22h",
             category: "Coiffure"
         });
-        expect(result.faq_id).toBe(2);
+        expect(result.faq_id).toBe(3);
     });
 
     afterAll(async()=>{
