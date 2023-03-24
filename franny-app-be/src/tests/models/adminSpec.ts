@@ -85,7 +85,6 @@ describe("Admin store test suite", async()=>{
             "linkedin_url",
             "facebook_url",
             "email",
-            "avatar",
             "activ_date",
             "superuser"
         ]);
@@ -98,11 +97,11 @@ describe("Admin store test suite", async()=>{
             linkedin_url:"url_linkedin",
             facebook_url:"facebook_url",
             email:"francinemadoh@mail.com",
-            avatar:"file",
             activ_date:"date-activ",
             superuser:false
         });
         expect(matchingPW).toBeTrue();
+        expect(result.avatar).toBeInstanceOf(Buffer);
     });
 
     it("Return a list of admins", async()=>{
@@ -120,7 +119,6 @@ describe("Admin store test suite", async()=>{
             "linkedin_url",
             "facebook_url",
             "email",
-            "avatar",
             "activ_date",
             "superuser"
         ]);
@@ -132,10 +130,10 @@ describe("Admin store test suite", async()=>{
             linkedin_url:"url_linkedin",
             facebook_url:"facebook_url",
             email:"francinemadoh@mail.com",
-            avatar:"file",
             activ_date:"date-activ",
             superuser:false
         });
+        expect(result?.avatar).toBeInstanceOf(Buffer);
     });
 
 
@@ -157,7 +155,6 @@ describe("Admin store test suite", async()=>{
             "linkedin_url",
             "facebook_url",
             "email",
-            "avatar",
             "activ_date",
             "superuser"
         ]);
@@ -169,7 +166,6 @@ describe("Admin store test suite", async()=>{
             linkedin_url:"url_linkedin",
             facebook_url:"facebook_url",
             email:"francinemadoh@mail.com",
-            avatar:"file",
             activ_date:"date-activ",
             superuser:false
         });
