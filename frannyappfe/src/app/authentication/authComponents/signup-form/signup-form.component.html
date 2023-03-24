@@ -1,1 +1,53 @@
-<p>signup-form works!</p>
+
+<div class="col-lg-6 signup-wrapper">
+    <div class="signup-header">
+        <img src="" alt="logo franny">
+        <h4> <span style="color:#F460FC;">Feminity</span> - <span style="color:#F460FC;">Maternity</span> - <span style="color:#F460FC">Family</span></h4>
+        <h3 class="my-2"> Create  your account </h3>
+    </div>
+
+    <div class="signup-form">
+        <form method="" >
+            <div class="form-group my-3 mx-2">
+              <input type="text" class="form-control" id="fullName" required minlength="6" aria-describedby="fullNameHelp" placeholder="Enter your full name">
+            </div>
+            <div class="form-group my-3 mx-2">
+                <input type="text" class="form-control" id="username" required minlength="6" placeholder="Choose a username">
+            </div>
+            <div class="form-group my-3 mx-2">
+                <input type="text" class="form-control" id="twitter_url" required minlength="6" placeholder="Enter your twitter account url">
+            </div>
+            <div class="form-group my-3 mx-2">
+                <input type="text" class="form-control" id="facebook_url" required minlength="6" placeholder="Enter your facebook account url">
+            </div>
+            <div class="form-group my-3 mx-2">
+                <input type="text" class="form-control" id="linkedin_url" required minlength="6" placeholder="Enter your linkedIn account url">
+            </div>
+            <div class="form-group my-3 mx-2">
+                <input type="email" class="form-control" id="email"  required minlength="6" placeholder="Enter your email">
+            </div>
+            <div class="form-group my-3 mx-2">
+              <input type="password" class="form-control" id="password" required minlength="8" placeholder="Enter  your password">
+            </div>
+            <div class="form-group my-3 mx-2">
+                <input type="password" class="form-control" id="passwordconfirm" placeholder="Confirm  your password">
+              </div>
+            <div class="form-group my-3 mx-2">
+                <input type="file" class="form-control" id="avatar" placeholder="Upload a profile picture">
+            </div>
+            <button type="submit" class="btn my-3 ">Sign up<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon></button>    
+          </form>
+    </div>
+
+    <div class="signup-footer">
+        <p>Already have an  account ? <a routerLink="/">Login here</a></p>
+
+    </div>
+</div>
+
+    
+
+
+
+
+

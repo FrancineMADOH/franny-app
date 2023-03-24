@@ -1,0 +1,35 @@
+.reset-wrapper{
+    font-family: 'FiraSansRegular';
+    margin:0 auto;
+    text-align: center;
+    border:solid #9c9c9a 1px;
+    border-radius: 5%;
+    padding:2%;
+    margin-top: 3%;
+}
+
+.reset-header{
+    margin:80px 0 5px 0 ;
+}
+
+.reset-form{
+    margin:50px 0 15px 0 ;
+}
+
+.reset-footer{
+    margin:50px 0 25px 0 ;
+}
+h3,a{
+    color: #5DBAE5;
+}
+
+h4{
+    font-family: 'Fasthand';
+}
+
+button{
+    background-color: #5DBAE5;
+    color:#fff;
+}
+
+/* #5DBAE5(bleu), #F460FC(rose), #196C08(vert), #C7B14A(gold) #AA9225(satin gold) #53534F(gray)*/
