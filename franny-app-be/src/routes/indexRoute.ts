@@ -3,6 +3,11 @@ import commentRouter from "./api/commentRoute";
 import userRouter from "./api/userRoute";
 import adminRouter from "./api/adminRoute";
 import postRouter from "./api/postRoute";
+import faqRouter from "./api/faqRoute";
+import beautyRouter from "./api/beautyRoute";
+import presRouter from "./api/presRoute";
+import rdvRouter from "./api/rdvRoute";
+import revRouter from "./api/revRoute";
 
 const router = express.Router();
 
@@ -15,5 +20,10 @@ router.use("/comments", commentRouter);
 router.use("/users", userRouter);
 router.use("/admins",adminRouter);
 router.use("/posts",postRouter);
+router.use("/admins/faqs", faqRouter);
+router.use("/admins/beautifyers", beautyRouter);
+router.use("/prestations", presRouter);
+router.use("/rendezvous",rdvRouter );
+router.use("/reviews", revRouter);
 
 export default router;
