@@ -1,2 +1,27 @@
-<p>login-form works!</p>
-<h1>We registered it using the modular architecture</h1>
+<div class="col-lg-6 login-wrapper">
+    <div class="login-header">
+        <img src="" alt="logo franny">
+        <h4> <span style="color:#F460FC;">Feminity</span> - <span style="color:#F460FC;">Maternity</span> - <span style="color:#F460FC">Family</span></h4>
+        <h3 class="my-4"> Sign in to your account </h3>
+    </div>
+
+    <div class="login-form">
+        <form method="" >
+            <div class="form-group my-4 mx-2">
+              <input type="email" class="form-control" required minlength="6" id="email" aria-describedby="emailHelp" placeholder="Enter your email">
+            </div>
+            <div class="form-group my-4 mx-2">
+              <input type="password" class="form-control" required minlength="8" id="password" placeholder="Enter your password">
+            </div>
+            <button type="submit" class="btn my-2 ">Sign in<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon></button>    
+          </form>
+    </div>
+
+    <div class="login-footer">
+        <p>Fogot password? <a routerLink="/reset">Reset here</a></p>
+        <p>No account ? <a routerLink="/signup">Signup here</a></p>
+    </div>
+</div>
+    
+
+

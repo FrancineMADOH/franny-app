@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoginFormComponent } from './authComponents/login-form/login-form.component';
 import { SignupFormComponent } from './authComponents/signup-form/signup-form.component';
 import { ResetFormComponent } from './authComponents/reset-form/reset-form.component';
@@ -15,7 +17,11 @@ import { DashboardComponent } from './authComponents/dashboard/dashboard.compone
     DashboardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    FontAwesomeModule
+    
+    
   ],
   exports: [
     LoginFormComponent,
@@ -24,4 +30,8 @@ import { DashboardComponent } from './authComponents/dashboard/dashboard.compone
     DashboardComponent
   ]
 })
-export class AuthenticationModule { }
+export class AuthenticationModule {
+  constructor(){
+   
+  }
+ }

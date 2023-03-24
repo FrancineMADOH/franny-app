@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'FiraSansMedium';
+    src: url('./assets/FiraSans-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'FiraSansRegular';
+    src: url('./assets/FiraSans-Regular.ttf');
+}
+@font-face {
+    font-family: 'Fasthand';
+    src: url('./assets/Fasthand-Regular.ttf');
+}

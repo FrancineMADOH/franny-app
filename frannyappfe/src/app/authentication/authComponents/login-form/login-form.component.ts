@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { faArrowRight} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-login-form',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
-
+  faArrowRight = faArrowRight;
 }
