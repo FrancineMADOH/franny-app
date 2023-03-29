@@ -67,8 +67,8 @@ The purpose of this API is to have users being ale to create,update an delete bl
 
 ### FAQ
 
-- create: Create a new faq ``   [POST]
-- index: List all the faq  ``    [GET]
+- create: Create a new faq `api/admins/faq`   [POST]
+- index: List all the faq  `api/admin`    [GET]
 - delete: Delete the specified faq ``   [DELETE]
 
 ### PRESTATIONS

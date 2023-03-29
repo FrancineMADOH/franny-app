@@ -6,5 +6,6 @@ CREATE TABLE beautifyers(
     phone INT,
     details VARCHAR(300) ,
     recruit_date VARCHAR(20),
-    createby   VARCHAR(100) 
+    ville VARCHAR(20),
+    create_by   VARCHAR(100) 
 );
