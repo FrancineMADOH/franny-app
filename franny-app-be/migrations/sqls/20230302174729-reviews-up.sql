@@ -5,5 +5,5 @@ CREATE TABLE reviews(
     done_by  INT ,                  
     review_date  VARCHAR(20),               
     note  INT,                      
-    comment VARCHAR(300),                     
+    comment VARCHAR(300)                    
 );

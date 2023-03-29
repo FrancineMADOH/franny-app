@@ -9,5 +9,15 @@ import { faArrowRight} from '@fortawesome/free-solid-svg-icons';
 })
 export class ResetFormComponent {
   faArrowRight = faArrowRight;
+  email:string = "";
+  newPassword:string = "";
+  newPasswordConfirm:string = "";
 
+  checkMactchingPassword():void{
+    console.log("password mismatch");
+  }
+
+  backToLogin():void{
+    console.log(`email:${this.email}, new pass:${this.newPassword}, confirm:${this.newPasswordConfirm}`);
+  }
 }

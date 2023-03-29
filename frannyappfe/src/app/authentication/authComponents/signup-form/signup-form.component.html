@@ -7,7 +7,7 @@
     </div>
 
     <div class="signup-form">
-        <form method="" >
+        <form method="" #form="ngForm" (ngSubmit)="checkPasswordMatch(); backToLogin()" >
             <div class="form-group my-3 mx-2">
               <input type="text" class="form-control" id="fullName" required minlength="6" aria-describedby="fullNameHelp" placeholder="Enter your full name">
             </div>
@@ -35,7 +35,7 @@
             <div class="form-group my-3 mx-2">
                 <input type="file" class="form-control" id="avatar" placeholder="Upload a profile picture">
             </div>
-            <button type="submit" class="btn my-3 ">Sign up<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon></button>    
+            <button type="submit" [disabled]="form.invalid" class="btn my-3 ">Sign up<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon></button>    
           </form>
     </div>
 

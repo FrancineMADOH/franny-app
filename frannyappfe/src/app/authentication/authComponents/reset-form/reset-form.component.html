@@ -7,15 +7,15 @@
     </div>
 
     <div class="reset-form">
-        <form method="" >
+        <form method="" (ngSubmit)="checkMactchingPassword(); backToLogin()" #form="ngForm">
           <div class="form-group my-4 mx-2">
-            <input type="email" class="form-control" required minlength="6" id="email" aria-describedby="emailHelp" placeholder="Enter your Email">
+            <input type="email" class="form-control" required minlength="6" id="email" name="email" aria-describedby="emailHelp"  [(ngModel)]="email" placeholder="Enter your Email">
           </div>
             <div class="form-group my-4 mx-2">
-              <input type="password" class="form-control" required minlength="8" id="newPassword" aria-describedby="newPasswordHelp" placeholder="Enter your new password">
+              <input type="password" class="form-control" required minlength="8" name="newPassword" id="newPassword" [(ngModel)]="newPassword" aria-describedby="newPasswordHelp" placeholder="Enter your new password">
             </div>
             <div class="form-group my-4 mx-2">
-              <input type="password" class="form-control" required minlength="8" id="newpasswordconfirm" placeholder="Confirm your password">
+              <input type="password" class="form-control" required minlength="8" name="newpasswordconfirm" id="newpasswordconfirm" [(ngModel)]="newPasswordConfirm" placeholder="Confirm your password">
             </div>
             <button type="submit" class="btn my-2 ">Reset<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon></button>    
           </form>
