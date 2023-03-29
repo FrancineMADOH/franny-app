@@ -9,7 +9,7 @@ const routes: Routes = [
   {path:"", component:LoginFormComponent, pathMatch:"full"},
   {path:"signup", component: SignupFormComponent},
   {path:"reset", component:ResetFormComponent},
-  { path:"dashboard", component:LoginFormComponent}
+  { path:"dashboard", component:DashboardComponent}
 ];
 
 @NgModule({

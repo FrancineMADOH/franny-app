@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -15,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserModule,
     AppRoutingModule,
     AuthenticationModule,
+    FormsModule,
     NgbModule,
     FontAwesomeModule
   ],

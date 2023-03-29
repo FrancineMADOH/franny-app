@@ -19,9 +19,9 @@ Then  create a super user that will connect to your databases and grant him priv
 CREATE USER user WITH PASSWORD 'your_password';
 CREATE DATABASE franny WITH ENCODING 'UTF8';
 \c store_db;
-GRANT ALL PRIVILEGES ON DATABASE store_db TO store_user;
+GRANT ALL PRIVILEGES ON DATABASE store_db TO _user;
 CREATE DATABASE franny_test WITH ENCODING 'UTF8';
-\c store_db_test;
+\c franny_db_test;
 GRANT ALL PRIVILEGES ON DATABASE franny_test TO user;
 
 ```
