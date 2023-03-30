@@ -17,7 +17,7 @@
             <div class="form-group my-4 mx-2">
               <input type="password" class="form-control" required minlength="8" name="newpasswordconfirm" id="newpasswordconfirm" [(ngModel)]="newPasswordConfirm" placeholder="Confirm your password">
             </div>
-            <button type="submit" class="btn my-2 ">Reset<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon></button>    
+            <button type="submit" [disabled]="form.invalid" class="btn my-2 ">Reset<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon></button>    
           </form>
     </div>
 

@@ -7,7 +7,9 @@ import { SignupFormComponent } from './authentication/authComponents/signup-form
 
 const routes: Routes = [
   {path:"", component:LoginFormComponent, pathMatch:"full"},
-  {path:"signup", component: SignupFormComponent},
+  {path:"signup", component: SignupFormComponent, children:[{
+    path:"", component:LoginFormComponent
+  }]},
   {path:"reset", component:ResetFormComponent},
   { path:"dashboard", component:DashboardComponent}
 ];

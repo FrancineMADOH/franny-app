@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faArrowRight} from '@fortawesome/free-solid-svg-icons';
+import { FormControl, Validator, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -13,9 +15,20 @@ export class LoginFormComponent  implements OnInit{
   email:string  = "";
   password:string = "";
 
-  ngOnInit():void{}
+  
 
-  constructor(private router:Router){}
+  constructor(private router:Router, private auth: AuthService  ){}
+  ngOnInit():void{
+    this.makeApiCall();
+     
+  }
+
+  makeApiCall(){
+    this.auth.getMainRoute().subscribe((data)=>{
+      console.log(data)
+      return data;
+     })
+  }
 
   loginUser():void{
     this.router.navigate(['dashboard', {email:this.email}])
