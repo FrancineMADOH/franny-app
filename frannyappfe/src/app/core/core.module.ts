@@ -1,25 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppHeaderComponent } from './app-header/app-header.component';
-import { AppFooterComponent } from './app-footer/app-footer.component';
-import { AppSidebarComponent } from './app-sidebar/app-sidebar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
 @NgModule({
   declarations: [
-    AppHeaderComponent,
-    AppFooterComponent,
-    AppSidebarComponent
+    SidebarComponent,
+    FooterComponent,
+    AboutComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FontAwesomeModule,
+    HeaderComponent,
   ],
   exports:[
-    AppHeaderComponent,
-    AppFooterComponent,
-    AppSidebarComponent
-    
+    SidebarComponent,
+    HeaderComponent,
+    FooterComponent 
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+ 
+
+ }

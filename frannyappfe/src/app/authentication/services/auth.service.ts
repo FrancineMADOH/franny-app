@@ -4,6 +4,7 @@ import { JwtResponse } from '../models/jwt-response';
 import { Admin } from '../models/admin';
 import { environment } from 'src/app/environment/env';
 import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,31 +29,35 @@ selectedAdmin: Admin = {
 
 constructor(private http: HttpClient) { }
 
-  getMainRoute(){
+getMainRoute(){
     return this.http.get(environment.baseUrl);
   }
 
-  createAdmin(admin: Admin){
+createAdmin(admin: Admin){
     return this.http.post(environment.baseUrl + "/admins", admin )
     
-  }
-signtheUserIn(){
-  return this.http.get(environment.baseUrl + '/admins')
 }
-  // getAdminById(){
-  //   return this.http.get('http://localhost:4000/api/admins/:id')
+signtheUserIn(email:string,admin_password:string){
+  return this.http.post(environment.baseUrl + '/admins/signin', {email,admin_password})
+}
 
-  // }
-  // siginAsAdmin(){
-  //   return this.http.get('http://localhost:4000/api/admins/:id')
-  // }
-  // resetAdminPassword(){
-  //   return this.http.put('http://localhost:4000/api/admins/reset')
-  // }
-  // removeAdmin(){
-  //   return this.http.delete('http://localhost:4000/api/admins/delete')
-  // }
+resetPassword(email:string, password:string){
+  return this.http.put(environment.baseUrl + '/admins/reset',{email,password})
 }
+
+deleteAccount(id:number){
+  return this.http.delete(environment.baseUrl + '/admins/delete')
+}
+
+
+ 
+}
+
+// adminRouter.post("",upload.single("avatar") ,methods.create);
+// adminRouter.get("",verifyToken,methods.index);
+// adminRouter.post("/signin", methods.show);
+// adminRouter.put("/reset",verifyToken,methods.update);
+// adminRouter.delete("/delete",verifyToken, methods.delete);
 
 
 

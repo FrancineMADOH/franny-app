@@ -6,14 +6,15 @@
     </div>
 
     <div class="login-form">
-        <form method="" (ngSubmit)="loginUser()" #Form="ngForm">
+        <form method=""  [formGroup]="loginForm" (submit)="singinAdmin()">
             <div class="form-group my-4 mx-2">
-              <input  type="email" class="form-control"   required minlength="6" name="email" id="email" [(ngModel)]="email" aria-describedby="emailHelp" placeholder="Enter your email">
+              <input  type="email" formControlName="email" class="form-control"   required minlength="8" name="email" id="email"  [pattern]="emailRegex" aria-describedby="emailHelp" placeholder="Enter your email">
             </div>
             <div class="form-group my-4 mx-2">
-              <input type="password" class="form-control"  required minlength="8" id="password" name="password" [(ngModel)]="password" placeholder="Enter your password">
+              <input type="password"  class="form-control" formControlName="admin_password"  required minlength="8" id="admin_password" name="admin_password"   placeholder="Enter your password">
             </div>
-            <a routerLink="/dashboard"> <button type="submit" class="btn my-2 " [disabled]="Form.invalid" >Sign in<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon> </button></a>
+            <button type="submit" class="btn my-2 " [disabled]="loginForm.invalid" >Sign in<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon> </button>
+            <span *ngIf="message" class="validation-message">{{message}} </span>
           </form>
     </div>
 
