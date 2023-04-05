@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { faArrowRight} from '@fortawesome/free-solid-svg-icons';
-import { FormControl, Validator, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validator, Validators, } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
 
@@ -12,28 +12,38 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginFormComponent  implements OnInit{
   faArrowRight = faArrowRight;
-  email:string  = "";
-  password:string = "";
+  loginForm!: FormGroup 
+  message = "";
 
+  emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   
 
-  constructor(private router:Router, private auth: AuthService  ){}
+  constructor(private formbuilder: FormBuilder,private router:Router, private auth: AuthService){
+  }
+
   ngOnInit():void{
-    this.makeApiCall();
-     
+   this.loginForm = this.formbuilder.group({
+    email: ["", Validators.required],
+    admin_password:["", Validators.required]
+   });  
   }
+  
+  singinAdmin(){
+    const formValue = this.loginForm.value ;
+    this.auth.signtheUserIn(formValue.email, formValue.admin_password).subscribe({
+      next: 
+      (res)=>{
+        console.log(res);
+        this.router.navigate(["/dashboard"])
+      }, error:(err)=>{
+        this.message = " wrong credentials"
+      }
+    })
+  }
+  resetForm(){}
 
-  makeApiCall(){
-    this.auth.getMainRoute().subscribe((data)=>{
-      console.log(data)
-      return data;
-     })
-  }
+ 
 
-  loginUser():void{
-    this.router.navigate(['dashboard', {email:this.email}])
-         console.log(`user with the following credential just login email: ${this.email} and password: ${this.password}`)
-  }
 
 }
 //https://therichpost.com/angular-12-showing-postgresql-data-using-nodejs-express-web-api/

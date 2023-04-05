@@ -1,0 +1,20 @@
+.footer{
+    background-color: #53534F;
+}
+.brand{
+    color:#F460FC;
+    font-family: 'Fasthand';
+    list-style-type: none;
+    text-align: center;
+}
+.socials{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+a{
+    color:#F460FC;
+    text-decoration: none;
+}
+/* #5DBAE5(bleu), #F460FC(rose), #196C08(vert), #C7B14A(gold) #AA9225(satin gold) #53534F(gray)*/
