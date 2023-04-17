@@ -258,3 +258,55 @@ const routes: Routes = [
    -- use the #form="ngForm" class to let angualar know you are using the form module 
    -- use validation or create custom validator for all the input fields
 ### Reactive forms 
+
+# Making api call to nodejs
+
+-- in our module we import the httpclient module from the angular common library in the `app.module.ts` module
+-- we import the module in our component and inject it as a dependancy
+`
+import { HttpClient } from '@angular/common/http';
+constructor(private http:HttpClient){
+}
+`
+-- we then create a service where we'll call our route  `getMainRoute(){
+    return this.http.get('http://localhost:4000/api')
+  }`
+
+-- inside our component we call the request when needed  byy subcribing to the service `
+ngOnInit():void{
+    this.makeApiCall();
+     
+  }
+
+  makeApiCall(){
+    this.auth.getMainRoute().subscribe((data)=>{
+      console.log(data)
+      return data;
+     })
+  }`
+
+  --since our front end and our backend are running on different port we need to proxy request to our server where cors are also enabled
+  -- Create a proxy.conf.json in the src folder and make the following configuration `
+  {
+"/api": {
+"target": "http://localhost:backend server port",
+"secure": false
+}
+}
+  `
+
+  --inside the angular.json file fing the browsertarget in the "serve" configuration and add a config for the proxy for it to make use of our file `"proxyConfig":"src/proxy.conf.json" `
+  -- our front end is now interacting with our backend without  cors error and request can now be made [https://www.stackhawk.com/blog/angular-cors-guide-examples-and-how-to-enable-it/]
+
+
+  # Uploading file with angular
+  []
+  
+  ## aligning nav-bar items to the right
+
+  `
+In bootstrap 5 the classes are changed, so for ml-auto is changes with ms-auto AND mr-auto is changes with me-auto
+
+For left we have to use s instead of l, And For Right we have to use e instead of r
+
+  `

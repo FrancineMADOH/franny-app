@@ -9,7 +9,7 @@ CREATE TABLE admins(
     facebook_url VARCHAR(150),                 
     email VARCHAR(120) ,                 
     admin_password  VARCHAR(100),               
-    avatar BYTEA,                     
+    -- avatar VARCHAR(),                     
     activ_date VARCHAR(50),              
     superuser BOOLEAN DEFAULT FALSE
 );

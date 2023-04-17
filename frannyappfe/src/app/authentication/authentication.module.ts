@@ -10,6 +10,7 @@ import { ResetFormComponent } from './authComponents/reset-form/reset-form.compo
 import { DashboardComponent } from './authComponents/dashboard/dashboard.component';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { CoreModule } from '../core/core.module';
+import { BeautyModule } from '../beauty/beauty.module';
 
 
 
@@ -27,7 +28,8 @@ import { CoreModule } from '../core/core.module';
     FontAwesomeModule,
     FormsModule ,
     ReactiveFormsModule,
-    CoreModule
+    CoreModule,
+    BeautyModule
   ],
   exports: [
     LoginFormComponent,
