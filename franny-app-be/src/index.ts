@@ -6,7 +6,7 @@ import router from "./routes/indexRoute";
 
 const app:express.Application = express();
 const port = 4000;
-const domain = "localhost:4200";
+const domain = "http://localhost:4200";
 
 const corsOptions = {
   origin:domain,

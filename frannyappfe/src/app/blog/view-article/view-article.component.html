@@ -1,0 +1,78 @@
+<app-header></app-header>
+<div class="row container-fluid">
+    <div class="header">
+        <a href="" class="btn btn-secondary m-3" routerLink="/posts/edit">Edit</a>
+        <a href="" class="btn btn-primary m-3" routerLink="/posts">All articles</a>
+    </div>
+    <div class="body">
+        <div class="row">
+            <div class="col-lg-10 px-3 ">
+                <div class="jumbotron m-3">
+                    <!-- TODO: put a background image here -->
+                    <h1 class="text-center">Article title</h1>
+                    <p class="text-center">
+                        <span class="lead m-4">Article author</span>
+                        <span class=" m-4">Article publish date </span>
+                    </p>
+                </div>
+                <div class="content">
+                    Article content
+                </div>
+            </div>
+            <div class="col-lg-2"> liste des top 10 articles</div>
+        </div>
+        <div class="action">
+            <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#biblioModal">
+                Bibliography
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="biblioModal" tabindex="-1" aria-labelledby="biblioModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="biblioModalLabel">Bibliography</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                            <ul class="biblio-elt"></ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success m-3" data-bs-toggle="modal" data-bs-target="#commentModal">
+                Add comment
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="biblioModalLabel">Add comment</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <app-comment></app-comment>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="comment-list m-3">
+            <h3>Comments</h3>
+            <app-comment-card></app-comment-card>
+        </div>
+    </div>
+   
+</div>
+<app-footer></app-footer>

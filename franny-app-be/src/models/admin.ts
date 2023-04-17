@@ -13,7 +13,7 @@ export type Admin = {
     facebook_url:string,               
     email:string,                 
     admin_password:string,               
-    avatar:string //{data:Buffer,contentType:string }  
+   // avatar:string //{data:Buffer,contentType:string }  
     activ_date:string,              
     superuser:boolean
 }
@@ -28,7 +28,7 @@ export class adminStore {
 //create
 async create(a:Admin):Promise<Admin>{
     const conn = await client.connect();
-    const sql_command = "INSERT INTO admins(admin_name,username,twitter_url,linkedin_url,facebook_url,email,admin_password,avatar,activ_date,superuser) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING * ;";
+    const sql_command = "INSERT INTO admins(admin_name,username,twitter_url,linkedin_url,facebook_url,email,admin_password,activ_date,superuser) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING * ;";
     const hashedpw = bcrypt.hashSync(a.admin_password + BCRYPT_PASSWORD, parseInt(SALT_ROUND as string));
 
     const result = await conn.query(sql_command,[
@@ -39,7 +39,7 @@ async create(a:Admin):Promise<Admin>{
         a.facebook_url,
         a.email,
         hashedpw,
-        a.avatar,
+        //a.avatar,
         a.activ_date,
         a.superuser
     ]);
@@ -79,6 +79,15 @@ async show(email:string, pass:string):Promise<Admin|null>{
         }
     } 
     return null;
+}
+
+//acces home 
+async home(email:string):Promise<Admin|null>{
+    const conn= await client.connect();
+    const sql_command = "SELECT admin_name,username,twitter_url,linkedin_url,facebook_url,email,superuser WHERE email=$1;";
+    const result = await conn.query(sql_command,[email]);
+    conn.release();
+    return result.rows[0];  
 }
 
 //delete
