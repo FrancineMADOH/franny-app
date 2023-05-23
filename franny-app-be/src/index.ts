@@ -1,4 +1,5 @@
 import path from "path";
+import ejs from "ejs";
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -13,16 +14,20 @@ const corsOptions = {
   optionsSuccessStatus:200
 };
 
-app.use(express.static(path.join(__dirname, "../public")));
+app.set('view engine', 'html');
+app.engine('html', require('ejs').renderFile);
+app.use(express.static(path.join(__dirname, "../public/views")));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
+
 app.use("/api", router);
 
 
 
+
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello Franny");
+  res.render("index.html")
 });
 
 app.listen(port, () => {

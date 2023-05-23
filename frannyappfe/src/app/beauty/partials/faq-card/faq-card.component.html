@@ -1,0 +1,34 @@
+<div class="card m-3" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Question</h5>
+    <h6 class="car-title text-muted">Category</h6>
+    <p class="card-text">Reponse a la question voir le button updatee si on est admin</p>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateBackdrop">
+      Update 
+    </button>
+    <form action="" class="my-2">
+      <button class="btn btn-danger">Delete</button>
+    </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="updateBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="updateBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="updateBackdropLabel">Update Faq</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <app-faq-form></app-faq-form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
