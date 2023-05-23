@@ -10,6 +10,7 @@ import { AdministrationComponent } from './blog/administration/administration.co
 import { EditArticleComponent } from './blog/edit-article/edit-article.component';
 import { ViewArticleComponent } from './blog/view-article/view-article.component';
 import { BibliographieComponent } from './blog/bibliographie/bibliographie.component';
+import { FaqsComponent } from './beauty/faqs/faqs.component';
 
 const routes: Routes = [
   {path:"", component:LoginFormComponent, pathMatch:"full"},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:"admin", component:AdministrationComponent},
   {path:"posts/edit", component:EditArticleComponent},
   {path:"posts/view", component:ViewArticleComponent},
-  {path:"id/bibliographie", component: BibliographieComponent}
+  {path:"id/bibliographie", component: BibliographieComponent},
+  {path:"beauty/faqs", component:FaqsComponent}
 
 ];
 
