@@ -12,10 +12,12 @@ import { AuthInterceptor } from './authentication/services/auth.interceptor';
 import { CoreModule } from './core/core.module';
 import { BeautyModule } from './beauty/beauty.module';
 import { BlogModule } from './blog/blog.module';
+import { MarketSoonComponent } from './market/market-soon/market-soon.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MarketSoonComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
-<app-header></app-header>
+<main>
 <div class="row m-2">
     <!-- <div class="col-lg-10">  -->
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             <h4 class="text-center">Blog</h4>
             <ul class="action">
                 <li><a routerLink="/posts/new" href="">New Article</a> </li>
@@ -10,7 +10,7 @@
                 <li><a routerLink="/admin" href="">Administration</a> </li>
             </ul>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             <h4 class="text-center">Beauty</h4>
             <ul class="beauty">
                 <li><a routerLink="/beauty/rendez-vous">Rendez-vous</a> </li>
@@ -22,9 +22,14 @@
             </ul>
         </div>
     <!-- </div> -->
-    <div class="col-lg-2"> 
-        <app-sidebar></app-sidebar>
+    <div class="col-lg-4"> 
+        <h4 class="text-center">Market</h4>
+        <ul class="beauty">
+            <li><a routerLink="/market/add">Add article</a> </li>
+            <li><a routerLink="/beauty/articless">All articles</a> </li>
+            <li><a routerLink="/beauty/faqs">FAQS</a> </li>
+        </ul>
     </div>
     
 </div>
-<app-footer></app-footer>
+</main>

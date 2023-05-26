@@ -3,7 +3,7 @@
     font-family: 'FiraSansRegular';
     background-color: #53534F;
 }
-.nav-link{
+a {
     color:#F460FC;
 }
 .brand{
@@ -15,4 +15,7 @@
 button{
    background-color :#fff; 
    color:#F460FC;
+}
+a.active {
+    color:white;
 }
