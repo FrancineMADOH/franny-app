@@ -21,6 +21,8 @@ import { ReviewComponent } from './review/review.component';
 import { BeautifyerComponent } from './beautifyer/beautifyer.component';
 import { RdvComponent } from './rdv/rdv.component';
 import { BeautyPageComponent } from './beauty-page/beauty-page.component';
+import { FormsModule } from '@angular/forms';
+import { AddRdvComponent } from './add-rdv/add-rdv.component';
 
 
 @NgModule({
@@ -43,12 +45,14 @@ import { BeautyPageComponent } from './beauty-page/beauty-page.component';
     ReviewComponent,
     BeautifyerComponent,
     RdvComponent,
-    BeautyPageComponent
+    BeautyPageComponent,
+    AddRdvComponent
   ],
   imports: [
     CommonModule,
     CoreModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ]
 })
 export class BeautyModule { }

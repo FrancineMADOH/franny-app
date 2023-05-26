@@ -14,6 +14,11 @@ import { FaqsComponent } from './beauty/faqs/faqs.component';
 import { AboutComponent } from './core/about/about.component';
 import { MarketSoonComponent } from './market/market-soon/market-soon.component';
 import { BeautyPageComponent } from './beauty/beauty-page/beauty-page.component';
+import { RdvComponent } from './beauty/rdv/rdv.component';
+import { BeautifyerComponent } from './beauty/beautifyer/beautifyer.component';
+import { ReviewComponent } from './beauty/review/review.component';
+import { PrestationComponent } from './beauty/prestation/prestation.component';
+import { AddRdvComponent } from './beauty/add-rdv/add-rdv.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/dashboard", pathMatch:"full"},
@@ -30,7 +35,13 @@ const routes: Routes = [
   {path:"beauty/faqs", component:FaqsComponent},
   {path:"beauty", component:BeautyPageComponent},
   {path:"about",component:AboutComponent},
-  {path:"market", component:MarketSoonComponent}
+  {path:"market", component:MarketSoonComponent},
+  {path:"beauty/rendez-vous", component:RdvComponent},
+  {path:"beauty/beautifyers", component:BeautifyerComponent},
+  {path:"beauty/reviews", component:ReviewComponent},
+  {path:"beauty/faqs", component:FaqsComponent},
+  {path:"beauty/prestations", component:PrestationComponent},
+  {path:"beauty/add-rdv", component:AddRdvComponent}
 
 ];
 
