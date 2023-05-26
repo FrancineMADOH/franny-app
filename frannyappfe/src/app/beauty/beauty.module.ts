@@ -20,6 +20,7 @@ import { PrestationComponent } from './prestation/prestation.component';
 import { ReviewComponent } from './review/review.component';
 import { BeautifyerComponent } from './beautifyer/beautifyer.component';
 import { RdvComponent } from './rdv/rdv.component';
+import { BeautyPageComponent } from './beauty-page/beauty-page.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { RdvComponent } from './rdv/rdv.component';
     PrestationComponent,
     ReviewComponent,
     BeautifyerComponent,
-    RdvComponent
+    RdvComponent,
+    BeautyPageComponent
   ],
   imports: [
     CommonModule,

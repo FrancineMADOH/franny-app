@@ -2,7 +2,7 @@
     <div>
         <ul class="brand">
             <li><a class="navbar-brand" routerLink="/dashboard" href="#">Franny</a></li>
-            <li>Feminity - Mternity - Family</li>
+            <li>Feminity - Maternity - Family</li>
         </ul>
     </div>
     
@@ -13,20 +13,20 @@
   
     <div [ngbCollapse]="navbarCollapse" class="collapse navbar-collapse" justify-content-end id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto">
-        <li  class="nav-item   active">
-          <a class="nav-link" [routerLink]="'/home'" (click)="navbarCollapse = true">Home</a>
+        <li  class="nav-item active">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="'/dashboard'"   (click)="navbarCollapse = true">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/blog'" (click)="navbarCollapse = true" >Blog</a>
+          <a class="nav-link" [routerLink]="'/posts'"  routerLinkActive="active" (click)="navbarCollapse = true" >Blog</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/beauty'" (click)="navbarCollapse = true" >Beauty</a>
+            <a class="nav-link" [routerLink]="'/beauty'" routerLinkActive="active"  (click)="navbarCollapse = true" >Beauty</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/market'" (click)="navbarCollapse = true" >Market</a>
+            <a class="nav-link" [routerLink]="'/market'"  routerLinkActive="active" (click)="navbarCollapse = true" >Market</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/about'" (click)="navbarCollapse = true" >About</a>
+            <a class="nav-link" [routerLink]="'/about'"  routerLinkActive="active" (click)="navbarCollapse = true" >About</a>
         </li>
       </ul>
     </div>
