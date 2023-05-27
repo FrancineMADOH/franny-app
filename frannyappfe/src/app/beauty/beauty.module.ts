@@ -23,6 +23,7 @@ import { RdvComponent } from './rdv/rdv.component';
 import { BeautyPageComponent } from './beauty-page/beauty-page.component';
 import { FormsModule } from '@angular/forms';
 import { AddRdvComponent } from './add-rdv/add-rdv.component';
+import { AddBeautifComponent } from './add-beautif/add-beautif.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { AddRdvComponent } from './add-rdv/add-rdv.component';
     BeautifyerComponent,
     RdvComponent,
     BeautyPageComponent,
-    AddRdvComponent
+    AddRdvComponent,
+    AddBeautifComponent
   ],
   imports: [
     CommonModule,

@@ -102,6 +102,14 @@
             <small *ngIf="!quartier.valid && quartier.touched" style="color:red;">Please choose a your quartiier</small>
         </div>
         <div class="form-group my-2">
+            <label for="comments">Commentaires</label>
+            <textarea class="form-control"
+            id="comments"
+            ngModel
+            #comments="ngModel"
+            name="comments"></textarea>
+        </div>
+        <div class="form-group my-2">
             <label for="rdvcode">Appointement Code</label>
                 <input type="text" 
                 class="form-control"
@@ -110,9 +118,8 @@
                 ngModel
                 #rdvcode="ngModel"
                 name="rdvcode" id="rdvcode">
-        </div>
-        
+        </div>   
     </form>
     <button (click)="backToRdv()" class="btn btn-danger m-3">Cancel</button>
-<button (click)="viewRdv()" type="submit" [disabled]="!addRendezvousForm['valid']" class="btn btn-success m-3  ">Confirm</button>
+    <button (click)="viewRdv()" type="submit" [disabled]="!addRendezvousForm['valid']" class="btn btn-success m-3  ">Confirm</button>
 </div>
