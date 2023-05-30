@@ -31,7 +31,7 @@ describe("Admin routes test suite", async()=>{
 
     it("Create a new admin via the main route", async()=>{
         const res = await request.post("/api/admins")
-        .set("Authorization", `Bearer ${tokenAdmin}`)
+        //.set("Authorization", `Bearer ${tokenAdmin}`)
         .send(admin);
         console.log(res.files);
         expect(res.status).toBe(201);

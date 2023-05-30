@@ -34,7 +34,7 @@ export class adminHandler {
                 facebook_url:req.body.facebook_url,               
                 email:req.body.email,                 
                 admin_password:req.body.admin_password,               
-                avatar:req.body.avatar,                     
+               // avatar:req.body.avatar,                     
                 activ_date:req.body.activ_date,              
                 superuser:false
             };
@@ -44,6 +44,7 @@ export class adminHandler {
             const token = genToken(new_admin);
             res.status(201);
             res.json(token);
+           //res.json(new_admin);
         }catch(err){
             console.log(err);
             res.status(500).json(err);

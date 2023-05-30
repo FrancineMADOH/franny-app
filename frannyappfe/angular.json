@@ -26,9 +26,12 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.css" ,
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -64,7 +67,8 @@
               "browserTarget": "frannyappfe:build:production"
             },
             "development": {
-              "browserTarget": "frannyappfe:build:development"
+              "browserTarget": "frannyappfe:build:development",
+              "proxyConfig":"src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +92,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": []
           }
