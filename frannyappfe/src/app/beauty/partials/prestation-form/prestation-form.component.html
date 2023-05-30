@@ -1,1 +1,81 @@
-<p>prestation-form works!</p>
+<form #addPrestationForm (ngSubmit)="savePrestation(addPrestationForm)">
+    <div class="form-group">
+        <label for="title">Prestation title </label>
+        <input type="text"
+        required
+        maxlength="20"
+        class="form-control"
+        id="title"
+        name="title"
+        ngModel
+        #title="ngModel">
+    </div>
+    <div class="form-group">
+        <label for="price">Prestation Price</label>
+        <input type="text" 
+        pattern="1-9"
+        maxlength="5"
+        id="duration"
+        required
+        ngModel
+        #price="ngModel"
+        name="price"
+        class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="duration">Prestation duration</label>
+        <input type="text"
+        pattern="1-9"
+        name="duration"
+        id="duration"
+        required
+        ngModel
+        #duration="ngModel"
+        class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="category">Prestation category</label>
+        <input type="text" 
+        name="category"
+        id="category"
+        required
+        maxlength="15"
+        ngModel
+        #category="ngModel"
+        class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="seance">Seance description</label>
+        <input type="text"
+        name="seance" 
+        id="seance"
+        maxlength="300"
+        required
+        ngModel
+        #seance="ngModel"
+        class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="gold">Prestation gold description</label>
+        <input type="text" 
+        required
+        name="gold"
+        id="gold"
+        ngModel
+        #gold="ngModel"
+        class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="premium">Prestation Premium</label>
+        <input type="text"
+        id="premium"
+        ngModel 
+        #premium="ngModel"
+        name="premium"
+         class="form-control">
+    </div>
+</form>
+<button type="submit" class="btn btn-primary m-2">Add Prestation</button>
+<button (click)="backToPrestation()" class="btn btn-secondary">Cancel</button>
+
