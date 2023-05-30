@@ -24,6 +24,7 @@ import { BeautyPageComponent } from './beauty-page/beauty-page.component';
 import { FormsModule } from '@angular/forms';
 import { AddRdvComponent } from './add-rdv/add-rdv.component';
 import { AddBeautifComponent } from './add-beautif/add-beautif.component';
+import { AddPrestationComponent } from './add-prestation/add-prestation.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { AddBeautifComponent } from './add-beautif/add-beautif.component';
     RdvComponent,
     BeautyPageComponent,
     AddRdvComponent,
-    AddBeautifComponent
+    AddBeautifComponent,
+    AddPrestationComponent
   ],
   imports: [
     CommonModule,
