@@ -1,0 +1,21 @@
+/* #5DBAE5(bleu), #F460FC(rose), #196C08(vert), #C7B14A(gold) #AA9225(satin gold) #53534F(gray)*/
+.navbar{
+    font-family: 'FiraSansRegular';
+    background-color: #53534F;
+}
+a {
+    color:#F460FC;
+}
+.brand{
+    color:#F460FC;
+    font-family: 'Fasthand';
+    list-style-type: none;
+    text-align: center;
+}
+button{
+   background-color :#fff; 
+   color:#F460FC;
+}
+a.active {
+    color:white;
+}

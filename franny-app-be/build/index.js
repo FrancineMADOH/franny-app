@@ -10,7 +10,7 @@ var cors_1 = __importDefault(require("cors"));
 var indexRoute_1 = __importDefault(require("./routes/indexRoute"));
 var app = (0, express_1.default)();
 var port = 4000;
-var domain = "localhost:4200";
+var domain = "http://localhost:4200";
 var corsOptions = {
     origin: domain,
     optionsSuccessStatus: 200

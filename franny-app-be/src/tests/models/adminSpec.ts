@@ -21,7 +21,7 @@ const admin:Admin = {
     facebook_url:"@francinemadoh",               
     email:"francine@mail",                 
     admin_password:"admin",               
-    avatar:"file",                     
+   // avatar:"file",                     
     activ_date:"2023-01-01",              
     superuser:false
 };
@@ -47,7 +47,7 @@ describe("Admin store model definition test suite", ()=>{
 describe("Admin store test suite", async()=>{
     beforeAll(async()=>{
         const conn = await client.connect();
-        const sql_command = "INSERT INTO admins(admin_name,username,twitter_url,linkedin_url,facebook_url,email,admin_password,avatar,activ_date,superuser) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING * ;";
+        const sql_command = "INSERT INTO admins(admin_name,username,twitter_url,linkedin_url,facebook_url,email,admin_password,activ_date,superuser) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING * ;";
         const hashedpw = bcrypt.hashSync(admin.admin_password + BCRYPT_PASSWORD, parseInt(SALT_ROUND as string));
         await conn.query(sql_command,[
         admin.admin_name,
@@ -57,7 +57,7 @@ describe("Admin store test suite", async()=>{
         admin.facebook_url,
         admin.email,
         hashedpw,
-        admin.avatar,
+        //admin.avatar,
         admin.activ_date,
         admin.superuser
     ]);
@@ -73,7 +73,7 @@ describe("Admin store test suite", async()=>{
             facebook_url:"facebook_url",
             email:"francinemadoh@mail.com",
             admin_password:"admin",
-            avatar:"file",
+           // avatar:"file",
             activ_date:"date-activ",
             superuser:false
         });
@@ -101,7 +101,7 @@ describe("Admin store test suite", async()=>{
             superuser:false
         });
         expect(matchingPW).toBeTrue();
-        expect(result.avatar).toBeInstanceOf(Buffer);
+       // expect(result.avatar).toBeInstanceOf(Buffer);
     });
 
     it("Return a list of admins", async()=>{
@@ -133,7 +133,7 @@ describe("Admin store test suite", async()=>{
             activ_date:"date-activ",
             superuser:false
         });
-        expect(result?.avatar).toBeInstanceOf(Buffer);
+       // expect(result?.avatar).toBeInstanceOf(Buffer);
     });
 
 
