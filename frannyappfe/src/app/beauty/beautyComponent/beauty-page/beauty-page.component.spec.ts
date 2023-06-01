@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SeanceCardComponent } from './seance-card.component';
+import { BeautyPageComponent } from './beauty-page.component';
 
-describe('SeanceCardComponent', () => {
-  let component: SeanceCardComponent;
-  let fixture: ComponentFixture<SeanceCardComponent>;
+describe('BeautyPageComponent', () => {
+  let component: BeautyPageComponent;
+  let fixture: ComponentFixture<BeautyPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SeanceCardComponent ]
+      declarations: [ BeautyPageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SeanceCardComponent);
+    fixture = TestBed.createComponent(BeautyPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
