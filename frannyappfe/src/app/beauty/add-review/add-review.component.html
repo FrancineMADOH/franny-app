@@ -1,0 +1,20 @@
+<div class="my-2 container">
+    <h1 class="text-center">Add new review </h1>
+    <h4>Good morning: User </h4>
+    <p>Your opignon on your prestation of : date de la prestation done by : Beautifyer</p>
+    <form #addReviewForm="ngForm" (ngSubmit)="saveUserReview(addReviewForm)">
+        <div class="form-group my-2">
+            <label for="note">Your rating</label>
+            <input class="form-control" type="text" required name="note" id="name" ngModel #note="ngModel" maxlength="1"
+                pattern="1-5">
+            <small *ngIf="!note['valid'] && note['touched']">Rating is between 0 - 5</small>
+        </div>
+        <div class="form-group my-2">
+            <label for="review">Your Review</label>
+            <textarea name="review" id="review" class="form-control" required maxlength="300" ngModel #review="ngModel"
+                placeholder="300 characters max..."></textarea>
+            <small *ngIf="!review['valid'] && review['touched']">Please add a valid review</small>
+        </div>
+    </form>
+    <button type="submit" [disabled]="!addReviewForm['valid']" class="btn btn-secondary">Add Review</button>
+</div>

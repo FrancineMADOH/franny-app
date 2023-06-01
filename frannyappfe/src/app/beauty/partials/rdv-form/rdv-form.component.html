@@ -1,6 +1,6 @@
 
 <div class="container">
-    <form #addRendezvousForm (ngSubmit)="saveRendezVous(addRendezvousForm)">
+    <form #addRendezvousForm="ngForm" (ngSubmit)="saveRendezVous(addRendezvousForm)">
         <div class="form-group my-2">
             <label for="clientname">Votre nom</label>
             <input type="text"  class="form-control"
@@ -71,12 +71,25 @@
             ngModel
             #rdvtype="ngModel"
             name="rdvtype" id="rdvtype">
-                <option selected>Appointment type</option>
+                <option value="" selected>Appointment type</option>
                 <option value=""></option>
             </select>
             <small *ngIf="!prestation.valid && prestation.touched" style="color:red;">Please choose a type for your prestation</small>
-
         </div>
+        <div class="form-group my-2">
+            <label for="ptype">Type de Seance</label>
+            <select class="form-control"
+            required
+            ngModel
+            #ptype="ngModel" 
+            name="ptype" id="ptype">
+            <option value="">Choose Your prestation type</option>
+                <option  value="classic">Classic</option>
+                <option value="gold">Gold</option>
+                <option value="premium">Premium</option>
+            </select>
+        </div>
+        <small *ngIf="!ptype.valid && ptype.touched" >Choose the type of prestation you want</small>
         <div class="form-group my-2">
             <label for="ville">Choose your Town</label>
             <select class="form-control" 
@@ -84,7 +97,7 @@
             ngModel
             #ville="ngModel"
             name="ville" id="ville">
-                <option selected>Town</option>
+                <option value="" selected>Town</option>
                 <option value=""></option>
             </select>
             <small *ngIf="!ville.valid && ville.touched" style="color:red;">Please choose a town</small>
@@ -96,7 +109,7 @@
             ngModel
             #quartier="ngModel" 
             name="quartier" id="quartier">
-                <option selected>Quartier</option>
+                <option value="" selected>Quartier</option>
                 <option value=""></option>
             </select>
             <small *ngIf="!quartier.valid && quartier.touched" style="color:red;">Please choose a your quartiier</small>
