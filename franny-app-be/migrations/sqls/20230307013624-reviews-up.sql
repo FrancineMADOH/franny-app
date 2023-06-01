@@ -5,5 +5,6 @@ CREATE TABLE reviews(
     done_by INT,                  
     review_date VARCHAR(200),               
     note INT,                      
-    comment VARCHAR(300)                   
+    comment VARCHAR(300),
+    FOREIGN KEY(rdvid) REFERENCES rendezvous(rdv_id) ON DELETE CASCADE                 
 );

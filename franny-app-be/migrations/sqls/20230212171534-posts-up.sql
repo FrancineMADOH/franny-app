@@ -9,5 +9,7 @@ CREATE TABLE posts(
    illustration VARCHAR (200),
    slug VARCHAR(200),
    applause INT DEFAULT 0,
-   category VARCHAR(50)
+   category VARCHAR(50),
+   FOREIGN KEY(author) REFERENCES admins(admin_id) ON DELETE CASCADE
+
 );
