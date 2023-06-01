@@ -9,6 +9,7 @@ beautyRouter.post("",verifyToken, methods.create);
 beautyRouter.get("",verifyToken, methods.index);
 beautyRouter.get("/:id",verifyToken, methods.show);
 beautyRouter.put("/:id",verifyToken, methods.delete);
+//TODO: implement a route for beautifyer deletion
 
 
 export default beautyRouter;
