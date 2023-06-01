@@ -22,6 +22,9 @@ import { AddRdvComponent } from './add-rdv/add-rdv.component';
 import { AddBeautifComponent } from './add-beautif/add-beautif.component';
 import { AddPrestationComponent } from './add-prestation/add-prestation.component';
 import { AddReviewComponent } from './add-review/add-review.component';
+import { UpdateRdvComponent } from './update-rdv/update-rdv.component';
+import { UpdateBeautifComponent } from './update-beautif/update-beautif.component';
+import { UpdatePrestationComponent } from './update-prestation/update-prestation.component';
 
 
 @NgModule({
@@ -45,6 +48,9 @@ import { AddReviewComponent } from './add-review/add-review.component';
     AddBeautifComponent,
     AddPrestationComponent,
     AddReviewComponent,
+    UpdateRdvComponent,
+    UpdateBeautifComponent,
+    UpdatePrestationComponent
   ],
   imports: [
     CommonModule,

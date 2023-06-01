@@ -22,6 +22,9 @@ import { AddRdvComponent } from './beauty/add-rdv/add-rdv.component';
 import { AddBeautifComponent } from './beauty/add-beautif/add-beautif.component';
 import { AddPrestationComponent } from './beauty/add-prestation/add-prestation.component';
 import { AddReviewComponent } from './beauty/add-review/add-review.component';
+import { UpdateRdvComponent } from './beauty/update-rdv/update-rdv.component';
+import { UpdateBeautifComponent } from './beauty/update-beautif/update-beautif.component';
+import { UpdatePrestationComponent } from './beauty/update-prestation/update-prestation.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/dashboard", pathMatch:"full"},
@@ -48,6 +51,9 @@ const routes: Routes = [
   {path:"beauty/beautifyers/add", component: AddBeautifComponent},
   {path:"beauty/prestations/add", component:AddPrestationComponent},
   {path:"beauty/reviews/add", component:AddReviewComponent},
+  {path:"beauty/rendezvous/update", component:UpdateRdvComponent},
+  {path:"beauty/beautifyers/update", component:UpdateBeautifComponent},
+  {path:"beauty/prestations/update", component:UpdatePrestationComponent}
 
 
 ];

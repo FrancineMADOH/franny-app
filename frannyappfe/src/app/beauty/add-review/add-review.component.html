@@ -2,7 +2,7 @@
     <h1 class="text-center">Add new review </h1>
     <h4>Good morning: User </h4>
     <p>Your opignon on your prestation of : date de la prestation done by : Beautifyer</p>
-    <form #addReviewForm (ngSubmit)="saveUserReview(addReviewForm)">
+    <form #addReviewForm="ngForm" (ngSubmit)="saveUserReview(addReviewForm)">
         <div class="form-group my-2">
             <label for="note">Your rating</label>
             <input class="form-control" type="text" required name="note" id="name" ngModel #note="ngModel" maxlength="1"

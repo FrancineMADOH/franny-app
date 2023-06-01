@@ -17,7 +17,7 @@ import { MarketSoonComponent } from './market/market-soon/market-soon.component'
 @NgModule({
   declarations: [
     AppComponent,
-    MarketSoonComponent
+    MarketSoonComponent,
   ],
   imports: [
     BrowserModule,
