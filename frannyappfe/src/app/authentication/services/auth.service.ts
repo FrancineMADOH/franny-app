@@ -53,12 +53,5 @@ deleteAccount(id:number){
  
 }
 
-// adminRouter.post("",upload.single("avatar") ,methods.create);
-// adminRouter.get("",verifyToken,methods.index);
-// adminRouter.post("/signin", methods.show);
-// adminRouter.put("/reset",verifyToken,methods.update);
-// adminRouter.delete("/delete",verifyToken, methods.delete);
-
-
 
 
