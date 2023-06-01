@@ -1,1 +1,14 @@
-<p>review works!</p>
+<div class="container-fluid">
+    <h1 class="text-center">All Reviews</h1>
+    <a  class="btn btn-success" routerLink="/beauty/reviews/add">Add Review</a>
+    <div class="searchFormClass col-lg-4">
+        <form #filterReview="ngForm" (ngSubmit)="filterReviewBy(filterReview)" class="d-inline">
+            <div class="form-group">
+                <input id="search" minlength="5" name="search" required ngModel #search="ngModel" placeholder="Search..."
+                    type="text">
+                <button [disabled]="!filterReview.valid" class="btn btn-success mx-2" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+    <app-review-card></app-review-card>
+</div>

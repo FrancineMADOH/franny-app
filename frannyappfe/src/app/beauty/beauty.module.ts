@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { AddRdvComponent } from './add-rdv/add-rdv.component';
 import { AddBeautifComponent } from './add-beautif/add-beautif.component';
 import { AddPrestationComponent } from './add-prestation/add-prestation.component';
+import { AddReviewComponent } from './add-review/add-review.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { AddPrestationComponent } from './add-prestation/add-prestation.componen
     BeautyPageComponent,
     AddRdvComponent,
     AddBeautifComponent,
-    AddPrestationComponent
+    AddPrestationComponent,
+    AddReviewComponent
   ],
   imports: [
     CommonModule,
