@@ -36,7 +36,7 @@ export class LoginFormComponent  implements OnInit{
         console.log(res);
         this.router.navigate(["/dashboard"])
       }, error:(err)=>{
-        this.message = " wrong credentials"
+        this.message = "wrong credentials"
       }
     })
   }
