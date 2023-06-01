@@ -21,6 +21,7 @@ import { PrestationComponent } from './beauty/prestation/prestation.component';
 import { AddRdvComponent } from './beauty/add-rdv/add-rdv.component';
 import { AddBeautifComponent } from './beauty/add-beautif/add-beautif.component';
 import { AddPrestationComponent } from './beauty/add-prestation/add-prestation.component';
+import { AddReviewComponent } from './beauty/add-review/add-review.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/dashboard", pathMatch:"full"},
@@ -45,7 +46,8 @@ const routes: Routes = [
   {path:"beauty/prestations", component:PrestationComponent},
   {path:"beauty/add-rdv", component:AddRdvComponent},
   {path:"beauty/beautifyers/add", component: AddBeautifComponent},
-  {path:"beauty/prestations/add", component:AddPrestationComponent}
+  {path:"beauty/prestations/add", component:AddPrestationComponent},
+  {path:"beauty/reviews/add", component:AddReviewComponent},
 
 ];
 
