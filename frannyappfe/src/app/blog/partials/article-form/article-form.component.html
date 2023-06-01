@@ -12,7 +12,7 @@
     #title="ngModel"
     class="form-control" 
     required>
-    <small *ngIf="!title.valid && title.touched " style="color:red;">Please provide a valid title </small>
+    <small *ngIf="!title.valid && title.touched ">Please provide a valid title </small>
   </div>
   <div class="form-group my-2">
     <label for="category">Category</label>
@@ -26,7 +26,7 @@
       <option selected>Select category</option>
       <option value=""></option>
     </select>
-    <small *ngIf="!category.valid && category.touched" style="color:red;">Please choose a category</small>
+    <small *ngIf="!category.valid && category.touched">Please choose a category</small>
   </div> 
   <div class="form-group my-2">
     <label for="summary">Description</label>
@@ -38,7 +38,7 @@
     required
     maxlength="300"
     class="form-control" required></textarea>
-    <small style="color:red;"  *ngIf="summary.touched && !summary.valid">Please provide a valid title</small>
+    <small  *ngIf="summary.touched && !summary.valid">Please provide a valid title</small>
   </div>
   <div class="form-group my-2">
     <label for="content">Content (4000 characters...)</label>
@@ -50,7 +50,7 @@
     id="content"
     class="form-control"
     required></textarea>
-    <small style="color:red;" *ngIf="content.touched && !content.valid">Please provide a valid content</small>
+    <small  *ngIf="content.touched && !content.valid">Please provide a valid content</small>
   </div>
   <div class="form-group my-2">
     <label for="create_at">Date de creation</label>
@@ -67,7 +67,7 @@
       <option selected>Select article authory</option>
       <option value=""></option>
     </select>
-    <small style="color:red;" *ngIf="!author.valid && author.touched">Please select the author</small>
+    <small *ngIf="!author.valid && author.touched">Please select the author</small>
   </div> 
     <div  class="my-4 form-group">
         <label for="illustration">Add Illustration</label>
