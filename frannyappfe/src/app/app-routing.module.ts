@@ -39,15 +39,16 @@ const routes: Routes = [
   {path:"beauty", component:BeautyPageComponent},
   {path:"about",component:AboutComponent},
   {path:"market", component:MarketSoonComponent},
-  {path:"beauty/rendez-vous", component:RdvComponent},
+  {path:"beauty/rendezvous", component:RdvComponent},
   {path:"beauty/beautifyers", component:BeautifyerComponent},
   {path:"beauty/reviews", component:ReviewComponent},
   {path:"beauty/faqs", component:FaqsComponent},
   {path:"beauty/prestations", component:PrestationComponent},
-  {path:"beauty/add-rdv", component:AddRdvComponent},
+  {path:"beauty/rendezvous/add", component:AddRdvComponent},
   {path:"beauty/beautifyers/add", component: AddBeautifComponent},
   {path:"beauty/prestations/add", component:AddPrestationComponent},
   {path:"beauty/reviews/add", component:AddReviewComponent},
+
 
 ];
 
