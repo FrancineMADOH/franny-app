@@ -18,7 +18,7 @@ const admin:Admin = {
     facebook_url:"https://www.facebook.com",               
     email:"sophia@mail.com",                 
     admin_password:"newpword",               
-    avatar:"file",                   
+    //avatar:"file",                   
     activ_date:"2023-02-28",              
     superuser:false
 };
