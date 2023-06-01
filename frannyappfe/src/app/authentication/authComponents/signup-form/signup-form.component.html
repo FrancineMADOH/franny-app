@@ -7,61 +7,56 @@
     </div>
 
     <div class="signup-form">
-        <form method="" #signupForm="ngForm"  (ngSubmit)="createadmin(signupForm)"  novalidate >
+        <form method="" #signupForm="ngForm"  (ngSubmit)="createAdmin($event)"  novalidate >
             <div class="form-group m-2">
-              <input type="text" #admin_name="ngModel" [(ngModel)]=" auth.selectedAdmin.admin_name" class="form-control" name="admin_name" id="admin_name" required minlength="6" aria-describedby="fullNameHelp" placeholder="Enter your full name">
+              <input type="text" #admin_name="ngModel"
+               ngModel
+               class="form-control" name="admin_name" 
+               id="admin_name" required minlength="6" 
+               aria-describedby="fullNameHelp" placeholder="Enter your full name">
             </div>
             <small *ngIf="!admin_name?.valid && (admin_name?.dirty||admin_name?.touched) " > Name must be at least 6 characters</small>
             <div class="form-group m-2">
-                <input type="text" class="form-control" #username="ngModel" [(ngModel)]="auth.selectedAdmin.username" name="username" id="username" required minlength="5" placeholder="Choose a username">
+                <input type="text" class="form-control" 
+                #username="ngModel" ngModel name="username" id="username" required minlength="5" placeholder="Choose a username">
             </div>
             <small *ngIf="!username?.valid && (username?.dirty|| username?.touched)" >Username must be at least 5 characters</small>
             <div class="form-group m-2">
-                <input type="text" [pattern]="url_expression" class="form-control" #twitter_url="ngModel" [(ngModel)]="auth.selectedAdmin.twitter_url" name="twitter_url" id="twitter_url" required minlength="6" placeholder="Enter your twitter account url">
+                <input type="text" [pattern]="url_expression" class="form-control" #twitter_url="ngModel" ngModel name="twitter_url" id="twitter_url" required minlength="6" placeholder="Enter your twitter account url">
             </div>
             <small *ngIf="!twitter_url?.valid && (twitter_url?.dirty|| twitter_url?.touched)" >Please provide a valid URL</small>
 
             <div class="form-group  m-2">
-                <input type="text" [pattern]="url_expression" class="form-control" #facebook_url="ngModel" [(ngModel)]="auth.selectedAdmin.facebook_url" name="facebook_url" id="facebook_url" required minlength="6" placeholder="Enter your facebook account url">
+                <input type="text" [pattern]="url_expression" class="form-control" #facebook_url="ngModel" ngModel name="facebook_url" id="facebook_url" required minlength="6" placeholder="Enter your facebook account url">
             </div>
             <small *ngIf="!facebook_url?.valid && (facebook_url?.dirty|| facebook_url?.touched)">Please provide a valid URL</small>
 
             <div class="form-group  m-2">
-                <input type="text" [pattern]="url_expression" class="form-control" #linkedin_url="ngModel" [(ngModel)]="auth.selectedAdmin.linkedin_url" name="linkedin_url" id="linkedin_url" required minlength="6" placeholder="Enter your linkedIn account url">
+                <input type="text" [pattern]="url_expression" class="form-control" #linkedin_url="ngModel" ngModel name="linkedin_url" id="linkedin_url" required minlength="6" placeholder="Enter your linkedIn account url">
             </div>
             <small *ngIf="!linkedin_url?.valid && (linkedin_url?.dirty|| linkedin_url?.touched)">Please provide a valid URL</small>
 
             <div class="form-group  m-2">
-                <input type="email" class="form-control" #email="ngModel" [(ngModel)]="auth.selectedAdmin.email" name="email" id="email"  required minlength="6" placeholder="Enter your email">
+                <input type="email" class="form-control" #email="ngModel" ngModel name="email" id="email"  required minlength="6" placeholder="Enter your email">
             </div>
             <small *ngIf="!email?.valid && (email?.dirty|| email?.touched)">Please provide a valid email</small>
 
             <div class="form-group  m-2">
-              <input type="password" class="form-control" #admin_password="ngModel" [(ngModel)]="auth.selectedAdmin.admin_password" name="admin_password" id="admin_password" required minlength="8" placeholder="Enter  your password">
-              <!-- <small *ngIf=" !(admin_password?.value == passwordconfirm)"> Password Mismatches</small> -->
-            <!-- <small *ngIf=" !(admin_password?.value === this.passwordconfirm)">Password Mismatches</small> -->
-
+              <input type="password" 
+              class="form-control" #admin_password="ngModel"
+               ngModel name="admin_password" id="admin_password" required minlength="8" maxlength="8" placeholder="Enter  your password">
             </div>
-            <small *ngIf="!admin_password?.valid && (admin_password?.dirty|| admin_password?.touched)">Password must be at least 8 characters</small>
+            <small *ngIf="!admin_password.valid && (admin_password.dirty|| admin_password.touched)">Password must be at least 8 characters</small>
 
-            <div class="form-group my-3 mx-2">
+            <!-- <div class="form-group my-3 mx-2">
                 <input type="password" class="form-control" [(ngModel)]="passwordconfirm"    name="passwordconfirm" id="passwordconfirm" placeholder="Confirm  your password">
-                <!-- <small *ngIf=" !(admin_password?.value === this.passwordconfirm)">Password Mismatches</small> -->
-            </div>
+                 <small *ngIf=" !(admin_password?.value === this.passwordconfirm)">Password Mismatches</small>
+            </div> -->  
             <!-- <div class="form-group my-3 mx-2">
                 <input  type="file" accept="image/x-png,image/jpeg" class="form-control" [(ngModel)]="auth.selectedAdmin.avatar" name="avatar" id="avatar"  placeholder="Upload a profile picture">
             </div> -->
-            <div class="form-group my-3 mx-2">
-                <input type="string"  class="form-control" [(ngModel)]="auth.selectedAdmin.activ_date" name="activ_date" id="activ_date" readonly  placeholder="{{activ_date}}">
-            </div>
-            <button type="submit"   [disabled]="signupForm.invalid" class="btn my-3 ">Sign up<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon></button>    
+            <button type="submit"    [disabled]="signupForm.invalid" class="btn my-3 ">Sign up<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon></button>    
           </form>
-
-          <div *ngIf="showSuccessMessage" >
-            <h4>Sucessfully register</h4>
-            <a routerLink="/login">Login here</a>
-          </div>
-          <small *ngIf="serverErrorMessage" >{{serverErrorMessage}} </small>
     </div>
 
     <div class="signup-footer">

@@ -16,7 +16,7 @@ export  const signupValidation = (data:Admin)=>{
         email:joi.string().min(6).required().email(),                 
         admin_password:joi.string().min(8).required(),
         avatar:  joi.binary().optional(),
-        activ_date: joi.string().required(),
+        //activ_date: joi.string().required(),
         superuser: joi.boolean()          
     });
     return schema.validate(data);

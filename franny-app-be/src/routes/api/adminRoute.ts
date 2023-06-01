@@ -6,7 +6,7 @@ import { upload } from "../../middlewares/upload";
 const adminRouter = express.Router();
 const methods = new adminHandler();
 
-adminRouter.post("",upload.single("avatar") ,methods.create);
+adminRouter.post("",methods.create);
 adminRouter.get("",verifyToken,methods.index);
 adminRouter.post("/signin", methods.show);
 adminRouter.put("/reset",verifyToken,methods.update);

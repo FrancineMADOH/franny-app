@@ -35,16 +35,14 @@ export class adminHandler {
                 email:req.body.email,                 
                 admin_password:req.body.admin_password,               
                // avatar:req.body.avatar,                     
-                activ_date:req.body.activ_date,              
+                //activ_date:req.body.activ_date,              
                 superuser:false
-            };
-
-            
-            const new_admin = await adStore.create(admin);
-            const token = genToken(new_admin);
-            res.status(201);
-            res.json(token);
-           //res.json(new_admin);
+            }; 
+            await adStore.create(admin);
+            //const token = genToken(new_admin);
+            //res.json(token);
+           res.status(201).json({"message":"Account successfully created"});
+           
         }catch(err){
             console.log(err);
             res.status(500).json(err);

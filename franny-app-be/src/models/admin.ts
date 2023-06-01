@@ -14,7 +14,7 @@ export type Admin = {
     email:string,                 
     admin_password:string,               
    // avatar:string //{data:Buffer,contentType:string }  
-    activ_date:string,              
+    activ_date?:string,              
     superuser:boolean
 }
 
@@ -30,7 +30,7 @@ async create(a:Admin):Promise<Admin>{
     const conn = await client.connect();
     const sql_command = "INSERT INTO admins(admin_name,username,twitter_url,linkedin_url,facebook_url,email,admin_password,activ_date,superuser) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING * ;";
     const hashedpw = bcrypt.hashSync(a.admin_password + BCRYPT_PASSWORD, parseInt(SALT_ROUND as string));
-
+    const activ_date = new Date().toLocaleString()
     const result = await conn.query(sql_command,[
         a.admin_name,
         a.username,
@@ -40,7 +40,8 @@ async create(a:Admin):Promise<Admin>{
         a.email,
         hashedpw,
         //a.avatar,
-        a.activ_date,
+        activ_date,
+       // a.activ_date,
         a.superuser
     ]);
     conn.release();
