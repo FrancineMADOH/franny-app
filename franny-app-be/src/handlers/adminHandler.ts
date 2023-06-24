@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { adminStore, Admin } from "../models/admin";
 import { genToken } from "../middlewares/auth";
 import { signupValidation, signinValidation, resetPasswordValidation } from "../middlewares/validation";
+import { STATUS_CODES } from "http";
 
 dotenv.config();
 const adStore = new adminStore();
@@ -35,16 +36,14 @@ export class adminHandler {
                 email:req.body.email,                 
                 admin_password:req.body.admin_password,               
                // avatar:req.body.avatar,                     
-                activ_date:req.body.activ_date,              
+                //activ_date:req.body.activ_date,              
                 superuser:false
-            };
-
-            
-            const new_admin = await adStore.create(admin);
-            const token = genToken(new_admin);
-            res.status(201);
-            res.json(token);
-           //res.json(new_admin);
+            }; 
+            await adStore.create(admin);
+            //const token = genToken(new_admin);
+            //res.json(token);
+           res.status(201).json({"message":"Account successfully created"});
+           
         }catch(err){
             console.log(err);
             res.status(500).json(err);
@@ -86,6 +85,18 @@ export class adminHandler {
         }
     }
 
+    //home (get user infos)
+    async home(req:Request,res:Response){
+        try{
+            const email = req.body.email;
+            const adminInfos = await adStore.home(email);
+            res.status(200).json(adminInfos);
+        }catch(err:any){
+            res.status(500).send(err.message);
+            
+        }
+    }
+
     //update
     async update(req:Request, res:Response){
         try{
@@ -95,8 +106,8 @@ export class adminHandler {
             const email = req.body.email;
             const pass = req.body.password;
             const update_admin = await adStore.update(email,pass);
-            res.status(200);
-            res.json(update_admin);
+            res.status(200).json({"message":"Password successfully updated"});
+            //res.json(update_admin);
         }catch(err){
             console.log(err);
             res.status(500).json(err);

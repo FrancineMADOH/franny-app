@@ -15,13 +15,15 @@ var corsOptions = {
     origin: domain,
     optionsSuccessStatus: 200
 };
-app.use(express_1.default.static(path_1.default.join(__dirname, "../public")));
+app.set('view engine', 'html');
+app.engine('html', require('ejs').renderFile);
+app.use(express_1.default.static(path_1.default.join(__dirname, "../public/views")));
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(body_parser_1.default.json());
 app.use((0, cors_1.default)(corsOptions));
 app.use("/api", indexRoute_1.default);
 app.get("/", function (req, res) {
-    res.send("Hello Franny");
+    res.render("index.html");
 });
 app.listen(port, function () {
     console.log("Listening on port " + port);

@@ -8,11 +8,11 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { AuthInterceptor } from './authentication/services/auth.interceptor';
 import { CoreModule } from './core/core.module';
 import { BeautyModule } from './beauty/beauty.module';
 import { BlogModule } from './blog/blog.module';
 import { MarketSoonComponent } from './market/market-soon/market-soon.component';
+import { AuthInterceptor } from './authentication/auth.interceptors';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,12 @@ import { MarketSoonComponent } from './market/market-soon/market-soon.component'
     FontAwesomeModule,
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}
+    //provide this interceptor in our app module
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })

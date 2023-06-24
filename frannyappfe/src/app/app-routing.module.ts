@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './authentication/authComponents/dashboard/dashboard.component';
 import { LoginFormComponent } from './authentication/authComponents/login-form/login-form.component';
 import { ResetFormComponent } from './authentication/authComponents/reset-form/reset-form.component';
@@ -27,8 +28,8 @@ import { UpdateBeautifComponent } from './beauty/update-beautif/update-beautif.c
 import { UpdatePrestationComponent } from './beauty/update-prestation/update-prestation.component';
 
 const routes: Routes = [
-  {path:"", redirectTo:"/dashboard", pathMatch:"full"},
-  {path:"dashboard",component:DashboardComponent},
+  {path:"", redirectTo:"/login", pathMatch:"full"},
+  {path:"dashboard",component:DashboardComponent, canActivate:[AuthGuard]},
   {path:"signup", component: SignupFormComponent },
   {path:"reset", component:ResetFormComponent},
   {path:"login", component:LoginFormComponent},

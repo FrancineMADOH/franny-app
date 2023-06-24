@@ -7,5 +7,6 @@ CREATE TABLE beautifyers(
     details VARCHAR(300) ,
     recruit_date VARCHAR(20),
     ville VARCHAR(20),
-    create_by   VARCHAR(100) 
+    create_by   VARCHAR(100),
+    FOREIGN KEY(created_by) REFERENCES admins(admin_id) ON DELETE CASCADE 
 );

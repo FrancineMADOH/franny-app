@@ -8,6 +8,9 @@
     margin-top: 2%;
     margin-bottom: 1%;
 }
+small{
+    color: red;
+}
 
 .login-header{
     margin:80px 0 5px 0 ;
