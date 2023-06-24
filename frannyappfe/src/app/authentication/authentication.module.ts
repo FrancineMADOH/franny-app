@@ -8,7 +8,6 @@ import { LoginFormComponent } from './authComponents/login-form/login-form.compo
 import { SignupFormComponent } from './authComponents/signup-form/signup-form.component';
 import { ResetFormComponent } from './authComponents/reset-form/reset-form.component';
 import { DashboardComponent } from './authComponents/dashboard/dashboard.component';
-import { AuthInterceptor } from './services/auth.interceptor';
 import { CoreModule } from '../core/core.module';
 import { BeautyModule } from '../beauty/beauty.module';
 
@@ -38,7 +37,7 @@ import { BeautyModule } from '../beauty/beauty.module';
     DashboardComponent
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}
+  
   ],
 })
 export class AuthenticationModule {
