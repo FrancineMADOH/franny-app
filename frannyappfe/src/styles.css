@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'FiraSansMedium';
-    src: url('./assets/FiraSans-Medium.ttf');
+    src: url('./assets/fonts/FiraSans-Medium.ttf');
 }
 
 @font-face {
     font-family: 'FiraSansRegular';
-    src: url('./assets/FiraSans-Regular.ttf');
+    src: url('./assets/fonts/FiraSans-Regular.ttf');
 }
 @font-face {
     font-family: 'Fasthand';
-    src: url('./assets/Fasthand-Regular.ttf');
+    src: url('./assets/fonts/Fasthand-Regular.ttf');
 }

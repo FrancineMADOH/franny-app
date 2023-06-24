@@ -8,6 +8,9 @@
     margin-top: 2%;
     margin-bottom: 1%;
 }
+small{
+    color: red;
+}
 
 .signup-header{
     margin:20px 0 5px 0 ;

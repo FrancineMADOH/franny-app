@@ -8,5 +8,6 @@ CREATE TABLE rendezvous(
     rdvtype INT ,
     userid VARCHAR(100), 
     ville VARCHAR(50),
-    quartier VARCHAR(100)
+    quartier VARCHAR(100),
+    FOREIGN KEY (prestation) REFERENCES prestations(pres_id) ON DELETE CASCADE
 );
