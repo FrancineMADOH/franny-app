@@ -6,7 +6,7 @@
     </div>
 
     <div class="login-form">
-        <form  #loginForm="ngForm" (ngSubmit)="singinAdmin()">
+        <form  #loginForm="ngForm" (ngSubmit)="singinAdmin(loginForm)">
             <div class="form-group  m-2">
               <input 
               ngModel
@@ -26,15 +26,15 @@
               ngModel
               #admin_password="ngModel"
                 required maxlength="8" 
+                minlength="8"
                 id="admin_password" 
                 name="admin_password"  
                 placeholder="Enter your password">
             </div>
             <small *ngIf="!admin_password.valid && admin_password.touched ">Password is required</small>
-            
+            <button type="submit" class="btn my-2 " [disabled]="loginForm.invalid" >Sign in<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon> </button>
           </form>
-          <button type="submit" class="btn my-2 " [disabled]="loginForm.invalid" >Sign in<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon> </button>
-          <small *ngIf="message" class="validation-message">{{message}} </small>
+          <!-- <small *ngIf="message" class="validation-message">{{message}} </small> -->
     </div>
 
    

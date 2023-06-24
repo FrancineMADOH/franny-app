@@ -45,8 +45,8 @@
               <input type="password" 
               class="form-control" #admin_password="ngModel"
                ngModel name="admin_password" id="admin_password" required minlength="8" maxlength="8" placeholder="Enter  your password">
+               <small *ngIf="!admin_password.valid && (admin_password.dirty|| admin_password.touched)">Password must be at least 8 characters</small>
             </div>
-            <small *ngIf="!admin_password.valid && (admin_password.dirty|| admin_password.touched)">Password must be at least 8 characters</small>
 
             <!-- <div class="form-group my-3 mx-2">
                 <input type="password" class="form-control" [(ngModel)]="passwordconfirm"    name="passwordconfirm" id="passwordconfirm" placeholder="Confirm  your password">
