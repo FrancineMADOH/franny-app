@@ -27,7 +27,7 @@ signtheUserIn(email:string,admin_password:string){
 
     this.getAdminInfos(email).subscribe((res:any)=>{
       this.currentUser = res;
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['dashboard/' + res.email]);
     });
     
   })
@@ -55,7 +55,6 @@ getAccesToken(){
 };
 isLogin():boolean {
   let authToken = localStorage.getItem('acces_token');
-  console.log(authToken);
   return (authToken!==null)? true:false;
 }
 
