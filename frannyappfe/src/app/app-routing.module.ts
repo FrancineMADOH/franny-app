@@ -29,10 +29,11 @@ import { UpdatePrestationComponent } from './beauty/update-prestation/update-pre
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
-  {path:"dashboard",component:DashboardComponent, canActivate:[AuthGuard]},
+  {path:"dashboard/:email",component:DashboardComponent, canActivate:[AuthGuard]},
   {path:"signup", component: SignupFormComponent },
   {path:"reset", component:ResetFormComponent},
   {path:"login", component:LoginFormComponent},
+  //make a route for update profile
   {path:"posts",  component:AllArticlesComponent},
   {path:"posts/new", component: NewArticleComponent},
   {path:"admin", component:AdministrationComponent},

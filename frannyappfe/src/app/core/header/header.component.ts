@@ -1,18 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';  
+import { BrowserModule } from '@angular/platform-browser';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/authentication/services/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   standalone:true,
-  imports: [NgbCollapseModule, RouterLink]
+  imports: [NgbCollapseModule, RouterLink,CommonModule,BrowserModule]
 })
 export class HeaderComponent implements OnInit {
   navbarCollapse:boolean = true;
+
+  constructor(public auth:AuthService){}
   
   ngOnInit() {
+
 
   }
 
