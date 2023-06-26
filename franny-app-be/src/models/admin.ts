@@ -85,7 +85,7 @@ async show(email:string, pass:string):Promise<Admin|null>{
 //acces home 
 async home(email:string):Promise<Admin|null>{
     const conn= await client.connect();
-    const sql_command = "SELECT admin_name,username,twitter_url,linkedin_url,facebook_url,email,superuser WHERE email=$1;";
+    const sql_command = "SELECT admin_id, admin_name,username,twitter_url,linkedin_url,facebook_url,email,superuser FROM admins WHERE email=$1;";
     const result = await conn.query(sql_command,[email]);
     conn.release();
     return result.rows[0];  

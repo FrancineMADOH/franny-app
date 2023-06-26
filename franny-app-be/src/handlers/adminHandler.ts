@@ -76,7 +76,7 @@ export class adminHandler {
                 console.log("auth succeed!");
                 res.status(200).json(token);
             } else {
-                 res.status(401).send("Invalid Email/Password combination");
+                 res.status(400).send("Invalid Email/Password combination");
             }
            
         }catch(err){
@@ -88,7 +88,8 @@ export class adminHandler {
     //home (get user infos)
     async home(req:Request,res:Response){
         try{
-            const email = req.body.email;
+            //const email = req.body.email;
+            const email = req.params.email;
             const adminInfos = await adStore.home(email);
             res.status(200).json(adminInfos);
         }catch(err:any){

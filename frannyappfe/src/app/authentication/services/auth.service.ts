@@ -24,11 +24,12 @@ createAdmin(admin: Admin):Observable<Admin>{
 signtheUserIn(email:string,admin_password:string){
   return this.http.post(environment.baseUrl + '/admins/signin', {email,admin_password}).subscribe((res:any)=>{
     localStorage.setItem("acces_token", res);
-    this.getAdminInfos((res._email).subscribe((res:any)=>{
+
+    this.getAdminInfos(email).subscribe((res:any)=>{
       this.currentUser = res;
-      console.log(res)
       this.router.navigate(['dashboard']);
-    }));
+    });
+    
   })
 }
 
@@ -41,10 +42,10 @@ deleteAdmin(id:number){
 }
 
 //get the connected agent information
-getAdminInfos(email:string){
-  return this.http.get(environment.baseUrl + '/admin/profile/$email', {headers:this.headers}).pipe(
+getAdminInfos(email:string): Observable<any>{
+  return this.http.get(environment.baseUrl + `/admins/${email}`).pipe(
    map((res:any)=>{
-    return res || {}
+    return res //|| {}
    }),
    catchError(this.handleError));
 }
@@ -52,7 +53,7 @@ getAdminInfos(email:string){
 getAccesToken(){
   return localStorage.getItem('acces_token');
 };
-get isLogin():boolean {
+isLogin():boolean {
   let authToken = localStorage.getItem('acces_token');
   console.log(authToken);
   return (authToken!==null)? true:false;
