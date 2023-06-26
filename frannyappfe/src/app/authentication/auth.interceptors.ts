@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor{
 
         req = req.clone({
             setHeaders : {
-                Authorization:   `JWT $[accesToken]`
+                Authorization:   `JWT ${accesToken}`//[]
             }
         });
 

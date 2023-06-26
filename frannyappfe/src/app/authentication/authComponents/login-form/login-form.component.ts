@@ -21,7 +21,7 @@ export class LoginFormComponent implements OnInit {
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   @ViewChild("loginForm", { static:true}) loginForm:any;
-  constructor(private form:FormBuilder ,private router: Router, private auth: AuthService) {
+  constructor(private router: Router, private auth: AuthService) {
   }
 
   ngOnInit(): void {
@@ -30,13 +30,9 @@ export class LoginFormComponent implements OnInit {
   //https://www.techiediaries.com/angular-14-user-authentication-service/
 
   singinAdmin(loginForm:any) {
-    
-
-    console.log(this.loginForm.value)
     if (this.loginForm.valid) {
       this.email = this.loginForm.value.email;
       this.password = this.loginForm.value.admin_password;
-
       this.auth.signtheUserIn(this.email,this.password);
       this.loginForm.reset();
    }

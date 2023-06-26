@@ -8,7 +8,7 @@ const methods = new adminHandler();
 
 adminRouter.post("",methods.create);
 adminRouter.get("",verifyToken,methods.index);
-adminRouter.get("admin/profile",verifyToken,methods.home);
+adminRouter.get("/:email",methods.home);
 adminRouter.post("/signin", methods.show);
 adminRouter.put("/reset",methods.update);
 adminRouter.delete("/delete",verifyToken, methods.delete);
