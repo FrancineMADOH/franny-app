@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink,ActivatedRoute } from '@angular/router';
+
 import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,10 +16,10 @@ import { AuthService } from 'src/app/authentication/services/auth.service';
 export class HeaderComponent implements OnInit {
   navbarCollapse:boolean = true;
 
-  constructor(public auth:AuthService){}
+
+  constructor(public auth:AuthService, private activateRoute:ActivatedRoute){}
   
   ngOnInit() {
-
 
   }
 
