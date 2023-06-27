@@ -26,23 +26,29 @@ export class adminHandler {
             //     contentType: req.file.mimetype
             // };
             // console.log(avatar);
+            //check if a user with this name already exist
+            const admin_exist =  await adStore.home(req.body.email);
 
-            const admin:Admin = {
-                admin_name:req.body.admin_name ,
-                username:req.body.username ,                               
-                twitter_url:req.body.twitter_url,                    
-                linkedin_url:req.body.linkedin_url,  
-                facebook_url:req.body.facebook_url,               
-                email:req.body.email,                 
-                admin_password:req.body.admin_password,               
-               // avatar:req.body.avatar,                     
-                //activ_date:req.body.activ_date,              
-                superuser:false
-            }; 
-            await adStore.create(admin);
-            //const token = genToken(new_admin);
-            //res.json(token);
-           res.status(201).json({"message":"Account successfully created"});
+            if(admin_exist) {
+                res.status(200).json({"message":"A user with this email already exists"})
+            }else{
+                const admin:Admin = {
+                    admin_name:req.body.admin_name ,
+                    username:req.body.username ,                               
+                    twitter_url:req.body.twitter_url,                    
+                    linkedin_url:req.body.linkedin_url,  
+                    facebook_url:req.body.facebook_url,               
+                    email:req.body.email,                 
+                    admin_password:req.body.admin_password,               
+                   // avatar:req.body.avatar,                     
+                    //activ_date:req.body.activ_date,              
+                    superuser:false
+                }; 
+                await adStore.create(admin);
+               res.status(201).json({"message":"Account successfully created"});
+            }
+
+        
            
         }catch(err){
             console.log(err);
