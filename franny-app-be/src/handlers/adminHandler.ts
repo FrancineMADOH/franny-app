@@ -82,7 +82,7 @@ export class adminHandler {
                 console.log("auth succeed!");
                 res.status(200).json(token);
             } else {
-                 res.status(400).send("Invalid Email/Password combination");
+                 res.status(200).json({"message":"Wrong Credentials!"});
             }
            
         }catch(err){
@@ -109,12 +109,19 @@ export class adminHandler {
         try{
             const {error} = resetPasswordValidation(req.body);
             if(error) return res.status(400).send(error.details[0].message);
+           
 
             const email = req.body.email;
             const pass = req.body.password;
-            const update_admin = await adStore.update(email,pass);
-            res.status(200).json({"message":"Password successfully updated"});
-            //res.json(update_admin);
+
+            const admin_email =  await adStore.home(email);
+            if(admin_email){
+                const update_admin = await adStore.update(email,pass);
+                res.status(200).json({"message":"Password successfully updated"});
+            } else{
+                console.log("admin do no exist");
+                res.status(200).json({"message":"No email associate with this account"});
+            } 
         }catch(err){
             console.log(err);
             res.status(500).json(err);

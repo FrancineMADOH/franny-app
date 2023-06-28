@@ -3,7 +3,7 @@
         <!-- <div class="col-lg-10">  -->
         <div class="col-lg-3">
             <h4 class="m-2 profile">Profile</h4>
-            <h6> Welcome admin {{ this.currentUser }} </h6>
+            <h6> Welcome {{ this.currentUser.username }} </h6>
 
             <ul>
                 <li><a routerLink="admin/update">Update Profile</a> </li>
@@ -14,10 +14,10 @@
         <div class="col-lg-3">
             <h4 class="text-center">Blog</h4>
             <ul class="action">
-                <li><a routerLink="/posts/new" href="">New Article</a> </li>
-                <li><a routerLink="/posts" href="">All articles</a> </li>
-                <li><a routerLink="posts/top ten" href="">Mots readed</a> </li>
-                <li><a routerLink="/admin" href="">Administration</a> </li>
+                <li><a routerLink="/posts/new" >New Article</a> </li>
+                <li><a routerLink="/posts">All articles</a> </li>
+                <li><a routerLink="posts/top ten" >Statistics</a> </li>
+                <li><a routerLink="/admin">Administration</a> </li>
             </ul>
         </div>
         <div class="col-lg-3">
