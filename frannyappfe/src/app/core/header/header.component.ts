@@ -15,12 +15,17 @@ import { AuthService } from 'src/app/authentication/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   navbarCollapse:boolean = true;
+  currentUser:any = {};
 
 
-  constructor(public auth:AuthService, private activateRoute:ActivatedRoute){}
+  constructor(public auth:AuthService, private activateRoute:ActivatedRoute){
+    
+  }
   
   ngOnInit() {
 
   }
+  
+  
 
 }

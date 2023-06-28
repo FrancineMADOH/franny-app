@@ -17,6 +17,7 @@ export class ResetFormComponent implements OnInit {
   newPassword:string = "";
   newPasswordConfirm:string = ""; 
   succesMessage:string = "";
+  serverErrorMessage:string = "";
   
   @ViewChild("resetForm",{static:true})resetForm:any;
   
@@ -33,24 +34,20 @@ export class ResetFormComponent implements OnInit {
       this.newPassword = this.resetForm.value.password;
       this.auth.resetPassword(this.email,this.newPassword).subscribe(
         (res:any)=>{
-          console.log(res)
-          this.email="";
-          this.newPassword="";
-          this.succesMessage = res.message;
-          this.router.navigate(['/login']); 
-          alert(this.succesMessage);
+          if(res.message == "No email associate with this account"){
+            this.serverErrorMessage = res.message;
+            alert(this.serverErrorMessage);
+          }else{
+            this.succesMessage = res.message; 
+            alert(this.succesMessage);
+            this.router.navigate(['/login']);
+          }
+  
         }
       )
-
-      setTimeout(() => {
-        
-        
-      }, 2000);
-
+      this.resetForm.reset();
     } 
   }
-
- resetFormValues(){}
 }
 
  

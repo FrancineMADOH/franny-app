@@ -23,13 +23,16 @@ createAdmin(admin: Admin):Observable<Admin>{
 }
 signtheUserIn(email:string,admin_password:string){
   return this.http.post(environment.baseUrl + '/admins/signin', {email,admin_password}).subscribe((res:any)=>{
-    localStorage.setItem("acces_token", res);
-
-    this.getAdminInfos(email).subscribe((res:any)=>{
-      this.currentUser = res;
-      this.router.navigate(['dashboard/' + res.email]);
-    });
     
+    if(typeof(res)=='string'){
+      localStorage.setItem("acces_token", res);
+      this.getAdminInfos(email).subscribe((res:any)=>{
+        this.currentUser = res;
+        this.router.navigate(['dashboard/' + res.email]);
+      });
+    } else{
+        alert("Wrong Credentials!");
+    }
   })
 }
 
