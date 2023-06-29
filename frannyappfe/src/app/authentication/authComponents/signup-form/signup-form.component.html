@@ -7,7 +7,7 @@
     </div>
 
     <div class="signup-form">
-        <form method="" #signupForm="ngForm"  (ngSubmit)="createAdmin($event)"  novalidate >
+        <form method="" #signupForm="ngForm"  (ngSubmit)="createAdmin(signupForm)"  novalidate >
             <div class="form-group m-2">
               <input type="text" #admin_name="ngModel"
                ngModel

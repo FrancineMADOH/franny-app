@@ -26,23 +26,29 @@ export class adminHandler {
             //     contentType: req.file.mimetype
             // };
             // console.log(avatar);
+            //check if a user with this name already exist
+            const admin_exist =  await adStore.home(req.body.email);
 
-            const admin:Admin = {
-                admin_name:req.body.admin_name ,
-                username:req.body.username ,                               
-                twitter_url:req.body.twitter_url,                    
-                linkedin_url:req.body.linkedin_url,  
-                facebook_url:req.body.facebook_url,               
-                email:req.body.email,                 
-                admin_password:req.body.admin_password,               
-               // avatar:req.body.avatar,                     
-                //activ_date:req.body.activ_date,              
-                superuser:false
-            }; 
-            await adStore.create(admin);
-            //const token = genToken(new_admin);
-            //res.json(token);
-           res.status(201).json({"message":"Account successfully created"});
+            if(admin_exist) {
+                res.status(200).json({"message":"A user with this email already exists"})
+            }else{
+                const admin:Admin = {
+                    admin_name:req.body.admin_name ,
+                    username:req.body.username ,                               
+                    twitter_url:req.body.twitter_url,                    
+                    linkedin_url:req.body.linkedin_url,  
+                    facebook_url:req.body.facebook_url,               
+                    email:req.body.email,                 
+                    admin_password:req.body.admin_password,               
+                   // avatar:req.body.avatar,                     
+                    //activ_date:req.body.activ_date,              
+                    superuser:false
+                }; 
+                await adStore.create(admin);
+               res.status(201).json({"message":"Account successfully created"});
+            }
+
+        
            
         }catch(err){
             console.log(err);
@@ -76,7 +82,7 @@ export class adminHandler {
                 console.log("auth succeed!");
                 res.status(200).json(token);
             } else {
-                 res.status(401).send("Invalid Email/Password combination");
+                 res.status(200).json({"message":"Wrong Credentials!"});
             }
            
         }catch(err){
@@ -88,7 +94,8 @@ export class adminHandler {
     //home (get user infos)
     async home(req:Request,res:Response){
         try{
-            const email = req.body.email;
+            //const email = req.body.email;
+            const email = req.params.email;
             const adminInfos = await adStore.home(email);
             res.status(200).json(adminInfos);
         }catch(err:any){
@@ -102,12 +109,19 @@ export class adminHandler {
         try{
             const {error} = resetPasswordValidation(req.body);
             if(error) return res.status(400).send(error.details[0].message);
+           
 
             const email = req.body.email;
             const pass = req.body.password;
-            const update_admin = await adStore.update(email,pass);
-            res.status(200).json({"message":"Password successfully updated"});
-            //res.json(update_admin);
+
+            const admin_email =  await adStore.home(email);
+            if(admin_email){
+                const update_admin = await adStore.update(email,pass);
+                res.status(200).json({"message":"Password successfully updated"});
+            } else{
+                console.log("admin do no exist");
+                res.status(200).json({"message":"No email associate with this account"});
+            } 
         }catch(err){
             console.log(err);
             res.status(500).json(err);
