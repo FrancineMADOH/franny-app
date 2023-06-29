@@ -8,19 +8,22 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  currentUser:Object = {} || "{}";
+  currentUser:any = {};
 
   constructor(private auth: AuthService, private activateRoute:ActivatedRoute ){
 
     let  email:string|null = this.activateRoute.snapshot.paramMap.get("email");
     this.auth.getAdminInfos(email||"").subscribe(res=>{
-      console.log(email);
-      this.currentUser = res;
-    } )
+      this.currentUser = res ;
+    });
   }
 
   ngOnInit(): void {
    
+  }
+
+  logOut():void{
+    this.auth.logout();
   }
 
 }

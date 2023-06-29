@@ -13,7 +13,6 @@ import { Admin } from '../../models/admin';
 })
 export class SignupFormComponent  implements OnInit{
   faArrowRight = faArrowRight;
-  showSuccessMessage: boolean;
   successMessage: string ="";
   serverErrorMessage:string;
   activ:string ="";
@@ -22,27 +21,34 @@ export class SignupFormComponent  implements OnInit{
   
   @ViewChild("signupForm",{static:true})signupForm:any;
   admin!:Admin; 
+
  
   constructor(public auth: AuthService, private router:Router){
     this.serverErrorMessage = '';
-    this.showSuccessMessage = false; 
   } 
 
   ngOnInit(): void {
     this.activ = new  Date().toLocaleString();  
   }
-  createAdmin($event:Event){
-    $event.preventDefault();
-    setTimeout(() => {
+  createAdmin(signupForm:any){
       if(this.signupForm.valid){
         this.admin = this.signupForm.value;
         this.auth.createAdmin(this.admin).subscribe((res:any)=>{
-        this.successMessage = res.message;
-        alert(this.successMessage);
-        this.router.navigate(['/login'])
-        })
+        console.log(res.message);
+        if(res.message == "A user with this email already exists"){
+          this.serverErrorMessage = res.message;
+          alert(this.serverErrorMessage);
+
+        }else{
+          this.successMessage = res.message;
+           alert(this.successMessage);
+           this.router.navigate(['/login'])
+
+        }
+        
+        });
       }
-    }, 2000);
+    this.signupForm.reset();
     
   }
 //https://www.angularjswiki.com/httpclient/post/

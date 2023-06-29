@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Route,Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './authentication/services/auth.service';
@@ -12,8 +12,8 @@ class PermissionsService {
   constructor(private router: Router,public auth:AuthService, ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-      // logic goes here
-      if(this.auth.isLogin !== true){
+      //logic goes here
+      if(this.auth.isLogin() !== true){
         alert("Access denied!");
         this.router.navigate(["/login"])
       }
@@ -23,7 +23,7 @@ class PermissionsService {
 }
 
 export const AuthGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
-  return Inject(PermissionsService).canActivate(next, state);
+  return inject(PermissionsService).canActivate(next, state);
 }
 
 
