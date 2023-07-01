@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
     let  email:string|null = this.activateRoute.snapshot.paramMap.get("email");
     this.auth.getAdminInfos(email||"").subscribe(res=>{
       this.currentUser = res ;
+      console.log(res)
       this.auth.updatedEmail(this.currentUser.email);
 
     });

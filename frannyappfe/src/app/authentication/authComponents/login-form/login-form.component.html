@@ -20,6 +20,7 @@
             </div>
             <small *ngIf="email.invalid && email.touched">Email is required</small>
             <div class="form-group  m-2">
+              <!-- <fa-icon class="mx-2" [icon]="faEnvelope"></fa-icon> -->
               <input 
               type="password"  
               class="form-control" 
@@ -27,15 +28,15 @@
               #admin_password="ngModel"
                 required maxlength="8" 
                 minlength="8"
-                id="admin_password" 
+                id="admin_password"   
                 name="admin_password"  
                 placeholder="Enter your password">
+                <small *ngIf="!admin_password.valid && admin_password.touched ">Password is required</small>
             </div>
-            <small *ngIf="!admin_password.valid && admin_password.touched ">Password is required</small>
             <button type="submit" class="btn my-2 " [disabled]="loginForm.invalid" >Sign in<fa-icon class="mx-2" [icon]="faArrowRight"  [styles]="{ stroke: '#fff', color: '#fff' }"></fa-icon> </button>
           </form>
-          <!-- <small *ngIf="message" class="validation-message">{{message}} </small> -->
     </div>
+    <!-- &#xf002 https://fontawesome.com/v5/cheatsheet-->
 
    
 

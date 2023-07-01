@@ -1,4 +1,68 @@
-main{
-    margin-top: 5% ;
-    margin-bottom:20%;
+main {
+    /* margin-top: 15% ; */
+    margin-bottom: 10%;
+    font-family: 'FiraSansRegular';
+}
+
+#profile {
+    color: #fff;
+    background-color: #53534F;
+    overflow: auto;
+    position: relative;
+
+}
+
+span,
+h4 {
+    color: #F460FC;
+}
+
+#profile a {
+    text-decoration: none !important;
+    color:#fff;
+}
+#profile a:hover {
+    text-decoration: none !important;
+    color:#5DBAE5;
+}
+
+#profile li {
+    list-style-type: none;
+}
+button:hover{
+    background-color:#5DBAE5;
+
+}
+
+button {
+    margin-top: 30%;
+    margin-bottom: 60%;
+    background-color:#F460FC ;
+    color: #fff;
+    border: solid 1px #53534F;
+}
+.blog_section{
+    margin-top: 5%;
+}
+.blog_section a {
+    color:#5DBAE5;
+
+}
+.blog_section a:hover {
+    color:#F460FC;
+
+}
+
+@media  screen and (max-width:900px) {
+    .invisible_on_phone{
+        display: none;
+    } 
+button {
+    margin-top: 10%;
+    margin-bottom: 5%;
+    background-color:#F460FC ;
+    color: #fff;
+    border: solid 1px #53534F;
+}
+    
 }
