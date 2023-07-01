@@ -15,6 +15,7 @@ import { AuthenticationModule } from '../authentication/authentication.module';
 import { CommentCardComponent } from './partials/comment-card/comment-card.component';
 import { AdminCardComponent } from './partials/admin-card/admin-card.component';
 import { FormsModule } from '@angular/forms';
+import { BlogViewComponent } from './blog-view/blog-view.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     ArticleFormComponent,
     ArticleCardComponent,
     CommentCardComponent,
-    AdminCardComponent
+    AdminCardComponent,
+    BlogViewComponent
   ],
   imports: [
     CommonModule,

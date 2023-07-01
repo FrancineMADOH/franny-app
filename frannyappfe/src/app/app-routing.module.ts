@@ -26,6 +26,7 @@ import { AddReviewComponent } from './beauty/add-review/add-review.component';
 import { UpdateRdvComponent } from './beauty/update-rdv/update-rdv.component';
 import { UpdateBeautifComponent } from './beauty/update-beautif/update-beautif.component';
 import { UpdatePrestationComponent } from './beauty/update-prestation/update-prestation.component';
+import { BlogViewComponent } from './blog/blog-view/blog-view.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -34,29 +35,29 @@ const routes: Routes = [
   {path:"reset", component:ResetFormComponent},
   {path:"login", component:LoginFormComponent},
   //make a route for update profile
-  {path:"posts",  component:AllArticlesComponent},
-  {path:"posts/new", component: NewArticleComponent},
-  {path:"admin", component:AdministrationComponent},
-  {path:"posts/edit", component:EditArticleComponent},
-  {path:"posts/view", component:ViewArticleComponent},
-  {path:"id/bibliographie", component: BibliographieComponent},
-  {path:"beauty/faqs", component:FaqsComponent},
+  {path:"blog",  component:BlogViewComponent },
+  {path:"posts",  component:AllArticlesComponent, canActivate:[AuthGuard]},
+  {path:"posts/new", component: NewArticleComponent, canActivate:[AuthGuard]},
+  {path:"admin", component:AdministrationComponent, canActivate:[AuthGuard]},
+  {path:"posts/edit", component:EditArticleComponent, canActivate:[AuthGuard]},
+  {path:"posts/view", component:ViewArticleComponent, canActivate:[AuthGuard]},
+  {path:"id/bibliographie", component: BibliographieComponent, canActivate:[AuthGuard]},
+  {path:"beauty/faqs", component:FaqsComponent, canActivate:[AuthGuard]},
   {path:"beauty", component:BeautyPageComponent},
   {path:"about",component:AboutComponent},
   {path:"market", component:MarketSoonComponent},
   {path:"beauty/rendezvous", component:RdvComponent},
-  {path:"beauty/beautifyers", component:BeautifyerComponent},
-  {path:"beauty/reviews", component:ReviewComponent},
-  {path:"beauty/faqs", component:FaqsComponent},
-  {path:"beauty/prestations", component:PrestationComponent},
-  {path:"beauty/rendezvous/add", component:AddRdvComponent},
-  {path:"beauty/beautifyers/add", component: AddBeautifComponent},
-  {path:"beauty/prestations/add", component:AddPrestationComponent},
-  {path:"beauty/reviews/add", component:AddReviewComponent},
-  {path:"beauty/rendezvous/update", component:UpdateRdvComponent},
-  {path:"beauty/beautifyers/update", component:UpdateBeautifComponent},
-  {path:"beauty/prestations/update", component:UpdatePrestationComponent}
-
+  {path:"beauty/beautifyers", component:BeautifyerComponent, canActivate:[AuthGuard]},
+  {path:"beauty/reviews", component:ReviewComponent, canActivate:[AuthGuard]},
+  {path:"beauty/faqs", component:FaqsComponent, canActivate:[AuthGuard]},
+  {path:"beauty/prestations", component:PrestationComponent, canActivate:[AuthGuard]},
+  {path:"beauty/rendezvous/add", component:AddRdvComponent, canActivate:[AuthGuard]},
+  {path:"beauty/beautifyers/add", component: AddBeautifComponent, canActivate:[AuthGuard]},
+  {path:"beauty/prestations/add", component:AddPrestationComponent, canActivate:[AuthGuard]},
+  {path:"beauty/reviews/add", component:AddReviewComponent, canActivate:[AuthGuard]},
+  {path:"beauty/rendezvous/update", component:UpdateRdvComponent, canActivate:[AuthGuard]},
+  {path:"beauty/beautifyers/update", component:UpdateBeautifComponent, canActivate:[AuthGuard]},
+  {path:"beauty/prestations/update", component:UpdatePrestationComponent, canActivate:[AuthGuard]}
 
 ];
 
