@@ -26,6 +26,11 @@ small{
 h3,a{
     color: #5DBAE5;
 }
+button:hover{
+    background-color:#53534F;
+    color:#fff;
+
+}
 
 h4{
     font-family: 'Fasthand';
