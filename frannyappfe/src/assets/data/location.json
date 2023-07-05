@@ -3,6 +3,7 @@
         "ville": "Yaoundé",
         "commune": "Yaoundé",
         "description": "Liste des quartiers de Yaoundé",
+        "test":"voila",
         "quartier": [
             "Centrecommercial",
             "Elig-Essono",
@@ -88,6 +89,7 @@
         "ville": "Douala",
         "commune": "Douala",
         "description": "Liste des quartier de Douala",
+        "test":"voila",
         "quartier": [
             "AKWA",
             "AKWA NORD",

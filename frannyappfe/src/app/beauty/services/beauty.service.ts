@@ -82,6 +82,6 @@ export class BeautyService {
     return this.http.post<Review>(environment.baseUrl + "/reviews",review);
   }
 //https://www.positronx.io/angular-httpclient-http-service/
-  
 
+  
 }

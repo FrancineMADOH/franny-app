@@ -12,7 +12,6 @@ class PermissionsService {
   constructor(private router: Router,public auth:AuthService, ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-      //logic goes here
       if(this.auth.isLogin() !== true){
         alert("Access denied!");
         this.router.navigate(["/login"])

@@ -6,7 +6,7 @@ export interface Admin {
     linkedin_url:string,  
     facebook_url:string,               
     email:string,                 
-    admin_password:string,               
+    admin_password?:string,               
    // avatar:string //{data:Buffer,contentType:string }  
     activ_date?:string,              
     superuser?:boolean
