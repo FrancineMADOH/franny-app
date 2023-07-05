@@ -21,6 +21,10 @@ createAdmin(admin: Admin):Observable<Admin>{
     .pipe(catchError(this.handleError));
     
 }
+
+getAllUsers():Observable<Admin[]>{
+  return this.http.get<Admin[]>(environment.baseUrl + "/admins")
+}
 signtheUserIn(email:string,admin_password:string){
   return this.http.post(environment.baseUrl + '/admins/signin', {email,admin_password}).subscribe((res:any)=>{
     
@@ -73,8 +77,6 @@ logout(){
     this.router.navigate(['/login']);
   }
 }
-
-
 
 //handle anny error that occurs
 handleError(error:HttpErrorResponse):Observable<any>{
