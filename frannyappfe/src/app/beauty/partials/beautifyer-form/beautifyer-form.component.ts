@@ -17,6 +17,7 @@ export class BeautifyerFormComponent implements OnInit {
   allLocation:Location[] = [];
   allVille:any= [];
   allUsers: Admin[] = [];
+  beautifCode = "";
 
   constructor(private router:Router, private select:SelectServiceService, private auth: AuthService ) {
     }
@@ -39,19 +40,21 @@ export class BeautifyerFormComponent implements OnInit {
           this.allUsers =   data.map((el:Admin)=>{
             return el
           });
-          console.log(this.allUsers);
         });
-
-     
-
-    
   }
 
  backtoBeautifList(){
     this.router.navigate(['beauty/beautifyers']);
   }
+ 
+
   saveBeautif(addBeautifForm:any){
-    this.addBeautifForm.reset()
+    //this.loginForm.value.email;
+    console.log(this.addBeautifForm.value.bname); 
+    console.log(this.addBeautifForm.value.ville);
+    console.log(this.addBeautifForm.value.quartier);
+    console.log(this.addBeautifForm.value.recruit_date);
+    //this.addBeautifForm.reset()
   }
 
 }
