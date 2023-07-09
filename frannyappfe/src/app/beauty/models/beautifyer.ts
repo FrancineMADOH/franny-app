@@ -7,5 +7,6 @@ export interface Beautifyer{
     details:string,
     recruit_date:string,
     ville:string,
-    create_by: string
+    create_by: string,
+    beautifcode:string,
 }
