@@ -4,6 +4,9 @@ import { SelectServiceService } from '../../services/select-service.service';
 import { Location } from '../../models/location';
 import { AuthService } from 'src/app/authentication/services/auth.service';
 import { Admin } from 'src/app/authentication/models/admin';
+import generateBeautifCode from 'src/app/shared/utils/bcode';
+import { BeautyService } from '../../services/beauty.service';
+import { Beautifyer } from '../../models/beautifyer';
 
 @Component({
   selector: 'app-beautifyer-form',
@@ -18,9 +21,12 @@ export class BeautifyerFormComponent implements OnInit {
   allVille:any= [];
   allUsers: Admin[] = [];
   beautifCode = "";
+  beautif!:Beautifyer;
 
-  constructor(private router:Router, private select:SelectServiceService, private auth: AuthService ) {
-    }
+  constructor(private router:Router,
+               private select:SelectServiceService, 
+               private auth: AuthService, 
+               private beauti:BeautyService ) {}
 
   ngOnInit(): void {
     this.select.getAllLocation().subscribe(
@@ -47,14 +53,18 @@ export class BeautifyerFormComponent implements OnInit {
     this.router.navigate(['beauty/beautifyers']);
   }
  
-
-  saveBeautif(addBeautifForm:any){
-    //this.loginForm.value.email;
-    console.log(this.addBeautifForm.value.bname); 
-    console.log(this.addBeautifForm.value.ville);
-    console.log(this.addBeautifForm.value.quartier);
-    console.log(this.addBeautifForm.value.recruit_date);
-    //this.addBeautifForm.reset()
+  saveBeautif(addBeautifForm:any){   
+    this.beautifCode = generateBeautifCode(this.addBeautifForm.value.recruit_date,this.addBeautifForm.value.bname,this.addBeautifForm.value.ville,this.addBeautifForm.value.quartier); 
+    this.addBeautifForm.value.beautifcode = this.beautifCode;
+    this.addBeautifForm.value.create_by = parseInt((this.addBeautifForm.value.create_by));
+    if(this.addBeautifForm.valid){
+      this.beautif = this.addBeautifForm.value;
+      this.beauti.addBeautifyer(this.beautif).subscribe((res)=>{
+        alert(res.message);
+        this.router.navigate(["beauty/beautifyers"]);
+      });
+    }
+    this.addBeautifForm.reset()
   }
 
 }

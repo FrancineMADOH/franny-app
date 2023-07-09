@@ -34,16 +34,13 @@ export class SignupFormComponent  implements OnInit{
       if(this.signupForm.valid){
         this.admin = this.signupForm.value;
         this.auth.createAdmin(this.admin).subscribe((res:any)=>{
-        console.log(res.message);
         if(res.message == "A user with this email already exists"){
           this.serverErrorMessage = res.message;
           alert(this.serverErrorMessage);
-
         }else{
           this.successMessage = res.message;
            alert(this.successMessage);
            this.router.navigate(['/login'])
-
         }
         
         });
