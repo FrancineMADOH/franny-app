@@ -1,4 +1,15 @@
-<div class="card my-2" *ngFor="let el of beautifList">
+
+<div class="searchFormClass col-lg-4">
+    <form #searchbeautifyer="ngForm" (ngSubmit)="searchBeautifyerTerm(searchbeautifyer.value)" class="d-inline">
+        <div class="form-group">
+            <input id="search" minlength="5" name="search" required ngModel #search="ngModel" placeholder="Search..."
+                type="text">
+            <button [disabled]="!searchbeautifyer.valid" class="btn btn-success mx-2" type="submit">Search</button>
+        </div>
+    </form>
+</div>
+
+<div class="card my-2" *ngFor="let el of filteredList">
     <div class="card-body">
         <h5 class="card-title">Franny Recruit No: {{ el.beautifcode }} </h5>
         <h6 class="card-subtitle mb-2 text-muted">Details</h6>
@@ -8,6 +19,6 @@
         <p>Email: {{el.email}} </p>
         <p class="card-text">{{el.details}} </p>
         <p class="card-text">Responsable:{{el.admin_name}}</p>
-        <button (click)="gotoUpdate(el.beautif_id)" class="card-link btn btn-secondary">Update</button>
+        <button (click)="gotoUpdate(el.beautif_id || 1)" class="card-link btn btn-secondary">Update</button>
     </div>
 </div>
