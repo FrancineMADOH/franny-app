@@ -9,4 +9,5 @@ export interface Beautifyer{
     ville:string,
     create_by: string,
     beautifcode:string,
+    admin_name?:string
 }
