@@ -1,11 +1,13 @@
-<div class="card my-2">
+<div class="card my-2" *ngFor="let el of beautifList">
     <div class="card-body">
-        <h5 class="card-title">Franny Recruit + Code</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Ville - Quartier</h6>
-        <p>Name: </p>
-        <p>Phone:</p>
-        <p>Email</p>
-        <p class="card-text">Details text to build on the card title and make up the bulk of the card's content.</p>
-        <a routerLink="/beauty/beautifyers/update" class="card-link btn btn-secondary">Update</a>
+        <h5 class="card-title">Franny Recruit No: {{ el.beautifcode }} </h5>
+        <h6 class="card-subtitle mb-2 text-muted">Details</h6>
+        <p>{{ el.ville }}<span> - {{el.quartier}}</span></p> 
+        <p>Name:{{ el.bname }} </p>
+        <p>Phone: {{el.phone}}</p>
+        <p>Email: {{el.email}} </p>
+        <p class="card-text">{{el.details}} </p>
+        <p class="card-text">Responsable:{{el.admin_name}}</p>
+        <button (click)="gotoUpdate(el.beautif_id)" class="card-link btn btn-secondary">Update</button>
     </div>
 </div>

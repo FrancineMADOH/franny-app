@@ -46,7 +46,7 @@ export class beautyStore{
     //index
     async index():Promise<Beautifyer[]> {
         const conn = await client.connect();
-        const sql_command = "SELECT * FROM beautifyers;";
+        const sql_command = "SELECT b.beautif_id,b.bname,b.email,b.quartier,b.phone,b.details,b.recruit_date,b.ville,b.beautifcode, a.admin_name,a.superuser FROM beautifyers b  INNER JOIN admins a ON create_by = admin_id;";
         const result = await conn.query(sql_command,[]);
         conn.release();
         return  result.rows;
