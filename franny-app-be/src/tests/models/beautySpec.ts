@@ -11,7 +11,8 @@ const b:Beautifyer = {
     details:"coiffeuse, Maquilleuse",
     recruit_date:"2023-01-01",
     ville:"Douala",
-    create_by: "francadmin@gmail.com"
+    create_by: 1,
+    beautifcode:"Bitchakala"
     
 };
 
@@ -52,7 +53,8 @@ describe("Beautifyer model tests suite", async()=>{
             details:"coiffeuse, Maquilleuse",
             recruit_date:"2023-01-01",
             ville:"Yaounde",
-            create_by: "francadmin@gmail.com"
+            create_by: 1,
+            beautifcode:""
             
         });
 
@@ -65,7 +67,8 @@ describe("Beautifyer model tests suite", async()=>{
             details:"coiffeuse, Maquilleuse",
             recruit_date:"2023-01-01",
             ville:"Yaounde",
-            create_by: "francadmin@gmail.com"
+            create_by:1,
+            beautifcode:""
            
         });
     });
@@ -85,7 +88,8 @@ describe("Beautifyer model tests suite", async()=>{
             details:"coiffeuse, Maquilleuse",
             recruit_date:"2023-01-01",
             ville:"Yaounde",
-            create_by: "francadmin@gmail.com"
+            create_by: 1,
+            beautifcode:""
             
         });
     });
@@ -101,7 +105,8 @@ describe("Beautifyer model tests suite", async()=>{
             details:"coiffeuse, Maquilleuse",
             recruit_date:"2023-01-01",
             ville:"Yaounde",
-            create_by: "francadmin@gmail.com"
+            create_by: 1,
+            beautifcode:""
         });
         expect(result.beautif_id).toBe(3);
     });
