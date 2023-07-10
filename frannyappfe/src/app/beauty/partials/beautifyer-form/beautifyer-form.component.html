@@ -25,7 +25,8 @@
         <input type="text" class="form-control" type="text" id="phone"
         required
         maxlength="9"
-        pattern="[0-9]"
+        minlength="9"
+        pattern="[0-9]*"
         ngModel 
         #phone="ngModel"
         name="phone" >
@@ -39,7 +40,8 @@
         ngModel
         #ville="ngModel"
         name="ville" id="ville">
-            <option value="0">Town</option>
+            <option value="0" [selected]>Town</option>
+            <option *ngFor="let el of allVille" value="{{el.ville}}">{{ el.ville }} </option>
         </select>
         <small *ngIf="!ville.valid && ville.touched" style="color:red" >Please provide a town</small>
 
@@ -51,7 +53,8 @@
         ngModel
         #quartier="ngModel"
         name="quartier" id="quartier">
-            <option value="0">Town</option>
+            <option value="0" >Quartier</option>
+            <option *ngFor="let location of allLocation" value="{{location.quartier}}">{{location.quartier}} </option>
         </select>
         <small *ngIf="!quartier.valid && quartier.touched" style="color:red" >Please provide a Quartier for the beautif</small>
     </div>
@@ -84,20 +87,24 @@
         #create_by="ngModel"
         class="form-control"
         required
-        id="create_by"></select>
+        id="create_by">
+            <option value="0" >Selectionner</option>
+            <option *ngFor="let user of allUsers" value="{{user.admin_id }} ">{{user.admin_name }}</option>
+        </select>
         <small *ngIf="!create_by.valid && create_by.touched" style="color:red" >Choose admin who created beautifyers</small>
-    </div>
+    </div> 
     <div class="form-group my-2">
         <label for="beautifcode">Beautifyer Code</label>
             <input type="text" 
             class="form-control"
-            placeholder="coder la valeur avec les data"
+            placeholder="code de l'agent"
             readonly
             ngModel
+            value="{{this.beautifcode}}"
             #beautifcode="ngModel"
             name="beautifcode" id="beautifcode">
     </div> 
+    <button type="submit" class="btn btn-success m-2 "[disabled]="!addBeautifForm['valid']"  >Save</button>
+    <button class="btn btn-secondary" (click)="backtoBeautifList()" >Cancel</button>
 </form>
-<button class="btn btn-success m-2 "[disabled]="!addBeautifForm['valid']"  >Save</button>
-<button class="btn btn-secondary" (click)="backtoBeautifList()" >Cancel</button>
 

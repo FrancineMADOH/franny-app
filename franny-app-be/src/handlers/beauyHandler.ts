@@ -8,7 +8,8 @@ export class beautyHandler {
         try{
             const data:Beautifyer = req.body;
             const newbeautif = await beauty.create(data);
-            res.status(201).json(newbeautif);
+            res.status(201).json({message:"Beauty Agent Succesfully Created"});
+            
         }catch(err){
             console.log(err);
             res.send(500).json(err);

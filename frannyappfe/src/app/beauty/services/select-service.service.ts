@@ -13,7 +13,11 @@ export class SelectServiceService {
 
 //Load location from json file
   getAllLocation():Observable<Location[]> {
-    return this.http.get<Location[]>("../assets/data/location.json");
+    return this.http.get<Location[]>("../assets/data/quartier.json");
+  }
+
+  getAllVille():Observable<Location[]> {
+    return this.http.get<Location[]>("../assets/data/ville.json");
   }
 
   //Load beauty services select element from json file

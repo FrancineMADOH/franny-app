@@ -21,7 +21,7 @@ router.use("/users", userRouter);
 router.use("/admins",adminRouter);
 router.use("/posts",postRouter);
 router.use("/admins/faqs", faqRouter);
-router.use("/admins/beautifyers", beautyRouter);
+router.use("/beautifyers", beautyRouter);
 router.use("/prestations", presRouter);
 router.use("/rendezvous",rdvRouter );
 router.use("/reviews", revRouter);

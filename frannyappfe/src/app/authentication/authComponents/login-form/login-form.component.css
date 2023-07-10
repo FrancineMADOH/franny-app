@@ -5,7 +5,7 @@
     border:solid #9c9c9a 1px;
     border-radius: 5%;
     padding:2%;
-    margin-top: 2%;
+    margin-top: 1%;
     margin-bottom: 1%;
 }
 small{
@@ -23,6 +23,10 @@ small{
 .login-footer{
     margin:50px 0 25px 0 ;
 }
+
+/* input.fa::-webkit-input-placeholder {
+    font-family:'FontAwesome';
+} */
 h3,a{
     color: #5DBAE5;
 }
@@ -34,6 +38,12 @@ h4{
 button{
     background-color: #5DBAE5;
     color:#fff;
+}
+
+button:hover{
+    background-color:#53534F;
+    color:#fff;
+
 }
 
 /* #5DBAE5(bleu), #F460FC(rose), #196C08(vert), #C7B14A(gold) #AA9225(satin gold) #53534F(gray)*/

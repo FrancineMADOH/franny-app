@@ -18,7 +18,7 @@ import { BeautyModule } from '../beauty/beauty.module';
     LoginFormComponent,
     SignupFormComponent,
     ResetFormComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     CommonModule,

@@ -12,7 +12,8 @@ const beau:Beautifyer ={
     details:"coiffeuse, Maquilleuse",
     recruit_date:"2023-01-01",
     ville:"Douala",
-    create_by: "francadmin@gmail.com"
+    create_by: 1,
+    beautifcode:"bitchakala"
 };
 
 describe("Beautifyers route test suite", async()=>{
