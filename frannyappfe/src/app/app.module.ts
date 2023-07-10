@@ -13,13 +13,11 @@ import { BeautyModule } from './beauty/beauty.module';
 import { BlogModule } from './blog/blog.module';
 import { MarketSoonComponent } from './market/market-soon/market-soon.component';
 import { AuthInterceptor } from './authentication/auth.interceptors';
-import { FilterPipe } from './shared/utils/search';
 
 @NgModule({
   declarations: [
     AppComponent,
     MarketSoonComponent,
-    FilterPipe
   ],
   imports: [
     BrowserModule,

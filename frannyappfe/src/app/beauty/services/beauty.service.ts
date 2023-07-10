@@ -21,14 +21,17 @@ export class BeautyService {
   getBeautifyerList():Observable<Beautifyer[]>{
     return this.http.get<Beautifyer[]>(environment.baseUrl + "/beautifyers" ).pipe(catchError(this.handleError));
   }
-  updateBeautifyer(id:number):Observable<Beautifyer>{
-    return this.http.put<Beautifyer>(environment.baseUrl + "/beautifyers/update" , id).pipe(catchError(this.handleError));
+  updateBeautifyer(id:number,beauty:Beautifyer):Observable<any>{
+    return this.http.put<Beautifyer>(environment.baseUrl + `/beautifyers/update/${id}` , {id,beauty}).pipe(catchError(this.handleError));
   }
-  deletBeautifyer(id:number):Observable<Beautifyer>{
+  deleteBeautifyer(id:number):Observable<Beautifyer>{
     return this.http.delete<Beautifyer>(environment.baseUrl + "beautifyers/delete" + id).pipe(catchError(this.handleError));
   }
   addBeautifyer(beauti:Beautifyer):Observable<any>{
     return this.http.post<Beautifyer>(environment.baseUrl + "/beautifyers", beauti).pipe(catchError(this.handleError));
+  }
+  getBeautifyers(id:number): Observable<Beautifyer>{
+    return this.http.get<Beautifyer>(environment.baseUrl + `/beautifyers/${id}`).pipe(catchError(this.handleError));
   }
 
   getFaqList():Observable<Faq[]>{
