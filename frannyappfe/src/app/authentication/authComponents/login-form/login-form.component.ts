@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validator, Validators, } from '@angular/forms';
+import { faArrowRight, faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../services/auth.service';
 
 
@@ -12,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginFormComponent implements OnInit {
   faArrowRight = faArrowRight;
+  faEnvelope = faEnvelope;
   message = "";
   email = "";
   password = "";

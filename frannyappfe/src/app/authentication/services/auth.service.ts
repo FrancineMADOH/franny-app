@@ -4,7 +4,7 @@ import { JwtResponse } from '../models/jwt-response';
 import { Router } from '@angular/router';
 import { Admin } from '../models/admin';
 import { environment } from 'src/app/environment/env';
-import { Observable, throwError } from 'rxjs';
+import { Observable, BehaviorSubject,throwError } from 'rxjs';
 import { catchError,map } from 'rxjs';
 
 @Injectable({
@@ -20,6 +20,10 @@ createAdmin(admin: Admin):Observable<Admin>{
     return this.http.post<Admin>(environment.baseUrl + "/admins", admin)
     .pipe(catchError(this.handleError));
     
+}
+
+getAllUsers():Observable<Admin[]>{
+  return this.http.get<Admin[]>(environment.baseUrl + "/admins")
 }
 signtheUserIn(email:string,admin_password:string){
   return this.http.post(environment.baseUrl + '/admins/signin', {email,admin_password}).subscribe((res:any)=>{
@@ -59,6 +63,13 @@ getAccesToken(){
 isLogin():boolean {
   let authToken = localStorage.getItem('acces_token');
   return (authToken!==null)? true:false;
+}
+bEmail = new BehaviorSubject("");
+
+email: Observable<string> = this.bEmail.asObservable();
+
+updatedEmail(email:string){
+  this.bEmail.next(email) ;
 }
 
 logout(){
