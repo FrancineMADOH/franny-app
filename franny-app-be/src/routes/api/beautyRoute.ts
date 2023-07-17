@@ -1,6 +1,7 @@
 import express from "express";
 import { beautyHandler } from "../../handlers/beauyHandler";
 import verifyToken from "../../middlewares/auth";
+import paginate from "../../middlewares/paginate";
 
 const beautyRouter  =  express.Router();
 const methods =  new beautyHandler();

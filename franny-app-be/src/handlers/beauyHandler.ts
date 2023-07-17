@@ -1,4 +1,4 @@
-import { Request,Response } from "express";
+import e, { Request,Response } from "express";
 import { Beautifyer,beautyStore } from "../models/beautifyer";
 
 const beauty = new beautyStore();
@@ -43,8 +43,13 @@ export class beautyHandler {
     }
 
     async index(req:Request,res:Response){
+        // const page:number = Number(req.query.page);
+        // const limit = Number(req.query.limit);
+        // const startIndex = page - 1 * limit;
+        // const endIndex  =  page * limit ;
         try{
             const data =  await beauty.index();
+            //const result = data.slice(startIndex,endIndex);
             res.status(200).json(data);
         }catch(err){
             console.log(err);

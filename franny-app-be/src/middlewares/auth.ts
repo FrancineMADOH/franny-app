@@ -8,7 +8,7 @@ dotenv.config();
 const secretToken = process.env.SECRET_TOKEN as string;
 
 export const genToken = (admin:Admin)=>{
-    return jwt.sign({admin},secretToken);
+    return jwt.sign({admin},secretToken,{expiresIn:'10h'});
 };
 
  const verifyToken =  (req:Request,res:Response,next:NextFunction)=>{
