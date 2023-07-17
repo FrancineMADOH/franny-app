@@ -59,8 +59,6 @@ export class BeautifyerFormComponent implements OnInit {
         
     this.beauti.getBeautifyers(parseInt(this.id)).subscribe((res: any) => {
       if (!this.iscreateMode) {
-        this.addBeautifForm.value.bname = res.data.bname;
-        console.log(this.addBeautifForm.value.bname)
         this.addBeautifForm.form.setValue({
           bname: res.data.bname,
           email: res.data.email,
