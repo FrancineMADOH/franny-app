@@ -57,7 +57,7 @@ const routes: Routes = [
   {path:"beauty/reviews/add", component:AddReviewComponent, canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/update", component:UpdateRdvComponent, canActivate:[AuthGuard]},
   {path:"beauty/beautifyers/update/:id", component:UpdateBeautifComponent, canActivate:[AuthGuard]},
-  {path:"beauty/prestations/update", component:UpdatePrestationComponent, canActivate:[AuthGuard]}
+  {path:"beauty/prestations/update/:id", component:UpdatePrestationComponent, canActivate:[AuthGuard]}
 
 ];
 

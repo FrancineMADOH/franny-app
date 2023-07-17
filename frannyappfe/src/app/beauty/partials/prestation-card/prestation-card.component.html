@@ -1,12 +1,11 @@
-<div class="card my-2">
+<div class="card my-2" *ngFor="let el of prestationList" >
     <div class="card-body">
-      <h5 class="card-title">Seance title</h5>
-      <h6 class="card-subtitle mb-2 text-muted"> Seance price - seance category</h6>
-      <p class="card-text">Seance description </p>
-      <p class="card-text">Seance gold description </p>
-      <p class="card-text">Seance premium descriptio  </p>
-      <a routerLink="" class="card-link btn btn-secondary ">View</a>
-      <a routerLink="/beauty/prestations/update" class="card-link btn btn-success">Update</a>
+      <h5 class="card-title">{{el.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted"> {{el.price}} {{el.category}}</h6>
+      <p class="card-text">{{ el.seance }} </p>
+      <p class="card-text">{{el.gold}} </p>
+      <p class="card-text">{{el.premium}} </p>
+      <button (click)="gotoUpdate(el.pres_id || 1)" class="card-link btn btn-success">Update</button>
     </div>
   </div>
   
