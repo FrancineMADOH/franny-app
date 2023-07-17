@@ -32,7 +32,6 @@ export class beautyHandler {
     async update(req:Request,res:Response){
         try{
             const id = parseInt(req.params.id);
-            console.log(id)
             const beautif = req.body.beauty;
             await beauty.update(id,beautif);
             res.status(200).json({message:"Agent succefully updated"});

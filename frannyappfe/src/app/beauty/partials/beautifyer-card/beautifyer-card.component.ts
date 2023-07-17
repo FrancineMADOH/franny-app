@@ -23,7 +23,6 @@ ngOnInit():void{
   this.beau.getBeautifyerList().subscribe((res:Beautifyer[])=>{
     res.map((el)=>{
       this.beautifList.push(el);
-      console.log(this.beautifList)
       return this.beautifList;  
     });
   }); 

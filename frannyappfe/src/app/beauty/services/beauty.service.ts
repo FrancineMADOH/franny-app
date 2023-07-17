@@ -49,15 +49,18 @@ export class BeautyService {
   }
 
   addNewPrestation(pres:Prestation):Observable<Prestation>{
-    return this.http.post<Prestation>(environment.baseUrl + "/prestation/add",pres).pipe(catchError(this.handleError));
+    return this.http.post<Prestation>(environment.baseUrl + "/prestations/",pres).pipe(catchError(this.handleError));
   }
-  updatePrestation(id:number):Observable<Prestation[]>{
-    return this.http.put<Prestation[]>(environment.baseUrl + "/prestations/id",id).pipe(catchError(this.handleError));
+  updatePrestation(id:number,prestation:Prestation):Observable<Prestation[]>{
+    return this.http.put<Prestation[]>(environment.baseUrl + `/prestations/${id}`,{prestation}).pipe(catchError(this.handleError));
   }
   getPrestationList():Observable<Prestation[]>{
     return this.http.get<Prestation[]>(environment.baseUrl + "/prestations" ).pipe(catchError(this.handleError));
   }
 
+  getPrestation(id:number):Observable<any>{
+    return this.http.get(environment.baseUrl + `/prestations/${id}`).pipe(catchError(this.handleError));
+  }
   createRendezvous(rdv:Rendezvous):Observable<Rendezvous>{
     return this.http.post<Rendezvous>(environment.baseUrl + "/rdv/create",rdv).pipe(catchError(this.handleError));
   }

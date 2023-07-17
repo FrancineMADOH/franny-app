@@ -34,11 +34,28 @@ export class presStore{
         return result.rows;
     }
 
-    //update
-    async update(id:number,price:number):Promise<Prestation>{
+    //get a single prestation
+    async show(id:number):Promise<Prestation>{
         const conn = await client.connect();
-        const sql_query = "UPDATE prestations SET price=$1 WHERE pres_id=$2 RETURNING *;";
-        const result = await conn.query(sql_query, [id,price]);
+        const sql_query = "SELECT * FROM prestations WHERE pres_id=$1;";
+        const result = await conn.query(sql_query,[id]);
+        conn.release();
+        return result.rows[0]
+    }
+
+    //update
+    async update(id:number,p:Prestation):Promise<Prestation>{
+        const conn = await client.connect();
+        const sql_query = "UPDATE prestations SET title=$2,price=$3,duration=$4,category=$5,seance=$6,gold=$7,premium=$8 WHERE pres_id=$1 RETURNING *;";
+        const result = await conn.query(sql_query, [id,
+            p.title,
+            p.price,
+            p.duration,
+            p.category,
+            p.seance,
+            p.gold,
+            p.premium
+        ]);
         conn.release();
         return result.rows[0];
     }

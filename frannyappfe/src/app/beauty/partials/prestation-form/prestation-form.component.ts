@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
+import { SelectServiceService } from '../../services/select-service.service';
+import { BeautyService } from '../../services/beauty.service';
+import { Prestation } from '../../models/prestation';
 
 @Component({
   selector: 'app-prestation-form',
@@ -7,13 +10,71 @@ import { Router } from '@angular/router';
   styleUrls: ['./prestation-form.component.css']
 })
 export class PrestationFormComponent implements OnInit {
-  constructor(private router:Router){}
-  ngOnInit(): void {
-    
-  }
-  @ViewChild("addPrestationForm",{static:true})addPrestationForm:any ;
 
-  savePrestation(addPrestationForm:any){}
+@ViewChild("addPrestationForm", { static: true }) addPrestationForm:any;
+categories:string[] = [];
+id!:string;
+iscreateMode!:boolean;
+prestation!: Prestation;
+
+
+  constructor(public router:Router, 
+              private route:ActivatedRoute,
+              private select:SelectServiceService,
+              private beauty:BeautyService
+    ){}
+
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.iscreateMode = !this.id;
+
+    this.beauty.getPrestation(Number(this.id)).subscribe((res:any)=>{
+      console.log(res.title)
+      
+      if(!this.iscreateMode){
+       
+        this.addPrestationForm.form.setValue({
+          title:res.title ,
+          price:res.price,
+          duration:res.duration,
+          category:res.category,
+          seance:res.seance,
+          gold:res.gold,
+          premium:res.premium,
+        })
+      }
+    });
+
+  }
+
+  onSubmit(){
+    if(this.iscreateMode){
+      this.savePrestation(this.addPrestationForm)
+    } else {
+      this.updatePrestation(Number(this.id),this.addPrestationForm)
+    }
+  }
+
+  savePrestation(addPrestationForm:any){
+    if(this.addPrestationForm.valid){
+      this.prestation = this.addPrestationForm.value;
+      this.beauty.addNewPrestation (this.prestation).subscribe((res:any)=>{
+         alert(res.message);
+         this.router.navigate(["beauty/prestations"]);
+      });
+      this.addPrestationForm.reset();
+    }
+  }
+  updatePrestation(id:number,addPrestationForm:any){
+    if(this.addPrestationForm.valid){
+       this.prestation = this.addPrestationForm.value ;
+      this.beauty.updatePrestation(id,this.prestation).subscribe((res:any)=>{
+        alert(res.message);
+        this.router.navigate(["/beauty/prestations"])
+      });
+    }
+    this.addPrestationForm.reset();
+  }
 
   backToPrestation(){
     this.router.navigate(['beauty/prestations']);
