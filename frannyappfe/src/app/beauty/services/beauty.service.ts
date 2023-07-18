@@ -36,16 +36,16 @@ export class BeautyService {
 
   getFaqList():Observable<Faq[]>{
     return this.http.get<Faq[]>(environment.baseUrl + "/faqs" ).pipe(catchError(this.handleError));
-
   }
-  updateFaq(id:number):Observable<Faq>{
-    return this.http.put<Faq>(environment.baseUrl + "/faqs/update",id).pipe(catchError(this.handleError));
+  deleteFaq(id:number):Observable<Faq>{
+    return this.http.delete<Faq>(environment.baseUrl + `/faqs/${id}`).pipe(catchError(this.handleError));
   }
   getFaqbyCategory():Observable<Faq[]>{
     return this.http.get<Faq[]>(environment.baseUrl + "faq/category" ).pipe(catchError(this.handleError));
   }
-  addNewFaq(faq:Faq){
-    this.http.post<Faq>(environment.baseUrl + "/faqs",faq).pipe(catchError(this.handleError));
+
+  addNewFaq(faq:Faq):Observable<Faq>{
+    return this.http.post<Faq>(environment.baseUrl + "/faqs",faq).pipe(catchError(this.handleError));
   }
 
   addNewPrestation(pres:Prestation):Observable<Prestation>{

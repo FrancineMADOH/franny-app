@@ -28,11 +28,8 @@ prestation!: Prestation;
     this.id = this.route.snapshot.params['id'];
     this.iscreateMode = !this.id;
 
-    this.beauty.getPrestation(Number(this.id)).subscribe((res:any)=>{
-      console.log(res.title)
-      
-      if(!this.iscreateMode){
-       
+    this.beauty.getPrestation(Number(this.id)).subscribe((res:any)=>{      
+      if(!this.iscreateMode){  
         this.addPrestationForm.form.setValue({
           title:res.title ,
           price:res.price,

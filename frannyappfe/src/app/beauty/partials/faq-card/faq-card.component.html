@@ -1,15 +1,14 @@
-<div class="card m-3" style="width: 18rem;">
+<div class="card m-3" style="width: 18rem;" *ngFor="let el of faqList">
   <div class="card-body">
-    <h5 class="card-title">Question</h5>
-    <h6 class="car-title text-muted">Category</h6>
-    <p class="card-text">Reponse a la question voir le button updatee si on est admin</p>
+    <h5 class="card-title">{{el.question}}</h5>
+    <h6 class="car-title text-muted">{{el.category}}</h6>
+    <p class="card-text">{{el.reponse}}</p>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateBackdrop">
-      Update 
-    </button>
-    <form action="" class="my-2">
-      <button class="btn btn-danger">Delete</button>
+   
+    <form #deleteFaqForm="ngForm" (ngSubmit)="deleteFaq(el.faq_id)" class="my-2">
+      
+      <button type="submit"  class="btn btn-danger">Delete</button>
     </form>
 
     <!-- Modal -->

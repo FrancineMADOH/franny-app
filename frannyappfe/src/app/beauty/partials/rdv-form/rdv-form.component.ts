@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-rdv-form',
@@ -7,9 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./rdv-form.component.css']
 })
 export class RdvFormComponent implements OnInit {
+  id!:string;
+  iscreateMode!:boolean;
   @ViewChild ("addRendezvousForm", {static:true}) addRendezvousForm:any;
-  constructor(private router:Router){}
+  constructor(private router:Router, private route:ActivatedRoute){}
+
   ngOnInit(): void {
+    this.id = this.route.snapshot.params["id"];
+    this.iscreateMode = !this.id;
     
   }
 
