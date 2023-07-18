@@ -18,8 +18,7 @@ export class PrestationComponent implements OnInit{
   goToNewPrestation(){
     this.router.navigate(['beauty/prestations/add']);
   }
-  searchPrestationByTerm(searchPrestation:any){
-    this.searchPrestation.reset();
-  }
+
+ 
 
 }

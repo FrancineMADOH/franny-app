@@ -1,4 +1,13 @@
-<div class="card my-2" *ngFor="let el of prestationList" >
+<div class="searchFormClass col-lg-4">
+  <form #searchPrestation="ngForm" (ngSubmit)="searchPrestationByTerm(searchPrestation.value)" class="d-inline">
+      <div class="form-group">
+          <input id="search" minlength="5" name="search" required ngModel #search="ngModel" placeholder="Search..."
+              type="text">
+          <button [disabled]="!searchPrestation.valid" class="btn btn-success mx-2" type="submit">Search</button>
+      </div>
+  </form>
+</div>
+<div class="card my-2" *ngFor="let el of filteredList" >
     <div class="card-body">
       <h5 class="card-title">{{el.title}}</h5>
       <h6 class="card-subtitle mb-2 text-muted"> {{el.price}} {{el.category}}</h6>
