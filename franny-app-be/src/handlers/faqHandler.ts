@@ -9,7 +9,7 @@ export class faqHandler {
         try{
             const data:Faq = req.body;
             const newfaq =  await faq.create(data);
-            res.status(201).json(newfaq);
+            res.status(201).json({message:"Faq created successfully"});
         }catch(err){
             res.status(500).send(err); 
         }
@@ -37,8 +37,8 @@ export class faqHandler {
     async delete(req:Request,res:Response){
         try{
             const id = req.params.id;
-            const data  =  await faq.delete(parseInt(id));
-            return res.status(200).json(data);
+            await faq.delete(parseInt(id));
+            return res.status(200).json({message:"Faq Removed"});
         }catch(err){
             res.status(500).send(err); 
         }

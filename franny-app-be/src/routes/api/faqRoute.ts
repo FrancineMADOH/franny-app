@@ -9,7 +9,7 @@ const methods = new faqHandler();
 faqRouter.post("",verifyToken,methods.create);
 faqRouter.get("",methods.index);
 faqRouter.post("/:category",methods.category);
-faqRouter.post("/:id",verifyToken,methods.delete);
+faqRouter.delete("/:id",verifyToken,methods.delete);
 
 export default faqRouter;
 

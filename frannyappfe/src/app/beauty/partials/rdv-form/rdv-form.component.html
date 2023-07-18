@@ -30,7 +30,7 @@
             ngModel
             #email="ngModel"
             type="email" name="email" id="email">
-            <!-- <small *ngIf="!email.valid && email.touched" style="color:red;">Please choose a category</small> -->
+            <small *ngIf="!email.valid && email.touched" style="color:red;">Invalid email</small>
         </div>
         <div class="form-group my-2">
             <label for="rdvdate">Choose a date for your appointement </label>
@@ -56,7 +56,7 @@
             </select>
             <small *ngIf="!prestation.valid && prestation.touched" style="color:red;">Please choose a prestation</small>
         </div>
-        <div class="form-group my-2">
+        <div class="form-group my-2" *ngIf="!iscreateMode">
             <label for="state">Appointement state</label>
             <select class="form-control" 
              name="state" id="state">
