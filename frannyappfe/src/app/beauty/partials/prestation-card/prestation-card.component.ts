@@ -1,4 +1,4 @@
-import { Component,Input,OnInit } from '@angular/core';
+import { Component,EventEmitter,Input,OnInit, Output } from '@angular/core';
 import { Prestation } from '../../models/prestation';
 import { Router } from '@angular/router';
 import { BeautyService } from '../../services/beauty.service';
@@ -10,10 +10,13 @@ import { BeautyService } from '../../services/beauty.service';
 })
 export class PrestationCardComponent implements OnInit {
 
-  //@Input() prestationCard!:Prestation;
   prestationList:Prestation[] = [];
+  filteredList:Prestation[]=[];
 
-  constructor(private router:Router, private beauty:BeautyService){}
+
+  constructor(private router:Router, private beauty:BeautyService){
+    this.filteredList = this.prestationList;
+  }
 
   ngOnInit(): void {
     this.beauty.getPrestationList().subscribe((data)=>{
@@ -29,4 +32,18 @@ export class PrestationCardComponent implements OnInit {
     this.router.navigate(['beauty/prestations/update/' + el])
   }
 
+  searchPrestationByTerm(query:string){
+    const searchterm =  query.search.toString();
+    if(!query){
+      this.filteredList = this.prestationList;
+    }
+    this.filteredList = this.prestationList.filter( 
+      Prestation =>
+        //console.log(Prestation.title.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase()))
+        Prestation.title.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase() )||
+        Prestation?.category.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase()) ||
+        Prestation?.seance.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase())
+       );
+
+  }
 }
