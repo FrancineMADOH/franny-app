@@ -1,12 +1,20 @@
-<div class="card my-2">
+<div class="searchFormClass col-lg-4">
+  <form #searchPrestation="ngForm" (ngSubmit)="searchPrestationByTerm(searchPrestation.value)" class="d-inline">
+      <div class="form-group">
+          <input id="search" minlength="5" name="search" required ngModel #search="ngModel" placeholder="Search..."
+              type="text">
+          <button [disabled]="!searchPrestation.valid" class="btn btn-success mx-2" type="submit">Search</button>
+      </div>
+  </form>
+</div>
+<div class="card my-2" *ngFor="let el of filteredList" >
     <div class="card-body">
-      <h5 class="card-title">Seance title</h5>
-      <h6 class="card-subtitle mb-2 text-muted"> Seance price - seance category</h6>
-      <p class="card-text">Seance description </p>
-      <p class="card-text">Seance gold description </p>
-      <p class="card-text">Seance premium descriptio  </p>
-      <a routerLink="" class="card-link btn btn-secondary ">View</a>
-      <a routerLink="/beauty/prestations/update" class="card-link btn btn-success">Update</a>
+      <h5 class="card-title">{{el.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted"> {{el.price}} {{el.category}}</h6>
+      <p class="card-text">{{ el.seance }} </p>
+      <p class="card-text">{{el.gold}} </p>
+      <p class="card-text">{{el.premium}} </p>
+      <button (click)="gotoUpdate(el.pres_id || 1)" class="card-link btn btn-success">Update</button>
     </div>
   </div>
   

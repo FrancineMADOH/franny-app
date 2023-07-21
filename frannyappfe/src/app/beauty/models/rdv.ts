@@ -1,12 +1,15 @@
 export interface Rendezvous {
-    rdv_id?: number,
-    rdvdate:string,
-    doneby:number,
+    rdv_id?:number,
+    client_name: string,
+    client_phone: number,
+    client_email: string,
+    rdvdate: string,
+    doneby: number,
     prestation: number,
-    rdvstate:number ,
-    rdvcode:string,
-    rdvtype:number,
-    userid:string , 
-    ville:string,
-    quartier:string
+    rdvstate: string,
+    rdvcode: string,
+    rdvtype: string,
+    ville: string,
+    quartier: string,
+    comments: string
 }

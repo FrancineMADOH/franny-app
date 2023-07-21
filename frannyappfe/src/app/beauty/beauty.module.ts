@@ -25,6 +25,7 @@ import { AddReviewComponent } from './add-review/add-review.component';
 import { UpdateRdvComponent } from './update-rdv/update-rdv.component';
 import { UpdateBeautifComponent } from './update-beautif/update-beautif.component';
 import { UpdatePrestationComponent } from './update-prestation/update-prestation.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { UpdatePrestationComponent } from './update-prestation/update-prestation
     AddReviewComponent,
     UpdateRdvComponent,
     UpdateBeautifComponent,
-    UpdatePrestationComponent
+    UpdatePrestationComponent,
+    ConfirmationComponent
   ],
   imports: [
     CommonModule,

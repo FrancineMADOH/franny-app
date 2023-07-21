@@ -1,5 +1,5 @@
 <div class="container">
-    <form #addFaqForm="ngForm" (ngSubmit)="saveNewFaq(addFaqForm)" >
+    <form #addFaqForm="ngForm" (ngSubmit)="saveNewFaq(addFaqForm)">
     <div class="form-group m-2">
         <label for="title">Faq Title</label>
         <input type="text" 
@@ -16,8 +16,8 @@
             ngModel
             required
             #category="ngModel">
-          <option >Select category</option>
-          <option value="">1</option>
+          <option [selected] >Select category</option>
+          <option *ngFor="let el of categories" [value]="el" >{{el}}</option>
         </select>
         <small *ngIf="!category.valid && category.touched"  >Please choose a category for faq</small>
       </div>
@@ -30,7 +30,7 @@
         id="reponse" class="form-control" required></textarea>
         <small *ngIf="!reponse.valid && reponse.touched"  >Please a response for the FAQ</small>
       </div>
-    <button type="submit" [disabled]="!addFaqForm['valid']" class="btn btn-success">Save faq</button>
+    <button type="submit" [disabled]="!addFaqForm['valid']" data-bs-dismiss="modal" class="btn btn-success">Save faq</button>
     </form>
 </div>
     

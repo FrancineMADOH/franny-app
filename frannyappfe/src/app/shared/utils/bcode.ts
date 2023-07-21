@@ -13,10 +13,9 @@ function generateBeautifCode(date: string, bname: string, ville: string, quarter
 
     //ville
     let initial_ville = ville[0] + ville.slice(-2);
-    let initial_quartier = quarter.slice(-3) + quarter[0] + quarter[1];
+    let initial_quartier =  quarter[0] + quarter[1] + quarter.slice(-2);
 
-    all_initials = (dateCode + initials + initial_ville + initial_quartier).toLocaleUpperCase();
-    console.log(all_initials.toLocaleUpperCase())
+    all_initials = (dateCode + '/' + initials +'/' + initial_ville + '/' + initial_quartier).toLocaleUpperCase();
     return all_initials.toLocaleUpperCase();
 
 }
