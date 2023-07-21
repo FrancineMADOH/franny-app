@@ -1,6 +1,6 @@
 
 <div class="container">
-    <form #addRendezvousForm="ngForm" (ngSubmit)="saveRendezVous(addRendezvousForm)">
+    <form #addRendezvousForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group my-2">
             <label for="clientname">Votre nom</label>
             <input type="text"  class="form-control"
@@ -21,7 +21,7 @@
              maxlength="9"
              required
              placeholder="[0-9] -  max 9 characters"
-            pattern="0-9" name="phone" class="form-control">
+            pattern="[0-9]*" name="phone" class="form-control">
             <small *ngIf="!phone.valid && phone.touched" style="color:red;">Please enter a valid phone number</small>
         </div>
         <div class="form-group my-2">
@@ -52,7 +52,7 @@
             required
             name="prestation" id="prestation">
                 <option selected>Select  Prestation</option>
-                <option value=""></option>
+                <option *ngFor="let el of prestations" value="{{el.pres_id}}">{{el.title}} </option>
             </select>
             <small *ngIf="!prestation.valid && prestation.touched" style="color:red;">Please choose a prestation</small>
         </div>
@@ -61,7 +61,7 @@
             <select class="form-control" 
              name="state" id="state">
                 <option selected>State</option>
-                <option value=""></option>
+                <option *ngFor="let el of appointment_state" value="el">el</option>
             </select>
         </div>
         <div class="form-group my-2">
@@ -71,13 +71,25 @@
             ngModel
             #rdvtype="ngModel"
             name="rdvtype" id="rdvtype">
-                <option value="" selected>Appointment type</option>
-                <option value=""></option>
+                <option value="0" selected>Appointment type</option>
+                <option *ngFor="let val of appointment_type" value="{{val}}">{{val}}</option>
             </select>
             <small *ngIf="!prestation.valid && prestation.touched" style="color:red;">Please choose a type for your prestation</small>
         </div>
+
         <div class="form-group my-2">
-            <label for="ptype">Type de Seance</label>
+            <label for="category">Prestation category</label>
+                <select class="form-control"
+                required
+                ngModel
+                #category="ngModel" 
+                name="category" id="category">
+                <option value="">Choose Category</option>
+                    <option *ngFor="let val of categories"  value="{{val}}">{{val}}</option>    
+                </select>
+            </div>
+        <div class="form-group my-2">
+        <label for="ptype">Type de Seance</label>
             <select class="form-control"
             required
             ngModel
@@ -98,7 +110,7 @@
             #ville="ngModel"
             name="ville" id="ville">
                 <option value="" selected>Town</option>
-                <option value=""></option>
+                <option *ngFor="let el of allVille" value="{{el.ville}} ">{{el.ville}} </option>
             </select>
             <small *ngIf="!ville.valid && ville.touched" style="color:red;">Please choose a town</small>
         </div>
@@ -110,7 +122,7 @@
             #quartier="ngModel" 
             name="quartier" id="quartier">
                 <option value="" selected>Quartier</option>
-                <option value=""></option>
+                <option *ngFor="let el of allLocation" value="el.quartier">{{el.quartier}}</option>
             </select>
             <small *ngIf="!quartier.valid && quartier.touched" style="color:red;">Please choose a your quartiier</small>
         </div>
@@ -122,17 +134,19 @@
             #comments="ngModel"
             name="comments"></textarea>
         </div>
+       
         <div class="form-group my-2">
             <label for="rdvcode">Appointement Code</label>
                 <input type="text" 
                 class="form-control"
-                placeholder="coder la valeur avec les data"
+                placeholder="codedu rendez-vous"
                 readonly
                 ngModel
+                value="{{this.rdvcode}}"
                 #rdvcode="ngModel"
                 name="rdvcode" id="rdvcode">
-        </div>   
+        </div>  
+        <button type="submit" [disabled]="!addRendezvousForm['valid']" class="btn btn-success m-3  ">Confirm</button> 
     </form>
     <button (click)="backToRdv()" class="btn btn-danger m-3">Cancel</button>
-    <button (click)="viewRdv()" type="submit" [disabled]="!addRendezvousForm['valid']" class="btn btn-success m-3  ">Confirm</button>
 </div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BeautifyerFormComponent } from './beautifyer-form.component';
+import { ConfirmationComponent } from './confirmation.component';
 
-describe('BeautifyerFormComponent', () => {
-  let component: BeautifyerFormComponent;
-  let fixture: ComponentFixture<BeautifyerFormComponent>;
+describe('ConfirmationComponent', () => {
+  let component: ConfirmationComponent;
+  let fixture: ComponentFixture<ConfirmationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BeautifyerFormComponent ]
+      declarations: [ ConfirmationComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BeautifyerFormComponent);
+    fixture = TestBed.createComponent(ConfirmationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

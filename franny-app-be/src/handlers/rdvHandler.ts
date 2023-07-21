@@ -8,11 +8,11 @@ export class rdvHandler {
     async create(req:Request,res:Response){
         try{
             const data:Rendezvous = req.body;
-            const new_rdv = await rdv.create(data);
-            res.status(201).json(new_rdv);
-        }catch(err){
-            console.log(err);
-            res.status(500).json(err);
+            console.log(data)
+            const newRdv = await rdv.create(data);
+            res.status(201).json({message:"Appointement scheduled!", data:newRdv});
+        }catch(err:any){
+            res.status(500).json(err.message);
         }
     }
 
