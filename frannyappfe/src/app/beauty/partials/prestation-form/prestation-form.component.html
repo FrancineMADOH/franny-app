@@ -1,9 +1,9 @@
-<form #addPrestationForm="ngForm" (ngSubmit)="savePrestation(addPrestationForm)">
+<form #addPrestationForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="title">Prestation title </label>
         <input type="text"
         required
-        maxlength="20"
+        maxlength="60"
         class="form-control"
         id="title"
         name="title"
@@ -13,10 +13,10 @@
     <small *ngIf="!title.valid && title.touched">Add a valid title for prestation</small>
     <div class="form-group">
         <label for="price">Prestation Price</label>
-        <input type="text" 
-        pattern="1-9"
+        <input type="number" 
+        pattern="[0-9]*"
         maxlength="5"
-        id="duration"
+        id="price"
         required
         ngModel
         #price="ngModel"
@@ -29,10 +29,11 @@
     <div class="form-group">
         <label for="duration">Prestation duration</label>
         <input type="text"
-        pattern="1-9"
         name="duration"
         id="duration"
+        placeholder="eg: 45 mn"
         required
+        maxlength="15"
         ngModel
         #duration="ngModel"
         class="form-control">
@@ -49,7 +50,11 @@
         ngModel
         #category="ngModel"
         class="form-control">
-        <option value="">Select a category</option>
+        <option value="0" selected>Select a category</option>
+        <option value="Coiffure">Coiffure</option>
+        <option value="Onglerie">Onglerie</option>
+        <option value="Make-Up">Make-Up</option>
+        <option value="Massage">Massage</option>
     </select>
     </div>
     <small *ngIf="!category.valid && category.touched"></small>
@@ -90,7 +95,7 @@
         class="form-control">
     </div>
     <small *ngIf="!premium.valid && premium.touched">Add a premium addition for this prestation</small>
+    <button type="submit" class="btn btn-primary m-2" [disabled]="!addPrestationForm['valid']" >Add Prestation</button>
 </form>
-<button type="submit" class="btn btn-primary m-2">Add Prestation</button>
 <button (click)="backToPrestation()" class="btn btn-secondary">Cancel</button>
 

@@ -34,10 +34,29 @@ export class beautyStore{
     }
 
     //show
-     async show(id:number):Promise<Beautifyer> {
+
+    async show(id:number):Promise<Beautifyer>{
         const conn = await client.connect();
-        const sql_command = "SELECT * FROM beautifyers WHERE beautif_id=$1;";
+        const sql_command =  "SELECT * FROM beautifyers WHERE beautif_id=$1;"
         const result = await conn.query(sql_command,[id]);
+        conn.release();
+        return result.rows[0];
+    }
+    //update
+     async update(id:number,b:Beautifyer):Promise<Beautifyer> {
+        const conn = await client.connect();
+        const sql_command = "UPDATE beautifyers SET bname=$2,email=$3,quartier=$4,phone=$5,details=$6,recruit_date=$7,ville=$8,create_by=$9,beautifcode=$10  WHERE beautif_id=$1 RETURNING *;";
+        const result = await conn.query(sql_command,[id,
+            b.bname,
+            b.email,
+            b.quartier,
+            b.phone,
+            b.details,
+            b.recruit_date,
+            b.ville,
+            b.create_by,
+            b.beautifcode
+        ]);
         conn.release();
         return  result.rows[0];
     }

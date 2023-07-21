@@ -1,4 +1,4 @@
-import { Request,Response } from "express";
+import e, { Request,Response } from "express";
 import { Beautifyer,beautyStore } from "../models/beautifyer";
 
 const beauty = new beautyStore();
@@ -12,30 +12,47 @@ export class beautyHandler {
             
         }catch(err){
             console.log(err);
-            res.send(500).json(err);
+            res.status(500).json(err);
 
         }
     }
 
-    async show(req:Request,res:Response){
+    async show(req: Request, res: Response){
+        try {
+            const id = parseInt(req.params.id);
+            const beautif = await beauty.show(id);
+            res.status(200).json({data:beautif});      
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+            
+        }
+    }
+
+    async update(req:Request,res:Response){
         try{
-            const id = req.params.id;
-            const up_beau = await beauty.show(parseInt(id));
-            res.status(200).json(up_beau);
+            const id = parseInt(req.params.id);
+            const beautif = req.body.beauty;
+            await beauty.update(id,beautif);
+            res.status(200).json({message:"Agent succefully updated"});
         }catch(err){
             console.log(err);
-            res.send(500).json(err);
-
+            res.status(500).json(err);
         }
     }
 
     async index(req:Request,res:Response){
+        // const page:number = Number(req.query.page);
+        // const limit = Number(req.query.limit);
+        // const startIndex = page - 1 * limit;
+        // const endIndex  =  page * limit ;
         try{
             const data =  await beauty.index();
+            //const result = data.slice(startIndex,endIndex);
             res.status(200).json(data);
         }catch(err){
             console.log(err);
-            res.send(500).json(err);
+            res.status(500).json(err);
 
         }
     }
@@ -48,7 +65,7 @@ export class beautyHandler {
 
         }catch(err){
             console.log(err);
-            res.send(500).json(err);
+            res.status(500).json(err);
         }
     }
 }

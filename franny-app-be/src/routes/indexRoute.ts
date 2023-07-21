@@ -20,7 +20,7 @@ router.use("/comments", commentRouter);
 router.use("/users", userRouter);
 router.use("/admins",adminRouter);
 router.use("/posts",postRouter);
-router.use("/admins/faqs", faqRouter);
+router.use("/faqs", faqRouter);
 router.use("/beautifyers", beautyRouter);
 router.use("/prestations", presRouter);
 router.use("/rendezvous",rdvRouter );

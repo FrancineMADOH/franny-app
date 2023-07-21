@@ -1,37 +1,15 @@
-// function checkSearchTerm(searchterm :string,searchList:[],searchParam:string){
-
-//     let filteredList:[] = [];
-//     if(searchterm && searchterm !=""){
-//         for(let i=0; i< searchList.length; i++ ){
-//             if(searchList[i].){}
-//         }
-//     }
-
-
-
-
-// }
-
-
-
-import { Pipe, PipeTransform } from "@angular/core";
-
-@Pipe({
-    name:"search"
-})
-
-export class FilterPipe implements PipeTransform {
-transform(query:any, searchList:any){
+function searchByTerm(query:string, listA:any[], ListB:any[]):any[]{
+    const searchterm = query.search.toString();
     if(!query){
-        return query;
+        ListB = listA;
     }
-    return query.filter((data:any)=>this.matchValue(data, searchList))
-}
+  ListB = listA.filter(
+    Object =>
+    Object?.keys().toLowerCase().includes(searchterm.toLocaleLowerCase()));
+    return ListB;
+  }
 
-matchValue(data:any,value:any){
-    return Object.keys(data).map((key)=>{
-        return new RegExp(value, 'gi').test(data[key]);
-    }).some(result=>result)
-}
 
-}
+  export default searchByTerm;
+
+

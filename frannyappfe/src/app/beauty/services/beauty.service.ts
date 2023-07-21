@@ -18,48 +18,60 @@ export class BeautyService {
   constructor(private http:HttpClient) {
    }
 
+   //beautifyers service
   getBeautifyerList():Observable<Beautifyer[]>{
     return this.http.get<Beautifyer[]>(environment.baseUrl + "/beautifyers" ).pipe(catchError(this.handleError));
   }
-  updateBeautifyer(id:number):Observable<Beautifyer>{
-    return this.http.put<Beautifyer>(environment.baseUrl + "/beautifyers/update" , id).pipe(catchError(this.handleError));
+  updateBeautifyer(id:number,beauty:Beautifyer):Observable<any>{
+    return this.http.put<Beautifyer>(environment.baseUrl + `/beautifyers/update/${id}` , {id,beauty}).pipe(catchError(this.handleError));
   }
-  deletBeautifyer(id:number):Observable<Beautifyer>{
+  deleteBeautifyer(id:number):Observable<Beautifyer>{
     return this.http.delete<Beautifyer>(environment.baseUrl + "beautifyers/delete" + id).pipe(catchError(this.handleError));
   }
   addBeautifyer(beauti:Beautifyer):Observable<any>{
     return this.http.post<Beautifyer>(environment.baseUrl + "/beautifyers", beauti).pipe(catchError(this.handleError));
   }
+  getBeautifyers(id:number): Observable<Beautifyer>{
+    return this.http.get<Beautifyer>(environment.baseUrl + `/beautifyers/${id}`).pipe(catchError(this.handleError));
+  }
 
+  //faq service
   getFaqList():Observable<Faq[]>{
     return this.http.get<Faq[]>(environment.baseUrl + "/faqs" ).pipe(catchError(this.handleError));
-
   }
-  updateFaq(id:number):Observable<Faq>{
-    return this.http.put<Faq>(environment.baseUrl + "/faqs/update",id).pipe(catchError(this.handleError));
+  deleteFaq(id:number):Observable<Faq>{
+    return this.http.delete<Faq>(environment.baseUrl + `/faqs/${id}`).pipe(catchError(this.handleError));
   }
   getFaqbyCategory():Observable<Faq[]>{
     return this.http.get<Faq[]>(environment.baseUrl + "faq/category" ).pipe(catchError(this.handleError));
   }
-  addNewFaq(faq:Faq){
-    this.http.post<Faq>(environment.baseUrl + "/faqs",faq).pipe(catchError(this.handleError));
-  }
+
+  addNewFaq(faq:Faq):Observable<Faq>{
+    return this.http.post<Faq>(environment.baseUrl + "/faqs",faq).pipe(catchError(this.handleError));
+  } 
+
+  //prestation service 
 
   addNewPrestation(pres:Prestation):Observable<Prestation>{
-    return this.http.post<Prestation>(environment.baseUrl + "/prestation/add",pres).pipe(catchError(this.handleError));
+    return this.http.post<Prestation>(environment.baseUrl + "/prestations/",pres).pipe(catchError(this.handleError));
   }
-  updatePrestation(id:number):Observable<Prestation[]>{
-    return this.http.put<Prestation[]>(environment.baseUrl + "/prestations/id",id).pipe(catchError(this.handleError));
+  updatePrestation(id:number,prestation:Prestation):Observable<Prestation[]>{
+    return this.http.put<Prestation[]>(environment.baseUrl + `/prestations/${id}`,{prestation}).pipe(catchError(this.handleError));
   }
   getPrestationList():Observable<Prestation[]>{
     return this.http.get<Prestation[]>(environment.baseUrl + "/prestations" ).pipe(catchError(this.handleError));
   }
 
+  getPrestation(id:number):Observable<any>{
+    return this.http.get(environment.baseUrl + `/prestations/${id}`).pipe(catchError(this.handleError));
+  }
+
+  //rendez vous service 
   createRendezvous(rdv:Rendezvous):Observable<Rendezvous>{
-    return this.http.post<Rendezvous>(environment.baseUrl + "/rdv/create",rdv).pipe(catchError(this.handleError));
+    return this.http.post<Rendezvous>(environment.baseUrl + "/rendezvous",rdv).pipe(catchError(this.handleError));
   }
   updateRendezvous(id:number):Observable<Rendezvous>{
-    return this.http.put<Rendezvous>(environment.baseUrl + "/rd/update",id).pipe(catchError(this.handleError));
+    return this.http.put<Rendezvous>(environment.baseUrl + "/rendezvous/update",id).pipe(catchError(this.handleError));
   }
   getRendezvousList():Observable<Rendezvous[]>{
     return this.http.get<Rendezvous[]>(environment.baseUrl + "/rdv" ).pipe(catchError(this.handleError));
@@ -76,6 +88,7 @@ export class BeautyService {
 
   }
 
+  //review service
   getReviewList():Observable<Review[]>{
     return this.http.get<Review[]>(environment.baseUrl + "/reviews" ).pipe(catchError(this.handleError));
   }
