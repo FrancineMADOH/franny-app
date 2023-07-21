@@ -27,7 +27,9 @@ prestation!: Prestation;
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.iscreateMode = !this.id;
+    console.log(this.iscreateMode)
 
+    if(!this.iscreateMode){  
     this.beauty.getPrestation(Number(this.id)).subscribe((res:any)=>{      
       if(!this.iscreateMode){  
         this.addPrestationForm.form.setValue({
@@ -41,6 +43,8 @@ prestation!: Prestation;
         })
       }
     });
+    }
+
 
   }
 

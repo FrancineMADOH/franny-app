@@ -7,9 +7,9 @@ const rdvRouter = express.Router();
 
 rdvRouter.post("", methods.create);
 rdvRouter.get("",verifyToken, methods.index);
-rdvRouter.put("",verifyToken ,methods.update);
+rdvRouter.put("update/:id",verifyToken ,methods.update);
 rdvRouter.get("/:state",verifyToken, methods.state);
 rdvRouter.get("/:state",verifyToken, methods.stateCount);
-rdvRouter.delete("/:id",verifyToken, methods.delete);
+rdvRouter.put("/:id",verifyToken, methods.delete);
 
 export default rdvRouter;

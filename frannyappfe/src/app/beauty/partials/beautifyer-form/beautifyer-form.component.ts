@@ -27,15 +27,14 @@ export class BeautifyerFormComponent implements OnInit {
   loadBeautif!:any;
 
   constructor(private router:Router,
-               private route: ActivatedRoute, 
-               private select:SelectServiceService, 
-               private auth: AuthService, 
-               private beauti:BeautyService ) {}
+  private route: ActivatedRoute,
+  private select:SelectServiceService,
+  private auth: AuthService,
+  private beauti:BeautyService) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.iscreateMode = !this.id;
-    console.log(this.iscreateMode)
 
     this.select.getAllLocation().subscribe(
       (location:Location[])=>{
@@ -56,23 +55,24 @@ export class BeautifyerFormComponent implements OnInit {
           });
         });
 
-        
-    this.beauti.getBeautifyers(parseInt(this.id)).subscribe((res: any) => {
-      if (!this.iscreateMode) {
-        this.addBeautifForm.form.setValue({
-          bname: res.data.bname,
-          email: res.data.email,
-          quartier: res.data.quartier,
-          phone: res.data.phone,
-          details: res.data.details,
-          recruit_date: res.data.recruit_date,
-          ville: res.data.ville,
-          create_by: res.data.create_by,
-          beautifcode: res.data.beautifcode,
-          //admin_name: res.data.admin_name
-        })
-      }
-  });
+        if(!this.iscreateMode){
+          this.beauti.getBeautifyers(parseInt(this.id)).subscribe((res: any) => {
+            if (!this.iscreateMode) {
+              this.addBeautifForm.form.setValue({
+                bname: res.data.bname,
+                email: res.data.email,
+                quartier: res.data.quartier,
+                phone: res.data.phone,
+                details: res.data.details,
+                recruit_date: res.data.recruit_date,
+                ville: res.data.ville,
+                create_by: res.data.create_by,
+                beautifcode: res.data.beautifcode,
+                //admin_name: res.data.admin_name
+              })
+            }
+        });
+        }
   }
 
  backtoBeautifList(){
@@ -87,8 +87,8 @@ export class BeautifyerFormComponent implements OnInit {
     }
   }
 
-  saveBeautif(addBeautifForm:any){   
-    this.beautifCode = generateBeautifCode(this.addBeautifForm.value.recruit_date,this.addBeautifForm.value.bname,this.addBeautifForm.value.ville,this.addBeautifForm.value.quartier); 
+  saveBeautif(addBeautifForm:any){
+    this.beautifCode = generateBeautifCode(this.addBeautifForm.value.recruit_date,this.addBeautifForm.value.bname,this.addBeautifForm.value.ville,this.addBeautifForm.value.quartier);
     this.addBeautifForm.value.beautifcode = this.beautifCode;
     this.addBeautifForm.value.create_by = parseInt((this.addBeautifForm.value.create_by));
     if(this.addBeautifForm.valid){
@@ -102,7 +102,7 @@ export class BeautifyerFormComponent implements OnInit {
   }
 
   updateBeautif(id:number,addBeautifForm:any){
-    this.beautifCode = generateBeautifCode(this.addBeautifForm.value.recruit_date,this.addBeautifForm.value.bname,this.addBeautifForm.value.ville,this.addBeautifForm.value.quartier); 
+    this.beautifCode = generateBeautifCode(this.addBeautifForm.value.recruit_date,this.addBeautifForm.value.bname,this.addBeautifForm.value.ville,this.addBeautifForm.value.quartier);
     this.beautif = this.addBeautifForm.value;
     this.addBeautifForm.value.create_by = parseInt((this.addBeautifForm.value.create_by));
     this.addBeautifForm.value.phone = parseInt((this.addBeautifForm.value.phone));

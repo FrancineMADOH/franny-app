@@ -18,6 +18,7 @@ export class BeautyService {
   constructor(private http:HttpClient) {
    }
 
+   //beautifyers service
   getBeautifyerList():Observable<Beautifyer[]>{
     return this.http.get<Beautifyer[]>(environment.baseUrl + "/beautifyers" ).pipe(catchError(this.handleError));
   }
@@ -34,6 +35,7 @@ export class BeautyService {
     return this.http.get<Beautifyer>(environment.baseUrl + `/beautifyers/${id}`).pipe(catchError(this.handleError));
   }
 
+  //faq service
   getFaqList():Observable<Faq[]>{
     return this.http.get<Faq[]>(environment.baseUrl + "/faqs" ).pipe(catchError(this.handleError));
   }
@@ -46,7 +48,9 @@ export class BeautyService {
 
   addNewFaq(faq:Faq):Observable<Faq>{
     return this.http.post<Faq>(environment.baseUrl + "/faqs",faq).pipe(catchError(this.handleError));
-  }
+  } 
+
+  //prestation service 
 
   addNewPrestation(pres:Prestation):Observable<Prestation>{
     return this.http.post<Prestation>(environment.baseUrl + "/prestations/",pres).pipe(catchError(this.handleError));
@@ -61,11 +65,13 @@ export class BeautyService {
   getPrestation(id:number):Observable<any>{
     return this.http.get(environment.baseUrl + `/prestations/${id}`).pipe(catchError(this.handleError));
   }
+
+  //rendez vous service 
   createRendezvous(rdv:Rendezvous):Observable<Rendezvous>{
-    return this.http.post<Rendezvous>(environment.baseUrl + "/rdv/create",rdv).pipe(catchError(this.handleError));
+    return this.http.post<Rendezvous>(environment.baseUrl + "/rendezvous",rdv).pipe(catchError(this.handleError));
   }
   updateRendezvous(id:number):Observable<Rendezvous>{
-    return this.http.put<Rendezvous>(environment.baseUrl + "/rd/update",id).pipe(catchError(this.handleError));
+    return this.http.put<Rendezvous>(environment.baseUrl + "/rendezvous/update",id).pipe(catchError(this.handleError));
   }
   getRendezvousList():Observable<Rendezvous[]>{
     return this.http.get<Rendezvous[]>(environment.baseUrl + "/rdv" ).pipe(catchError(this.handleError));
@@ -82,6 +88,7 @@ export class BeautyService {
 
   }
 
+  //review service
   getReviewList():Observable<Review[]>{
     return this.http.get<Review[]>(environment.baseUrl + "/reviews" ).pipe(catchError(this.handleError));
   }

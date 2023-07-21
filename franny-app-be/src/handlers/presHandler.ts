@@ -9,7 +9,7 @@ export class presHandler {
     async create(req:Request,res:Response){
         try{
             const data:Prestation = req.body;
-            const new_pres = await pres.create(data);
+            await pres.create(data);
             res.status(201).json({message:"Prestation added!"});
         }catch(err){
             console.log(err);
