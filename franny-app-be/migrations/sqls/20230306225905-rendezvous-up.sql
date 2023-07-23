@@ -16,3 +16,6 @@ CREATE TABLE rendezvous(
     FOREIGN KEY (prestation) REFERENCES prestations(pres_id) ON DELETE CASCADE,
     FOREIGN KEY (doneby) REFERENCES beautifyers(beautif_id) ON DELETE CASCADE
 );
+
+ALTER TABLE rendezvous ADD COLUMN created_at TIMESTAMPTZ;
+ALTER TABLE rendezvous ALTER COLUMN created_at SET DEFAULT now();

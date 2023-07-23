@@ -21,15 +21,14 @@ export class rdvStore {
     //create
     async create(r: Rendezvous): Promise<Rendezvous> {
         const conn = await client.connect();
-        const sql_command = "INSERT INTO rendezvous(client_name,client_phone,client_email,rdvdate,prestation,category,rdvcode,rdvtype,ville,quartier,comments) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *;";
+        const sql_command = "INSERT INTO rendezvous(client_name,client_phone,client_email,rdvdate,prestation,category,rdvcode,rdvtype,ville,quartier,comments) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *;";
         const result = await client.query(sql_command, [
             r.client_name,
             r.client_phone,
             r.client_email,
             r.rdvdate,
-           // r.doneby,
             r.prestation,
-            //r.rdvstate,
+            r.category,
             r.rdvcode,
             r.rdvtype,
             r.ville,

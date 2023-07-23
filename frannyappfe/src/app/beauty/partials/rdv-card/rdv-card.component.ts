@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-rdv-card',
   templateUrl: './rdv-card.component.html',
   styleUrls: ['./rdv-card.component.css']
 })
-export class RdvCardComponent {
+export class RdvCardComponent implements OnInit   {
 
 }
