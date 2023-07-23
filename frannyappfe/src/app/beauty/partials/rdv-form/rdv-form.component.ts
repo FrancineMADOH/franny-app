@@ -66,7 +66,7 @@ export class RdvFormComponent implements OnInit {
   }
   saveRendezVous(addRendezvousForm:any){
     this.rdvCode = generaterdvCode(
-    this.addRendezvousForm.value.clientname,
+    this.addRendezvousForm.value.client_name,
     this.addRendezvousForm.value.rdvdate,
     this.addRendezvousForm.value.ville,
     this.addRendezvousForm.value.quartier,

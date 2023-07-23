@@ -2,35 +2,35 @@
 <div class="container">
     <form #addRendezvousForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group my-2">
-            <label for="clientname">Votre nom</label>
+            <label for="client_name">Votre nom</label>
             <input type="text"  class="form-control"
-            name="clientname" 
+            name="client_name" 
             required
             maxlength="100"
             ngModel
-            #clientname="ngModel"
-            id="clientname">
-            <small style="color:red;" *ngIf="!clientname.valid && clientname.touched">Please enter your name</small>
+            #client_name="ngModel"
+            id="client_name">
+            <small style="color:red;" *ngIf="!client_name.valid && client_name.touched">Please enter your name</small>
         </div>
         <div class="form-group">
-            <label for="phone">Enter your phone number</label>
+            <label for="client_phone">Enter your phone number</label>
             <input type="text"
-             id="phone"
+             id="client_phone"
              ngModel
-             #phone="ngModel"
+             #client_phone="ngModel"
              maxlength="9"
              required
              placeholder="[0-9] -  max 9 characters"
-            pattern="[0-9]*" name="phone" class="form-control">
-            <small *ngIf="!phone.valid && phone.touched" style="color:red;">Please enter a valid phone number</small>
+            pattern="[0-9]*" name="client_phone" class="form-control">
+            <small *ngIf="!client_phone.valid && client_phone.touched" style="color:red;">Please enter a valid phone number</small>
         </div>
         <div class="form-group my-2">
-            <label for="email">Enter your Email address</label>
+            <label for="client_email">Enter your Email address</label>
             <input class="form-control" 
             ngModel
-            #email="ngModel"
-            type="email" name="email" id="email">
-            <small *ngIf="!email.valid && email.touched" style="color:red;">Invalid email</small>
+            #client_email="ngModel"
+            type="email" name="client_email" id="client_email">
+            <small *ngIf="!client_email.valid && client_email.touched" style="color:red;">Invalid email</small>
         </div>
         <div class="form-group my-2">
             <label for="rdvdate">Choose a date for your appointement </label>
@@ -122,7 +122,7 @@
             #quartier="ngModel" 
             name="quartier" id="quartier">
                 <option value="" selected>Quartier</option>
-                <option *ngFor="let el of allLocation" value="el.quartier">{{el.quartier}}</option>
+                <option *ngFor="let el of allLocation" value="{{el.quartier}}">{{el.quartier}}</option>
             </select>
             <small *ngIf="!quartier.valid && quartier.touched" style="color:red;">Please choose a your quartiier</small>
         </div>

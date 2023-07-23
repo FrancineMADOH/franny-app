@@ -5,7 +5,7 @@ import verifyToken from "../../middlewares/auth";
 const methods = new rdvHandler();
 const rdvRouter = express.Router();
 
-rdvRouter.post("", methods.create);
+rdvRouter.post("",verifyToken, methods.create);
 rdvRouter.get("",verifyToken, methods.index);
 rdvRouter.put("update/:id",verifyToken ,methods.update);
 rdvRouter.get("/:state",verifyToken, methods.state);
