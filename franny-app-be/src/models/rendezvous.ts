@@ -12,6 +12,7 @@ export type Rendezvous = {
     rdvstate: string,
     rdvcode: string,
     rdvtype: string,
+    rdv_price:number,
     ville: string,
     quartier: string,
     comments: string
@@ -21,7 +22,7 @@ export class rdvStore {
     //create
     async create(r: Rendezvous): Promise<Rendezvous> {
         const conn = await client.connect();
-        const sql_command = "INSERT INTO rendezvous(client_name,client_phone,client_email,rdvdate,prestation,category,rdvcode,rdvtype,ville,quartier,comments) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *;";
+        const sql_command = "INSERT INTO rendezvous(client_name,client_phone,client_email,rdvdate,prestation,category,rdvcode,rdv_price,ville,quartier,comments) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *;";
         const result = await client.query(sql_command, [
             r.client_name,
             r.client_phone,
@@ -30,7 +31,8 @@ export class rdvStore {
             r.prestation,
             r.category,
             r.rdvcode,
-            r.rdvtype,
+            // r.rdvtype,
+            r.rdv_price,
             r.ville,
             r.quartier,
             r.comments
@@ -42,7 +44,7 @@ export class rdvStore {
     //index: List of rdv 
     async index(): Promise<Rendezvous[]> {
         const conn = await client.connect();
-        const sql_command = "SELECT * FROM rendezvous ORDER BY CAST(rdvdate AS DATE) DESC;";
+        const sql_command = "SELECT * FROM rendezvous r INNER JOIN prestations p ON r.prestation = p.pres_id ORDER BY CAST(rdvdate AS DATE) DESC;";
         const result = await client.query(sql_command);
         conn.release();
         return result.rows;

@@ -9,7 +9,9 @@ export type Prestation = {
     category: string ,
     seance:string,
     gold :string,
-    premium:string
+    gold_price:number,
+    premium:string,
+    premium_price:number
 
 }
 
@@ -17,9 +19,9 @@ export class presStore{
      //create
      async create(p:Prestation):Promise<Prestation>{
         const conn = await client.connect();
-        const sql_query = "INSERT INTO prestations(title,price,duration,category,seance,gold,premium) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *;";
+        const sql_query = "INSERT INTO prestations(title,price,duration,category,seance,gold,gold_price,premium,premium_price) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *;";
         const result = await conn.query(sql_query,[
-            p.title,p.price,p.duration,p.category,p.seance,p.gold,p.premium
+            p.title,p.price,p.duration,p.category,p.seance,p.gold,p.gold_price,p.premium,p.premium_price
         ]);
         conn.release();
         return result.rows[0];
