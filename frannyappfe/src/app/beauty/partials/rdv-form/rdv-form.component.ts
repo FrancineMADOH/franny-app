@@ -74,18 +74,22 @@ export class RdvFormComponent implements OnInit {
     this.addRendezvousForm.value.rdvtype
     );
     this.addRendezvousForm.value.rdvcode  = this.rdvCode;
+    this.addRendezvousForm.value.rdv_price = parseInt(this.addRendezvousForm.value.rdv_price);
 
     if(addRendezvousForm.valid){
       this.rdv =  this.addRendezvousForm.value;
+      console.log(this.rdv);
       this.beauty.createRendezvous(this.rdv).subscribe((res:any)=>{
         alert(res.message);
         this.router.navigate(['/beauty/rendezvous'])
-        // if(this.iscreateMode){
-        //   this.router.navigate(['/beauty/rendezvous'])
-        // } else{
-        //   this.router.navigate(['/beauty/rendezvous/confirmation'])
-        // }
-      })
+
+        
+      //   // if(this.iscreateMode){
+      //   //   this.router.navigate(['/beauty/rendezvous'])
+      //   // } else{
+      //   //   this.router.navigate(['/beauty/rendezvous/confirmation'])
+      //   // }
+       })
     }
     this.addRendezvousForm.reset();
   }

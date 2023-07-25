@@ -74,17 +74,17 @@ export class BeautyService {
     return this.http.put<Rendezvous>(environment.baseUrl + "/rendezvous/update",id).pipe(catchError(this.handleError));
   }
   getRendezvousList():Observable<Rendezvous[]>{
-    return this.http.get<Rendezvous[]>(environment.baseUrl + "/rdv" ).pipe(catchError(this.handleError));
+    return this.http.get<Rendezvous[]>(environment.baseUrl + "/rendezvous" ).pipe(catchError(this.handleError));
   }
   getRendezvousByState(state:string):Observable<Rendezvous[]>{
     return this.http.get<Rendezvous[]>(environment.baseUrl + "").pipe(catchError(this.handleError));
     
   }
   getRendezvousByStateCount(state:string):Observable<number>{
-    return this.http.get<number>(environment.baseUrl + "/rdv/state").pipe(catchError(this.handleError));
+    return this.http.get<number>(environment.baseUrl + "/rendezvous/state").pipe(catchError(this.handleError));
   }
   cancelrendezvous(id:number){
-    return this.http.delete<Rendezvous>(environment.baseUrl + "/rdv/count"+id).pipe(catchError(this.handleError));
+    return this.http.delete<Rendezvous>(environment.baseUrl + "/rendezvous/count"+id).pipe(catchError(this.handleError));
 
   }
 

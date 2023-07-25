@@ -40,7 +40,7 @@
             #rdvdate="ngModel"
             placeholder="choose a date"
             type="datetime-local" 
-            name="rdvdate" id="rdv">
+            name="rdvdate" id="rdvdate">
             <small *ngIf="!rdvdate.valid && rdvdate.touched"  style="color:red;">Please choose a date for your appointment</small>
         </div>
 
@@ -89,19 +89,19 @@
                 </select>
             </div>
         <div class="form-group my-2">
-        <label for="ptype">Type de Seance</label>
+        <label for="rdv_price">Type de Seance</label>
             <select class="form-control"
             required
             ngModel
-            #ptype="ngModel" 
-            name="ptype" id="ptype">
-            <option value="">Choose Your prestation type</option>
-                <option  value="classic">Classic</option>
-                <option value="gold">Gold</option>
-                <option value="premium">Premium</option>
+            #rdv_price="ngModel" 
+            name="rdv_price" id="rdv_price">
+            <option selected>Choose Your prestation type</option>
+                <option *ngFor="let el of prestations" value="{{ el.price}}">Classic</option>
+                <option *ngFor="let el of prestations" value="{{el.gold_price}}">Gold</option>
+                <option *ngFor="let el of prestations"  value="{{el.premium_price}}">Premium</option>
             </select>
         </div>
-        <small *ngIf="!ptype.valid && ptype.touched" >Choose the type of prestation you want</small>
+        <small *ngIf="!rdv_price.valid && rdv_price.touched" >Choose the type of prestation you want</small>
         <div class="form-group my-2">
             <label for="ville">Choose your Town</label>
             <select class="form-control" 
