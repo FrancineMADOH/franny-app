@@ -1,8 +1,17 @@
-<div class="card my-2">
+<div class="card my-2" *ngFor="let rdv of filteredrdvList">
     <div class="card-body">
-      <h5 class="card-title">Rendez-vous No: RDVCODE</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Prestation - type de rdv </h6>
-      <p class="card-text">Felicitations NAME votre rdv est PROGRAMMER pour le RDVDATE dans la vile de TOWN quartier QUARTIER </p>
+      <h6 class="card-title text-center">Rendez-vous: {{rdv.rdvcode}}/{{rdv.rdv_id}}</h6>
+      <div class="card-subtitle mb-2 text-muted">{{rdv.category}} - {{rdv.ville}} - {{rdv.quartier}} </div>
+      <p class="card-text"><strong>Client Name:</strong>{{rdv.client_name}} </p>
+      <p class="card-text"><strong>Client Phone:</strong> {{rdv.client_phone}}</p>
+      <p class="card-text"> <strong>Client Email:</strong>  {{rdv.client_email}}</p>
+      <p class="card-text"> <strong>Date du rdv:</strong> {{rdv.rdvdate}}</p>
+      <p class="card-text"><strong>Price:</strong>  {{rdv.rdv_price}} </p>
+      <p class="card-text"><strong> State: {{rdv.rdvstate}} </strong></p>
+      <p class="card-text"><strong>Assigned to:</strong>{{ rdv.doneby }}</p>
+      <p class="card-text"><strong>Comments:</strong>  {{rdv.comments}} </p>
       <a routerLink="/beauty/rendezvous/update" class="card-link btn btn-success">Update</a>
+      <a routerLink="/beauty/rendezvous/assign" class="card-link btn btn-secondary">Assign</a>
+      <a routerLink="/beauty/rendezvous/update" class="card-link btn btn-danger">Cancel</a>
     </div>
   </div>

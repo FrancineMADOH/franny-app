@@ -12,8 +12,8 @@
       <h5 class="card-title">{{el.title}}</h5>
       <h6 class="card-subtitle mb-2 text-muted"> {{el.price}} {{el.category}}</h6>
       <p class="card-text">{{ el.seance }} </p>
-      <p class="card-text">{{el.gold}} </p>
-      <p class="card-text">{{el.premium}} </p>
+      <p class="card-text"> {{el.gold_price}}  {{el.gold}} </p>
+      <p class="card-text"> {{el.premium_price }} {{el.premium}} </p>
       <button (click)="gotoUpdate(el.pres_id || 1)" class="card-link btn btn-success">Update</button>
     </div>
   </div>
