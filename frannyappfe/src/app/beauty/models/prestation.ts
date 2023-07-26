@@ -6,5 +6,7 @@ export interface Prestation{
     category: string ,
     seance:string,
     gold :string,
-    premium:string
+    gold_price:number,
+    premium:string,
+    premium_price:number
 }

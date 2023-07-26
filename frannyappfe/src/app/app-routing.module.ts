@@ -28,6 +28,8 @@ import { UpdateBeautifComponent } from './beauty/update-beautif/update-beautif.c
 import { UpdatePrestationComponent } from './beauty/update-prestation/update-prestation.component';
 import { BlogViewComponent } from './blog/blog-view/blog-view.component';
 import { ConfirmationComponent } from './beauty/confirmation/confirmation.component';
+import { AssignrdvComponent } from './beauty/assignrdv/assignrdv.component';
+import { CancelrdvComponent } from './beauty/cancelrdv/cancelrdv.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -56,7 +58,10 @@ const routes: Routes = [
   {path:"beauty/beautifyers/add", component: AddBeautifComponent, canActivate:[AuthGuard]},
   {path:"beauty/prestations/add", component:AddPrestationComponent, canActivate:[AuthGuard]},
   {path:"beauty/reviews/add", component:AddReviewComponent, canActivate:[AuthGuard]},
-  {path:"beauty/rendezvous/update", component:UpdateRdvComponent, canActivate:[AuthGuard]},
+  {path:"beauty/rendezvous/update/:id", component:UpdateRdvComponent, canActivate:[AuthGuard]},
+  {path:"beauty/rendezvous/assign/:id", component:AssignrdvComponent , canActivate:[AuthGuard]},
+  {path:"beauty/rendezvous/cancel/:id", component:CancelrdvComponent , canActivate:[AuthGuard]},
+
   {path:"beauty/beautifyers/update/:id", component:UpdateBeautifComponent, canActivate:[AuthGuard]},
   {path:"beauty/prestations/update/:id", component:UpdatePrestationComponent, canActivate:[AuthGuard]},
   
