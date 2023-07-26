@@ -56,26 +56,14 @@
             </select>
             <small *ngIf="!prestation.valid && prestation.touched" style="color:red;">Please choose a prestation</small>
         </div>
-        <div class="form-group my-2" *ngIf="!iscreateMode">
+        <!-- <div class="form-group my-2" *ngIf="!iscreateMode">
             <label for="state">Appointement state</label>
             <select class="form-control" 
              name="state" id="state">
                 <option selected>State</option>
                 <option *ngFor="let el of appointment_state" value="el">el</option>
             </select>
-        </div>
-        <div class="form-group my-2">
-            <label for="rdvtype">Choose Appointment type</label>
-            <select class="form-control" 
-            required
-            ngModel
-            #rdvtype="ngModel"
-            name="rdvtype" id="rdvtype">
-                <option value="0" selected>Appointment type</option>
-                <option *ngFor="let val of appointment_type" value="{{val}}">{{val}}</option>
-            </select>
-            <small *ngIf="!prestation.valid && prestation.touched" style="color:red;">Please choose a type for your prestation</small>
-        </div>
+        </div> -->
 
         <div class="form-group my-2">
             <label for="category">Prestation category</label>
@@ -88,6 +76,18 @@
                     <option *ngFor="let val of categories"  value="{{val}}">{{val}}</option>    
                 </select>
             </div>
+            <!-- <div class="form-group my-2">
+                <label for="rdvtype">Choose Appointment type</label>
+                <select class="form-control" 
+                required
+                ngModel
+                #rdvtype="ngModel"
+                name="rdvtype" id="rdvtype">
+                    <option value="0" selected>Appointment type</option>
+                    <option *ngFor="let val of appointment_type" value="{{val}}">{{val}}</option>
+                </select>
+                <small *ngIf="!prestation.valid && prestation.touched" style="color:red;">Please choose a type for your prestation</small>
+            </div> -->
         <div class="form-group my-2">
         <label for="rdv_price">Type de Seance</label>
             <select class="form-control"
@@ -146,7 +146,7 @@
                 #rdvcode="ngModel"
                 name="rdvcode" id="rdvcode">
         </div>  
-        <button type="submit" [disabled]="!addRendezvousForm['valid']" class="btn btn-success m-3  ">Confirm</button> 
+        <button type="submit" [disabled]="!addRendezvousForm['valid']" class="btn btn-success m-3  ">{{action}}</button> 
     </form>
     <button (click)="backToRdv()" class="btn btn-danger m-3">Cancel</button>
 </div>

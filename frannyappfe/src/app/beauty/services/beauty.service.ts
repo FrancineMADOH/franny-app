@@ -56,7 +56,7 @@ export class BeautyService {
     return this.http.post<Prestation>(environment.baseUrl + "/prestations/",pres).pipe(catchError(this.handleError));
   }
   updatePrestation(id:number,prestation:Prestation):Observable<Prestation[]>{
-    return this.http.put<Prestation[]>(environment.baseUrl + `/prestations/${id}`,{prestation}).pipe(catchError(this.handleError));
+    return this.http.put<Prestation>(environment.baseUrl + `/prestations/${id}`,{prestation}).pipe(catchError(this.handleError));
   }
   getPrestationList():Observable<Prestation[]>{
     return this.http.get<Prestation[]>(environment.baseUrl + "/prestations" ).pipe(catchError(this.handleError));
@@ -70,23 +70,34 @@ export class BeautyService {
   createRendezvous(rdv:Rendezvous):Observable<Rendezvous>{
     return this.http.post<Rendezvous>(environment.baseUrl + "/rendezvous",rdv).pipe(catchError(this.handleError));
   }
-  updateRendezvous(id:number):Observable<Rendezvous>{
-    return this.http.put<Rendezvous>(environment.baseUrl + "/rendezvous/update",id).pipe(catchError(this.handleError));
-  }
   getRendezvousList():Observable<Rendezvous[]>{
     return this.http.get<Rendezvous[]>(environment.baseUrl + "/rendezvous" ).pipe(catchError(this.handleError));
   }
-  getRendezvousByState(state:string):Observable<Rendezvous[]>{
-    return this.http.get<Rendezvous[]>(environment.baseUrl + "").pipe(catchError(this.handleError));
-    
+  getRendezvous(id:number): Observable<Rendezvous>{
+    return this.http.get<Rendezvous>(environment.baseUrl +`/rendezvous/${id}` ).pipe(catchError(this.handleError));
   }
-  getRendezvousByStateCount(state:string):Observable<number>{
-    return this.http.get<number>(environment.baseUrl + "/rendezvous/state").pipe(catchError(this.handleError));
+  updateRendezvous(id:number,rdv:Rendezvous):Observable<Rendezvous>{
+    return this.http.put<Rendezvous>(environment.baseUrl + `/rendezvous/${id}`,{rdv}).pipe(catchError(this.handleError));
   }
-  cancelrendezvous(id:number){
-    return this.http.delete<Rendezvous>(environment.baseUrl + "/rendezvous/count"+id).pipe(catchError(this.handleError));
+  assignRendezvous(id:number,doneby:string,rdvstate:string):Observable<Rendezvous>{
+    return this.http.put<Rendezvous>(environment.baseUrl + `/rendezvous/assign/${id}`,{doneby,rdvstate}).pipe(catchError(this.handleError));
+  }
+  cancelRendezvous(id:number,rdvstate:string,cancellation_reason:string):Observable<Rendezvous>{
+    return this.http.put<Rendezvous>(environment.baseUrl + `/rendezvous/cancel/${id}`,{rdvstate,cancellation_reason}).pipe(catchError(this.handleError));
+  }
 
-  }
+
+  // getRendezvousByState(state:string):Observable<Rendezvous[]>{
+  //   return this.http.get<Rendezvous[]>(environment.baseUrl + "").pipe(catchError(this.handleError));
+    
+  // }  use req.query to retreive rdv by state and by a certain period
+  // getRendezvousByStateCount(state:string):Observable<number>{
+  //   return this.http.get<number>(environment.baseUrl + "/rendezvous/state").pipe(catchError(this.handleError));
+  // }
+  // cancelrendezvous(id:number){
+  //   return this.http.delete<Rendezvous>(environment.baseUrl + "/rendezvous/count"+id).pipe(catchError(this.handleError));
+
+  // }
 
   //review service
   getReviewList():Observable<Review[]>{

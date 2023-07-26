@@ -26,6 +26,8 @@ import { UpdateRdvComponent } from './update-rdv/update-rdv.component';
 import { UpdateBeautifComponent } from './update-beautif/update-beautif.component';
 import { UpdatePrestationComponent } from './update-prestation/update-prestation.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { CancelrdvComponent } from './cancelrdv/cancelrdv.component';
+import { AssignrdvComponent } from './assignrdv/assignrdv.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     UpdateRdvComponent,
     UpdateBeautifComponent,
     UpdatePrestationComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    CancelrdvComponent,
+    AssignrdvComponent
   ],
   imports: [
     CommonModule,

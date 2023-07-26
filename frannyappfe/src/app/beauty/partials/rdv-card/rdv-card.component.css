@@ -1,0 +1,19 @@
+.Cancelled{
+    color:red;
+    font-weight: bold;
+}
+.Scheduled{
+    color:#5DBAE5;
+        font-weight: bold;
+
+}
+.Ongoing{
+    color: #F460FC;
+        font-weight: bold;
+
+}
+.Completed{
+    color: #53534F;
+        font-weight: bold;
+
+}
