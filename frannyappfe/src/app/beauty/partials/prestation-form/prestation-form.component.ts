@@ -16,6 +16,7 @@ categories:string[] = [];
 id!:string;
 iscreateMode!:boolean;
 prestation!: Prestation;
+action ="Add prestation";
 
 
   constructor(public router:Router, 
@@ -30,6 +31,7 @@ prestation!: Prestation;
     console.log(this.iscreateMode)
 
     if(!this.iscreateMode){  
+      this.action = "Update Prestation"
     this.beauty.getPrestation(Number(this.id)).subscribe((res:any)=>{      
       if(!this.iscreateMode){  
         this.addPrestationForm.form.setValue({
@@ -39,7 +41,9 @@ prestation!: Prestation;
           category:res.category,
           seance:res.seance,
           gold:res.gold,
+          gold_price:res.gold_price,
           premium:res.premium,
+          premium_price:res.premium_price
         })
       }
     });

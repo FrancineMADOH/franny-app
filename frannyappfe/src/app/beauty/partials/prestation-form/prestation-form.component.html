@@ -84,18 +84,46 @@
     <small *ngIf="!gold.valid && gold.touched">Add gold addition for this prestation</small>
 
     <div class="form-group">
+        <label for="gold_price">Prestation Gold Price</label>
+        <input type="number" 
+        pattern="[0-9]*"
+        maxlength="5"
+        id="gold_price"
+        required
+        ngModel
+        #gold_price="ngModel"
+        name="gold_price"
+        class="form-control">
+    </div>
+    <small *ngIf="!gold_price.valid && gold_price.touched">Add gold addition for this prestation</small>
+
+    <div class="form-group">
         <label for="premium">Prestation Premium</label>
-        <input type="text"
+        <textarea type="text"
         id="premium"
         required
         maxlength="300"
         ngModel 
         #premium="ngModel"
         name="premium"
-        class="form-control">
+        class="form-control"></textarea>
     </div>
     <small *ngIf="!premium.valid && premium.touched">Add a premium addition for this prestation</small>
-    <button type="submit" class="btn btn-primary m-2" [disabled]="!addPrestationForm['valid']" >Add Prestation</button>
+    <div class="form-group">
+        <label for="premium_price">Prestation Premium Price</label>
+        <input type="number" 
+        pattern="[0-9]*"
+        maxlength="5"
+        id="premium_price"
+        required
+        ngModel
+        #premium_price="ngModel"
+        name="premium_price"
+        class="form-control">
+    </div>
+    <small *ngIf="!premium_price.valid && premium_price.touched">Add a premium price for this prestation</small>
+
+    <button type="submit" class="btn btn-primary m-2" [disabled]="!addPrestationForm['valid']" >{{action }} </button>
 </form>
 <button (click)="backToPrestation()" class="btn btn-secondary">Cancel</button>
 

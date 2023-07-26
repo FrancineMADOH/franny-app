@@ -5,10 +5,11 @@ const rdv = new rdvStore();
 
 
 export class rdvHandler {
+
+    //create rdv 
     async create(req:Request,res:Response){
         try{
             const data:Rendezvous = req.body;
-            console.log(data)
             const newRdv = await rdv.create(data);
             res.status(201).json({message:"Appointement scheduled!", data:newRdv});
         }catch(err:any){
@@ -16,6 +17,7 @@ export class rdvHandler {
         }
     }
 
+    //rdv list
     async index(req:Request,res:Response){
         try{
             const rendezvous = await rdv.index();
@@ -26,20 +28,55 @@ export class rdvHandler {
         }
     }
 
-    async update(req:Request,res:Response){
+    //get a single rdv
+    async show(req:Request,res:Response){
         try{
-            
-            const  rd =  req.params.rd;
-            const  db = parseInt(req.params.db);
-            const  type = parseInt(req.params.type);
-            const  rs= parseInt(req.params.rs);
-            const  q= req.params.q;
-            const  id= parseInt(req.params.id);
-            const up_rdv = await rdv.update(rd,db,type,rs,q,id);
-            res.status(200).json(up_rdv);
+            const rendezvous = await rdv.show(Number(req.params.id)) ;
+            res.status(200).json(rendezvous);
         }catch(err){
             console.log(err);
             res.status(500).json(err);
+        }
+    }
+
+    async update(req:Request,res:Response){
+        try{
+            
+            const  rdv_id =  parseInt(req.params.id);
+            const rdv_up:Rendezvous = req.body;
+            await rdv.update(rdv_id,rdv_up)
+            res.status(200).json({message:"Appointment updated !"});
+        }catch(err:any){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+
+    //assign
+    async assign(req:Request,res:Response){
+        try{
+            const  rdv_id =  parseInt(req.params.id);
+            const  doneby = Number(req.body.doneby);
+            const  rdvstate = req.body.rdvstate;
+            await rdv.assign(rdv_id,doneby,rdvstate)
+            res.status(200).json({message:"Appointment assigneg to Beautifyer!"});
+        }catch(err:any){
+            console.log(err);
+            res.status(500).json(err.message);
+        }
+    }
+    //cancel
+
+    async cancel(req:Request,res:Response){
+        try{
+            const  rdv_id =  parseInt(req.params.id);
+            const  cancellation_reason = req.body.doneby;
+            const  rdvstate = req.body.rdvstate;
+            await  rdv.cancel(rdv_id,rdvstate,cancellation_reason);
+            res.status(200).json({message:"Appointment Cancelled!"});
+        }catch(err:any){
+            console.log(err);
+            res.status(500).json(err.message);
         }
     }
 
