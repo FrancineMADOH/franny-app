@@ -29,4 +29,14 @@ export class RdvCardComponent implements OnInit{
     
   }
 
+  gotoUpdate(id:number){
+    this.router.navigate(["/beauty/rendezvous/update/"+id])
+  }
+  gotoAssign(id:number){
+    this.router.navigate(["/beauty/rendezvous/assign/"+id])
+  }
+  gotoCancel(id:number){
+    this.router.navigate(["/beauty/rendezvous/cancel/"+id])
+  }
+
 }

@@ -22,7 +22,7 @@ export class rdvStore {
     //create
     async create(r: Rendezvous): Promise<Rendezvous> {
         const conn = await client.connect();
-        const sql_command = "INSERT INTO rendezvous(client_name,client_phone,client_email,rdvdate,prestation,category,rdvcode,rdv_price,ville,quartier,comments) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *;";
+        const sql_command = "INSERT INTO rendezvous(client_name,client_phone,client_email,rdvdate,prestation,category,rdvcode,rdvtype,rdv_price,ville,quartier,comments) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING *;";
         const result = await client.query(sql_command, [
             r.client_name,
             r.client_phone,
@@ -31,7 +31,7 @@ export class rdvStore {
             r.prestation,
             r.category,
             r.rdvcode,
-            // r.rdvtype,
+            r.rdvtype,
             r.rdv_price,
             r.ville,
             r.quartier,
@@ -49,16 +49,55 @@ export class rdvStore {
         conn.release();
         return result.rows;
     }
-    //update: Update a rendezvous 
-    async update(rd: string, db: number, type: number, rs: number, q: string, id: number): Promise<Rendezvous> {
+
+    //get a single appointment 
+    async show(id:number){
         const conn = await client.connect();
-        const sql_command = "UPDATE rendezvous SET rdvdate=$1,doneby=$2,rdvtype=$3,rdvstate=$4,quartier=$5 WHERE rdv_id=$6 RETURNING *;";
-        const result = await client.query(sql_command, [rd, db, type, rs, q, id]);
+        const sql_command = "SELECT * FROM rendezvous r LEFT JOIN prestations p ON r.prestation=p.pres_id WHERE rdv_id=$1;";
+        const result = await client.query(sql_command,[id]);
+        conn.release();
+        return result.rows[0];
+    }
+    //update: Update a rendezvous 
+    async update(id:number,r:Rendezvous): Promise<Rendezvous> {
+        const conn = await client.connect();
+        const sql_command = "UPDATE rendezvous SET client_name=$1,client_phone=$2,client_email=$3,rdvdate=$4,prestation=$5,category=$6,rdvcode=$7,rdvtype=$8,rdv_price=$9,ville=$10,quartier=$11,comments=$12 WHERE rdv_id=13 RETURNING *;";
+        const result = await client.query(sql_command, [
+            r.client_name,
+            r.client_phone,
+            r.client_email,
+            r.rdvdate,
+            r.prestation,
+            r.category,
+            r.rdvcode,
+            r.rdvtype,
+            r.rdv_price,
+            r.ville,
+            r.quartier,
+            r.comments, id
+        ]);
         conn.release();
         return result.rows[0];
     }
 
-    //count: Count the number of rendezvous 
+    //assign a rdv to an agent
+    async assign(rdv_id:number,doneby:number,rdvstate:string):Promise<void>{
+        const conn = await client.connect();
+        const sql_command = "UPDATE rendezvous SET doneby=$2,rdvstate=$3 WHERE rdv_id=$1;"
+        const result = await conn.query(sql_command,[rdv_id,doneby,rdvstate]);
+        conn.release();
+        return result.rows[0];
+    }
+    async cancel(rdv_id:number,rdvstate:string,cancellation_reason:string):Promise<void>{
+        const conn = await client.connect();
+        const sql_command = "UPDATE rendezvous SET rdvstate=$2,cancellation_reason=$3 WHERE rdv_id=$1;"
+        const result = await conn.query(sql_command,[rdv_id,rdvstate,cancellation_reason]);
+        conn.release();
+        return result.rows[0];
+    }
+
+
+    //count: Count the number of rendezvous completed  and thier price
     async count(): Promise<object> {
         const conn = await client.connect();
         const sql_command = " SELECT COUNT(*) FROM rendezvous;";

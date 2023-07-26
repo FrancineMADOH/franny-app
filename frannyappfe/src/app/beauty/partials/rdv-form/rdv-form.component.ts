@@ -19,9 +19,11 @@ export class RdvFormComponent implements OnInit {
   prestations:Prestation[] = [];
   seance = [ "Classic","Gold","Premium" ];
   appointment_type =  ["Personnel","Familial","Evenement","Entreprise"];
-  appointment_state = ["Ongoing","Completed","Cancelled"];
+  appointment_state = ["Scheduled,Ongoing","Completed","Cancelled"];
   allLocation:Location [] = [];
   allVille:any= [];
+  ville = "";
+  action="Create";
   categories = ["Coiffure","Onglerie","Make-Up","Massage","Soins du visage"];
 
   @ViewChild ("addRendezvousForm", {static:true}) addRendezvousForm:any;
@@ -55,13 +57,35 @@ export class RdvFormComponent implements OnInit {
          //this.prestations;
       });
     });
+    //load the rdv to modify
+    if(!this.iscreateMode){
+      this.action = "Update";
+      this.beauty.getRendezvous(Number(this.id)).subscribe((res)=>{
+        console.log(res)
+        this.addRendezvousForm.form.setValue({
+          client_name: res.client_name,
+          client_phone: res.client_phone ,
+          client_email:res.client_email ,
+          rdvdate:res.rdvdate ,
+          prestation: res.title ,
+          category: res.category,
+          rdvcode: res.rdvcode,
+         // rdvtype: res.rdvtype,
+          rdv_price:res.rdv_price ,
+          ville: res.ville,
+          quartier:res.quartier ,
+          comments: res.comments,
+        })
+      })
+      
+    }
   }
 
   onSubmit():void{
     if(this.iscreateMode){
       this.saveRendezVous(this.addRendezvousForm)
     }else{
-      this.updateRdv(this.addRendezvousForm)
+      this.updateRdv(parseInt(this.id), this.addRendezvousForm)
     }
   }
   saveRendezVous(addRendezvousForm:any){
@@ -78,29 +102,40 @@ export class RdvFormComponent implements OnInit {
 
     if(addRendezvousForm.valid){
       this.rdv =  this.addRendezvousForm.value;
-      console.log(this.rdv);
       this.beauty.createRendezvous(this.rdv).subscribe((res:any)=>{
+        console.log(res);
         alert(res.message);
         this.router.navigate(['/beauty/rendezvous'])
-
-        
-      //   // if(this.iscreateMode){
-      //   //   this.router.navigate(['/beauty/rendezvous'])
-      //   // } else{
-      //   //   this.router.navigate(['/beauty/rendezvous/confirmation'])
-      //   // }
        })
     }
     this.addRendezvousForm.reset();
   }
 
-  updateRdv(addRendezvousForm:any){}
+  updateRdv(id:number,addRendezvousForm:any){
+    this.rdvCode = generaterdvCode(
+      this.addRendezvousForm.value.client_name,
+      this.addRendezvousForm.value.rdvdate,
+      this.addRendezvousForm.value.ville,
+      this.addRendezvousForm.value.quartier,
+      this.addRendezvousForm.value.category,
+      this.addRendezvousForm.value.rdvtype
+      );
+      this.addRendezvousForm.value.rdvcode  = this.rdvCode;
+    //   this.addRendezvousForm.value.rdv_price = parseInt(this.addRendezvousForm.value.rdv_price);
+    console.log(this.addRendezvousForm.value)
+      // if(this.addRendezvousForm.valid){
+    //   this.rdv = this.addRendezvousForm.value;
+    //   this.beauty.updateRendezvous(id,this.rdv).subscribe((res:any)=>{
+    //     console.log(res);
+    //     alert(res.message);
+    //     this.router.navigate(['beauty/rendezvous']);
+    //   });
+    //   this.addRendezvousForm.reset();
+    // }
+
+  }
   backToRdv(){
     this.router.navigate(['beauty/rendezvous'])
-  }
-
-  viewRdv(){
-    this.router.navigate(['beauty/rdv'])
   }
 
 }

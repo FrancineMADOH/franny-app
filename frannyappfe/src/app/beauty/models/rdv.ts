@@ -14,7 +14,10 @@ export interface Rendezvous {
     rdv_price: string,
     ville: string,
     quartier: string,
-    comments: string
+    comments: string,
+    rdvtype:string,
+    title?: string,
     // price:number,
     created_at:Date
+    cancellation_reason:string
 }

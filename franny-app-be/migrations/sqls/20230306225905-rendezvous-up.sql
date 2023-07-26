@@ -9,12 +9,12 @@ CREATE TABLE rendezvous(
     category VARCHAR(50) NOT NULL,
     rdvstate VARCHAR(20) DEFAULT 'Scheduled',
     rdvcode VARCHAR(50),
-    -- rdvtype VARCHAR(50) NOT NULL ,
+    rdvtype VARCHAR(50) NOT NULL,
     rdv_price INT NOT NULL,
     ville VARCHAR(50) NOT NULL,
     quartier VARCHAR(100) NOT NULL,
     comments VARCHAR(255),
-    cancellation_reason VARCHAR(255)
+    cancellation_reason VARCHAR(255),
     FOREIGN KEY (prestation) REFERENCES prestations(pres_id) ON DELETE CASCADE,
     FOREIGN KEY (doneby) REFERENCES beautifyers(beautif_id) ON DELETE CASCADE
 );
