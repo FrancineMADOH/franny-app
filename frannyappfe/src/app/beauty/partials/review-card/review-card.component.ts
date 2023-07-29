@@ -1,4 +1,8 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit, ViewChild } from '@angular/core';
+import { Review, ReviewExtension } from '../../models/review';
+import { Router } from '@angular/router';
+import { Beauty } from '../../models/beauty';
+import { BeautyService } from '../../services/beauty.service';
 
 @Component({
   selector: 'app-review-card',
@@ -6,10 +10,37 @@ import { Component,OnInit } from '@angular/core';
   styleUrls: ['./review-card.component.css']
 })
 export class ReviewCardComponent implements OnInit {
+  reviews:ReviewExtension[]  = [];
+  filteredReviews:ReviewExtension []=[];
+  searrch:string  = "";
+  constructor(private router:Router, private beauty:BeautyService ){
+    this.filteredReviews = this.reviews;
+
+  }
   ngOnInit(): void {
+    this.beauty.getReviewList().subscribe((res)=>{
+      res.map((data:any)=>{
+        this.reviews.push(data);
+        return this.reviews;
+      }
+      )});
     
   }
 
-  deleteReview(){}
+  filterReviewBy(query:string){
+    const searchterm = query.search.toString();
+
+    if(!query){
+      this.filteredReviews =  this.reviews;
+    }
+    this.filteredReviews = this.reviews.filter(
+    Reviews => 
+    Reviews?.bname.toLowerCase().includes(searchterm.toLocaleLowerCase())||
+    Reviews?.note.toString().toLowerCase().includes(searchterm.toLocaleLowerCase())||
+    Reviews?.comment.toLowerCase().includes(searchterm.toLocaleLowerCase())
+    );
+    
+  }
+
 
 }

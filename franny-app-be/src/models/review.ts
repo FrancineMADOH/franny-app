@@ -24,7 +24,7 @@ export class revStore{
 
     async index():Promise<Review[]>{
         const conn = await client.connect();
-        const sql_command = "SELECT * FROM reviews ORDER BY CAST(review_date AS DATE);";
+        const sql_command = " SELECT rev.*, b.bname, r.rdvcode,r.client_name FROM reviews rev LEFT JOIN rendezvous r ON r.rdv_id = rev.rdvid LEFT JOIN beautifyers b ON r.doneby = b.beautif_id ORDER BY CAST(rev.review_date AS DATE);";
         const result =  await conn.query(sql_command);
         conn.release();
         return result.rows;
