@@ -310,3 +310,6 @@ In bootstrap 5 the classes are changed, so for ml-auto is changes with ms-auto A
 For left we have to use s instead of l, And For Right we have to use e instead of r
 
   `
+
+Delete all the files with the same extension using the power shell
+`Get-ChildItem . -recurse -include *.orig | remove-item `
