@@ -19,5 +19,6 @@ export interface Rendezvous {
     title?: string,
     // price:number,
     created_at:Date
-    cancellation_reason:string
+    cancellation_reason:string,
+    bname:string
 }

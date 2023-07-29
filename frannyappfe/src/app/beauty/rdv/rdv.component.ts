@@ -11,8 +11,8 @@ export class RdvComponent implements OnInit {
   @ViewChild('searchRendezVous', {static:true}) searchRendezVous:any;
   constructor(private router:Router){}
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void { 
+     
   }
   searchArticleByTerm(searchRendezVous:any){
     this.searchRendezVous.reset();

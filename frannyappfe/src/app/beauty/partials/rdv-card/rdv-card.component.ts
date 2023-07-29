@@ -12,6 +12,7 @@ export class RdvCardComponent implements OnInit{
 
   rdvList:Rendezvous[] = []; 
   filteredrdvList:Rendezvous[] = [];
+  iscancelled = false;
 
   constructor(private router:Router , private beauty:BeautyService){
         this.filteredrdvList = this.rdvList;
