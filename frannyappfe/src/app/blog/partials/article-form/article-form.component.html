@@ -1,10 +1,9 @@
 <div class="container">
 
-<form #addArticle="ngForm" (ngSubmit)="savePosttoDatabase(addArticle)">
+<form #addArticle="ngForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()">
 <div class="form-group my-2">
     <label for="title">Title</label>
     <input type="text" 
-    value="title" 
     ngModel
     maxlength="150"
     name="title" 
@@ -24,7 +23,7 @@
      #category="ngModel"
      id="category">
       <option selected>Select category</option>
-      <option value=""></option>
+      <option *ngFor="let cat of categories" value="{{cat}}">{{cat}}</option>
     </select>
     <small *ngIf="!category.valid && category.touched">Please choose a category</small>
   </div> 
@@ -52,11 +51,11 @@
     required></textarea>
     <small  *ngIf="content.touched && !content.valid">Please provide a valid content</small>
   </div>
-  <div class="form-group my-2">
+  <!-- <div class="form-group my-2">
     <label for="create_at">Date de creation</label>
     <input type="string"  class="form-control"  name="create_at" id="create_at" readonly  placeholder="{{create_at}}">
-  </div>
-    <div class="form-group my-2">
+  </div> -->
+    <!-- <div class="form-group my-2">
     <label for="author">Author</label>
     <select class="form-select" 
     name="author"
@@ -68,15 +67,12 @@
       <option value=""></option>
     </select>
     <small *ngIf="!author.valid && author.touched">Please select the author</small>
-  </div> 
+  </div>  -->
     <div  class="my-4 form-group">
         <label for="illustration">Add Illustration</label>
-        <input type="file" name="illustration" value="" id="illustration">
+        <input type="file" #illustration="ngModel" ngModel name="illustration"  id="illustration">
      </div>
-  
-    
-
+     <button type="submit" (click)="viewPost()"  [disabled]="!addArticle.valid" class="btn btn-success m-3  ">Publish</button>
 </form>
 <button (click)="backToPosts()" class="btn btn-secondary m-3">Cancel</button>
-<button (click)="viewPost()" type="submit" [disabled]="!addArticle.valid" class="btn btn-success m-3  ">Publish</button>
 </div>

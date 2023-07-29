@@ -3,6 +3,7 @@ import ejs from "ejs";
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import fileupload from "express-fileupload";
 import router from "./routes/indexRoute";
 
 const app:express.Application = express();
@@ -18,6 +19,7 @@ app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 app.use(express.static(path.join(__dirname, "../public/views")));
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(fileupload());
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 

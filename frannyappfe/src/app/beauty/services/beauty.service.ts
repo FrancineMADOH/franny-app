@@ -48,9 +48,9 @@ export class BeautyService {
 
   addNewFaq(faq:Faq):Observable<Faq>{
     return this.http.post<Faq>(environment.baseUrl + "/faqs",faq).pipe(catchError(this.handleError));
-  } 
+  }
 
-  //prestation service 
+  //prestation service
 
   addNewPrestation(pres:Prestation):Observable<Prestation>{
     return this.http.post<Prestation>(environment.baseUrl + "/prestations/",pres).pipe(catchError(this.handleError));
@@ -66,7 +66,7 @@ export class BeautyService {
     return this.http.get(environment.baseUrl + `/prestations/${id}`).pipe(catchError(this.handleError));
   }
 
-  //rendez vous service 
+  //rendez vous service
   createRendezvous(rdv:Rendezvous):Observable<Rendezvous>{
     return this.http.post<Rendezvous>(environment.baseUrl + "/rendezvous",rdv).pipe(catchError(this.handleError));
   }
@@ -89,7 +89,7 @@ export class BeautyService {
 
   // getRendezvousByState(state:string):Observable<Rendezvous[]>{
   //   return this.http.get<Rendezvous[]>(environment.baseUrl + "").pipe(catchError(this.handleError));
-    
+
   // }  use req.query to retreive rdv by state and by a certain period
   // getRendezvousByStateCount(state:string):Observable<number>{
   //   return this.http.get<number>(environment.baseUrl + "/rendezvous/state").pipe(catchError(this.handleError));
@@ -115,13 +115,14 @@ handleError(error:HttpErrorResponse):Observable<any>{
   if(error.error instanceof ErrorEvent){
     //Client Side error message
     errorMessage = error.message;
+    return errorMessage;
     console.log(errorMessage);
   }else {
     //server side error
     errorMessage =  `Error Code: {error.status}\nMessage:${error.message}`
   }
   return errorMessage;
-} 
+}
 
-  
+
 }
