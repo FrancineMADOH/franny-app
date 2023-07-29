@@ -313,3 +313,18 @@ For left we have to use s instead of l, And For Right we have to use e instead o
 
 Delete all the files with the same extension using the power shell
 `Get-ChildItem . -recurse -include *.orig | remove-item `
+MySQL Select all columns from one table and some from another table
+`SELECT myTable.*, otherTable.foo, otherTable.bar...`
+Generating Component without spec.ts file in Angular 2+
+`ng generate component --skip-tests=true component-name`
+`{ 
+  "projects": {
+    "{PROJECT_NAME}": {
+      "schematics": {
+        "@schematics/angular:component": {
+          "skipTests": true
+        }
+      }
+    }
+  }
+}`

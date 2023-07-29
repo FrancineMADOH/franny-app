@@ -30,6 +30,7 @@ import { BlogViewComponent } from './blog/blog-view/blog-view.component';
 import { ConfirmationComponent } from './beauty/confirmation/confirmation.component';
 import { AssignrdvComponent } from './beauty/assignrdv/assignrdv.component';
 import { CancelrdvComponent } from './beauty/cancelrdv/cancelrdv.component';
+import { BlogStatsComponent } from './blog/blog-stats/blog-stats.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -45,6 +46,7 @@ const routes: Routes = [
   {path:"posts/edit", component:EditArticleComponent, canActivate:[AuthGuard]},
   {path:"posts/view", component:ViewArticleComponent, canActivate:[AuthGuard]},
   {path:"id/bibliographie", component: BibliographieComponent, canActivate:[AuthGuard]},
+  {path:"posts/statistics",component: BlogStatsComponent,canActivate:[AuthGuard] },
   {path:"beauty/faqs", component:FaqsComponent, canActivate:[AuthGuard]},
   {path:"beauty", component:BeautyPageComponent},
   {path:"about",component:AboutComponent},
