@@ -134,7 +134,7 @@ export class adminHandler {
             const email = req.body.email;
             const del_admin = await adStore.delete(email);
             res.status(200);
-            res.json(del_admin);
+            res.json({message:"Admin succesfully deleted! This action is irreverssible"});
         }catch(err){
             console.log(err);
             res.status(500).json(err);

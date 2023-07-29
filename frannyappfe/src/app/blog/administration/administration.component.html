@@ -1,4 +1,17 @@
 <div class="main">
     <h1 class="text-center">All admin</h1>
-    <app-admin-card></app-admin-card>
+    <div class="card m-3" *ngFor="let admin of adminList" style="padding: 2px;">
+        <div class="card-body">
+          <h5 class="card-title text-center">{{admin.admin_name}} </h5>
+          <ul class="admin-infos">
+            <li>{{admin.username}} </li>
+            <li>{{admin.email}}</li>
+            <li>{{admin.activ_date}} </li>
+          </ul>
+          <p class="card-text"></p>
+          <form action="">
+            <button (click)="deleteAdminAccount(admin.admin_id ||1)" class="btn btn-danger" *ngIf="isSuperAdmin" type="submit">Delete Admin</button>
+          </form>
+        </div>
+    </div>
 </div>
