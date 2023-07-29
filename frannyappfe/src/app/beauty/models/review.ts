@@ -6,4 +6,12 @@ export interface Review {
         review_date:string ,               
         note: number,                      
         comment: string 
+        //extends
+        
+}
+
+export interface ReviewExtension extends Review {
+        bname:string,
+        client_name:string,
+        rdvcode:string
 }

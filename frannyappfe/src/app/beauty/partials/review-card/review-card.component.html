@@ -1,10 +1,20 @@
-<div class="card my-2">
-    <div class="card-body">
-      <h5 class="card-title">Rendez-vous No: RDVCODE</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Votre avis sur la prestation realise par done by </h6>
-      <p class="card-text">Elle etait en retard et bavardait comme une pie </p>
-      <p>Note 2</p>
-      <button  (click)="deleteReview()" class="card-link btn btn-danger">Delete</button>
+<div class="searchFormClass col-lg-4">
+  <form #filterReview="ngForm" (ngSubmit)="filterReviewBy(filterReview.value)" class="d-inline">
+      <div class="form-group">
+          <input id="search" minlength="1" name="search" required ngModel #search="ngModel" placeholder="Search..."
+              type="text">
+          <button [disabled]="!filterReview.valid" class="btn btn-success mx-2" type="submit">Search</button>
+      </div>
+  </form>
+</div>
+<div class="card my-2"  *ngFor="let rev of filteredReviews ">
+    <div class="card-body" >
+      <h5 class="card-title">Rendez-vous No:{{rev.rdvcode }} </h5>
+      <h6>Client Name {{rev.client_name}}| Done by: {{rev.bname}} </h6>
+      <!-- <h6 class="card-subtitle mb-2 text-muted"> </h6> -->
+      <p>Note:{{rev.note}} </p>
+      <p class="card-text"> {{rev.comment}} </p> 
+      <p class="text-muted tex-center" >Review date{{rev.review_date}} </p>   
     </div>
   </div>
   
