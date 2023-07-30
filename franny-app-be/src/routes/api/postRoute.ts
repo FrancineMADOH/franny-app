@@ -1,8 +1,7 @@
-//import express from "express";
+import express from "express";
 import { postHandler } from "../../handlers/postHandler";
 import verifyToken from "../../middlewares/auth";
 import { uploadillustration } from "../../middlewares/upload";
-import express, {Request, Response,NextFunction } from 'express';
 const methods = new postHandler();
 const postRouter =  express.Router();
 

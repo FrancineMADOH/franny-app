@@ -72,7 +72,7 @@
         <label for="illustration">Add Illustration</label>
         <input type="file" #illustration="ngModel" ngModel name="illustration"  id="illustration">
      </div>
-     <button type="submit" (click)="viewPost()"  [disabled]="!addArticle.valid" class="btn btn-success m-3  ">Publish</button>
+     <button type="submit"  [disabled]="!addArticle.valid" class="btn btn-success m-3  ">Publish</button>
 </form>
 <button (click)="backToPosts()" class="btn btn-secondary m-3">Cancel</button>
 </div>

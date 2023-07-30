@@ -10,3 +10,11 @@ export interface Post{
         applause:number,
         category :string
 }
+
+export interface PostResult extends Post{
+    admin_name:string,
+    twitter_url:string,
+    facebook_url:string,
+    linkedin_url:string,
+    email:string
+}

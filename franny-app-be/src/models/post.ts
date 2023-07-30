@@ -38,7 +38,7 @@ export class postStore {
         //Index 
         async index():Promise<Post[]>{
                 const conn = await client.connect();
-                const sql_command = "SELECT * FROM posts;";
+                const sql_command = "SELECT p.*, a.admin_name,a.email,a.twitter_url,a.facebook_url,a.linkedin_url FROM posts p LEFT JOIN admins a ON a.admin_id = p.author ORDER BY CAST(p.create_at AS DATE) DESC ;";
                 const result = await conn.query(sql_command);
                 conn.release();
                 return result.rows;
