@@ -1,18 +1,35 @@
 
-<div class="card m-2">
+<div class="card m-2" *ngFor="let post of filteredPostList" >
     <div class="card-body">
-        <h4 class="card-title">title</h4>
+        <h4 class="card-title">{{post.title}} </h4>
         <div class="card-subtitle text-muted">
-            <span class="mx-2"> post author</span>
-            <span class="mx-2">Post date </span>
+            <span class="mx-2"> {{post.admin_name}} </span>
+            <span class="mx-2">{{post.create_at}} </span>
+            <span class="mx-2">{{post.category}} </span>
         </div>
         <div class="card-text p-2 my-3">
-            post description
+            {{post.summary}}
+        </div>
+        <div class="" >
+            <ul>
+                <li>
+                    <a  href="{{post.facebook_url}}" target="_blank">social icon  </a>
+
+                </li>
+                <li>
+                    <a href="{{post.linkedin_url}}" target="_blank">social icon  </a>
+
+                </li>
+                <li>
+                    <a href="{{post.twitter_url}}" target="_blank">social icon  </a>
+
+                </li>
+            </ul>
         </div>
         <div class="card-action">
-            <a routerLink="/posts/title" class="btn btn-success mx-3 read">Read More</a>
-            <a routerLink="/posts/edit" class="btn btn-secondary mx-2">Update</a>
-            <button  class="btn btn-danger" type="submit">Delete</button>
+            <button (click)="viewblogPost(post.slug)"  class="btn btn-success mx-3 read">Read More</button>
+            <button (click)="editblogPost(post.post_id || 1 )"  class="btn btn-secondary mx-2">Update</button>
+            <button (click)="deleteblogPost(post.post_id || 1)"  class="btn btn-danger" type="submit">Delete</button>
            
 
         </div>
