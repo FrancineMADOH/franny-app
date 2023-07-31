@@ -30,6 +30,7 @@ import { BlogViewComponent } from './blog/blog-view/blog-view.component';
 import { ConfirmationComponent } from './beauty/confirmation/confirmation.component';
 import { AssignrdvComponent } from './beauty/assignrdv/assignrdv.component';
 import { CancelrdvComponent } from './beauty/cancelrdv/cancelrdv.component';
+import { BlogStatsComponent } from './blog/blog-stats/blog-stats.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -43,8 +44,9 @@ const routes: Routes = [
   {path:"posts/new", component: NewArticleComponent, canActivate:[AuthGuard]},
   {path:"admin", component:AdministrationComponent, canActivate:[AuthGuard]},
   {path:"posts/edit", component:EditArticleComponent, canActivate:[AuthGuard]},
-  {path:"posts/view", component:ViewArticleComponent, canActivate:[AuthGuard]},
+  {path:"posts/view/:slug", component:ViewArticleComponent, canActivate:[AuthGuard]},
   {path:"id/bibliographie", component: BibliographieComponent, canActivate:[AuthGuard]},
+  {path:"posts/statistics",component: BlogStatsComponent,canActivate:[AuthGuard] },
   {path:"beauty/faqs", component:FaqsComponent, canActivate:[AuthGuard]},
   {path:"beauty", component:BeautyPageComponent},
   {path:"about",component:AboutComponent},
@@ -57,7 +59,6 @@ const routes: Routes = [
   {path:"beauty/rendezvous/add", component:AddRdvComponent, canActivate:[AuthGuard]},
   {path:"beauty/beautifyers/add", component: AddBeautifComponent, canActivate:[AuthGuard]},
   {path:"beauty/prestations/add", component:AddPrestationComponent, canActivate:[AuthGuard]},
-  {path:"beauty/reviews/add", component:AddReviewComponent, canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/update/:id", component:UpdateRdvComponent, canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/assign/:id", component:AssignrdvComponent , canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/cancel/:id", component:CancelrdvComponent , canActivate:[AuthGuard]},
@@ -66,7 +67,9 @@ const routes: Routes = [
   {path:"beauty/prestations/update/:id", component:UpdatePrestationComponent, canActivate:[AuthGuard]},
   
   //unprotected routes
-  {path:"beauty/rendezvous/confirmation",component:ConfirmationComponent}
+  {path:"beauty/rendezvous/confirmation",component:ConfirmationComponent},
+  {path:"beauty/reviews/add/:id", component:AddReviewComponent},
+
 
 ];
 

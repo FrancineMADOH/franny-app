@@ -51,7 +51,7 @@ async create(a:Admin):Promise<Admin>{
 //index
 async index():Promise<Admin[]>{
     const conn = await client.connect();
-    const sql_command = "SELECT admin_id, admin_name,username,email,superuser FROM admins;";
+    const sql_command = "SELECT admin_id, admin_name,username,email,superuser,activ_date FROM admins;";
     const result = await conn.query(sql_command);
     conn.release();
     return result.rows;
