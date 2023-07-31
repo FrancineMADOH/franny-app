@@ -16,6 +16,7 @@ import { CommentCardComponent } from './partials/comment-card/comment-card.compo
 import { AdminCardComponent } from './partials/admin-card/admin-card.component';
 import { FormsModule } from '@angular/forms';
 import { BlogViewComponent } from './blog-view/blog-view.component';
+import { BlogStatsComponent } from './blog-stats/blog-stats.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { BlogViewComponent } from './blog-view/blog-view.component';
     ArticleCardComponent,
     CommentCardComponent,
     AdminCardComponent,
-    BlogViewComponent
+    BlogViewComponent,
+    BlogStatsComponent
   ],
   imports: [
     CommonModule,

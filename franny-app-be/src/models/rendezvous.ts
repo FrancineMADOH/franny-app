@@ -44,8 +44,8 @@ export class rdvStore {
     //index: List of rdv 
     async index(): Promise<Rendezvous[]> {
         const conn = await client.connect();
-        const sql_command = "SELECT * FROM rendezvous r INNER JOIN prestations p ON r.prestation = p.pres_id ORDER BY CAST(rdvdate AS DATE) DESC;";
-        const result = await client.query(sql_command);
+        const sql_command = "SELECT r.*,b.bname FROM rendezvous r LEFT JOIN beautifyers b ON b.beautif_id = r.doneby ORDER BY CAST(rdvdate AS DATE) DESC;";
+        const result = await client.query(sql_command);//INNER JOIN prestations p ON r.prestation = p.pres_id
         conn.release();
         return result.rows;
     }
@@ -53,8 +53,8 @@ export class rdvStore {
     //get a single appointment 
     async show(id:number){
         const conn = await client.connect();
-        const sql_command = "SELECT * FROM rendezvous r LEFT JOIN prestations p ON r.prestation=p.pres_id WHERE rdv_id=$1;";
-        const result = await client.query(sql_command,[id]);
+        const sql_command = "SELECT r.*,b.bname FROM rendezvous r LEFT JOIN beautifyers b ON b.beautif_id = r.doneby  WHERE rdv_id=$1;";
+        const result = await client.query(sql_command,[id]);//LEFT JOIN prestations p ON r.prestation=p.pres_id
         conn.release();
         return result.rows[0];
     }

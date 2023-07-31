@@ -1,17 +1,18 @@
-import express from "express";
+//import express from "express";
 import { postHandler } from "../../handlers/postHandler";
 import verifyToken from "../../middlewares/auth";
-
+import { uploadillustration } from "../../middlewares/upload";
+import express, {Request, Response,NextFunction } from 'express';
 const methods = new postHandler();
 const postRouter =  express.Router();
 
-postRouter.post("",verifyToken,methods.create);
+postRouter.post("",verifyToken, methods.create);
 postRouter.get("",methods.index);
 postRouter.get("/topten",methods.topten);
 postRouter.get("/topapplause",methods.topapplause);
 postRouter.get("/:term", methods.search);
 postRouter.get("/:category", methods.category);
-postRouter.get("/:id",methods.show);
+postRouter.get("/:id/:slug",methods.show);
 postRouter.put("/:id",verifyToken,methods.update);
 postRouter.delete("/:id",verifyToken,methods.delete);
 
