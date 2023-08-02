@@ -28,8 +28,8 @@ export class ArticleCardComponent implements OnInit {
     
   }
 
-  viewblogPost(slug:string){ 
-    this.router.navigate(['posts/view/' + slug])
+  viewblogPost(id:number,slug:string){ 
+    this.router.navigate(['posts/view/' + id +'/' +  slug])
   }
   editblogPost(id:number){}
   deleteblogPost(id:number){}

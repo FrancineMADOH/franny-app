@@ -47,7 +47,7 @@ export class postStore {
         //show
         async show(id:number):Promise<Post>{
                 const conn = await client.connect();
-                const sql_command = "SELECT * FROM posts WHERE post_id=$1;";
+                const sql_command = "SELECT p.*,a.admin_name,a.email,a.twitter_url,a.facebook_url,a.linkedin_url FROM posts p LEFT JOIN admins a ON p.author = a.admin_id WHERE post_id=$1;";
                 const result = await conn.query(sql_command,[id]);
                 conn.release();
                 return result.rows[0];

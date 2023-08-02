@@ -27,7 +27,7 @@
             </ul>
         </div>
         <div class="card-action">
-            <button (click)="viewblogPost(post.slug)"  class="btn btn-success mx-3 read">Read More</button>
+            <button (click)="viewblogPost(post.post_id||1,post.slug)"  class="btn btn-success mx-3 read">Read More</button>
             <button (click)="editblogPost(post.post_id || 1 )"  class="btn btn-secondary mx-2">Update</button>
             <button (click)="deleteblogPost(post.post_id || 1)"  class="btn btn-danger" type="submit">Delete</button>
            
