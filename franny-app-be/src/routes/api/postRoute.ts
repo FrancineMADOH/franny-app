@@ -11,7 +11,7 @@ postRouter.get("/topten",methods.topten);
 postRouter.get("/topapplause",methods.topapplause);
 postRouter.get("/:term", methods.search);
 postRouter.get("/:category", methods.category);
-postRouter.get("/:id/:slug",methods.show);
+postRouter.get("/show/:id",methods.show);
 postRouter.put("/:id",verifyToken,methods.update);
 postRouter.delete("/:id",verifyToken,methods.delete);
 

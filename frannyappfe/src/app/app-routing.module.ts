@@ -44,7 +44,7 @@ const routes: Routes = [
   {path:"posts/new", component: NewArticleComponent, canActivate:[AuthGuard]},
   {path:"admin", component:AdministrationComponent, canActivate:[AuthGuard]},
   {path:"posts/edit/:id", component:EditArticleComponent, canActivate:[AuthGuard]},
-  {path:"posts/view/:slug", component:ViewArticleComponent, canActivate:[AuthGuard]},
+  {path:"posts/view/:id/:slug", component:ViewArticleComponent, canActivate:[AuthGuard]},
   {path:"id/bibliographie", component: BibliographieComponent, canActivate:[AuthGuard]},
   {path:"posts/statistics",component: BlogStatsComponent,canActivate:[AuthGuard] },
   {path:"beauty/faqs", component:FaqsComponent, canActivate:[AuthGuard]},
