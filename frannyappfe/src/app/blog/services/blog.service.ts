@@ -47,6 +47,12 @@ export class BlogService {
     return this.http.delete<any>(environment.baseUrl + `/comments/${id}`).pipe(catchError(this.handleErrors));
   }
 
+  //top applause
+  topApplause(id:number): Observable<any>{
+    return this.http.get<any>(environment.baseUrl + `/posts/topten/${id}`).pipe(catchError(this.handleErrors));
+
+  }
+
 
   //handle errors
   handleErrors(error:HttpErrorResponse ):Observable <any>{

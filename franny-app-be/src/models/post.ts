@@ -65,10 +65,10 @@ export class postStore {
         }
 
         //topten
-        async topten():Promise<Post[]>{
+        async topten(id:number):Promise<Post[]>{
                 const conn = await client.connect();
-                const sql_command = "SELECT * FROM posts ORDER BY CAST(create_at AS DATE) DESC LIMIT 10;";
-                const result =  await conn.query(sql_command);
+                const sql_command = "SELECT * FROM posts ORDER BY (SELECT COUNT(*) FROM comments WHERE blog_post_id=$1) DESC LIMIT 10;";
+                const result =  await conn.query(sql_command,[id]); //CAST(create_at AS DATE) DESC LIMIT 10;
                 conn.release();
                 return result.rows;
         }
@@ -76,12 +76,14 @@ export class postStore {
         //topapplause
         async topapplause():Promise<Post[]>{
                 const conn = await client.connect();
-                const sql_command = "SELECT * FROM posts ORDER BY applause DESC LIMIT 10;";
+                const sql_command = "SELECT p.*, COUNT(c.*) AS com_num FROM posts p LEFT JOIN  comments c ON  c.blog_post_id = p.post_id  ORDER BY com_num DESC LIMIT 10;";
                 const result = await conn.query(sql_command);
                 conn.release();
                 return result.rows;
 
         }
+
+        //async applaude():
 
         //search
         async search(term:string):Promise<Post[]>{

@@ -7,7 +7,7 @@ const postRouter =  express.Router();
 
 postRouter.post("",verifyToken, methods.create);
 postRouter.get("",methods.index);
-postRouter.get("/topten",methods.topten);
+postRouter.get("/topten/:id",methods.topten);
 postRouter.get("/topapplause",methods.topapplause);
 postRouter.get("/:term", methods.search);
 postRouter.get("/:category", methods.category);

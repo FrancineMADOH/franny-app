@@ -9,5 +9,6 @@ CREATE TABLE beautifyers(
     ville VARCHAR(20),
     create_by  INT,
     beautifcode VARCHAR(20),
+    cni_number INT(11),
     FOREIGN KEY(create_by) REFERENCES admins(admin_id) ON DELETE CASCADE 
 );
