@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostResult } from '../models/post';
+import { Post, PostResult } from '../models/post';
 import { BlogService } from '../services/blog.service';
 import { Comment } from '../models/comment';
 import { AuthService } from 'src/app/authentication/services/auth.service';
@@ -21,19 +21,26 @@ export class ViewArticleComponent implements OnInit {
   number_of_comments!:number;
   commentList:Comment[]= [];
   isAdmin!:boolean;
-
+  loading = true;
+  topApplause:Post[] = [];
   @ViewChild("commentForm",{static:true}) commentForm:any
 
   constructor(public blog:BlogService, 
     private auth:AuthService,
+    private router:Router,
     private route:ActivatedRoute){}
 
   ngOnInit(): void {
-    this.commentsubmit = false;
+
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
+
+  this.commentsubmit = false;
   if(!this.auth.bEmail.value){
     this.isAdmin = false;
   }
-    this.id = this.route.snapshot.params['id'];
+  this.id = this.route.snapshot.params['id'];
   
     this.blog.viewPost(Number(this.id)).subscribe((data)=>{
       this.post = data;
@@ -44,7 +51,14 @@ export class ViewArticleComponent implements OnInit {
         this.commentList.push(comment);
         return this.commentList;
       })
-    }) 
+    });
+    
+    this.blog.topApplause(Number(this.id)).subscribe((res)=>{
+      res.map((post:any)=>{
+        this.topApplause.push(post)
+        return this.topApplause;
+      })
+    })
   }
 
   onComment(commentForm:any){
@@ -67,6 +81,10 @@ export class ViewArticleComponent implements OnInit {
       alert(res.message);
       window.location.reload();
     });
+  }
+
+  gotoPost(id:number, slug:string){
+    this.router.navigate(['posts/view/' + id +'/' +  slug])
   }
  
 

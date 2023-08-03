@@ -4,13 +4,13 @@
       <div class="card-subtitle mb-2 text-muted">{{rdv.category}} - {{rdv.ville}} - {{rdv.quartier}} - <span ngClass="{{rdv.rdvstate}} " > {{rdv.rdvstate}}</span> </div>
       <p class="card-text"><strong>Client Name:</strong>{{rdv.client_name}} </p>
       <p class="card-text"><strong>Client Phone:</strong> {{rdv.client_phone}}</p>
-      <p class="card-text"> <strong>Client Email:</strong>  {{rdv.client_email}}</p>
+      <p class="card-text"><strong>Client Email:</strong>  {{rdv.client_email}}</p>
       <p class="card-text"> <strong>Date du rdv:</strong> {{rdv.rdvdate}}</p>
       <p class="card-text"><strong>Price:</strong>  {{rdv.rdv_price}} </p>
       <p class="card-text"><strong> State: {{rdv.rdvstate}} </strong></p>
       <p class="card-text"><strong>Assigned to:  </strong>{{ rdv.bname }}</p>
-      <p class="card-text"><strong>Comments:</strong>  {{rdv.comments}} </p>
-      <button (click)="gotoUpdate(rdv.rdv_id || 1 ) " class="card-link btn btn-success">Update</button>
+      <p class="card-text"><strong>Comments:</strong>{{rdv.comments}} </p>
+      <button (click)="gotoUpdate(rdv.rdv_id || 1) " class="card-link btn btn-success">Update</button>
       <button (click)="gotoAssign(rdv.rdv_id || 1) " class="card-link btn btn-secondary">Assign</button>
       <button (click)="gotoCancel(rdv.rdv_id || 1) " class="card-link btn btn-danger">Cancel</button>
     </div>

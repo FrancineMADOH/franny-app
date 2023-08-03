@@ -1,4 +1,8 @@
-<div class="row container-fluid">
+<div class="spinner-grow text-dark" role="status" *ngIf="loading">
+    <span class="sronly sr-only">Loading...</span>
+  </div>
+
+<div class="row container-fluid" *ngIf="!loading">
     <div class="header">
         <a href="" class="btn btn-secondary m-3" routerLink="/posts/edit">Edit</a>
         <a href="" class="btn btn-primary m-3" routerLink="/posts">All articles</a>
@@ -24,7 +28,16 @@
                     {{post.content}}
                 </div>
             </div>
-            <div class="col-lg-2"> liste des top 10 articles</div>
+            <div class="col-lg-2"> 
+                liste des top 10 articles
+                <div class="card"*ngFor="let top of topApplause" >
+                    <div class="card-body">
+                        <a class="card-title"(click)="gotoPost(top.post_id || 1,top.slug)" >
+                            <span class="text-muted m-2">{{top.title}} </span>
+                        </a>
+                    </div>
+                  </div>
+            </div>
         </div>
         <div class="action">
             <!-- <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#biblioModal">

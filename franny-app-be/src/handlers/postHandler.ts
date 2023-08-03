@@ -71,8 +71,9 @@ export class postHandler {
 
     //topten
     async topten(req:Request, res:Response){
+        const id= Number(req.params.id);
         try{
-            const posts = await poststore.topten();
+            const posts = await poststore.topten(id);
             res.status(200);
             res.json(posts);
         }catch(err){

@@ -15,7 +15,8 @@ export type Rendezvous = {
     rdv_price:number,
     ville: string,
     quartier: string,
-    comments: string
+    comments: string,
+    is_review?:boolean
 }
 export class rdvStore {
 
