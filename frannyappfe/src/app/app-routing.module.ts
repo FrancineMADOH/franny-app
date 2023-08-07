@@ -35,7 +35,7 @@ import { PerformanceComponent } from './beauty/performance/performance.component
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
-  {path:"dashboard/:id",component:DashboardComponent, canActivate:[AuthGuard]},
+  {path:"dashboard/:email",component:DashboardComponent, canActivate:[AuthGuard]},
   {path:"signup", component: SignupFormComponent },
   {path:"reset", component:ResetFormComponent},
   {path:"login", component:LoginFormComponent},
