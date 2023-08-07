@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DomSanitizer } from "@angular/platform-browser";
 import { Post, PostResult } from '../models/post';
 import { BlogService } from '../services/blog.service';
 import { Comment } from '../models/comment';
@@ -24,11 +25,13 @@ export class ViewArticleComponent implements OnInit {
   loading = true;
   topApplause:Post[] = [];
   blog_post_id!:number;
+  html!:any;
   @ViewChild("commentForm",{static:true}) commentForm:any;
 
   constructor(public blog:BlogService, 
     private auth:AuthService,
     private router:Router,
+    private sanitized:DomSanitizer, 
     private route:ActivatedRoute){}
 
   ngOnInit(): void {
@@ -37,13 +40,14 @@ export class ViewArticleComponent implements OnInit {
       this.loading = false;
     }, 1000);
 
-    this.isAdmin= this.auth.isLogin()
+  this.isAdmin= this.auth.isLogin()
 
   this.commentsubmit = false;
   this.id = this.route.snapshot.params['id'];
   
     this.blog.viewPost(Number(this.id)).subscribe((data)=>{
       this.post = data;
+      this.html = this.sanitized.bypassSecurityTrustHtml(data.content)
     });
 
     this.blog.getallComment(Number(this.id)).subscribe((res)=>{

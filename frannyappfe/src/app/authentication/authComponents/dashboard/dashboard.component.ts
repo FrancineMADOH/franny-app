@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject,Observable } from 'rxjs';
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+
 
 @Component({
   selector: 'app-dashboard',
@@ -10,12 +12,25 @@ import { BehaviorSubject,Observable } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
   user:any = {};
+  email!:string
+  fcbk!:SafeHtml
+  twitter!:SafeHtml
+  linked!:SafeHtml
 
-  constructor(private auth: AuthService, private activateRoute:ActivatedRoute ){
-    this.user = this.auth.currentUser;
+  constructor(private auth: AuthService, 
+    public sanitized:DomSanitizer,
+
+    private route:ActivatedRoute ){
   }
   ngOnInit(): void {
-   
+  this.email = this.route.snapshot.params['email'];
+   this.auth.getAdminInfos(this.email).subscribe((res:any)=>{
+    this.user = res;
+    this.fcbk = this.sanitized.bypassSecurityTrustHtml(res.facebook_url);
+    this.linked = this.sanitized.bypassSecurityTrustHtml(res.linkedin_url);
+    this.twitter = this.sanitized.bypassSecurityTrustHtml(res.twitter_url);
+
+    });
   }
 
   logOut():void{

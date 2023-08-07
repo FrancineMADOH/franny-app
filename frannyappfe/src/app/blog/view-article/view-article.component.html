@@ -24,8 +24,8 @@
                         <li>{{post.facebook_url}}</li>
                     </ul>
                 </div>
-                <div class="content">
-                    {{post.content}}
+                <div  [innerHTML]="html" class="content">
+                
                 </div>
             </div>
             <div class="col-lg-2"> 
@@ -137,7 +137,7 @@
                     </p>
                   <p class="card-text ">{{comment.comment_body}} </p>
                   <form (ngSubmit)="deleteComment(comment.comment_id||1)" >
-                    <button *ngIf="!isAdmin"  type="submit" class="btn btn-danger">Delete comment</button>
+                    <button *ngIf="isAdmin"  type="submit" class="btn btn-danger">Delete comment</button>
                   </form>
                 </div>
               </div>

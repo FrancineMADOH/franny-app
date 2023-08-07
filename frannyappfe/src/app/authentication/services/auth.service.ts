@@ -32,7 +32,7 @@ signtheUserIn(email:string,admin_password:string){
       localStorage.setItem("acces_token", res);
       this.getAdminInfos(email).subscribe((res:any)=>{
         this.currentUser = res;
-        this.router.navigate(['dashboard/' + res.admin_id]);
+        this.router.navigate(['dashboard/' + res.email]);
       });
     } else{
         alert("Wrong Credentials!");
