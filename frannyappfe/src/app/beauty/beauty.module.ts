@@ -28,6 +28,7 @@ import { UpdatePrestationComponent } from './update-prestation/update-prestation
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CancelrdvComponent } from './cancelrdv/cancelrdv.component';
 import { AssignrdvComponent } from './assignrdv/assignrdv.component';
+import { PerformanceComponent } from './performance/performance.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { AssignrdvComponent } from './assignrdv/assignrdv.component';
     UpdatePrestationComponent,
     ConfirmationComponent,
     CancelrdvComponent,
-    AssignrdvComponent
+    AssignrdvComponent,
+    PerformanceComponent
   ],
   imports: [
     CommonModule,
