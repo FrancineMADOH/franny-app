@@ -35,6 +35,7 @@ export class LoginFormComponent implements OnInit {
       this.auth.signtheUserIn(this.email,this.password);
       this.loginForm.reset();
    }
+   this.router.navigate(['dashboard']);
 
   }}
 //https://therichpost.com/angular-12-showing-postgresql-data-using-nodejs-express-web-api/

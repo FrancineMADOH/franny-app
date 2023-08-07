@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './authentication/authComponents/dashboard/dashboard.component';
@@ -31,20 +31,21 @@ import { ConfirmationComponent } from './beauty/confirmation/confirmation.compon
 import { AssignrdvComponent } from './beauty/assignrdv/assignrdv.component';
 import { CancelrdvComponent } from './beauty/cancelrdv/cancelrdv.component';
 import { BlogStatsComponent } from './blog/blog-stats/blog-stats.component';
+import { PerformanceComponent } from './beauty/performance/performance.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
-  {path:"dashboard/:email",component:DashboardComponent, canActivate:[AuthGuard]},
+  {path:"dashboard/:id",component:DashboardComponent, canActivate:[AuthGuard]},
   {path:"signup", component: SignupFormComponent },
   {path:"reset", component:ResetFormComponent},
   {path:"login", component:LoginFormComponent},
   //make a route for update profile
-  {path:"blog",  component:BlogViewComponent },
-  {path:"posts",  component:AllArticlesComponent, canActivate:[AuthGuard]},
+  // {path:"posts",  component:AllArticlesComponent },
+  {path:"posts",  component:AllArticlesComponent},
   {path:"posts/new", component: NewArticleComponent, canActivate:[AuthGuard]},
   {path:"admin", component:AdministrationComponent, canActivate:[AuthGuard]},
   {path:"posts/edit/:id", component:EditArticleComponent, canActivate:[AuthGuard]},
-  {path:"posts/view/:id/:slug", component:ViewArticleComponent, canActivate:[AuthGuard]},
+  {path:"posts/view/:id/:slug", component:ViewArticleComponent},
   {path:"id/bibliographie", component: BibliographieComponent, canActivate:[AuthGuard]},
   {path:"posts/statistics",component: BlogStatsComponent,canActivate:[AuthGuard] },
   {path:"beauty/faqs", component:FaqsComponent, canActivate:[AuthGuard]},
@@ -62,6 +63,7 @@ const routes: Routes = [
   {path:"beauty/rendezvous/update/:id", component:UpdateRdvComponent, canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/assign/:id", component:AssignrdvComponent , canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/cancel/:id", component:CancelrdvComponent , canActivate:[AuthGuard]},
+  {path:"beauty/preformance", component:PerformanceComponent,canActivate:[AuthGuard]},
 
   {path:"beauty/beautifyers/update/:id", component:UpdateBeautifComponent, canActivate:[AuthGuard]},
   {path:"beauty/prestations/update/:id", component:UpdatePrestationComponent, canActivate:[AuthGuard]},

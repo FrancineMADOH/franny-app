@@ -60,6 +60,7 @@ export const commentValidation = (data:Comment)=>{
     const schema = joi.object({
    // comment_id: joi.number(),
     email: joi.string().min(6).required().email(),
+    user_name: joi.string().min(6).required(),
     comment_body: joi.string().max(150).required(),
     comment_date: joi.string().max(20).required(),
     blog_post_id: joi.number()

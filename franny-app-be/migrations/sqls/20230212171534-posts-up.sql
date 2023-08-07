@@ -1,7 +1,7 @@
 /* Replace with your SQL commands */
 CREATE TABLE posts(
    post_id SERIAL PRIMARY KEY,
-   title VARCHAR(100) NOT NULL,
+   title VARCHAR(255) NOT NULL,--a changer
    summary TEXT NOT NULL,
    content TEXT NOT NULL,
    author INT NOT NULL,

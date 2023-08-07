@@ -30,6 +30,11 @@ export class BlogService {
     return this.http.post<any>(environment.baseUrl+"/posts", {post}).pipe(catchError(this.handleErrors));
   }
 
+  deletePost(id:number):Observable<Post>{
+    return this.http.delete<any>(environment.baseUrl+`/posts/${id}`).pipe(catchError(this.handleErrors));
+
+  }
+
   //addcomment
   addComment(comment:Comment ):Observable<any>{
     return this.http.post<Comment>(environment.baseUrl + "/comments",{comment}).pipe(catchError(this.handleErrors));

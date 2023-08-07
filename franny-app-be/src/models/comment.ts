@@ -13,7 +13,7 @@ import client from "../database";
    //create
    async create(c:Comment):Promise<Comment>{
     const conn = await client.connect();
-    const sql_command = "INSERT INTO comments(email,comment_body,comment_date,user_name, blog_post_id) VALUES($1,$2,$3,$4,$4) RETURNING *;";
+    const sql_command = "INSERT INTO comments(email,comment_body,comment_date,user_name, blog_post_id) VALUES($1,$2,$3,$4,$5) RETURNING *;";
     const result = await conn.query(sql_command,[c.email,c.comment_body,c.comment_date,c.user_name,c.blog_post_id]);
     conn.release();
     return result.rows[0];

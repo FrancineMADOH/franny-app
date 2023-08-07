@@ -23,7 +23,8 @@ export class ViewArticleComponent implements OnInit {
   isAdmin!:boolean;
   loading = true;
   topApplause:Post[] = [];
-  @ViewChild("commentForm",{static:true}) commentForm:any
+  blog_post_id!:number;
+  @ViewChild("commentForm",{static:true}) commentForm:any;
 
   constructor(public blog:BlogService, 
     private auth:AuthService,
@@ -36,10 +37,9 @@ export class ViewArticleComponent implements OnInit {
       this.loading = false;
     }, 1000);
 
+    this.isAdmin= this.auth.isLogin()
+
   this.commentsubmit = false;
-  if(!this.auth.bEmail.value){
-    this.isAdmin = false;
-  }
   this.id = this.route.snapshot.params['id'];
   
     this.blog.viewPost(Number(this.id)).subscribe((data)=>{
@@ -61,17 +61,19 @@ export class ViewArticleComponent implements OnInit {
     })
   }
 
-  onComment(commentForm:any){
-    this.commentForm.value.blog_post_id = Number(this.id);
-    this.commentForm.value.comment_date = new Date().toLocaleDateString();
-    if(this.commentForm.valid){
-     this.comment = this.commentForm.value;
+onComment(commentForm:any){
+    commentForm.value.blog_post_id = Number(this.id);
+    commentForm.value.comment_date = new Date().toLocaleDateString();
+    if(commentForm.valid){
+     this.comment = commentForm.value;
+     console.log(commentForm.value)
      this.blog.addComment(this.comment).subscribe((res:any)=>{
       this.succesMessage = res.message;
-      this.comment_class = this.succesMessage.split(" ")[0]
      })
+     window.location.reload();
     }
-    this.commentForm.reset();
+    this.comment_class = this.succesMessage.split(" ")[0]
+    commentForm.reset();
     this.commentsubmit = !this.commentsubmit;
     
   }
@@ -86,6 +88,12 @@ export class ViewArticleComponent implements OnInit {
   gotoPost(id:number, slug:string){
     this.router.navigate(['posts/view/' + id +'/' +  slug])
   }
- 
+
+  editblogPost(id:number){
+    this.router.navigate(['posts/edit/' + id]);
+  }
+  backtoPost(){
+    this.router.navigate(['posts/']);
+  }
 
 }

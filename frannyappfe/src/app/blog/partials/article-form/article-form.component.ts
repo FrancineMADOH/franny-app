@@ -35,10 +35,20 @@ export class ArticleFormComponent implements OnInit {
     //get the connected admin
     this.auth.getAdminInfos(this.email).subscribe((res)=>{
       this.admin = res;
-      console.log(this.admin.admin_id);
       return this.admin;
     });
-   // console.log(this.admin.admin_id);
+    //get 
+    if(!this.iscreateMode){
+      this.blog.viewPost(Number(this.id)).subscribe((res)=>{
+        this.addArticle.form.setValue({
+          title: res.title,
+          category: res.category,
+          summary: res.summary, 
+          content: res.content,
+          illustration: res.illustration
+        })
+      })
+    }
 
   }
 
@@ -59,10 +69,23 @@ export class ArticleFormComponent implements OnInit {
       })
     }
     this.addArticle.reset();
+    this.router.navigate(['/posts'])
   }
 
   
-  editPost(addArticle:any){}
+  editPost(addArticle:any){
+    if(this.addArticle.valid){
+      this.addArticle.value.create_at = this.create_at;
+      this.addArticle.value.author = this.admin.admin_id;
+      this.post = this.addArticle.value;
+      this.blog.editPost(Number(this.id),this.post).subscribe((res:any)=>{
+        alert(res.message)
+      });
+    }
+    this.addArticle.reset();
+    this.router.navigate(['/posts'])
+    
+  }
 
   backToPosts(){
     this.router.navigate(['/posts']);
