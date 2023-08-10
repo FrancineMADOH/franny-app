@@ -55,7 +55,6 @@ const routes: Routes = [
   {path:"beauty/rendezvous", component:RdvComponent},
   {path:"beauty/beautifyers", component:BeautifyerComponent, canActivate:[AuthGuard]},
   {path:"beauty/reviews", component:ReviewComponent, canActivate:[AuthGuard]},
-  {path:"beauty/faqs", component:FaqsComponent, canActivate:[AuthGuard]},
   {path:"beauty/prestations", component:PrestationComponent, canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/add", component:AddRdvComponent, canActivate:[AuthGuard]},
   {path:"beauty/beautifyers/add", component: AddBeautifComponent, canActivate:[AuthGuard]},
@@ -71,6 +70,8 @@ const routes: Routes = [
   //unprotected routes
   {path:"beauty/rendezvous/confirmation",component:ConfirmationComponent},
   {path:"beauty/reviews/add/:id", component:AddReviewComponent},
+  {path:"beauty/faqs", component:FaqsComponent},
+
 
 
 ];

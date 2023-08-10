@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BeautyService } from '../../services/beauty.service';
 import { FaqsComponent } from '../../faqs/faqs.component';
 import { Faq } from '../../models/faq';
+import { AuthService } from 'src/app/authentication/services/auth.service';
 
 @Component({
   selector: 'app-faq-card',
@@ -12,11 +13,15 @@ export class FaqCardComponent implements OnInit {
 
   faqList:Faq[]=[];
   id!:string;
+  isAuth!:boolean;
 
   @ViewChild("deleteFaqForm", {static: true}) deleteFaqForm:any;
 
-  constructor(private beauty:BeautyService){}
+  constructor(private beauty:BeautyService,
+    private auth:AuthService
+    ){}
   ngOnInit(): void {
+    this.isAuth = this.auth.isLogin()
     this.beauty.getFaqList().subscribe((res:Faq[])=>{
       res.map((data)=>{
         this.faqList.push(data);
