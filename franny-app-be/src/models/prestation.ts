@@ -61,4 +61,13 @@ export class presStore{
         conn.release();
         return result.rows[0];
     }
+
+    //category
+    async category(category:string): Promise<Prestation[]>{
+        const conn = await client.connect();
+        const sql_query = "SELECT * FROM prestations WHERE category LIKE $1;";
+        const result = await conn.query(sql_query, ["%" + category + "%"]);
+        conn.release();
+        return result.rows;
+    }
 }
