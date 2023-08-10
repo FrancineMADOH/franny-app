@@ -88,14 +88,16 @@ export class RdvFormComponent implements OnInit {
       this.updateRdv(parseInt(this.id), this.addRendezvousForm)
     }
   }
+
   saveRendezVous(addRendezvousForm:any){
     this.rdvCode = generaterdvCode(
     this.addRendezvousForm.value.client_name,
     this.addRendezvousForm.value.rdvdate,
     this.addRendezvousForm.value.ville,
     this.addRendezvousForm.value.quartier,
-    this.addRendezvousForm.value.category,
-    this.addRendezvousForm.value.rdvtype
+    this.addRendezvousForm.value.prestation,
+    //this.addRendezvousForm.value.category,
+    //this.addRendezvousForm.value.rdvtype
     );
     this.addRendezvousForm.value.rdvcode  = this.rdvCode;
     this.addRendezvousForm.value.rdv_price = parseInt(this.addRendezvousForm.value.rdv_price);
@@ -117,9 +119,11 @@ export class RdvFormComponent implements OnInit {
       this.addRendezvousForm.value.rdvdate,
       this.addRendezvousForm.value.ville,
       this.addRendezvousForm.value.quartier,
-      this.addRendezvousForm.value.category,
-      this.addRendezvousForm.value.rdvtype
+      this.addRendezvousForm.value.prestation,
+      //this.addRendezvousForm.value.category,
+      //this.addRendezvousForm.value.rdvtype
       );
+      
       this.addRendezvousForm.value.rdvcode  = this.rdvCode;
     //   this.addRendezvousForm.value.rdv_price = parseInt(this.addRendezvousForm.value.rdv_price);
     console.log(this.addRendezvousForm.value)

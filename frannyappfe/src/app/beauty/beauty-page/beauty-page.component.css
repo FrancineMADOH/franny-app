@@ -1,0 +1,24 @@
+.Onglerie{
+    background-image: url( "../../../assets/onglerie.jpg");
+     background-position: center center;
+     background-size: cover;
+      background-repeat: no-repeat;
+      padding: 10%;
+
+}
+.maquillage{
+    background-image: url(" ../../../assets/makeup.jpg" );
+     background-position: center center;
+     background-size: cover;
+      background-repeat: no-repeat;
+      padding: 10%;
+
+}
+.Coiffure{
+    background-image: url("../../../assets/coiffure.webp");
+     background-position: center center;
+     background-size: cover;
+      background-repeat: no-repeat;
+      padding: 10%;
+
+}
