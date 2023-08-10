@@ -10,4 +10,6 @@ presRouter.get("", methods.index);
 presRouter.get("/:id",verifyToken,methods.show)
 presRouter.put("/:id",verifyToken, methods.update);
 
+presRouter.get("/category/:category", methods.category);
+
 export default presRouter;

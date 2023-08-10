@@ -1,0 +1,16 @@
+<div class="main container">
+    <h1>Coiffure</h1>
+    <p class="text-center">Reserver une prestation de {{category}} a domicile</p>
+
+        <div class="card my-2" *ngFor="let el of prestations" >
+            <div class="card-body">
+              <h5 class="card-title">{{el.title}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted"> {{el.price}} {{el.category}}</h6>
+              <p class="card-text">{{ el.seance }} </p>
+              <p class="card-text"> {{el.gold_price}}  {{el.gold}} </p>
+              <p class="card-text"> {{el.premium_price }} {{el.premium}} </p>
+              <button (click)="bookPrestation(el.pres_id || 1)" class="card-link btn btn-success">Reservez</button>
+            </div>
+          </div>
+        
+</div>

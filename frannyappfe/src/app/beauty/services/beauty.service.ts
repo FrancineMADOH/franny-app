@@ -66,6 +66,10 @@ export class BeautyService {
     return this.http.get(environment.baseUrl + `/prestations/${id}`).pipe(catchError(this.handleError));
   }
 
+  getPrestationBCategory(category:string):Observable<any>{
+    return this.http.get(environment.baseUrl + `/prestations/category/${category}`).pipe(catchError(this.handleError));
+
+  }
   //rendez vous service
   createRendezvous(rdv:Rendezvous):Observable<Rendezvous>{
     return this.http.post<Rendezvous>(environment.baseUrl + "/rendezvous",rdv).pipe(catchError(this.handleError));

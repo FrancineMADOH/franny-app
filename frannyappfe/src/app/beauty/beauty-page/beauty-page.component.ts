@@ -23,7 +23,8 @@ export class BeautyPageComponent implements OnInit {
   constructor(private beauty:BeautyService,
     private router:Router,
     private route:ActivatedRoute
-    ){}
+    ){
+    }
 
    ngOnInit():void {
     this.beauty.getPrestationList().subscribe((res)=>{
@@ -58,9 +59,18 @@ export class BeautyPageComponent implements OnInit {
   }
 
   allFaq(){
-    this.router.navigate(['/beauty/faqs'],
-     //{queryParams:{allfaqs:this.faqs}} const myArray = this.activatedRoute.snapshot.queryParams.myArray
-     )
+    this.router.navigate(['/beauty/faqs'] )
+  }
+
+  gotoCoiffure(){
+    this.router.navigate(['/beauty/category/' + "Coiffure"]);
+  }
+  gotoMaquillage(){
+    this.router.navigate(['/beauty/category/Make-Up'])
+    
+  }
+  gotoOnglerie(){
+    this.router.navigate(['/beauty/category/Onglerie'])
   }
  
 

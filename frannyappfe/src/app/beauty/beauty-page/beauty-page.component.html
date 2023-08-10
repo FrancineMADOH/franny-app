@@ -20,13 +20,14 @@
 
     <!-- liste des services -->
     <div class="row text-center">
-        <div class="col-lg-3 m-4 Coiffure">
+        <div (click)="gotoCoiffure()" class="col-lg-3 m-4 Coiffure">
             <h2>Coiffure</h2>
         </div>
-        <div class="col-lg-3 m-4 maquillage"> 
+        <div (click)="gotoMaquillage()" class="col-lg-3 m-4 maquillage"> 
             <h3>maquillage</h3>  
         </div>
-        <div class="col-lg-3 m-4 Onglerie"> <h3>Onglerie</h3> 
+        <div (click)="gotoOnglerie()" class="col-lg-3 m-4 Onglerie"> 
+            <h3>Onglerie</h3> 
         </div>
     </div>
 
@@ -34,13 +35,13 @@
     <div class="row">
         <div class="col-lg-4">
             <h2>Coiffure</h2>
-            <p *ngFor="let el of coiffure" >{{el.title}} </p>
+            <li *ngFor="let el of coiffure" > <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}"> {{el.title}}</a> </li>
         </div>
         <div class="col-lg-4"><h1>Maquillage</h1> 
-            <p *ngFor="let el of makeup" >{{el.title}} </p>
+            <li *ngFor="let el of makeup" > <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}"> {{el.title}}</a> </li>
         </div>
         <div class="col-lg-4"><h1>Onglerie</h1> 
-            <p *ngFor="let el of onglerie" >{{el.title}} </p>
+            <li *ngFor="let el of onglerie" > <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}"> {{el.title}}</a> </li>
         </div>
     </div>
 

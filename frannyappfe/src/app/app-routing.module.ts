@@ -32,6 +32,9 @@ import { AssignrdvComponent } from './beauty/assignrdv/assignrdv.component';
 import { CancelrdvComponent } from './beauty/cancelrdv/cancelrdv.component';
 import { BlogStatsComponent } from './blog/blog-stats/blog-stats.component';
 import { PerformanceComponent } from './beauty/performance/performance.component';
+import { CategoryComponent } from './beauty/category/category.component';
+import { BookPrestationComponent } from './beauty/book-prestation/book-prestation.component';
+
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -71,6 +74,9 @@ const routes: Routes = [
   {path:"beauty/rendezvous/confirmation",component:ConfirmationComponent},
   {path:"beauty/reviews/add/:id", component:AddReviewComponent},
   {path:"beauty/faqs", component:FaqsComponent},
+  {path:"beauty/category/:catName", component: CategoryComponent},
+  {path:"beauty/:category/book/:id", component: BookPrestationComponent},
+ 
 
 
 

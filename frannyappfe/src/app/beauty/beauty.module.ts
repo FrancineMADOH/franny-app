@@ -29,6 +29,8 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CancelrdvComponent } from './cancelrdv/cancelrdv.component';
 import { AssignrdvComponent } from './assignrdv/assignrdv.component';
 import { PerformanceComponent } from './performance/performance.component';
+import { CategoryComponent } from './category/category.component';
+import { BookPrestationComponent } from './book-prestation/book-prestation.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { PerformanceComponent } from './performance/performance.component';
     ConfirmationComponent,
     CancelrdvComponent,
     AssignrdvComponent,
-    PerformanceComponent
+    PerformanceComponent,
+    CategoryComponent,
+    BookPrestationComponent
   ],
   imports: [
     CommonModule,
