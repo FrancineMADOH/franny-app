@@ -65,8 +65,22 @@ export class rdvHandler {
             res.status(500).json(err.message);
         }
     }
-    //cancel
 
+    //make paiement 
+    async makepaiement(req:Request,res:Response){
+        try{
+            const  rdv_id =  parseInt(req.params.id);
+            const  rdvstate = req.body.rdvstate;
+            const  pm = req.body.payment_method;
+            const  pdate = new Date().toLocaleDateString();
+            await rdv.makepaiement(rdv_id,rdvstate,pm,pdate)
+            res.status(200).json({message:"Payment successfull!"});
+        }catch(err:any){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+    //cancel
     async cancel(req:Request,res:Response){
         try{
             const  rdv_id =  parseInt(req.params.id);

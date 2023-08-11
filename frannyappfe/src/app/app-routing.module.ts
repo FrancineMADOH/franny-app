@@ -34,6 +34,7 @@ import { BlogStatsComponent } from './blog/blog-stats/blog-stats.component';
 import { PerformanceComponent } from './beauty/performance/performance.component';
 import { CategoryComponent } from './beauty/category/category.component';
 import { BookPrestationComponent } from './beauty/book-prestation/book-prestation.component';
+import { MakepaiementComponent } from './beauty/makepaiement/makepaiement.component';
 
 
 const routes: Routes = [
@@ -76,6 +77,7 @@ const routes: Routes = [
   {path:"beauty/faqs", component:FaqsComponent},
   {path:"beauty/category/:catName", component: CategoryComponent},
   {path:"beauty/:category/book/:id", component: BookPrestationComponent},
+  {path:"beauty/rendezvous/payment/:id", component: MakepaiementComponent}
  
 
 
