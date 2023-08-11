@@ -16,6 +16,8 @@ CREATE TABLE rendezvous(
     comments VARCHAR(255),
     cancellation_reason VARCHAR(255),
     is_review BOOLEAN NOT NULL DEFAULT FALSE,
+    paiement_method VARCHAR(100),
+    paiement_date VARCHAR(100),
     FOREIGN KEY (prestation) REFERENCES prestations(pres_id) ON DELETE CASCADE,
     FOREIGN KEY (doneby) REFERENCES beautifyers(beautif_id) ON DELETE CASCADE
 );

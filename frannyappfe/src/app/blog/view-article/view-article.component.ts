@@ -36,7 +36,7 @@ export class ViewArticleComponent implements OnInit {
 
   ngOnInit(): void {
 
-    setTimeout(() => {
+  setTimeout(() => {
       this.loading = false;
     }, 1000);
 
@@ -70,7 +70,6 @@ onComment(commentForm:any){
     commentForm.value.comment_date = new Date().toLocaleDateString();
     if(commentForm.valid){
      this.comment = commentForm.value;
-     console.log(commentForm.value)
      this.blog.addComment(this.comment).subscribe((res:any)=>{
       this.succesMessage = res.message;
      })

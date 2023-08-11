@@ -31,6 +31,7 @@ import { AssignrdvComponent } from './assignrdv/assignrdv.component';
 import { PerformanceComponent } from './performance/performance.component';
 import { CategoryComponent } from './category/category.component';
 import { BookPrestationComponent } from './book-prestation/book-prestation.component';
+import { MakepaiementComponent } from './makepaiement/makepaiement.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { BookPrestationComponent } from './book-prestation/book-prestation.compo
     AssignrdvComponent,
     PerformanceComponent,
     CategoryComponent,
-    BookPrestationComponent
+    BookPrestationComponent,
+    MakepaiementComponent
   ],
   imports: [
     CommonModule,

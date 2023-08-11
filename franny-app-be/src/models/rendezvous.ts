@@ -16,7 +16,9 @@ export type Rendezvous = {
     ville: string,
     quartier: string,
     comments: string,
-    is_review?:boolean
+    is_review?:boolean,
+    payment_method: string,
+    payment_date: string,
 }
 export class rdvStore {
 
@@ -89,6 +91,17 @@ export class rdvStore {
         conn.release();
         return result.rows[0];
     }
+
+    //make paiement 
+    async makepaiement(rdv_id:number,rdvstate:string,pm:string,pdate:string){
+        const conn = await client.connect();
+        const sql_command = "UPDATE rendezvous SET rdvstate=$2, payment_method=$3,payment_date=$4 WHERE rdv_id=$1;"
+        const result = await conn.query(sql_command,[rdv_id,rdvstate,pm,pdate]);
+        conn.release();
+        return result.rows[0];
+    }
+
+    //cancel rdv
     async cancel(rdv_id:number,rdvstate:string,cancellation_reason:string):Promise<void>{
         const conn = await client.connect();
         const sql_command = "UPDATE rendezvous SET rdvstate=$2,cancellation_reason=$3 WHERE rdv_id=$1;"

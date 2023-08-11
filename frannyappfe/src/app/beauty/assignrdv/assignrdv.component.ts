@@ -34,9 +34,7 @@ export class AssignrdvComponent implements OnInit {
   //assign
   assignApointment(assignrdvForm:any){
     if(this.assignrdvForm.valid){
-
       this.beauty.assignRendezvous(this.id,this.assignrdvForm.value.doneby,this.rdvstate).subscribe((res:any)=>{
-        console.log(res.message);
         alert(res.message);
         this.router.navigate(["/beauty/rendezvous"]);
       });
