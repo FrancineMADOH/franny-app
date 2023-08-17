@@ -13,6 +13,7 @@ export class MakepaiementComponent implements OnInit {
   rdvstate ="Completed";
   rdv!:Rendezvous;
   isloading=true;
+  paid = false;
   @ViewChild("paymentForm",{static:true} )paymentForm:any;
 
 
@@ -41,6 +42,7 @@ export class MakepaiementComponent implements OnInit {
         alert(res.message);
       })
       paymentForm.reset();
+      this.paid = true;
      }
   }
 
