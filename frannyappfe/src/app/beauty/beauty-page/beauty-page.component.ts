@@ -55,6 +55,7 @@ export class BeautyPageComponent implements OnInit {
             this.reviews.push(data);
           })
           this.reviewsthree = this.reviews.slice(-3);
+          console.log(this.reviews)
         })})
   }
 

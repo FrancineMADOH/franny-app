@@ -17,7 +17,7 @@ import { ReviewComponent } from './review/review.component';
 import { BeautifyerComponent } from './beautifyer/beautifyer.component';
 import { RdvComponent } from './rdv/rdv.component';
 import { BeautyPageComponent } from './beauty-page/beauty-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AddRdvComponent } from './add-rdv/add-rdv.component';
 import { AddBeautifComponent } from './add-beautif/add-beautif.component';
 import { AddPrestationComponent } from './add-prestation/add-prestation.component';
@@ -70,7 +70,8 @@ import { MakepaiementComponent } from './makepaiement/makepaiement.component';
     CommonModule,
     CoreModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class BeautyModule { }
