@@ -68,6 +68,7 @@ export class BeautifyerFormComponent implements OnInit {
                 ville: res.data.ville,
                 create_by: res.data.create_by,
                 beautifcode: res.data.beautifcode,
+                id_number: res.data.id_number,
                 //admin_name: res.data.admin_name
               })
             }

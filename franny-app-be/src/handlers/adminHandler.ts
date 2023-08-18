@@ -60,8 +60,7 @@ export class adminHandler {
     async index(req:Request, res:Response){
         try{
             const admins = await adStore.index();
-            res.status(200);
-            res.json(admins);
+            res.status(200).json(admins);
         }catch(err){
             console.log(err);
             res.status(500).json(err);
@@ -134,7 +133,7 @@ export class adminHandler {
             const email = req.body.email;
             const del_admin = await adStore.delete(email);
             res.status(200);
-            res.json({message:"Admin succesfully deleted! This action is irreverssible"});
+            res.json({message:"Admin succesfully deleted! This action is irreversible"});
         }catch(err){
             console.log(err);
             res.status(500).json(err);

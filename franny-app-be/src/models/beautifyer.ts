@@ -10,14 +10,15 @@ export type Beautifyer = {
     recruit_date:string,
     ville:string,
     create_by: number,
-    beautifcode:string
+    beautifcode:string,
+    cni_number:number
     
 };
 
 export class beautyStore{
     async create(b:Beautifyer):Promise<Beautifyer> {
         const conn = await client.connect();
-        const sql_command = "INSERT INTO beautifyers(bname,email,quartier,phone,details,recruit_date,ville,create_by,beautifcode) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *;";
+        const sql_command = "INSERT INTO beautifyers(bname,email,quartier,phone,details,recruit_date,ville,create_by,beautifcode,cni_number) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *;";
         const result = await conn.query(sql_command,[
             b.bname,
             b.email,
@@ -27,7 +28,8 @@ export class beautyStore{
             b.recruit_date,
             b.ville,
             b.create_by,
-            b.beautifcode
+            b.beautifcode,
+            b.cni_number
         ]);
         conn.release();
         return  result.rows[0];
@@ -45,7 +47,7 @@ export class beautyStore{
     //update
      async update(id:number,b:Beautifyer):Promise<Beautifyer> {
         const conn = await client.connect();
-        const sql_command = "UPDATE beautifyers SET bname=$2,email=$3,quartier=$4,phone=$5,details=$6,recruit_date=$7,ville=$8,create_by=$9,beautifcode=$10  WHERE beautif_id=$1 RETURNING *;";
+        const sql_command = "UPDATE beautifyers SET bname=$2,email=$3,quartier=$4,phone=$5,details=$6,recruit_date=$7,ville=$8,create_by=$9,beautifcode=$10,cni_number=$11  WHERE beautif_id=$1 RETURNING *;";
         const result = await conn.query(sql_command,[id,
             b.bname,
             b.email,
@@ -55,7 +57,8 @@ export class beautyStore{
             b.recruit_date,
             b.ville,
             b.create_by,
-            b.beautifcode
+            b.beautifcode,
+            b.cni_number
         ]);
         conn.release();
         return  result.rows[0];

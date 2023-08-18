@@ -6,7 +6,7 @@ const revRouter = express.Router();
 const methods =  new revHandler();
 
 revRouter.post("",methods.create);
-revRouter.get("",verifyToken, methods.index);
+revRouter.get("", methods.index);
 revRouter.get("/:id", verifyToken, methods.show);
 
 export default revRouter;

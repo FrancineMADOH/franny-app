@@ -6,9 +6,9 @@ const commentRouter = express.Router();
 const methods =  new commentHandler();
 
 commentRouter.post("", methods.create);
-commentRouter.get("", methods.index);
+commentRouter.get("/:id", methods.index);
 commentRouter.get("/count", methods.count);
-commentRouter.delete("",verifyToken,methods.delete);
+commentRouter.delete("/:id",verifyToken,methods.delete);
 
 export default commentRouter;
 

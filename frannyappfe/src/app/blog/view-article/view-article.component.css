@@ -3,3 +3,10 @@
     border-radius: 2%;
     padding: 1%;
 }
+
+.Comment{
+    display: none;
+}
+.sronly{
+    height: 100%;
+}

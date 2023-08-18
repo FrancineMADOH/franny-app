@@ -37,7 +37,6 @@ export class presHandler {
             res.status(500).json(err);
         }
     }
-
     
 
     async update(req:Request,res:Response){
@@ -51,4 +50,16 @@ export class presHandler {
             res.status(500).json(err.message);
         }
     }
+
+    async category(req:Request,res:Response){
+        const category= req.params.category;
+        try{
+            const data = await pres.category(category)
+            res.status(200).json(data);
+        }catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+
 }

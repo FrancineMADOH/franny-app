@@ -66,6 +66,10 @@ export class BeautyService {
     return this.http.get(environment.baseUrl + `/prestations/${id}`).pipe(catchError(this.handleError));
   }
 
+  getPrestationBCategory(category:string):Observable<any>{
+    return this.http.get(environment.baseUrl + `/prestations/category/${category}`).pipe(catchError(this.handleError));
+
+  }
   //rendez vous service
   createRendezvous(rdv:Rendezvous):Observable<Rendezvous>{
     return this.http.post<Rendezvous>(environment.baseUrl + "/rendezvous",rdv).pipe(catchError(this.handleError));
@@ -86,8 +90,12 @@ export class BeautyService {
     return this.http.put<Rendezvous>(environment.baseUrl + `/rendezvous/cancel/${id}`,{rdvstate,cancellation_reason}).pipe(catchError(this.handleError));
   }
 
+  makepaiement(id:number,rdvstate:string,pm:string){
+    return this.http.put<Rendezvous>(environment.baseUrl + `/rendezvous/payment/${id}`,{rdvstate,pm}).pipe(catchError(this.handleError));
+  }
 
-  // getRendezvousByState(state:string):Observable<Rendezvous[]>{
+
+  // getRendezvousByState(state:string):Observable<Rendezvous[]>{/payment/:id
   //   return this.http.get<Rendezvous[]>(environment.baseUrl + "").pipe(catchError(this.handleError));
 
   // }  use req.query to retreive rdv by state and by a certain period

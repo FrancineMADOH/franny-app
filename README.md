@@ -28,7 +28,7 @@ GRANT ALL PRIVILEGES ON DATABASE franny_test TO user;
 
 * Add a `database.json` file in the root of your  project and provide values following this pattern for different environment and to make sure your project will connect to different database depending on the environment.
 
-{
+```{
     "dev":{
         "driver":"pg",
         "host":"127.0.0.1",
@@ -43,7 +43,7 @@ GRANT ALL PRIVILEGES ON DATABASE franny_test TO user;
         "user":"your-pg-username",
         "password":"your-pg-username"
     }
-}
+}```  
 
 In the root of the project add a .env file and provide values for the following variables:
 

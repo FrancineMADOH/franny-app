@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './authentication/authComponents/dashboard/dashboard.component';
@@ -31,6 +31,11 @@ import { ConfirmationComponent } from './beauty/confirmation/confirmation.compon
 import { AssignrdvComponent } from './beauty/assignrdv/assignrdv.component';
 import { CancelrdvComponent } from './beauty/cancelrdv/cancelrdv.component';
 import { BlogStatsComponent } from './blog/blog-stats/blog-stats.component';
+import { PerformanceComponent } from './beauty/performance/performance.component';
+import { CategoryComponent } from './beauty/category/category.component';
+import { BookPrestationComponent } from './beauty/book-prestation/book-prestation.component';
+import { MakepaiementComponent } from './beauty/makepaiement/makepaiement.component';
+
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -39,12 +44,12 @@ const routes: Routes = [
   {path:"reset", component:ResetFormComponent},
   {path:"login", component:LoginFormComponent},
   //make a route for update profile
-  {path:"blog",  component:BlogViewComponent },
-  {path:"posts",  component:AllArticlesComponent, canActivate:[AuthGuard]},
+  // {path:"posts",  component:AllArticlesComponent },
+  {path:"posts",  component:AllArticlesComponent},
   {path:"posts/new", component: NewArticleComponent, canActivate:[AuthGuard]},
   {path:"admin", component:AdministrationComponent, canActivate:[AuthGuard]},
-  {path:"posts/edit", component:EditArticleComponent, canActivate:[AuthGuard]},
-  {path:"posts/view/:slug", component:ViewArticleComponent, canActivate:[AuthGuard]},
+  {path:"posts/edit/:id", component:EditArticleComponent, canActivate:[AuthGuard]},
+  {path:"posts/view/:id/:slug", component:ViewArticleComponent},
   {path:"id/bibliographie", component: BibliographieComponent, canActivate:[AuthGuard]},
   {path:"posts/statistics",component: BlogStatsComponent,canActivate:[AuthGuard] },
   {path:"beauty/faqs", component:FaqsComponent, canActivate:[AuthGuard]},
@@ -54,7 +59,6 @@ const routes: Routes = [
   {path:"beauty/rendezvous", component:RdvComponent},
   {path:"beauty/beautifyers", component:BeautifyerComponent, canActivate:[AuthGuard]},
   {path:"beauty/reviews", component:ReviewComponent, canActivate:[AuthGuard]},
-  {path:"beauty/faqs", component:FaqsComponent, canActivate:[AuthGuard]},
   {path:"beauty/prestations", component:PrestationComponent, canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/add", component:AddRdvComponent, canActivate:[AuthGuard]},
   {path:"beauty/beautifyers/add", component: AddBeautifComponent, canActivate:[AuthGuard]},
@@ -62,6 +66,7 @@ const routes: Routes = [
   {path:"beauty/rendezvous/update/:id", component:UpdateRdvComponent, canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/assign/:id", component:AssignrdvComponent , canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/cancel/:id", component:CancelrdvComponent , canActivate:[AuthGuard]},
+  {path:"beauty/preformance", component:PerformanceComponent,canActivate:[AuthGuard]},
 
   {path:"beauty/beautifyers/update/:id", component:UpdateBeautifComponent, canActivate:[AuthGuard]},
   {path:"beauty/prestations/update/:id", component:UpdatePrestationComponent, canActivate:[AuthGuard]},
@@ -69,6 +74,12 @@ const routes: Routes = [
   //unprotected routes
   {path:"beauty/rendezvous/confirmation",component:ConfirmationComponent},
   {path:"beauty/reviews/add/:id", component:AddReviewComponent},
+  {path:"beauty/faqs", component:FaqsComponent},
+  {path:"beauty/category/:catName", component: CategoryComponent},
+  {path:"beauty/:category/book/:id", component: BookPrestationComponent},
+  {path:"beauty/rendezvous/payment/:id", component: MakepaiementComponent}
+ 
+
 
 
 ];
