@@ -14,5 +14,6 @@ rdvRouter.get("/:id",verifyToken,methods.show)
 rdvRouter.get("/:state",verifyToken, methods.state);
 rdvRouter.get("/:state",verifyToken, methods.stateCount);
 rdvRouter.put("/:id",verifyToken, methods.delete);
+rdvRouter.put("/payment/:id", methods.makepaiement);
 
 export default rdvRouter;

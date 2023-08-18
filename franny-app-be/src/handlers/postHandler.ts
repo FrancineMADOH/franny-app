@@ -22,7 +22,7 @@ export class postHandler {
     } 
 
     //sanitized the request body
-    let sanitizedHtml =  dompurify.sanitize(marked.parse(req.body.post.content));
+    let sanitizedHtml =  dompurify.sanitize(marked(req.body.post.content));
         const post:Post = {
             title : req.body.post.title,
             summary : req.body.post.summary,
@@ -44,6 +44,39 @@ export class postHandler {
             res.status(500).json({err});
         }
     }
+
+        //update
+        async update(req:Request, res:Response){
+            
+                console.log(req.body)
+                const {error} = postValidation(req.body.posttitle)
+                let slug =  slugify(req.body.post.title, {lower:true, strict:true});
+                if(error){
+                    return res.status(400).json(error.details[0].message);
+                } 
+            
+                //sanitized the request body
+                let sanitizedHtml =  dompurify.sanitize(marked(req.body.post.content));
+                    const post:Post = {
+                        title : req.body.post.title,
+                        summary : req.body.post.summary,
+                        content : sanitizedHtml,
+                        category : req.body.post.category,
+                        slug : slug,
+                        illustration:req.body.post.illustration,
+                        author: req.body.post.author,
+                        create_at: req.body.post.create_at,
+                        applause:0
+                    }
+                    try{  
+                const id = parseInt(req.params.id);
+                await poststore.update(post,id);
+                res.status(200).json({message:"Post updated!"});
+            }catch(err){
+                console.log(err);
+                res.status(500).json(err);
+            }
+        }
 
     //index
     async index(req:Request, res:Response){
@@ -71,8 +104,9 @@ export class postHandler {
 
     //topten
     async topten(req:Request, res:Response){
+        const id= Number(req.params.id);
         try{
-            const posts = await poststore.topten();
+            const posts = await poststore.topten(id);
             res.status(200);
             res.json(posts);
         }catch(err){
@@ -118,28 +152,12 @@ export class postHandler {
     }
 
 
-    //update
-    async update(req:Request, res:Response){
-        try{
-            const {error } = postValidation(req.body);
-            if(error) return res.status(400).send(error.details[0].message);
-
-            const post = req.body;
-            const id = parseInt(req.params.id);
-            const post_up = await poststore.update(post,id);
-            res.status(200).json(post_up);
-        }catch(err){
-            console.log(err);
-            res.status(500).json(err);
-        }
-    }
-
     //delete
     async delete(req:Request, res:Response){
         try{
             const id = parseInt(req.params.id);
             const post = await poststore.delete(id);
-            res.status(200).json(post);
+            res.status(200).json({message:"Post deleted!"});
         }catch(err){
             console.log(err);
             res.status(500).json(err);

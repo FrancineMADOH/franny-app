@@ -17,7 +17,7 @@ import { ReviewComponent } from './review/review.component';
 import { BeautifyerComponent } from './beautifyer/beautifyer.component';
 import { RdvComponent } from './rdv/rdv.component';
 import { BeautyPageComponent } from './beauty-page/beauty-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AddRdvComponent } from './add-rdv/add-rdv.component';
 import { AddBeautifComponent } from './add-beautif/add-beautif.component';
 import { AddPrestationComponent } from './add-prestation/add-prestation.component';
@@ -28,6 +28,10 @@ import { UpdatePrestationComponent } from './update-prestation/update-prestation
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CancelrdvComponent } from './cancelrdv/cancelrdv.component';
 import { AssignrdvComponent } from './assignrdv/assignrdv.component';
+import { PerformanceComponent } from './performance/performance.component';
+import { CategoryComponent } from './category/category.component';
+import { BookPrestationComponent } from './book-prestation/book-prestation.component';
+import { MakepaiementComponent } from './makepaiement/makepaiement.component';
 
 
 @NgModule({
@@ -56,13 +60,18 @@ import { AssignrdvComponent } from './assignrdv/assignrdv.component';
     UpdatePrestationComponent,
     ConfirmationComponent,
     CancelrdvComponent,
-    AssignrdvComponent
+    AssignrdvComponent,
+    PerformanceComponent,
+    CategoryComponent,
+    BookPrestationComponent,
+    MakepaiementComponent
   ],
   imports: [
     CommonModule,
     CoreModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class BeautyModule { }

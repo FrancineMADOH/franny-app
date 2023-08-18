@@ -8,12 +8,12 @@ export class commentHandler {
 
     async create(req:Request, res:Response){
         try{
-            const {error } = commentValidation(req.body);
+            const {error } = commentValidation(req.body.comment);
             if(error) return res.status(400).send(error.details[0].message);
-            const data = req.body;
+            const data = req.body.comment;
             const new_comment  =  await comStore.create(data);
             res.status(201);
-            res.json(new_comment);
+            res.json({data: new_comment,message:"Comment added!"});
         }catch(err){
             console.log(err);
             res.status(500).json(err);
@@ -22,8 +22,9 @@ export class commentHandler {
 
     //index
     async index(req:Request, res:Response){
+        const post = Number(req.params.id)
         try{
-            const comments =  await comStore.index(1);
+            const comments =  await comStore.index(post);
             res.json(comments);
         }catch(err){
             console.log(err);
@@ -45,9 +46,10 @@ export class commentHandler {
 
     //delete
     async delete(req:Request, res:Response){
+        const id = Number(req.params.id);
         try{
-            const del_article = await comStore.delete(1);
-            res.json(del_article);
+             await comStore.delete(id);
+            res.json({message:"Comment successfully deleted"});
         }catch(err){
             console.log(err);
             res.status(500).json(err);

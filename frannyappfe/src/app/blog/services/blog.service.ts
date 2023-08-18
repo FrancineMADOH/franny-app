@@ -23,13 +23,40 @@ export class BlogService {
   }
   
   viewPost(id:number):Observable<Post>{
-    return this.http.get<Post>(environment.baseUrl +`/posts/${id}`).pipe(catchError(this.handleErrors));
+    return this.http.get<Post>(environment.baseUrl +`/posts/show/${id}`).pipe(catchError(this.handleErrors));
   }
 
   saveBlogPost(post:Post):Observable<Post>{
     return this.http.post<any>(environment.baseUrl+"/posts", {post}).pipe(catchError(this.handleErrors));
   }
 
+  deletePost(id:number):Observable<Post>{
+    return this.http.delete<any>(environment.baseUrl+`/posts/${id}`).pipe(catchError(this.handleErrors));
+
+  }
+
+  //addcomment
+  addComment(comment:Comment ):Observable<any>{
+    return this.http.post<Comment>(environment.baseUrl + "/comments",{comment}).pipe(catchError(this.handleErrors));
+  }
+  //count comment 
+  countComment():Observable<number>{
+    return this.http.get<number>(environment.baseUrl + "/comments/count").pipe(catchError(this.handleErrors));
+  }
+  //all comments
+  getallComment(id:number):Observable<Comment[]>{
+    return this.http.get<Comment[]>(environment.baseUrl + `/comments/${id}`).pipe(catchError(this.handleErrors));
+  }
+  //delete comment
+  deleteComment(id:number):Observable<any>{
+    return this.http.delete<any>(environment.baseUrl + `/comments/${id}`).pipe(catchError(this.handleErrors));
+  }
+
+  //top applause
+  topApplause(id:number): Observable<any>{
+    return this.http.get<any>(environment.baseUrl + `/posts/topten/${id}`).pipe(catchError(this.handleErrors));
+
+  }
 
 
   //handle errors

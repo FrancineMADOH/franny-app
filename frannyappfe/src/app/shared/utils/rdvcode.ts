@@ -1,6 +1,6 @@
 
 //generate rendez vous code 
-function generaterdvCode(name: string, date: string, ville: string, quarter: string, pres: string, type: string) {
+function generaterdvCode(name: string, date: string, ville: string, quarter: string, pres: string) {//type: string
 
     let all_initials = "";
     //annee
@@ -20,9 +20,10 @@ function generaterdvCode(name: string, date: string, ville: string, quarter: str
     console.log(initial_quartier)
     //prestation
     let initial_pres = pres.slice(0,2);
+    console.log(initial_pres)
      //type
-    let initial_type = type.slice(0,2);
-    all_initials = (dateCode  +'/'+ initials + '/'+ initial_ville +'/'+ initial_quartier + '/'+ initial_pres + initial_type).toLocaleUpperCase();
+    //let initial_type = type.slice(0,2);
+    all_initials = (dateCode  +'/'+ initials + '/'+ initial_ville +'/'+ initial_quartier + '/'+ initial_pres ).toLocaleUpperCase();//+ initial_type
     return all_initials.toLocaleUpperCase();
 }
 

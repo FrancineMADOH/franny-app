@@ -1,10 +1,62 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Post, PostResult } from '../../models/post';
+import { BlogService } from '../../services/blog.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/authentication/services/auth.service';
 
 @Component({
   selector: 'app-article-card',
   templateUrl: './article-card.component.html',
   styleUrls: ['./article-card.component.css']
 })
-export class ArticleCardComponent {
+export class ArticleCardComponent implements OnInit {
+
+  post!:PostResult;
+  postList:PostResult[] = [];
+  filteredPostList:PostResult[] = [];
+  isAdmin!:boolean;
+
+  constructor(private blog:BlogService,
+    private auth:AuthService,
+     private route:ActivatedRoute,private router:Router){
+    this.filteredPostList = this.postList;
+  }
+
+  ngOnInit(): void {
+    this.isAdmin= this.auth.isLogin()
+       this.blog.getblogpostList().subscribe((data)=>{
+        data.map((post:any)=>{
+          this.postList.push(post);
+          return this.postList;
+        })});
+    
+  }
+
+  viewblogPost(id:number,slug:string){ 
+    this.router.navigate(['posts/view/' + id +'/' +  slug]);
+  }
+  editblogPost(id:number){
+    this.router.navigate(['posts/edit/' + id]);
+  }
+  deleteblogPost(id:number){
+    this.blog.deletePost(id).subscribe((res:any)=>{
+      alert(res.message);
+    });
+    window.location.reload();
+  }
+
+  
+  searchArticleByTerm(query:string){
+    const searchterm = query.search.toString();
+    if(!query){
+      this.filteredPostList = this.postList;
+    }
+  this.filteredPostList = this.postList.filter(
+    PostResult =>
+    PostResult?.title.toLowerCase().includes(searchterm.toLocaleLowerCase()) ||
+    PostResult?.category.toLowerCase().includes(searchterm.toLocaleLowerCase()) ||
+    PostResult?.content.toLowerCase().includes(searchterm.toLocaleLowerCase())
+     )
+  }
 
 }

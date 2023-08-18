@@ -4,6 +4,7 @@ import { faArrowRight, faEnvelope, faKey } from '@fortawesome/free-solid-svg-ico
 import { AuthService } from '../../services/auth.service';
 
 
+
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -20,7 +21,8 @@ export class LoginFormComponent implements OnInit {
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   @ViewChild("loginForm", { static:true}) loginForm:any;
-  constructor(private router: Router, private auth: AuthService) {
+  constructor(private router: Router, 
+    private auth: AuthService) {
   }
 
   ngOnInit(): void {

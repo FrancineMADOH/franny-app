@@ -7,7 +7,7 @@ CREATE TABLE rendezvous(
     doneby INT DEFAULT NULL,
     prestation INT NOT NULL ,
     category VARCHAR(50) NOT NULL,
-    rdvstate VARCHAR(20) DEFAULT 'Scheduled',
+    rdvstate VARCHAR(20) DEFAULT 'Scheduled', --WHEN rdvstate !="Cancelled" & CAST(rdvdate) AS DATE < now() THEN "Completed" ELSE "" END,
     rdvcode VARCHAR(50),
     rdvtype VARCHAR(50) NOT NULL,
     rdv_price INT NOT NULL,
@@ -15,6 +15,9 @@ CREATE TABLE rendezvous(
     quartier VARCHAR(100) NOT NULL,
     comments VARCHAR(255),
     cancellation_reason VARCHAR(255),
+    is_review BOOLEAN NOT NULL DEFAULT FALSE,
+    paiement_method VARCHAR(100),
+    paiement_date VARCHAR(100),
     FOREIGN KEY (prestation) REFERENCES prestations(pres_id) ON DELETE CASCADE,
     FOREIGN KEY (doneby) REFERENCES beautifyers(beautif_id) ON DELETE CASCADE
 );

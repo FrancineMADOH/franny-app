@@ -1,4 +1,4 @@
-<div class="card m-3" style="width: 18rem;" *ngFor="let el of faqList">
+<div class="card m-3"  *ngFor="let el of faqList">
   <div class="card-body">
     <h5 class="card-title">{{el.question}}</h5>
     <h6 class="car-title text-muted">{{el.category}}</h6>
@@ -6,7 +6,7 @@
 
     <!-- Button trigger modal -->
    
-    <form #deleteFaqForm="ngForm" (ngSubmit)="deleteFaq(el.faq_id)" class="my-2">
+    <form #deleteFaqForm="ngForm" *ngIf="isAuth" (ngSubmit)="deleteFaq(el.faq_id)" class="my-2">
       
       <button type="submit"  class="btn btn-danger">Delete</button>
     </form>

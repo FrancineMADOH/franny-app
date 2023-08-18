@@ -12,8 +12,10 @@ export class RdvCardComponent implements OnInit{
 
   rdvList:Rendezvous[] = []; 
   filteredrdvList:Rendezvous[] = [];
-  iscancelled = false;
-
+  CancelApt = "Cancelled";
+  schedApt= "Scheduled"
+  OnApt= "Ongoing"
+  complApt= "Completed"
   constructor(private router:Router , private beauty:BeautyService){
         this.filteredrdvList = this.rdvList;
 
@@ -23,7 +25,6 @@ export class RdvCardComponent implements OnInit{
     this.beauty.getRendezvousList().subscribe((res)=>{
       res.map((data)=>{
         this.rdvList.push(data);
-        console.log(this.rdvList);
         return this.rdvList;
       })
     })
@@ -38,6 +39,9 @@ export class RdvCardComponent implements OnInit{
   }
   gotoCancel(id:number){
     this.router.navigate(["/beauty/rendezvous/cancel/"+id])
+  }
+  gotoPayment(id:number){
+    this.router.navigate(["/beauty/rendezvous/payment/"+id])
   }
 
 }

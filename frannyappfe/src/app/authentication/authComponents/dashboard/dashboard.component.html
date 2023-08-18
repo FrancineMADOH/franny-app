@@ -3,13 +3,13 @@
         <!-- <div class="col-lg-10">  -->
         <div class="col-lg-2  profile" id="profile">
             <h4 class="my-4 text-center">Profile</h4>
-            <h6> Welcome<span> {{ this.currentUser.username }}</span> </h6>
+            <h6> Welcome<span> {{ user.username }}</span> </h6>
             <div class="invisible_on_phone">
             <h6 class="m-3 text-center">Socials Links</h6>
             <ul class="social_links m-2">
-                <li >  <a class="fa" href="'{{this.currentUser.facebook_url}}'" target="_blank" rel="noopener noreferrer">&#xf09a;     Facebook </a> </li>
-                <li >  <a class="fa" href="'{{this.currentUser.twitter_url}}'" target="_blank" rel="noopener noreferrer">&#xf099;  Twitter</a> </li>
-                <li >  <a class="fa" href="'{{this.currentUser.linkedin_url}}'" target="_blank" rel="noopener noreferrer">&#xf0e1;     LinkedIn</a> </li>
+                <li >  <a class="fa" [href]="'{{fcbk}}'" target="_blank" rel="noopener noreferrer">&#xf09a;     Facebook </a> </li>
+                <li >  <a class="fa" [href]="'{{twitter}}'" target="_blank" rel="noopener noreferrer">&#xf099;  Twitter</a> </li>
+                <li >  <a class="fa" [href]="'{{linked}}'" target="_blank" rel="noopener noreferrer">&#xf0e1;     LinkedIn</a> </li>
             </ul>
             </div>
             <p class="m-4">
