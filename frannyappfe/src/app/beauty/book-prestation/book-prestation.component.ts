@@ -22,6 +22,7 @@ export class BookPrestationComponent implements OnInit {
 
   personal_step = false;
   service_step = false;
+  confirmation_step = false;
   step = 1;
 
   category!:string;
@@ -30,6 +31,9 @@ export class BookPrestationComponent implements OnInit {
   rdvdate!:string;
   rdvcode!:string;
   rdv!:any;
+  rdvfromServer!:any;
+
+  presAvailable =  false;
 
   constructor(private formBuilder:FormBuilder,
     private router:Router,
@@ -47,6 +51,11 @@ export class BookPrestationComponent implements OnInit {
         return item.quartier ;
       });
     });
+
+    //display prestation
+    setTimeout(() => {
+      this.presAvailable = true;  
+    }, 1000);
     
     //get the current prestation
     this.beauty.getPrestation(Number(this.pres_id)).subscribe((pres:any)=>{
@@ -69,9 +78,6 @@ export class BookPrestationComponent implements OnInit {
       rdvdate:[null,Validators.required],
       rdvtime:["",Validators.required],
       comments:["",Validators.required]
-
-    //confirmation component
-
     });
     
   }
@@ -95,7 +101,9 @@ export class BookPrestationComponent implements OnInit {
       this.service_step = true;
       this.personal_step =  false;
       if(this.serviceDetails.invalid){return }
-      //this.step++;
+      setTimeout(() => {
+        this.step++;
+      }, 1000);
     }
   }
 
@@ -109,7 +117,7 @@ export class BookPrestationComponent implements OnInit {
 
   //submit the form 
   onSubmit(){
-     this.service_step = true;
+     //this.service_step = true;
     if(this.serviceDetails.valid){
     this.rdvdate = this.serviceDetails.value.rdvdate + " "+ this.serviceDetails.value.rdvtime;
     //generate rdv code 
@@ -135,11 +143,16 @@ export class BookPrestationComponent implements OnInit {
           quartier:this.personalDetails.value.quartier ,
           comments: this.serviceDetails.value.comments,
     }
+    //save rdv to the database
     this.beauty.createRendezvous(this.rdv).subscribe((res:any)=>{
       console.log(res);
-    })
+      this.rdvfromServer = res.data;
+    });
 
-  
+    this.personalDetails.reset();
+    this.serviceDetails.reset();
+    this.confirmation_step = true;
+
   }
 
   backToPrestation(){}
