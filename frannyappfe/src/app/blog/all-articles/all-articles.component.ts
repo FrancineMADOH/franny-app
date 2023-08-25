@@ -15,9 +15,8 @@ export class AllArticlesComponent implements OnInit {
 constructor(private router:Router, private auth:AuthService){}
 
   ngOnInit(): void {
-    if(!this.auth.bEmail.value){
-      this.isAdmin = false;
-    }
+    this.isAdmin= this.auth.isLogin();
+   
     
 }
 goToNewArticlePage(){
