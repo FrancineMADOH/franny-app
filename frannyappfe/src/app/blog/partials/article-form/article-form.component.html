@@ -70,7 +70,13 @@
   </div>  -->
     <div  class="my-4 form-group">
         <label for="illustration">Add Illustration</label>
-        <input type="file" #illustration="ngModel" ngModel name="illustration"  id="illustration">
+        <input 
+        type="file"
+         multiple="multiple" 
+         accept="image/*"
+          #illustration="ngModel" 
+          ngModel 
+          name="illustration"  id="illustration">
      </div>
      <button type="submit"  [disabled]="!addArticle.valid" class="btn btn-success m-3  ">Publish</button>
 </form>

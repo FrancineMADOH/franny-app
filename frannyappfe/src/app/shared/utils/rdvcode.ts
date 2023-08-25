@@ -7,20 +7,15 @@ function generaterdvCode(name: string, date: string, ville: string, quarter: str
     let splited_date = date.split("-")
     let year = splited_date[0].slice(2, 4);
     const dateCode = year + splited_date[1] + splited_date[2].slice(0,2);
-    console.log(dateCode)
     //name
     let splittedName = name.split(" ");
     let init = splittedName.map((el) => el.charAt(0)).join("");
     let initials = init.slice(0, 2);
-    console.log(initials)
-
     //ville
     let initial_ville = (ville[0] + ville.slice(-3)).trim();
     let initial_quartier =  quarter[0] + quarter[1] + quarter.slice(-2) ;
-    console.log(initial_quartier)
     //prestation
     let initial_pres = pres.slice(0,2);
-    console.log(initial_pres)
      //type
     //let initial_type = type.slice(0,2);
     all_initials = (dateCode  +'/'+ initials + '/'+ initial_ville +'/'+ initial_quartier + '/'+ initial_pres ).toLocaleUpperCase();//+ initial_type

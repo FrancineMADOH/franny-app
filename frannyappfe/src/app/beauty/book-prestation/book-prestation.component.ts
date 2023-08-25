@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BeautyService } from '../services/beauty.service';
 import { SelectServiceService } from '../services/select-service.service';
+import { Prestation } from '../models/prestation';
+import generaterdvCode from 'src/app/shared/utils/rdvcode';
+import { Rendezvous } from '../models/rdv';
 
 @Component({
   selector: 'app-book-prestation',
@@ -21,6 +24,13 @@ export class BookPrestationComponent implements OnInit {
   service_step = false;
   step = 1;
 
+  category!:string;
+  prestation!:Prestation;
+  pres_id!:string
+  rdvdate!:string;
+  rdvcode!:string;
+  rdv!:any;
+
   constructor(private formBuilder:FormBuilder,
     private router:Router,
     private route:ActivatedRoute,
@@ -29,11 +39,21 @@ export class BookPrestationComponent implements OnInit {
     ){}
 
   ngOnInit(): void {
+    this.pres_id = this.route.snapshot.params['id'];
+    this.category = this.route.snapshot.params['category'];
+    //get all yaounde location
     this.select.getAllLocation().subscribe((data:any)=>{
       this.AllQuartier = data.map((item:any)=>{
         return item.quartier ;
-      })
-    })
+      });
+    });
+    
+    //get the current prestation
+    this.beauty.getPrestation(Number(this.pres_id)).subscribe((pres:any)=>{
+      this.prestation = pres;
+    console.log(this.prestation)});
+
+    //personnal details form
     this.personalDetails = this.formBuilder.group({
       client_name:['',Validators.required],
       client_phone:[null,Validators.required],
@@ -42,14 +62,15 @@ export class BookPrestationComponent implements OnInit {
       quartier:["",Validators.required]
     });
 
+    //services details form
     this.serviceDetails = this.formBuilder.group({
-      prestation:["",Validators.required],//int
-      category:["",Validators.required],
       rdvtype:["",Validators.required],
       rdv_price:[null,Validators.required],
       rdvdate:[null,Validators.required],
       rdvtime:["",Validators.required],
       comments:["",Validators.required]
+
+    //confirmation component
 
     });
     
@@ -74,7 +95,7 @@ export class BookPrestationComponent implements OnInit {
       this.service_step = true;
       this.personal_step =  false;
       if(this.serviceDetails.invalid){return }
-      this.step++;
+      //this.step++;
     }
   }
 
@@ -88,13 +109,41 @@ export class BookPrestationComponent implements OnInit {
 
   //submit the form 
   onSubmit(){
-    //console.log(this)
-    this.service_step = true;
-    if(this.serviceDetails.invalid){return}
-    console.log(this.personalDetails.value);
-  console.log(this.serviceDetails.value);
+     this.service_step = true;
+    if(this.serviceDetails.valid){
+    this.rdvdate = this.serviceDetails.value.rdvdate + " "+ this.serviceDetails.value.rdvtime;
+    //generate rdv code 
+    this.rdvcode = generaterdvCode(
+        this.personalDetails.value.client_name,
+        this.rdvdate,
+        this.personalDetails.value.ville,
+        this.personalDetails.value.quartier,
+        this.prestation.title
+      );
+    }
+    this.rdv = {
+          client_name: this.personalDetails.value.client_name ,
+          client_phone:this.personalDetails.value.client_phone,
+          client_email:this.personalDetails.value.client_email,
+          rdvdate:this.rdvdate,
+          prestation:this.pres_id,
+          category:this.category,
+          rdvcode:this.rdvcode,
+          rdvtype:this.serviceDetails.value.rdvtype,
+          rdv_price:this.serviceDetails.value.rdv_price,
+          ville:this.personalDetails.value.ville ,
+          quartier:this.personalDetails.value.quartier ,
+          comments: this.serviceDetails.value.comments,
+    }
+    this.beauty.createRendezvous(this.rdv).subscribe((res:any)=>{
+      console.log(res);
+    })
+
+  
   }
 
   backToPrestation(){}
 
 }
+
+//https://mdbootstrap.com/docs/b4/jquery/plugins/rating/
