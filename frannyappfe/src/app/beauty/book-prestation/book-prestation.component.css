@@ -6,6 +6,10 @@
 }
 .cote-a-cote{
     display: flex;
+    flex-wrap: wrap;
+}
+.confirmation-card{
+    margin:0 auto;
 }
 
 

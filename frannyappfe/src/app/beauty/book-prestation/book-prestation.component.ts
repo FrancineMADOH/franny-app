@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild,OnDestroy,ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import domToImage from 'dom-to-image';
+import jsPDF, { jsPDFOptions } from 'jspdf';
+import moment from 'moment';
 import { BeautyService } from '../services/beauty.service';
 import { SelectServiceService } from '../services/select-service.service';
 import { Prestation } from '../models/prestation';
 import generaterdvCode from 'src/app/shared/utils/rdvcode';
-import { Rendezvous } from '../models/rdv';
+//https://medium.com/@vkbiotech841/how-to-export-html-to-pdf-file-in-angular-2e92ceb7755d
 
 @Component({
   selector: 'app-book-prestation',
@@ -34,13 +37,19 @@ export class BookPrestationComponent implements OnInit {
   rdvfromServer!:any;
 
   presAvailable =  false;
+  pdfName = "Carte Rendez-vous";
+  
+
 
   constructor(private formBuilder:FormBuilder,
     private router:Router,
     private route:ActivatedRoute,
     private beauty: BeautyService,
-    private select:SelectServiceService
+    private select:SelectServiceService,
+    //public dataToExport: ElementRef
     ){}
+
+    @ViewChild('dataToExport',  { read: ElementRef,static: false }) public dataToExport!:ElementRef;
 
   ngOnInit(): void {
     this.pres_id = this.route.snapshot.params['id'];
@@ -56,6 +65,7 @@ export class BookPrestationComponent implements OnInit {
     setTimeout(() => {
       this.presAvailable = true;  
     }, 1000);
+    //card
     
     //get the current prestation
     this.beauty.getPrestation(Number(this.pres_id)).subscribe((pres:any)=>{
@@ -154,9 +164,54 @@ export class BookPrestationComponent implements OnInit {
     this.confirmation_step = true;
 
   }
-
   backToPrestation(){}
+  
+  //generate pdf from rdv card
+  
+
+  public downloadAsPdf(): void {
+    //get the html element to convert and set properties
+    const width = this.dataToExport.nativeElement.clientWidth;
+    const height = this.dataToExport.nativeElement.clientHeight + 40;
+    //let orientation:jsPDFOptions["orientation"] = '' ;
+    let orientation: "p" | "portrait" | "l" | "landscape" | undefined
+    //let imageUnit = 'pt';
+    if (width > height) {
+    orientation = 'l';
+    } else {
+    orientation = 'p';
+    }
+    //convert html to image 
+    domToImage
+    .toPng(this.dataToExport.nativeElement, {
+    width: width,
+    height: height
+    })
+    .then(result => {
+      //from image to pdf
+    let jsPdfOptions:jsPDFOptions = {
+    orientation: orientation,
+    unit: "pt",
+    format: [width + 50, height + 220]
+    };
+    const pdf = new jsPDF(jsPdfOptions);
+    pdf.setFontSize(14);
+    pdf.setTextColor('#2585fe');
+    pdf.text(this.pdfName ? this.pdfName.toUpperCase() : 'Untitled dashboard'.toUpperCase(), 25, 75);
+    pdf.setFontSize(14);
+    pdf.setTextColor('#131523');
+    pdf.text('Date: ' + moment().format('ll'), 25, 25);
+    pdf.addImage(result, 'PNG', 25, 185, width, height); //TODO: Ajuster plus tard dans le css
+    pdf.save(this.rdvfromServer.rdvcode + '.pdf');
+    })
+    .catch(error => {
+      console.log("An error occurred: " + error)
+    });
+    }
+
+  
 
 }
 
 //https://mdbootstrap.com/docs/b4/jquery/plugins/rating/
+//https://medium.com/@vkbiotech841/how-to-export-html-to-pdf-file-in-angular-2e92ceb7755d

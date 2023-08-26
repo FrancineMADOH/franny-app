@@ -129,23 +129,23 @@
                 name="comments"></textarea>
             </div>
             <input type="button" (click)="previousStep()" name="previousStep" class="btn btn-primary nextStep action-button-previous" value="Etape Precedente">
-            <button type="submit" (click)="nextStep()"   [disabled]="!serviceDetails['valid']"  class="btn btn-success m-3">Confirmer</button>
+            <button type="submit" (click)="nextStep();"   [disabled]="!serviceDetails['valid']"  class="btn btn-success m-3">Confirmer</button>
         </form>
         <button (click)="backToPrestation()" *ngIf="step<=2" class="btn btn-danger m-3">Annuler</button>
 
     
-        <div class="confirmation-card" *ngIf="step == 3">
+        <div class="confirmation-card"  id="confirmationcard" *ngIf="step == 3">
             <h4>Felicitations 🎉🎉🎊 votre rendez-vous est reserve </h4>
-            <div class="card">
+            <div class="card prestation-card" #dataToExport>
                 <div class="card-header">
                     <h4 class="card-title">Franny Beauty</h4>
                     <h6 class="card-subtitle">Soins de beaute a domicile</h6>
                 </div>
                 <div class="card-body row">
                     <div class=" m-1">
-                        <p> <span class="mx-2"> Mr/Mrs:{{rdvfromServer.client_name}}</span> <span class="m-2">Contact:{{rdvfromServer.phone}} </span></p>
+                        <p> <span class="mx-2"> Mr/Mrs:{{rdvfromServer.client_name}}</span> <span class="m-2">Contact:{{rdvfromServer.client_phone}} </span></p>
                         <p><span class="mx-2"  >Prestation:{{prestation.title}} </span> <span class="mx-2">Prix:{{rdvfromServer.rdv_price}} </span></p>
-                        <p><span class="mx-2">Date:{{rdvfromServer.rdvdate}} </span><span class="mx-2">Heure:{{rdvfromServer.rdvdate}} </span></p>
+                        <p><span class="mx-2">Date:{{rdvfromServer.rdvdate.split(" ")[0]}} </span><span class="mx-2">Heure:{{rdvfromServer.rdvdate.split(" ")[1]}}</span></p>
                         <p><span class="mx-2">Ville:{{rdvfromServer.ville}} </span>/<span class="mx-2">Quartier:{{rdvfromServer.quartier}} </span></p>
                         <p></p>
                     </div>
@@ -157,16 +157,16 @@
                 </div>
                 <div class="card-footer text-muted">
                     <h6 class="text-center">Contactez-nous</h6>
-                    <p> <span>📱  </span><span>📧  </span></p>
-                    <p> <span>Facebook:</span><span>Twitter:</span></p>
+                    <p> <span>📱 : 673869974 </span><span>📧 : contact@franny.com </span></p>
+                    <p> <span><a class="fa">&#xf09a; </a> @franny </span><span><a class="fa">&#xf099;</a> @franny </span></p>
                 </div>
-                <button type="button" class="btn btn-success">Telecharger</button>
             </div>
+            <a type="button" (click)="downloadAsPdf()"  class="btn btn-success">Telecharger</a>
         </div>
         </div>
        
         <!-- colone de droite -->
-        <div class="col-lg-6 prestation-infos m-1" *ngIf="presAvailable">
+        <div class="col-lg-5 prestation-infos m-1" *ngIf="presAvailable && step<=2"  >
             <h4 class="text-center">{{prestation.title}}</h4>
             <h6 class="text-muted text-center" >Temp estime:{{prestation.duration}}</h6> 
             <h5>Classique - {{prestation.price}} </h5>
