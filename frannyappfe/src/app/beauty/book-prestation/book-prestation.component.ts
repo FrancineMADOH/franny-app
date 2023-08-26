@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild,OnDestroy,ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BeautyService } from '../services/beauty.service';
+import { SelectServiceService } from '../services/select-service.service';
 import domToImage from 'dom-to-image';
 import jsPDF, { jsPDFOptions } from 'jspdf';
 import moment from 'moment';
-import { BeautyService } from '../services/beauty.service';
-import { SelectServiceService } from '../services/select-service.service';
 import { Prestation } from '../models/prestation';
 import generaterdvCode from 'src/app/shared/utils/rdvcode';
 //https://medium.com/@vkbiotech841/how-to-export-html-to-pdf-file-in-angular-2e92ceb7755d
@@ -34,26 +34,34 @@ export class BookPrestationComponent implements OnInit {
   rdvdate!:string;
   rdvcode!:string;
   rdv!:any;
+  host = window.location.host;
+  url!:string;
   rdvfromServer!:any;
+  qrCode:any;
 
   presAvailable =  false;
   pdfName = "Carte Rendez-vous";
+  showconfirm = false;
   
 
 
   constructor(private formBuilder:FormBuilder,
-    private router:Router,
-    private route:ActivatedRoute,
     private beauty: BeautyService,
     private select:SelectServiceService,
-    //public dataToExport: ElementRef
+    private router:Router,
+    private route:ActivatedRoute,
+    
     ){}
 
-    @ViewChild('dataToExport',  { read: ElementRef,static: false }) public dataToExport!:ElementRef;
+  @ViewChild('dataToExport',  { read: ElementRef,static: false }) public dataToExport!:ElementRef;
 
   ngOnInit(): void {
     this.pres_id = this.route.snapshot.params['id'];
     this.category = this.route.snapshot.params['category'];
+     //get the current prestation
+    this.beauty.getPrestation(Number(this.pres_id)).subscribe((pres:any)=>{
+      this.prestation = pres;
+  });
     //get all yaounde location
     this.select.getAllLocation().subscribe((data:any)=>{
       this.AllQuartier = data.map((item:any)=>{
@@ -65,12 +73,6 @@ export class BookPrestationComponent implements OnInit {
     setTimeout(() => {
       this.presAvailable = true;  
     }, 1000);
-    //card
-    
-    //get the current prestation
-    this.beauty.getPrestation(Number(this.pres_id)).subscribe((pres:any)=>{
-      this.prestation = pres;
-    console.log(this.prestation)});
 
     //personnal details form
     this.personalDetails = this.formBuilder.group({
@@ -152,15 +154,20 @@ export class BookPrestationComponent implements OnInit {
           ville:this.personalDetails.value.ville ,
           quartier:this.personalDetails.value.quartier ,
           comments: this.serviceDetails.value.comments,
+          url: `${this.host}/beauty/rendezvous/payment/`
     }
     //save rdv to the database
     this.beauty.createRendezvous(this.rdv).subscribe((res:any)=>{
-      console.log(res);
       this.rdvfromServer = res.data;
+      this.qrCode =  res.qrcode
     });
-
+  
     this.personalDetails.reset();
     this.serviceDetails.reset();
+    this.showconfirm = true;
+    setTimeout(() => {
+      this.showconfirm = false;
+    }, 1000);
     this.confirmation_step = true;
 
   }
@@ -208,9 +215,6 @@ export class BookPrestationComponent implements OnInit {
       console.log("An error occurred: " + error)
     });
     }
-
-  
-
 }
 
 //https://mdbootstrap.com/docs/b4/jquery/plugins/rating/

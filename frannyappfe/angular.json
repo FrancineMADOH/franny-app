@@ -28,6 +28,14 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "allowedCommonJsDependencies": [
+              "moment",
+              "dom-to-image",
+              "core-js/modules/web.dom-collections.iterator.js",
+              "core-js/modules/es.string.trim.js",
+              "raf",
+              "rgbcolor"
+          ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/font-awesome/css/font-awesome.css" ,
