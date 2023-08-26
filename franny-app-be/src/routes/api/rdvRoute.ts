@@ -5,12 +5,12 @@ import verifyToken from "../../middlewares/auth";
 const methods = new rdvHandler();
 const rdvRouter = express.Router();
 
-rdvRouter.post("",verifyToken, methods.create);
+rdvRouter.post("", methods.create);
 rdvRouter.get("",verifyToken, methods.index);
 rdvRouter.put("/update/:id",verifyToken ,methods.update);
 rdvRouter.put("/assign/:id",verifyToken ,methods.assign );
 rdvRouter.put("/cancel/:id",verifyToken ,methods.cancel);
-rdvRouter.get("/:id",verifyToken,methods.show)
+rdvRouter.get("/:id",methods.show)
 rdvRouter.get("/:state",verifyToken, methods.state);
 rdvRouter.get("/:state",verifyToken, methods.stateCount);
 rdvRouter.put("/:id",verifyToken, methods.delete);

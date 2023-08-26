@@ -1,4 +1,7 @@
 <div class="container">
+    <div class="confirmation-message" *ngIf="showconfirm" >
+        <h4>Votre rendez-vous a ete enregistre</h4>
+    </div>
         <div class="form-step-indicator">
             <h1>Prendre un rendez-vous</h1>
             <ul id="progress_bar">
@@ -151,7 +154,7 @@
                     </div>
                     <hr>
                     <div class=" m-1">
-                       <h6>QR CODE</h6> 
+                       <img class="qrcode" src="{{qrCode}}">
                         <small>Scannez ce Code pour effectuer le paiement de votre prestation</small>
                     </div>
                 </div>
@@ -181,3 +184,4 @@
        
     </div>
 </div>
+<!-- https://www.section.io/engineering-education/how-to-generate-qr-codes-using-nodejs/ -->

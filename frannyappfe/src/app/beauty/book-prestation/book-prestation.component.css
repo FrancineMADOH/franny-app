@@ -8,8 +8,8 @@
     display: flex;
     flex-wrap: wrap;
 }
-.confirmation-card{
-    margin:0 auto;
+.confirmation-message{
+    background-color: rgb(156, 230, 156) !important;
 }
 
 

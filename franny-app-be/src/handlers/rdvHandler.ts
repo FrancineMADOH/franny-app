@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import qr from "qrcode";
 import { rdvStore,Rendezvous } from "../models/rendezvous";
 
 const rdv = new rdvStore();
@@ -8,10 +9,13 @@ export class rdvHandler {
 
     //create rdv 
     async create(req:Request,res:Response){
+        const url = req.body.url;
         try{
             const data:Rendezvous = req.body;
             const newRdv = await rdv.create(data);
-            res.status(201).json({message:"Appointement scheduled!", data:newRdv});
+            const code = await qr.toDataURL(`${url}${newRdv.rdv_id}`);
+            console.log(`${url}${newRdv.rdv_id}`)
+            res.status(201).json({message:"Appointement scheduled!", data:newRdv,qrcode:code});
         }catch(err:any){
             res.status(500).json(err.message);
         }
