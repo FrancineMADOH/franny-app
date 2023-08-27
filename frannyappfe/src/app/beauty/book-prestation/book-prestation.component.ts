@@ -171,7 +171,10 @@ export class BookPrestationComponent implements OnInit {
     this.confirmation_step = true;
 
   }
-  backToPrestation(){}
+  backToPrestation(){
+    this.router.navigate(['/beauty'])
+  }
+  //TODO https://dev.to/williamjuan27/series/14719
   
   //generate pdf from rdv card
   
@@ -208,8 +211,9 @@ export class BookPrestationComponent implements OnInit {
     pdf.setFontSize(14);
     pdf.setTextColor('#131523');
     pdf.text('Date: ' + moment().format('ll'), 25, 25);
-    pdf.addImage(result, 'PNG', 25, 185, width, height); //TODO: Ajuster plus tard dans le css
+    pdf.addImage(result, 'PNG', 25, 105, width, height); //TODO: Ajuster plus tard dans le css
     pdf.save(this.rdvfromServer.rdvcode + '.pdf');
+    this.router.navigate(['/beauty'])
     })
     .catch(error => {
       console.log("An error occurred: " + error)

@@ -34,7 +34,9 @@
               "core-js/modules/web.dom-collections.iterator.js",
               "core-js/modules/es.string.trim.js",
               "raf",
-              "rgbcolor"
+              "rgbcolor",
+              "core-js/modules/es.string.split.js",
+              "core-js/modules/es.string.starts-with.js"
           ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
