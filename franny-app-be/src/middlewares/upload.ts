@@ -18,7 +18,8 @@ const illustration = multer.diskStorage({
       cb(null, " ./public/uploads");
     },
     filename: function (req, file, cb) {
-      cb(null, `up-${file.originalname}-${Date.now()}` );
+      let image_name =  `up-${file.originalname}-${Date.now()}`;
+      cb(null,image_name );
     },
 });
 

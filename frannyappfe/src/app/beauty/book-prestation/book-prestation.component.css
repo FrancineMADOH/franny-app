@@ -4,5 +4,12 @@
 .date_prestation{
     display: flex;
 }
+.cote-a-cote{
+    display: flex;
+    flex-wrap: wrap;
+}
+.confirmation-message{
+    background-color: rgb(156, 230, 156) !important;
+}
 
 

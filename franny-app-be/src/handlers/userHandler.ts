@@ -1,9 +1,33 @@
 import {Request,Response} from "express";
 import { userStore } from "../models/user";
+import transporter from "../middlewares/email";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const usStore = new userStore();
 
 export class userHandler {
+
+    async contactFranny(req:Request,res:Response){
+        const {from,text} = req.body;
+        const emailData  = {
+            from:from ,
+            to:process.env.USER_EMAIL,
+            subject:"A user sent you a message!",
+            text:text,
+            html: `<p>${text}</p><br/>`
+        }
+        transporter.sendMail(emailData, (error,infos)=>{
+                if(error){
+                    console.log(error);
+                    res.status(500).json({message:"Error sending email"});
+                }
+                res.status(200).json({message:"Your message was sent!"});
+
+        });
+    }
+
 
     async create(req:Request, res:Response){
         try{

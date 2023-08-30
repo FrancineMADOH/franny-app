@@ -1,5 +1,10 @@
 import { Request, Response } from "express";
+import qr from "qrcode";
 import { rdvStore,Rendezvous } from "../models/rendezvous";
+import dotenv from "dotenv";
+import transporter from "../middlewares/email";
+
+dotenv.config();
 
 const rdv = new rdvStore();
 
@@ -8,10 +13,12 @@ export class rdvHandler {
 
     //create rdv 
     async create(req:Request,res:Response){
+        const url = req.body.url;
         try{
             const data:Rendezvous = req.body;
             const newRdv = await rdv.create(data);
-            res.status(201).json({message:"Appointement scheduled!", data:newRdv});
+            const code = await qr.toDataURL(`${url}${newRdv.rdv_id}`);
+            res.status(201).json({message:"Appointement scheduled!", data:newRdv,qrcode:code});
         }catch(err:any){
             res.status(500).json(err.message);
         }
@@ -126,7 +133,46 @@ export class rdvHandler {
         }
     }
 
+    //send email when a request is assigned    
+    async sendAssignationEmail(req:Request,res:Response){
+        const {to,subject,text,clientname,contact} = req.body;
+        const emailData  = {
+            from: process.env.USER_EMAIL,
+            to:to,
+            subject:subject,
+            text:text,
+            html: `Bonjour <strong>${clientname}!</strong> <br/> ${text} <br/> ${contact}   `
+        }
+        transporter.sendMail(emailData, (error,infos)=>{
+                if(error){
+                    console.log(error);
+                    res.status(500).json({message:"Error sending email"});
+                }
+                res.status(200).json({message:"Client Notified!", infos:infos.messageId});
 
+           });      
+    }
+
+    //send review email
+    async sendReviewEmail(req:Request,res:Response){
+        const {to,subject,text,clientname,contact} = req.body;
+        const emailData  = {
+            from: process.env.USER_EMAIL,
+            to:to,
+            subject:subject,
+            text:text,
+            html: `Bonjour <strong>${clientname}!</strong> <br/> ${text} <br/> ${contact}   `
+        }
+        transporter.sendMail(emailData, (error,infos)=>{
+                if(error){
+                    console.log(error);
+                    res.status(500).json({message:"Error sending email"});
+                }
+                res.status(200).json({message:"Review Email Sent!", infos:infos.messageId});
+
+           });  
+
+    }
     // async category(req:Request,res:Response){
     //     try{
     //         const data:Rendezvous = req.body;
