@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BeautyService } from '../services/beauty.service';
 import { Rendezvous } from '../models/rdv';
 import { Review } from '../models/review';
+import { AuthService } from 'src/app/authentication/services/auth.service';
 
 @Component({
   selector: 'app-add-review',
@@ -15,48 +16,48 @@ export class AddReviewComponent implements OnInit {
   date:any = [];
   values:any = [];
   review!:Review;
-
-  // let date = "";
-  // let heure = "";
-  
+  isauth!:boolean;
+  isuser!:boolean;
+  isreview!:boolean;
 
   @ViewChild("addReviewForm", {static:true}) addReviewForm:any;
 
   constructor(private router:Router,
     private route:ActivatedRoute,
-    private beauty:BeautyService
+    private beauty:BeautyService,
+    private auth:AuthService
     ){}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
+    this.isreview =  false;
     //get infos about the rdv
     this.beauty.getRendezvous(Number(this.id)).subscribe((res)=>{
       this.rdv = res;
       this.values.push(this.rdv.client_name)
       this.values.push(this.rdv.bname);
       this.date = this.rdv.rdvdate.split('T')
+      console.log(this.rdv)
             return this.rdv;
     });
+    this.isauth = this.auth.isLogin();
+    this.isauth ? this.isuser = false: this.isuser= true;
   }
   
- 
-
-  
-
-
-
   saveUserReview(addReviewForm:any){
     if(this.addReviewForm.valid){
      this.addReviewForm.value.rdvid = this.rdv.rdv_id;
      this.addReviewForm.value.review_date = new Date().toLocaleString();
      this.review = this.addReviewForm.value;
-     this.beauty.addReview(this.review).subscribe((res)=>{
-      console.log(res);
-     }
-     )
-
+     this.beauty.addReview(this.review).subscribe((res:any)=>{
+      this.isauth ? alert(res.message): null ;
+     })}
+    this.addReviewForm.reset();
+    if(this.isauth){
+      this.router.navigate(['beauty/rendezvous']);
+    }else{
+      this.router.navigate(['beauty/'])
     }
-    this.addReviewForm.reset()
   }
 
 }

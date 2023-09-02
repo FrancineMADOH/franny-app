@@ -29,5 +29,7 @@
     <div class="paid" *ngIf="paid">
         <h3>Thank you for your paiement</h3>
     </div>
+    <button class="btn btn-secondary" *ngIf="isauth" (click)="back()">Back to rendez-vous List</button>
+    <p *ngIf="(!isauth && paid==true)">You can now close this window</p>
 
 </main>

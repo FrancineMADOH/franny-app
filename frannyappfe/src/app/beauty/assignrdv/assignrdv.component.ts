@@ -13,6 +13,8 @@ export class AssignrdvComponent implements OnInit {
   BeautyfyerList: Beautifyer[] = [];
   id!:number;
   rdvstate="Ongoing";
+  rdv!:any;
+  beau!:Beautifyer;
   @ViewChild("assignrdvForm",{static:true} )assignrdvForm:any;
 
   constructor(public router:Router
@@ -29,19 +31,40 @@ export class AssignrdvComponent implements OnInit {
       });
       return this.BeautyfyerList;
     });
+
+    //get the rdv infos
+    this.beauty.getRendezvous(this.id).subscribe((rdv)=>{
+      this.rdv = rdv;
+      console.log(this.rdv);
+      return this.rdv;
+    })
   }
 
   //assign
   assignApointment(assignrdvForm:any){
-    if(this.assignrdvForm.valid){
-      this.beauty.assignRendezvous(this.id,this.assignrdvForm.value.doneby,this.rdvstate).subscribe((res:any)=>{
-        alert(res.message);
-        this.router.navigate(["/beauty/rendezvous"]);
-      });
-      this.assignrdvForm.reset();
-    }
+    var doneby = this.assignrdvForm.value.doneby;
 
+   
     
+    if(this.assignrdvForm.valid){
+            //assign rdv
+            this.beauty.assignRendezvous(this.id,
+              doneby,
+              this.rdvstate,
+              this.rdv.rdvdate.split(' ')[0],
+              this.rdv.rdvdate.split(' ')[1],
+              this.rdv.client_email,
+              this.rdv.category,
+              this.rdv.title,
+              this.rdv.client_name
+              )
+            .subscribe((res:any)=>{
+            alert(res.message);
+            }); 
+      
+    }
+    this.assignrdvForm.reset();
+    this.router.navigate(["/beauty/rendezvous"]);
   }
     
 

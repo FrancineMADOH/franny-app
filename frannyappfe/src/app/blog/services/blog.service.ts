@@ -57,6 +57,9 @@ export class BlogService {
     return this.http.get<any>(environment.baseUrl + `/posts/topten/${id}`).pipe(catchError(this.handleErrors));
 
   }
+  contactFranny(mailInfos:any){
+    return this.http.post<any>(environment.baseUrl + "/contact",mailInfos).pipe(catchError(this.handleErrors));
+  }
 
 
   //handle errors
