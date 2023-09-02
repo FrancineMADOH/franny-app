@@ -14,5 +14,6 @@
       <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===OnApt || rdv.rdvstate===CancelApt )" (click)="gotoAssign(rdv.rdv_id || 1) " class="card-link btn btn-secondary">Assign</button>
       <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===CancelApt)"   (click)="gotoCancel(rdv.rdv_id || 1) " class="card-link btn btn-danger">Cancel</button>
       <button  *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===CancelApt || rdv.rdvstate===schedApt)" (click)="gotoPayment(rdv.rdv_id|| 1) " class="card-link btn btn-primary">Make Payment</button>
+      <button *ngIf="(rdv.is_review == false && rdv.rdvstate===complApt)" (click)="gotoReview(rdv.rdv_id || 1)"  class="card-link btn btn-primary">Add review</button>
     </div>
   </div>

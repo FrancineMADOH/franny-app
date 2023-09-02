@@ -110,6 +110,15 @@ export class rdvStore {
         return result.rows[0];
     }
 
+    //ser rdv as review
+    async review(rdv_id:number):Promise<void>{
+        const conn = await client.connect();
+        const command = "UPDATE rendezvous SET is_review = true WHERE rdv_id=$1;";
+        const result = await conn.query(command,[rdv_id]);
+        conn.release();
+        return result.rows[0];
+    }
+
 
     //count: Count the number of rendezvous completed  and thier price
     async count(): Promise<object> {

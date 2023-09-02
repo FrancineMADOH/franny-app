@@ -3,10 +3,12 @@ import qr from "qrcode";
 import { rdvStore,Rendezvous } from "../models/rendezvous";
 import dotenv from "dotenv";
 import transporter from "../middlewares/email";
+import { beautyStore } from "../models/beautifyer";
 
 dotenv.config();
 
 const rdv = new rdvStore();
+const beauty = new beautyStore();
 
 
 export class rdvHandler {
@@ -65,11 +67,26 @@ export class rdvHandler {
             const  rdv_id =  parseInt(req.params.id);
             const  doneby = Number(req.body.doneby);
             const  rdvstate = req.body.rdvstate;
-            await rdv.assign(rdv_id,doneby,rdvstate)
-            res.status(200).json({message:"Appointment assigneg to Beautifyer!"});
+            const email = req.body.email;
+            const client = req.body.name;
+            await rdv.assign(rdv_id,doneby,rdvstate);
+            const agent = await beauty.show( Number(req.body.doneby))
+            console.log(agent)
+            if(req.body.email){
+            await transporter.sendMail({
+                        from: process.env.USER_EMAIL,
+                        to:email, // list of receivers
+                        subject: `Bonjour ${client} Votre rendez-vous est Planifie!!`, 
+                        html:`<p>Votre rendez-vous <strong>${req.body.category} </strong>est en cours de traitement.<br/>
+                        Votre prestation sera realise par <strong>${agent.bname}</strong>, le <strong>${req.body.date} a ${req.body.heure}</strong>.</p>
+                        <p><strong>Merci pour votre confiance!</strong> </p>
+                       <p> Pour toute indisposition lors de  la realisation de votre prestation contactez nous aux adresses ci-dessous.</p>`
+                    });
+            }
+            res.status(200).json({message:`Appointment assigned to ${agent.bname}! and client Notified!`});
         }catch(err:any){
             console.log(err);
-            res.status(500).json(err.message);
+            res.status(500).json({mesage:"Failed to send Message"});
         }
     }
 
@@ -80,11 +97,26 @@ export class rdvHandler {
             const  rdvstate = req.body.rdvstate;
             const  pm = req.body.payment_method;
             const  pdate = new Date().toLocaleDateString();
-            await rdv.makepaiement(rdv_id,rdvstate,pm,pdate)
+            const email = req.body.email;
+            const client = req.body.client;
+            console.log(req.body.link)
+            
+
+            await rdv.makepaiement(rdv_id,rdvstate,pm,pdate);
+            if(email){
+                await transporter.sendMail({
+                    from: process.env.USER_EMAIL,
+                    to:email, // list of receivers
+                    subject: `Mme/Mr ${client} Votre avis nous importe!!`, 
+                    html:`Clicquez sur <a href="${req.body.link}">ici</a> pour nous laisser un avis sur votre prestation 
+                    du ${req.body.rdvdate} realise par <strong>${req.body.bname} </strong>
+                    <p>N'hesitez pas a nous contacter aux addresses ci-dessous.</p>`
+                  });
+            }
             res.status(200).json({message:"Payment successfull!"});
         }catch(err:any){
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({message:"Request failed! An error occurred!"});
         }
     }
     //cancel
@@ -133,44 +165,9 @@ export class rdvHandler {
         }
     }
 
-    //send email when a request is assigned    
-    async sendAssignationEmail(req:Request,res:Response){
-        const {to,subject,text,clientname,contact} = req.body;
-        const emailData  = {
-            from: process.env.USER_EMAIL,
-            to:to,
-            subject:subject,
-            text:text,
-            html: `Bonjour <strong>${clientname}!</strong> <br/> ${text} <br/> ${contact}   `
-        }
-        transporter.sendMail(emailData, (error,infos)=>{
-                if(error){
-                    console.log(error);
-                    res.status(500).json({message:"Error sending email"});
-                }
-                res.status(200).json({message:"Client Notified!", infos:infos.messageId});
-
-           });      
-    }
-
     //send review email
     async sendReviewEmail(req:Request,res:Response){
-        const {to,subject,text,clientname,contact} = req.body;
-        const emailData  = {
-            from: process.env.USER_EMAIL,
-            to:to,
-            subject:subject,
-            text:text,
-            html: `Bonjour <strong>${clientname}!</strong> <br/> ${text} <br/> ${contact}   `
-        }
-        transporter.sendMail(emailData, (error,infos)=>{
-                if(error){
-                    console.log(error);
-                    res.status(500).json({message:"Error sending email"});
-                }
-                res.status(200).json({message:"Review Email Sent!", infos:infos.messageId});
-
-           });  
+      
 
     }
     // async category(req:Request,res:Response){
