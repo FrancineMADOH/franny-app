@@ -1,4 +1,8 @@
+import dotenv from "dotenv";
+  
+dotenv.config();
+
 export const environment = {
     production: false,
-    baseUrl : "http://localhost:4000/api"
+    baseUrl :  process.env["BASE_URL"],
 }

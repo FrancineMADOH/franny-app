@@ -5,10 +5,13 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import fileupload from "express-fileupload";
 import router from "./routes/indexRoute";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app:express.Application = express();
 const port = 4000;
-const domain = "http://localhost:4200";
+const domain = process.env.CORS_URL;
 
 const corsOptions = {
   origin:domain,
