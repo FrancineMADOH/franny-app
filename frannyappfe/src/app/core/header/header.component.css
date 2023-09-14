@@ -1,7 +1,14 @@
 /* #5DBAE5(bleu), #F460FC(rose), #196C08(vert), #C7B14A(gold) #AA9225(satin gold) #53534F(gray)*/
+* {
+  margin: 0;
+  padding: 0;
+}
 .navbar{
     font-family: 'FiraSansRegular';
     background-color: #53534F;
+    padding: 20px 95px;
+    position: sticky;
+    top: 0;
 }
 a {
     color:#F460FC;
@@ -13,7 +20,7 @@ a {
     text-align: center;
 }
 button{
-   background-color :#fff; 
+   background-color :#fff;
    color:#F460FC;
 }
 a .active {
