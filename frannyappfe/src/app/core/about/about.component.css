@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Quicksand&display=swap');
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 
 * {
   /* font-family: 'Quicksand', sans-serif; */
-  font-family: 'Poppins', sans-serif;
   list-style-type: none;
   font-size: 20px;
   /* margin: 0; */
@@ -49,12 +48,9 @@ img {
   font-size: 14px;
 }
 .main-hero-text {
-  font-size: 40px;
+  font-size: 20px;
+  color:#53534F ;
   font-weight: 800;
-}
-.hero-body {
-  /* border: 1px solid red; */
-  /* padding-bottom: 20px; */
 }
 section.body {
   padding: 0 50px;
@@ -75,4 +71,36 @@ section.body {
 .hero-body-header {
   font-weight: bold;
   font-size: 30px;
+  color:#53534F ;
+}
+/* #5DBAE5(bleu), #F460FC(rose), #196C08(vert), #C7B14A(gold) #AA9225(satin gold) #53534F(gray)*/
+i, h1{
+  color:#F460FC ;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+a{
+  color:#53534F;
+  text-decoration: none;
+}
+h2{
+  color:#5DBAE5 ;
+  text-decoration: none;
+  font-size: 25px;
+}
+button:hover{
+  color: #fff;
+  background-color:#5DBAE5 ;
+}
+a:hover{
+  color:#5DBAE5 ;
+  text-decoration: none;
+}
+td {
+  padding: 10px;
+}
+.btn{
+  background-color: #53534F ;
+  color:#fff ;
 }

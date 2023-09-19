@@ -1,4 +1,4 @@
-<div class="main container">
+<div class="main container-fluid">
     <h1 class=" m-2 text-center">Franny Beauty </h1>
 
     <!-- description du service -->
@@ -6,15 +6,60 @@
         <div class="col-lg-6 text-center">
             <h4 class=" m-2">Services de beaute a domicile a la demande</h4>
             <p class="">
-                Quisque quis orci eu orci sollicitudin dapibus. Donec et pulvinar purus, faucibus tincidunt mauris. Maecenas lacus risus, consectetur quis ex ac, interdum imperdiet odio. Duis tempus gravida dolor, id fermentum enim sodales eget. In hac habitasse platea dictumst. Phasellus consectetur est scelerisque, semper magna eget, congue enim.
+                Quisque quis orci eu orci sollicitudin dapibus. Donec et pulvinar purus, faucibus tincidunt mauris.
+                Maecenas lacus risus, consectetur quis ex ac, interdum imperdiet odio. Duis tempus gravida dolor, id
+                fermentum enim sodales eget. In hac habitasse platea dictumst. Phasellus consectetur est scelerisque,
+                semper magna eget, congue enim.
             </p>
-            <button  class="btn btn-success">Reserver une prestation</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#presPerso">
+                Prestation Personalisee
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="presPerso" tabindex="-1" role="dialog" aria-labelledby="presPersoLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="presPersoLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form>
+                                <div class="form-group">
+                                  <label for="email">Votre Addresse Email</label>
+                                  <input type="email" class="form-control" id="email" placeholder="Example input">
+                                </div>
+                                <div class="form-group">
+                                  <label for="">Numero de Telephone</label>
+                                  <input type="text" class="form-control" id="phone" placeholder="Another input">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">Commentaire</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                                    <small>Ajoutez des commentaites</small>
+                                </div>
+                              </form>
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-primary">Reserver</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-lg-6 text-center">
-            <video controls  width="500">
+            <video controls width="500">
                 <source src="../../../assets/flower.webm" type="video/webm" />
             </video>
-            <h4 class="m-3">Comment  ca marche ?</h4>
+            <h4 class="m-3">Comment ca marche ?</h4>
         </div>
     </div>
 
@@ -23,11 +68,11 @@
         <div (click)="gotoCoiffure()" class="col-lg-3 m-4 Coiffure">
             <h2>Coiffure</h2>
         </div>
-        <div (click)="gotoMaquillage()" class="col-lg-3 m-4 maquillage"> 
-            <h3>maquillage</h3>  
+        <div (click)="gotoMaquillage()" class="col-lg-3 m-4 maquillage">
+            <h3>maquillage</h3>
         </div>
-        <div (click)="gotoOnglerie()" class="col-lg-3 m-4 Onglerie"> 
-            <h3>Onglerie</h3> 
+        <div (click)="gotoOnglerie()" class="col-lg-3 m-4 Onglerie">
+            <h3>Onglerie</h3>
         </div>
     </div>
 
@@ -35,43 +80,48 @@
     <div class="row">
         <div class="col-lg-4">
             <h2>Coiffure</h2>
-            <li *ngFor="let el of coiffure" > <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}"> {{el.title}}</a> </li>
+            <li *ngFor="let el of coiffure"> <a routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
+                    {{el.title}}</a> </li>
         </div>
-        <div class="col-lg-4"><h1>Maquillage</h1> 
-            <li *ngFor="let el of makeup" > <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}"> {{el.title}}</a> </li>
+        <div class="col-lg-4">
+            <h1>Maquillage</h1>
+            <li *ngFor="let el of makeup"> <a routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}"> {{el.title}}</a>
+            </li>
         </div>
-        <div class="col-lg-4"><h1>Onglerie</h1> 
-            <li *ngFor="let el of onglerie" > <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}"> {{el.title}}</a> </li>
+        <div class="col-lg-4">
+            <h1>Onglerie</h1>
+            <li *ngFor="let el of onglerie"> <a routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
+                    {{el.title}}</a> </li>
         </div>
     </div>
 
     <!-- Faq principale -->
     <div class="row">
         <h4>FAQ FOIRE AUX QUESTIONS</h4>
-        <div class="card m-2"  *ngFor="let el of faqtrhree">
+        <div class="card m-2" *ngFor="let el of faqtrhree">
             <div class="card-body">
                 <p class="card-title">
                     <span class="text-muted m-2">{{el.question}}</span>
                     <span class="text-muted m-4">{{el.category}} </span>
                 </p>
-              <p class="card-text ">{{el.reponse}} </p>
-             
+                <p class="card-text ">{{el.reponse}} </p>
+
             </div>
         </div>
-        <a class="btn btn-success" (click)="allFaq()" >Toutes les questions</a>
+        <a class="btn btn-success" (click)="allFaq()">Toutes les questions</a>
     </div>
 
     <!-- les revues -->
     <div class="row">
         <h4>Nos Clients temoignent !</h4>
-        <div class="card m-2"  *ngFor="let el of reviewsthree">
+        <div class="card m-2" *ngFor="let el of reviewsthree">
             <div class="card-body">
                 <p class="card-title">
                     <span class="text-muted m-2">{{el.review_date}}</span>
                     <span class="text-muted m-4">{{el.note}} etoiles</span>
                 </p>
-              <p class="card-text ">{{el.comment}} </p>
-             
+                <p class="card-text ">{{el.comment}} </p>
+
             </div>
         </div>
     </div>
