@@ -24,6 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "^14.0.1",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.11.1",
     "dom-to-image": "^2.6.0",
     "font-awesome": "^4.7.0",
     "html-to-image": "^1.11.11",

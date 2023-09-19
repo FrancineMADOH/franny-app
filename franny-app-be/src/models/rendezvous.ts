@@ -162,5 +162,22 @@ export class rdvStore {
         return result.rows[0];
     }
 
-
+    //rendezvous metrics
+    async metrics():Promise<void> {
+        const conn = await client.connect();
+        const sql_command = `
+       ( SELECT COUNT(*) FROM beautifyers AS total_beautif),
+        (SELECT COUNT(*) FROM prestations AS total_pres),
+        (SELECT COUNT(*) FROM reviews) AS total_reviews,
+        SELECT COUNT(*) FROM rendezvous AS total_rdv,
+        SELECT COUNT(*) FROM rendezvous WHERE rdvstate = $1 AS cancelled_rdv,
+        SELECT COUNT(*) FROM rendezvous WHERE rdvstate = $2 AS ongoing_rdv,
+        SELECT COUNT(*) FROM rendezvous WHERE rdvstate = $3 AS sched_rdv,
+        SELECT COUNT(*) FROM rendezvous WHERE rdvstate = $4 AS completed_rdv,
+        SELECT COUNT(*) FROM rendezvous WHERE is_review = true AS reviewed_rdv,
+        `;
+        const result = await client.query(sql_command,["Cancelled","Ongoing","Scheduled","Completed"])
+        conn.release();
+        return result.rows[0];
+    }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { CoreService } from '../core.service';
+import { faArrowLeft, faStar , fas} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-about',

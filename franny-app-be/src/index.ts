@@ -9,6 +9,8 @@ import router from "./routes/indexRoute";
 const app:express.Application = express();
 const port = 4000;
 const domain = "http://localhost:4200";
+// const domain = "https://e076-129-0-226-28.ngrok-free.app";
+
 
 const corsOptions = {
   origin:domain,
