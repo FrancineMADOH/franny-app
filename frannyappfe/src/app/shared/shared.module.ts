@@ -8,8 +8,10 @@ import { EmptyComponent } from './empty/empty.component';
   declarations: [
     EmptyComponent
   ],
+  exports:[EmptyComponent],
   imports: [
     CommonModule
-  ]
+  ],
+
 })
 export class SharedModule { }
