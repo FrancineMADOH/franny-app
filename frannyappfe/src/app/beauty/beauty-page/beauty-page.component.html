@@ -1,85 +1,69 @@
-<div class="main container-fluid">
-    <h1 class=" m-2 text-center">Franny Beauty </h1>
-
+<div class="main my-4 container-fluid">
     <!-- description du service -->
-    <div class="row m-3">
-        <div class="col-lg-6 text-center">
-            <h4 class=" m-2">Services de beaute a domicile a la demande</h4>
-            <p class="">
-                Quisque quis orci eu orci sollicitudin dapibus. Donec et pulvinar purus, faucibus tincidunt mauris.
-                Maecenas lacus risus, consectetur quis ex ac, interdum imperdiet odio. Duis tempus gravida dolor, id
-                fermentum enim sodales eget. In hac habitasse platea dictumst. Phasellus consectetur est scelerisque,
-                semper magna eget, congue enim.
-            </p>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#presPerso">
-                Prestation Personalisee
-            </button>
-
+    <div class="row  my-4">
+        <div class="col-lg-6 text-center personalize">
+            <h4 class="fw-bold">Services beauté personalisée à domicile</h4>  
+            <div class="disponibilite">
+                <p class="fw-bold"><i class="bi bi-clock"></i></p>
+                <h5>Ouverture</h5>
+                    <p>Tous les jours de 7h30 - 22h</p>
+                    <h5>DISPONIBILITÉS</h5>
+                <p> Disponibles 24h/24 et 7j/7</p>
+                <!-- Button trigger modal -->
+             <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#biblioModal">
+                Réserver
+            </button> 
+            </div>
+            
             <!-- Modal -->
-            <div class="modal fade" id="presPerso" tabindex="-1" role="dialog" aria-labelledby="presPersoLabel"
+            <div class="modal fade" id="biblioModal" tabindex="-1" aria-labelledby="biblioModalLabel"
                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="presPersoLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <h4 class="modal-title text-center fw-bold" id="biblioModalLabel"> Prestation personalisée </h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-
-                            <form>
-                                <div class="form-group">
-                                  <label for="email">Votre Addresse Email</label>
-                                  <input type="email" class="form-control" id="email" placeholder="Example input">
-                                </div>
-                                <div class="form-group">
-                                  <label for="">Numero de Telephone</label>
-                                  <input type="text" class="form-control" id="phone" placeholder="Another input">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="formGroupExampleInput2">Commentaire</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-                                    <small>Ajoutez des commentaites</small>
-                                </div>
-                              </form>
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                            <button type="button" class="btn btn-primary">Reserver</button>
+                        <div *ngIf="reservationDone" class="message-sent text-center m-4">
+                            Merci d'avoir contacter <span>Franny beauty</span>
+                            Votre demande est en cours de traitement.</div>
+                        <div class="modal-body form-group my-2" *ngIf="!reservationDone">
+                            <form (ngSubmit)="SendNotif()" #sendNotifForm="ngForm" >
+                                <label for="contact">Laissez nous votre contact pour un service comme vous voulez quand vous voulez !</label>
+                                <input required ngModel #phone="ngModel" class="form-control my-4" type="text" pattern="[0-9]" maxlength="10" placeholder="(+237)">
+                                 <button (click)="reservationDone=!reservationDone" [disabled]="sendNotifForm.invalid"  class="btn btn-primary" type="submit">Réserver</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 text-center">
+        <!--video explicative -->
+        <div class="col-lg-6 text-center personalize">
             <video controls width="500">
                 <source src="../../../assets/flower.webm" type="video/webm" />
             </video>
-            <h4 class="m-3">Comment ca marche ?</h4>
+            <h4 class="m-3 fw-bold">Comment ca marche ?</h4>
         </div>
     </div>
 
-    <!-- liste des services -->
-    <div class="row text-center">
-        <div (click)="gotoCoiffure()" class="col-lg-3 m-4 Coiffure">
-            <h2>Coiffure</h2>
+    <div class="row prestation_links">
+        <h3 class="my-3 text-center">Nos Prestations</h3>
+        <div (click)="gotoCoiffure()" class="col-lg-4 Coiffure">
+            <h3>Coiffure</h3>
         </div>
-        <div (click)="gotoMaquillage()" class="col-lg-3 m-4 maquillage">
+        <div (click)="gotoMaquillage()" class="col-lg-4 maquillage">
             <h3>maquillage</h3>
         </div>
-        <div (click)="gotoOnglerie()" class="col-lg-3 m-4 Onglerie">
+        <div (click)="gotoOnglerie()" class="col-lg-4  Onglerie">
             <h3>Onglerie</h3>
         </div>
     </div>
 
     <!-- liste des services -->
-    <div class="row">
+     <!-- <div class="row text-center prestation_list">
         <div class="col-lg-4">
-            <h2>Coiffure</h2>
+            <h1>Coiffure</h1>
             <li *ngFor="let el of coiffure"> <a routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
                     {{el.title}}</a> </li>
         </div>
@@ -93,10 +77,10 @@
             <li *ngFor="let el of onglerie"> <a routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
                     {{el.title}}</a> </li>
         </div>
-    </div>
+    </div> -->
 
     <!-- Faq principale -->
-    <div class="row">
+    <!-- <div class="row">
         <h4>FAQ FOIRE AUX QUESTIONS</h4>
         <div class="card m-2" *ngFor="let el of faqtrhree">
             <div class="card-body">
@@ -109,10 +93,10 @@
             </div>
         </div>
         <a class="btn btn-success" (click)="allFaq()">Toutes les questions</a>
-    </div>
+    </div> -->
 
     <!-- les revues -->
-    <div class="row">
+    <!-- <div class="row">
         <h4>Nos Clients temoignent !</h4>
         <div class="card m-2" *ngFor="let el of reviewsthree">
             <div class="card-body">
@@ -124,6 +108,6 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
 
 </div>

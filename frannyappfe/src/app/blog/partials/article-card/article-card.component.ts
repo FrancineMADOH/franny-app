@@ -15,6 +15,7 @@ export class ArticleCardComponent implements OnInit {
   postList:PostResult[] = [];
   filteredPostList:PostResult[] = [];
   isAdmin!:boolean;
+  isEmpty!:boolean;
 
   constructor(private blog:BlogService,
     private auth:AuthService,
@@ -23,12 +24,15 @@ export class ArticleCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isAdmin= this.auth.isLogin()
+    //if article list is empty display the empty component 
+    this.isAdmin= this.auth.isLogin();
        this.blog.getblogpostList().subscribe((data)=>{
         data.map((post:any)=>{
           this.postList.push(post);
           return this.postList;
         })});
+
+    this.postList.length == 0 ? this.isEmpty== true : this.isEmpty==false;
     
   }
 

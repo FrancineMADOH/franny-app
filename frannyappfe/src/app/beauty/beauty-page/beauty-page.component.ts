@@ -20,6 +20,7 @@ export class BeautyPageComponent implements OnInit {
   faqtrhree:Faq[] = [];
   reviewsthree:Review[]= [];
   reviews:Review[] = [];
+  reservationDone!:boolean;
   constructor(private beauty:BeautyService,
     private router:Router,
     private route:ActivatedRoute
@@ -27,6 +28,7 @@ export class BeautyPageComponent implements OnInit {
     }
 
    ngOnInit():void {
+    this.reservationDone = false;
     this.beauty.getPrestationList().subscribe((res)=>{
       res.map((data)=>{
         this.prestations.push(data);
@@ -73,6 +75,8 @@ export class BeautyPageComponent implements OnInit {
   gotoOnglerie(){
     this.router.navigate(['/beauty/category/Onglerie'])
   }
+
+  SendNotif(){}
  
 
 

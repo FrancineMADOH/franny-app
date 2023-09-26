@@ -32,6 +32,8 @@ import { PerformanceComponent } from './performance/performance.component';
 import { CategoryComponent } from './category/category.component';
 import { BookPrestationComponent } from './book-prestation/book-prestation.component';
 import { MakepaiementComponent } from './makepaiement/makepaiement.component';
+import { SharedModule } from '../shared/shared.module';
+import { EmptyComponent } from '../shared/empty/empty.component';
 
 
 @NgModule({
@@ -64,14 +66,15 @@ import { MakepaiementComponent } from './makepaiement/makepaiement.component';
     PerformanceComponent,
     CategoryComponent,
     BookPrestationComponent,
-    MakepaiementComponent
+    MakepaiementComponent,
   ],
   imports: [
     CommonModule,
     CoreModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class BeautyModule { }
