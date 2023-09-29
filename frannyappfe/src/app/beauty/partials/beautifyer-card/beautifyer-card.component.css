@@ -1,0 +1,37 @@
+.b-card {
+  /* border: 1px solid red; */
+  box-shadow: 0 2px 4px 0 rgba(249, 246, 246, 0.392);
+  z-index: 0;
+  width: 50%;
+}
+.card-body {
+  /* width: 50%; */
+  z-index: 0;
+}
+.form-group {
+  display: flex;
+}
+.beauty-search {
+  padding: 8px 12px;
+  width: 35%;
+  border-radius: 8px;
+  border: 0.5px solid grey;
+}
+.search-bar {
+  border: 5px dotted magenta;
+  padding: 0 12px;
+  width: 100%;
+}
+section {
+  display: flex;
+  border: 2px solid green;
+  width: 100%;
+  gap: 45px;
+  padding: 0 12px;
+}
+hr {
+  height: 4px;
+  /* width: 100%;
+  background: linear-gradient(to right, transparent 0%, #000 30%, #000 70%, transparent 100%);
+  transform: scaleX(0.8); */
+}
