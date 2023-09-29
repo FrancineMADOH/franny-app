@@ -1,22 +1,24 @@
 
-<div class="searchFormClass col-lg-4">
-    <form #searchbeautifyer="ngForm" 
-    (ngSubmit)="searchBeautifyerTerm(searchbeautifyer.value)" 
+<div class="searchFormClass col-lg-4 search-bar">
+    <form #searchbeautifyer="ngForm"
+    (ngSubmit)="searchBeautifyerTerm(searchbeautifyer.value)"
     class="d-inline">
         <div class="form-group">
-            <input id="search" minlength="5" name="search" required ngModel #search="ngModel" placeholder="Search..."
+            <input id="search" class="beauty-search" minlength="5" name="search" required ngModel #search="ngModel" placeholder="Search..."
                 type="text">
             <button [disabled]="!searchbeautifyer.valid" class="btn btn-success mx-2" type="submit">Search</button>
         </div>
     </form>
 </div>
 
-<div class="card my-2" *ngFor="let el of filteredList">
+<section>
+  <div class="card my-2 b-card" *ngFor="let el of filteredList">
     <div class="card-body">
         <h5 class="card-title">Franny Recruit No: {{ el.beautifcode }}/{{el.beautif_id}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Details</h6>
-        <p>{{ el.ville }}<span> - {{el.quartier}}</span></p> 
+        <p>{{ el.ville }}<span> - {{el.quartier}}</span></p>
         <p>Name:{{ el.bname }} </p>
+        <hr>
         <p>Phone: {{el.phone}}</p>
         <p>Email: {{el.email}} </p>
         <p class="card-text">{{el.details}} </p>
@@ -24,3 +26,5 @@
         <button (click)="gotoUpdate(el.beautif_id || 1)" class="card-link btn btn-secondary">Update</button>
     </div>
 </div>
+</section>
+
