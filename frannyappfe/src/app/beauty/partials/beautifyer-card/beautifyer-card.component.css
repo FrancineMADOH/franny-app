@@ -1,13 +1,5 @@
-.b-card {
-  /* border: 1px solid red; */
-  box-shadow: 0 2px 4px 0 rgba(249, 246, 246, 0.392);
-  z-index: -1;
-  width: 45%;
-}
-.card-body {
-  /* width: 50%; */
-  z-index: -1;
-}
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
 .form-group {
   display: flex;
 }
@@ -34,41 +26,4 @@ section {
 }
 h5 {
   font-weight: bolder;
-}
-h6 {
-/* could use a purple background here, up to you */
-  /* background: rgba(0, 0, 0, 0.712); */
-  background: rgba(128, 0, 128, 0.815);
-  color: white !important;
-  text-align: center;
-  padding: 5px;
-  margin: 10px 0 !important;
-}
-.quartier {
-  font-weight: normal;
-  font-size: 16px;
-  padding-right: 0;
-}
-span {
-  font-weight: bold;
-  font-size: 19px;
-  padding-right: 10px;
-}
-button {
-  background: purple !important;
-  color: white !important;
-  z-index: -1;
-}
-p {
-  font-size: 17px;
-  letter-spacing: 1.5px;
-}
-hr {
-  height: 2px;
-  border: none;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  /* width: 100%;
-  background: linear-gradient(to right, transparent 0%, #000 30%, #000 70%, transparent 100%);
-  transform: scaleX(0.8); */
 }
