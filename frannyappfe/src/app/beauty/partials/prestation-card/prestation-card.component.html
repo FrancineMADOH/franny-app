@@ -1,3 +1,4 @@
+
 <div class="searchFormClass col-lg-4">
   <form #searchPrestation="ngForm" (ngSubmit)="searchPrestationByTerm(searchPrestation.value)" class="d-inline">
       <div class="form-group">
@@ -7,7 +8,8 @@
       </div>
   </form>
 </div>
-<div class="card my-2" *ngFor="let el of filteredList" >
+<section>
+<div class="card my-2 card-container" *ngFor="let el of filteredList" >
     <div class="card-body">
       <h5 class="card-title">{{el.title}}</h5>
       <h6 class="card-subtitle mb-2 text-muted"> {{el.price}} {{el.category}}</h6>
@@ -17,4 +19,4 @@
       <button (click)="gotoUpdate(el.pres_id || 1)" class="card-link btn btn-success">Update</button>
     </div>
   </div>
-  
+</section>

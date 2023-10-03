@@ -1,0 +1,39 @@
+.card-body {
+  border: 0.5px solid rgba(128, 128, 128, 0.502);
+  border-radius: 8px;
+  width: fit-content;
+  /* max-width: 50%; */
+  /* box-shadow: 0 2px 4px 0 rgba(249, 246, 246, 0.392) !important; */
+}
+.card-container {
+  display: flex !important;
+  flex-wrap: wrap;
+  border: none !important;
+  z-index: -1;
+  max-width: 40%;
+}
+section {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: -1;
+  padding: 0 13px;
+}
+.searchFormClass {
+  padding: 0 13px;
+}
+.form-group {
+  display: flex;
+}
+.form-group input {
+  border-radius: 8px;
+  border: 0.5px solid grey;
+  padding: 0 12px;
+}
+h5 {
+  font-weight: bolder;
+  font-size: 21px;
+}
+p, h6 {
+  font-size: 19px;
+  letter-spacing: 1.5px;
+}
