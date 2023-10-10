@@ -2,9 +2,9 @@
     <h1 class="text-center m-2">All articles</h1>
 
     <!--Display the empty data set list -->
-    <app-empty *ngIf="isEmpty"></app-empty>
+    <app-empty *ngIf="!isEmpty"></app-empty>
 
-    <div class="main_content"  *ngIf="!isEmpty">
+    <div class="main_content"  *ngIf="isEmpty">
         
             <div class="searchFormClass col-lg-4">
                 <form #searchForm="ngForm" (ngSubmit)="searchArticleByTerm(searchForm.value)" class="d-inline">

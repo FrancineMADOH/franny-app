@@ -34,6 +34,7 @@ import { BookPrestationComponent } from './book-prestation/book-prestation.compo
 import { MakepaiementComponent } from './makepaiement/makepaiement.component';
 import { SharedModule } from '../shared/shared.module';
 import { EmptyComponent } from '../shared/empty/empty.component';
+import { ViewbeautifComponent } from './partials/viewbeautif/viewbeautif.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { EmptyComponent } from '../shared/empty/empty.component';
     CategoryComponent,
     BookPrestationComponent,
     MakepaiementComponent,
+    ViewbeautifComponent,
   ],
   imports: [
     CommonModule,
