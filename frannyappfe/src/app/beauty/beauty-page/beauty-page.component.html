@@ -1,4 +1,4 @@
-<div class="main my-4 container-fluid">
+<div class="main my-4 container">
     <!-- description du service -->
     <div class="row  my-4">
         <div class="col-lg-6 text-center personalize">
@@ -38,6 +38,7 @@
                 </div>
             </div>
         </div>
+
         <!--video explicative -->
         <div class="col-lg-6 text-center personalize">
             <video controls width="500">
@@ -61,28 +62,42 @@
     </div>
 
     <!-- liste des services -->
-     <!-- <div class="row text-center prestation_list">
+    <div class="row text-center prestation_list">
         <div class="col-lg-4">
-            <h1>Coiffure</h1>
-            <li *ngFor="let el of coiffure"> <a routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
-                    {{el.title}}</a> </li>
+            <h3>Coiffure</h3>
+            <div *ngFor="let el of coiffure" class="element-pres">
+                <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}"> 
+                    {{el.title}} 
+                    <i class="icon bi-chevron-right"></i> <br/>
+                </a>
+            </div>
+          
         </div>
         <div class="col-lg-4">
-            <h1>Maquillage</h1>
-            <li *ngFor="let el of makeup"> <a routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}"> {{el.title}}</a>
-            </li>
+            <h3 >Maquillage</h3>
+            <div *ngFor="let el of makeup" class="element-pres">
+                <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
+                    {{el.title}}
+                </a>
+                <i class="icon bi-chevron-right"></i> <br/>
+
+            </div>
         </div>
-        <div class="col-lg-4">
-            <h1>Onglerie</h1>
-            <li *ngFor="let el of onglerie"> <a routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
-                    {{el.title}}</a> </li>
+        <div class="col-lg-4 text-center">
+            <h3>Onglerie</h3>
+            <div *ngFor="let el of onglerie" class="element-pres">
+                <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >{{el.title}}
+                    <i class="icon bi-chevron-right"></i> <br/>
+                </a>
+            </div>
+       
         </div>
-    </div> -->
+    </div>
 
     <!-- Faq principale -->
-    <!-- <div class="row">
+     <!-- <div class="row">
         <h4>FAQ FOIRE AUX QUESTIONS</h4>
-        <div class="card m-2" *ngFor="let el of faqtrhree">
+        <div class="card" *ngFor="let el of faqtrhree">
             <div class="card-body">
                 <p class="card-title">
                     <span class="text-muted m-2">{{el.question}}</span>
@@ -93,7 +108,7 @@
             </div>
         </div>
         <a class="btn btn-success" (click)="allFaq()">Toutes les questions</a>
-    </div> -->
+    </div>  -->
 
     <!-- les revues -->
     <!-- <div class="row">

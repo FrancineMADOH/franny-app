@@ -4,13 +4,13 @@
       "host": "127.0.0.1",
       "database": "franny",
       "user": "postgres",
-      "password": "flexii613"
+      "password": "123456789"
     },
     "test": {
       "driver": "pg",
       "host": "127.0.0.1",
       "database": "franny_test",
       "user": "postgres",
-      "password": "flexii613"
+      "password": "123456789"
     }
   }
