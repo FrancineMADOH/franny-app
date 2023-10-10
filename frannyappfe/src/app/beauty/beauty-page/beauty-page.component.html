@@ -66,63 +66,90 @@
         <div class="col-lg-4">
             <h3>Coiffure</h3>
             <div *ngFor="let el of coiffure" class="element-pres">
-                <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}"> 
-                    {{el.title}} 
-                    <i class="icon bi-chevron-right"></i> <br/>
-                </a>
+                <div>
+                    <a  routerLink="/beauty/{{el.category}}/book/{{ el.pres_id}}"> 
+                        {{el.title}} 
+                    </a>
+                </div>
+                <div>
+                    <a class="m-2"  routerLink="/beauty/{{el.category}}/book/{{ el.pres_id}}">
+                        {{el.price}} XAF <i class="icon bi-chevron-right"></i>
+                    </a>
+                </div>
+                
             </div>
           
         </div>
         <div class="col-lg-4">
             <h3 >Maquillage</h3>
             <div *ngFor="let el of makeup" class="element-pres">
-                <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
-                    {{el.title}}
-                </a>
-                <i class="icon bi-chevron-right"></i> <br/>
-
+                <div>
+                    <a   routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
+                        {{el.title}}
+                    </a>
+                </div>
+                <div>
+                    <a class="m-2" routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >
+                        {{el.price}} XAF <i class="icon bi-chevron-right"></i>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="col-lg-4 text-center">
             <h3>Onglerie</h3>
             <div *ngFor="let el of onglerie" class="element-pres">
-                <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >{{el.title}}
-                    <i class="icon bi-chevron-right"></i> <br/>
-                </a>
+                <div>
+                    <a   routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >{{el.title}}
+                    </a>
+                </div>
+                <div>
+                    <a class="m-2" routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >{{el.price}} XAF
+                        <i class="icon bi-chevron-right"></i>
+                    </a>
+                </div>   
             </div>
        
         </div>
     </div>
 
-    <!-- Faq principale -->
-     <!-- <div class="row">
-        <h4>FAQ FOIRE AUX QUESTIONS</h4>
-        <div class="card" *ngFor="let el of faqtrhree">
-            <div class="card-body">
-                <p class="card-title">
-                    <span class="text-muted m-2">{{el.question}}</span>
-                    <span class="text-muted m-4">{{el.category}} </span>
-                </p>
-                <p class="card-text ">{{el.reponse}} </p>
-
-            </div>
-        </div>
-        <a class="btn btn-success" (click)="allFaq()">Toutes les questions</a>
-    </div>  -->
-
     <!-- les revues -->
-    <!-- <div class="row">
-        <h4>Nos Clients temoignent !</h4>
-        <div class="card m-2" *ngFor="let el of reviewsthree">
-            <div class="card-body">
-                <p class="card-title">
-                    <span class="text-muted m-2">{{el.review_date}}</span>
-                    <span class="text-muted m-4">{{el.note}} etoiles</span>
-                </p>
-                <p class="card-text ">{{el.comment}} </p>
+    <div class="row reviews">
+        <h4 class="text-center">Nos Clients temoignent !</h4>
+         <div class="review-elements">
+            <div class="card m-2" style="width: 30rem;" *ngFor="let el of reviewsthree">
+                <div class="card-header card-reviews-elements">
+                    <p class="card-title">
+                        <span class="text-muted">{{el.review_date.split(',')[0]}}</span> 
+                    </p>
+                    <p> <span class="text-muted">{{el.note}}</span></p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-justify">{{el.comment}} </p>
+                </div>
+            </div>
+         </div>
+        
+    </div>
 
+    <!-- Faq principale -->
+     <div class="row faqs">
+        <h4 class="text-center fw-bold">FAQ - FOIRE AUX QUESTIONS</h4>
+        <div>
+            <div class="card m-4" *ngFor="let el of faqs">
+                <div class="card-body">
+                    <div class="card-title">
+                        <p class="text-muted">{{el.question}}</p>
+                        <p class="category">{{el.category}} </p>
+                        
+                    </div>
+                    <p class="card-text ">{{el.reponse}} </p>
+    
+                </div>
             </div>
         </div>
-    </div> -->
+        <!-- <div class="text-center">
+            <a class="btn" (click)="allFaq()">Toutes les questions</a>
+        </div> -->
+    </div> 
 
 </div>

@@ -6,7 +6,7 @@
     font-family: 'FiraSansRegular';
 }
 h1,h4 {
-    color:#F460FC ;
+    color:#5DBAE5 ;
 }
 .personalize{
     background-color: #f8f6f6;
@@ -34,7 +34,7 @@ h1,h4 {
     padding: 50px 10px 50px 10px;
 }
 .message-sent span{
-    color: #5DBAE5;
+    color: #F460FC;
     font-family: 'Fasthand';
     font-size: 1.6em;
 }
@@ -80,17 +80,79 @@ h1,h4 {
     padding: 2%;
 }
 .element-pres{
-    border: solid 1px #000;
-    padding: 5px;
-    margin: 10px;
-    height: 40px;
+    /* border: solid 1px #000; */
+    border-radius: 10px;
+    padding: 15px 20px 5px 20px;
+    margin: 12px;
+    height: 60px;
     background-color: #fff;
-    text-align: center;
-    justify-content: space-around;    
+    display: flex;
+    justify-content: space-between;
 }
 
 .prestation_list a{
     text-decoration: none !important;
-   
-
+    color: #5DBAE5;
 }
+.prestation_list h3{
+    color: #53534F;
+    font-weight: bold !important;
+    margin: 10px 0 20px 0;
+}
+
+/*Reviews */
+.reviews{
+    padding:2%;
+    margin-top: 3%; 
+}
+.reviews h4 {
+    color: #5DBAE5;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px;
+}
+.reviews .card{
+    border-radius: 10px;
+}
+.review-elements{
+    display: flex;
+}
+.card-reviews-elements{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*faqs*/
+.faqs .category{
+    color: #F460FC
+}
+.faqs .text-muted{
+    color:#5DBAE5 !important ;
+    font-size: 1.4rem;
+}
+.faqs .card{
+    border-radius: 10px;
+}
+.faqs .btn{
+    background-color: #5DBAE5;
+    color: #fff;
+    width: 20%;
+}
+
+.faqs .card-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
