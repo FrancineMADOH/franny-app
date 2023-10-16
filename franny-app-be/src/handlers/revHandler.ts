@@ -1,17 +1,20 @@
 import {Request,Response} from "express";
 import { revStore, Review } from "../models/review";
+import { rdvStore } from "../models/rendezvous";
 
 const rev = new revStore();
+const rdv = new rdvStore();
 
 export class revHandler {
     async create(req: Request,res:Response){
         try{
             const data: Review = req.body;
-            const new_rev = await rev.create(data);
-            res.status(201).json(new_rev);
-        }catch(err){
+            await rev.create(data);
+            await  rdv.review(Number(req.body.rdvid))
+            res.status(201).json({message:"Review added!"});
+        }catch(err:any){
             console.log(err);
-            res.json(err);
+            res.json({message:"An error Occured!",error:err.message});
         }
     }
 

@@ -83,15 +83,23 @@ export class BeautyService {
   updateRendezvous(id:number,rdv:Rendezvous):Observable<Rendezvous>{
     return this.http.put<Rendezvous>(environment.baseUrl + `/rendezvous/${id}`,{rdv}).pipe(catchError(this.handleError));
   }
-  assignRendezvous(id:number,doneby:string,rdvstate:string):Observable<Rendezvous>{
-    return this.http.put<Rendezvous>(environment.baseUrl + `/rendezvous/assign/${id}`,{doneby,rdvstate}).pipe(catchError(this.handleError));
+  assignRendezvous(id:number,doneby:string,rdvstate:string,date:string,
+    heure:string,email:string,category:string,title:string,name:string):Observable<Rendezvous>{
+    return this.http.put<Rendezvous>(environment.baseUrl + `/rendezvous/assign/${id}`,{doneby,rdvstate,date,heure,email,category,title,name}).pipe(catchError(this.handleError));
   }
   cancelRendezvous(id:number,rdvstate:string,cancellation_reason:string):Observable<Rendezvous>{
     return this.http.put<Rendezvous>(environment.baseUrl + `/rendezvous/cancel/${id}`,{rdvstate,cancellation_reason}).pipe(catchError(this.handleError));
   }
 
-  makepaiement(id:number,rdvstate:string,pm:string){
-    return this.http.put<Rendezvous>(environment.baseUrl + `/rendezvous/payment/${id}`,{rdvstate,pm}).pipe(catchError(this.handleError));
+  makepaiement(id:number,rdvstate:string,pm:string, bname:string,email:string,rdvdate:string,link:string,client:string){
+    return this.http.put<Rendezvous>(environment.baseUrl + `/rendezvous/payment/${id}`,
+    {rdvstate,pm,
+      bname,
+      email,
+      rdvdate,
+      link,
+      client
+    }).pipe(catchError(this.handleError));
   }
 
 

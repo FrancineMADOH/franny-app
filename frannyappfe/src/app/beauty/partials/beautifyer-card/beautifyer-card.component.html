@@ -1,26 +1,44 @@
 
-<div class="searchFormClass col-lg-4">
-    <form #searchbeautifyer="ngForm" 
-    (ngSubmit)="searchBeautifyerTerm(searchbeautifyer.value)" 
+<div class="searchFormClass col-lg-4 search-bar">
+    <form #searchbeautifyer="ngForm"
+    (ngSubmit)="searchBeautifyerTerm(searchbeautifyer.value)"
     class="d-inline">
         <div class="form-group">
-            <input id="search" minlength="5" name="search" required ngModel #search="ngModel" placeholder="Search..."
+            <input id="search" class="beauty-search" minlength="5" name="search" required ngModel #search="ngModel" placeholder="Search..."
                 type="text">
-            <button [disabled]="!searchbeautifyer.valid" class="btn btn-success mx-2" type="submit">Search</button>
+            <button [disabled]="!searchbeautifyer.valid" class="btn mx-2" type="submit">Search</button>
         </div>
     </form>
 </div>
 
-<div class="card my-2" *ngFor="let el of filteredList">
-    <div class="card-body">
-        <h5 class="card-title">Franny Recruit No: {{ el.beautifcode }}/{{el.beautif_id}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Details</h6>
-        <p>{{ el.ville }}<span> - {{el.quartier}}</span></p> 
-        <p>Name:{{ el.bname }} </p>
-        <p>Phone: {{el.phone}}</p>
-        <p>Email: {{el.email}} </p>
-        <p class="card-text">{{el.details}} </p>
-        <p class="card-text">Responsable:{{el.admin_name}}</p>
-        <button (click)="gotoUpdate(el.beautif_id || 1)" class="card-link btn btn-secondary">Update</button>
-    </div>
-</div>
+<!--Trying a table -->
+<section class="name_table">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Quartier</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Responsable</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr *ngFor="let el of filteredList">
+            <th scope="row"> {{el.beautif_id}} </th>
+            <td>{{el.bname}}</td>
+            <td>{{el.ville }}</td>
+            <td>{{el.quartier}}</td>
+            <td>{{el.phone }}</td>
+            <td>{{el.admin_name}} </td>
+            <td>
+                <a (click)="gotoUpdate(el.beautif_id || 1)" ><i class="icon bi-pen m-4"></i></a>
+                <a (click)="gotoView(el.beautif_id || 1)" ><i class="icon bi-eye"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</section>
+

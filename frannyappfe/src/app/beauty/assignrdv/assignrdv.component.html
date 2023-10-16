@@ -3,7 +3,7 @@
 
     <section class="m-4">
         <form #assignrdvForm="ngForm" (ngSubmit)="assignApointment(assignrdvForm)">
-            <div class="form-group">
+            <div class="form-group"  >
                 <label for="doneby">Choode a Beautifyer</label>
                 <select 
                 name="doneby"
@@ -12,9 +12,8 @@
                 ngModel
                 #doneby="ngModel"
                 class="form-control">
-                <option value="0" [selected] selected>Select Beauty agent</option>
-                <option *ngFor="let el of BeautyfyerList"  value="{{el.beautif_id}} ">{{el.bname }} </option>
-                
+                <option [selected] selected>Select Beauty agent</option>
+                <option *ngFor="let el of BeautyfyerList"  value="{{el.beautif_id}} ">{{el.bname}}</option>
             </select>
             </div>
             <button type="submit" [disabled]="!assignrdvForm['valid']" class="btn btn-secondary m-2">Assign</button>

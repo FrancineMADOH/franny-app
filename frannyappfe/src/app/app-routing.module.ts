@@ -35,6 +35,7 @@ import { PerformanceComponent } from './beauty/performance/performance.component
 import { CategoryComponent } from './beauty/category/category.component';
 import { BookPrestationComponent } from './beauty/book-prestation/book-prestation.component';
 import { MakepaiementComponent } from './beauty/makepaiement/makepaiement.component';
+import { ViewbeautifComponent } from './beauty/partials/viewbeautif/viewbeautif.component';
 
 
 const routes: Routes = [
@@ -58,6 +59,7 @@ const routes: Routes = [
   {path:"market", component:MarketSoonComponent},
   {path:"beauty/rendezvous", component:RdvComponent},
   {path:"beauty/beautifyers", component:BeautifyerComponent, canActivate:[AuthGuard]},
+
   {path:"beauty/reviews", component:ReviewComponent, canActivate:[AuthGuard]},
   {path:"beauty/prestations", component:PrestationComponent, canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/add", component:AddRdvComponent, canActivate:[AuthGuard]},
@@ -71,6 +73,9 @@ const routes: Routes = [
   {path:"beauty/beautifyers/update/:id", component:UpdateBeautifComponent, canActivate:[AuthGuard]},
   {path:"beauty/prestations/update/:id", component:UpdatePrestationComponent, canActivate:[AuthGuard]},
   
+  //view component
+  {path:"beauty/beautifyers/view/:id",component:ViewbeautifComponent , canActivate:[AuthGuard]},
+
   //unprotected routes
   {path:"beauty/rendezvous/confirmation",component:ConfirmationComponent},
   {path:"beauty/reviews/add/:id", component:AddReviewComponent},
