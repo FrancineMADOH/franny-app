@@ -32,6 +32,9 @@ gotoUpdate(el:number){
   this.router.navigate(["beauty/beautifyers/update/" + el]);
 }
 
+gotoView(el:number){
+  this.router.navigate(["beauty/beautifyers/view/" + el]);
+}
 
 searchBeautifyerTerm(query:string){
   const searchterm = query.search.toString();

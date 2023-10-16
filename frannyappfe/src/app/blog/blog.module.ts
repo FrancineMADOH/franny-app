@@ -17,6 +17,8 @@ import { AdminCardComponent } from './partials/admin-card/admin-card.component';
 import { FormsModule } from '@angular/forms';
 import { BlogViewComponent } from './blog-view/blog-view.component';
 import { BlogStatsComponent } from './blog-stats/blog-stats.component';
+import { SharedModule } from '../shared/shared.module';
+
 
 
 @NgModule({
@@ -34,11 +36,12 @@ import { BlogStatsComponent } from './blog-stats/blog-stats.component';
     CommentCardComponent,
     AdminCardComponent,
     BlogViewComponent,
-    BlogStatsComponent
+    BlogStatsComponent,
   ],
   imports: [
     CommonModule,
     CoreModule,
+    SharedModule,
     AuthenticationModule,
     FormsModule
   ]

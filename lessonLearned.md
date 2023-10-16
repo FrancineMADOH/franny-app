@@ -328,3 +328,43 @@ Generating Component without spec.ts file in Angular 2+
     }
   }
 }`
+
+<h1>What we do </h1>
+    <p>
+        we educate woman...
+        blog
+        beauty
+        service de beaute a domicile
+        service d'entretiens a domicile
+        placement d'aide a domicile
+    </p>
+
+    <h3>Our Missionn</h3>
+    <p>Our mission is to ...</p>
+    <h4>Our Vision</h4>
+    <p>Our vision is to ...</p>
+
+    <h4>
+        Problem we are solving
+
+    </h4>
+    <p>
+        Unemployment
+        Poor inclusion
+        gender based violence
+        women autonomisation
+        misinformation
+    </p>
+
+    <h4> Our Impact </h4>
+    <p>
+        - Reducing poverty within the woman
+        -Autonomiser les femmes rurales
+    </p>
+
+    <h5>Our Core Value
+    </h5>
+    <p> - collab, innovation.
+    </p>
+
+    <p> we adhere to the economic sustainabiity standard</p>

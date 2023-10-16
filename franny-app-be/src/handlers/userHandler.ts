@@ -10,22 +10,25 @@ const usStore = new userStore();
 export class userHandler {
 
     async contactFranny(req:Request,res:Response){
-        const {from,text} = req.body;
-        const emailData  = {
-            from:from ,
-            to:process.env.USER_EMAIL,
-            subject:"A user sent you a message!",
-            text:text,
-            html: `<p>${text}</p><br/>`
-        }
-        transporter.sendMail(emailData, (error,infos)=>{
-                if(error){
-                    console.log(error);
-                    res.status(500).json({message:"Error sending email"});
-                }
-                res.status(200).json({message:"Your message was sent!"});
+        const from = req.body.from;
+        const text = req.body.text;
 
-        });
+        try {
+            const info = await transporter.sendMail({
+                from: process.env.USER_EMAIL,// from, // sender address
+                to:process.env.USER_EMAIL, // list of receivers
+                subject: "Hello ✔ A user sent you a message!", // Subject line
+                text: text, // plain text body
+                html: `<p>${text}</p><br/>`
+              });
+              res.status(200).json({message:"Your message was sent!",infos:info.messageId});
+            
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({message:"Error sending email"});
+            
+        }
+        
     }
 
 
