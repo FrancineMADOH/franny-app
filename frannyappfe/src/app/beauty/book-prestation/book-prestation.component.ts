@@ -42,8 +42,7 @@ export class BookPrestationComponent implements OnInit {
   presAvailable =  false;
   pdfName = "Carte Rendez-vous";
   showconfirm = false;
-  
-
+  restrict_date = new Date().toISOString().split('T')[0];
 
   constructor(private formBuilder:FormBuilder,
     private beauty: BeautyService,
