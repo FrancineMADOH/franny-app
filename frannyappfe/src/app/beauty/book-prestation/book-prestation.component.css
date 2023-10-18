@@ -1,3 +1,85 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+/* #5DBAE5(bleu), #F460FC(rose), #196C08(vert),
+ #C7B14A(gold) #AA9225(satin gold) #53534F(gray)*/
+
+
+*{
+    font-family: 'FiraSansRegular';
+}
+h1{
+    color: #F460FC;
+    font-weight: bold !important;
+    padding: 1%;
+    margin-top: 1%;
+}
+.form-step-indicator{
+    padding: 1%;
+    border: solid 1px #000;
+}
+.form-step-indicator ul{
+    list-style-type: none;
+    display: flex;
+    margin-top: 10px;
+}
+.form-step-indicator li{
+    margin-right: 20px;
+}
+.form-step-indicator .active{
+    background-color: #5DBAE5;
+    padding: 2px;
+    color:#fff;
+}
+.form-step-indicator .cancel{
+    float: right;
+    border-radius: 0px;
+}
+.form-step-indicator .nextStep{
+    background-color: #5DBAE5;
+    color:#fff;
+    width: 150px;
+    border: solid #fff 1px;
+    border-radius: 0px;
+}
+.form-step-indicator .confirmer{
+    background-color: #196C08;
+    color:#fff;
+    width: 150px;
+    border: solid #fff 1px;
+    border-radius: 0px;
+}
+.form-step-indicator small{
+    color: red;
+}
+
+.prestation-infos{
+    margin-left: 3%;
+}
+
+.prestation-infos h4{
+    color: #5DBAE5;
+    font-weight: bold;
+}
+
+.classic{
+    color:#53534F;
+    font-weight: bold;
+    font-style: oblique;
+    font-size:1em;
+}
+.gold{
+    color:#C7B14A;
+    font-weight: bold;
+    font-style: oblique;
+    font-size:1em;
+}
+.premium{
+    color:#196C08;
+    font-weight: bold;
+    font-style: oblique;
+    font-size:1em;
+}
+
+
 .location{
     display: flex;
 }
