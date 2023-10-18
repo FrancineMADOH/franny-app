@@ -50,14 +50,17 @@
 
     <div class="row prestation_links">
         <h3 class="my-3 text-center">Nos Prestations</h3>
-        <div (click)="gotoCoiffure()" class="col-lg-4 Coiffure">
+        <div  class="col-lg-4 Coiffure">
             <h3>Coiffure</h3>
+            <a routerLink="/beauty/category/Coiffure">Voir plus...</a>
         </div>
-        <div (click)="gotoMaquillage()" class="col-lg-4 maquillage">
-            <h3>maquillage</h3>
+        <div class="col-lg-4 maquillage">
+            <h3>Maquillage</h3>
+            <a routerLink="/beauty/category/Make-Up">Voir plus...</a>
         </div>
-        <div (click)="gotoOnglerie()" class="col-lg-4  Onglerie">
+        <div  class="col-lg-4  Onglerie">
             <h3>Onglerie</h3>
+            <a routerLink="/beauty/category/Onglerie">Voir plus...</a>
         </div>
     </div>
 
@@ -83,11 +86,11 @@
         <div class="col-lg-4">
             <h3 >Maquillage</h3>
             <div *ngFor="let el of makeup" class="element-pres">
-                <div>
-                    <a   routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
+               
+                    <a routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
                         {{el.title}}
                     </a>
-                </div>
+                
                 <div>
                     <a class="m-2" routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >
                         {{el.price}} XAF <i class="icon bi-chevron-right"></i>
@@ -99,7 +102,7 @@
             <h3>Onglerie</h3>
             <div *ngFor="let el of onglerie" class="element-pres">
                 <div>
-                    <a   routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >{{el.title}}
+                    <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >{{el.title}}
                     </a>
                 </div>
                 <div>
@@ -121,7 +124,12 @@
                     <p class="card-title">
                         <span class="text-muted">{{el.review_date.split(',')[0]}}</span> 
                     </p>
-                    <p> <span class="text-muted">{{el.note}}</span></p>
+                    <p> 
+                        <i class="icon bi-star"></i>
+                        <i class="icon bi-star"></i>
+                        <i class="icon bi-star"></i>
+                        <i class="icon bi-star"></i>
+                    </p>
                 </div>
                 <div class="card-body">
                     <p class="card-text text-justify">{{el.comment}} </p>
@@ -133,7 +141,7 @@
 
     <!-- Faq principale -->
      <div class="row faqs">
-        <h4 class="text-center fw-bold">FAQ - FOIRE AUX QUESTIONS</h4>
+        <h4 class="text-center">FAQ - FOIRE AUX QUESTIONS</h4>
         <div>
             <div class="card m-4" *ngFor="let el of faqs">
                 <div class="card-body">

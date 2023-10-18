@@ -42,7 +42,9 @@ h1,h4 {
 
 
 .prestation_links{
-    padding: 2%
+    padding: 2%;
+    text-align: center;
+
 }
 .prestation_links h3{
     /* color: #AA9225; */
@@ -50,6 +52,11 @@ h1,h4 {
     font-size: 40px;
     font-weight: bold;
     padding-top: 10px;
+}
+
+.prestation_links a{
+ color: #f8f6f6;
+ font-size: 15px;  
 }
 
 .Onglerie{
@@ -121,6 +128,9 @@ h1,h4 {
     display: flex;
     justify-content: space-between;
 }
+.bi-star{
+    color:#fcd425;
+}
 
 /*faqs*/
 .faqs .category{
@@ -129,6 +139,12 @@ h1,h4 {
 .faqs .text-muted{
     color:#5DBAE5 !important ;
     font-size: 1.4rem;
+}
+.faqs h4{
+    color: #53534F;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
 }
 .faqs .card{
     border-radius: 10px;
@@ -142,6 +158,27 @@ h1,h4 {
 .faqs .card-title{
     display: flex;
     justify-content: space-between;
+}
+
+
+@media only screen and (max-width: 768px){
+    .Coiffure{
+        margin-bottom: 30px;
+    }
+    .Onglerie{
+        margin-bottom: 30px;
+    }
+    .maquillage{
+        margin-bottom: 30px;
+    }
+    .review-elements{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .reviews h4 {
+        color: #5DBAE5;
+        font-size: 20px;
+    }
 }
 
 
