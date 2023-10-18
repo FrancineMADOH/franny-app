@@ -22,6 +22,7 @@ export class CategoryComponent implements OnInit {
     this.category = this.route.snapshot.params['catName'];
     this.beauty.getPrestationBCategory(this.category).subscribe((res)=>{
       res.map((pres:any)=>{
+        console.log(pres)
         this.prestations.push(pres);
       })
     })
