@@ -5,23 +5,36 @@
 
 *{
     font-family: 'FiraSansRegular';
+    font-size: 14px;
 }
 h1{
     color: #F460FC;
     font-weight: bold !important;
     padding: 1%;
     margin-top: 1%;
+    font-size: 30px !important;
+}
+h4{
+    font-size: 20px !important;
+    color: #5DBAE5;
+
+}
+h6{
+    color: #F460FC;
+    font-size: 13px !important;
 }
 .form-step-indicator{
     padding: 1%;
     border: solid 1px #000;
 }
-.form-step-indicator ul{
+#progress_bar{
     list-style-type: none;
     display: flex;
     margin-top: 10px;
+    font-weight: bold;
 }
-.form-step-indicator li{
+
+#progress_bar li{ 
     margin-right: 20px;
 }
 .form-step-indicator .active{
@@ -78,8 +91,6 @@ h1{
     font-style: oblique;
     font-size:1em;
 }
-
-
 .location{
     display: flex;
 }
@@ -92,6 +103,37 @@ h1{
 }
 .confirmation-message{
     background-color: rgb(156, 230, 156) !important;
+    margin-top: 40px;
+    padding: 20px;
+    height: 40px;
+    color: #fff;
+
+}
+confirmation-card {
+    max-width: 500px;
+    margin: 0 auto;
+}
+confirmation-card h4,i{
+    color: #5DBAE5 !important;
+    font-weight: bold;
+}
+confirmation-card h6{
+    color: #F460FC !important;
+    font-weight: bold;
+}
+.prestation-card{
+    border: solid 1px #000;
+    border-radius: 0px;
+}
+confirmation-card table{
+    border-style: none;
+}
+.conditions{
+    font-size: 8px !important;
 }
 
 
+
+@media screen{
+    
+}
