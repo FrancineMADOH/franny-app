@@ -18,7 +18,11 @@ import generaterdvCode from 'src/app/shared/utils/rdvcode';
 export class BookPrestationComponent implements OnInit {
 
   appointment_type =  ["Personnel","Familial","Evenement","Entreprise"];
-  AllQuartier=[]
+  AllQuartier=[];
+  cancelationConiditions = [
+    "Toute anulation doit se faire minimum une heure avant la date du rdv",
+    "Nous ne sommes pas responsable des degats cause par nos employe suite a des rendezvous pris en dehors de notre plate forme"
+]
 
   personalDetails!: FormGroup;
   serviceDetails!: FormGroup;
@@ -38,6 +42,7 @@ export class BookPrestationComponent implements OnInit {
   url!:string;
   rdvfromServer!:any;
   qrCode:any;
+  copydate =  new Date().getFullYear();
 
   presAvailable =  false;
   pdfName = "Carte Rendez-vous";
@@ -166,7 +171,7 @@ export class BookPrestationComponent implements OnInit {
     this.showconfirm = true;
     setTimeout(() => {
       this.showconfirm = false;
-    }, 1000);
+    }, 2000);
     this.confirmation_step = true;
 
   }
@@ -181,7 +186,7 @@ export class BookPrestationComponent implements OnInit {
   public downloadAsPdf(): void {
     //get the html element to convert and set properties
     const width = this.dataToExport.nativeElement.clientWidth;
-    const height = this.dataToExport.nativeElement.clientHeight + 40;
+    const height = this.dataToExport.nativeElement.clientHeight ;//+ 40;
     //let orientation:jsPDFOptions["orientation"] = '' ;
     let orientation: "p" | "portrait" | "l" | "landscape" | undefined
     //let imageUnit = 'pt';
@@ -201,10 +206,10 @@ export class BookPrestationComponent implements OnInit {
     let jsPdfOptions:jsPDFOptions = {
     orientation: orientation,
     unit: "pt",
-    format: [width + 50, height + 220]
+    format: [width + 40, height + 200]
     };
     const pdf = new jsPDF(jsPdfOptions);
-    pdf.setFontSize(14);
+    pdf.setFontSize(12);
     pdf.setTextColor('#2585fe');
     pdf.text(this.pdfName ? this.pdfName.toUpperCase() : 'Untitled dashboard'.toUpperCase(), 25, 75);
     pdf.setFontSize(14);
