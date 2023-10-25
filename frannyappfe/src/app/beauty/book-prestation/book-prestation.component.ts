@@ -21,6 +21,7 @@ export class BookPrestationComponent implements OnInit {
   AllQuartier=[];
   cancelationConiditions = [
     "Toute anulation doit se faire minimum une heure avant la date du rdv",
+    "Apres trois annulations successive vous etes bani de notre plateforme pour une periode de trois mois minimum",
     "Nous ne sommes pas responsable des degats cause par nos employe suite a des rendezvous pris en dehors de notre plate forme"
 ]
 
@@ -223,6 +224,8 @@ export class BookPrestationComponent implements OnInit {
       console.log("An error occurred: " + error)
     });
     }
+
+    getCoupon(){}
 }
 
 //https://mdbootstrap.com/docs/b4/jquery/plugins/rating/

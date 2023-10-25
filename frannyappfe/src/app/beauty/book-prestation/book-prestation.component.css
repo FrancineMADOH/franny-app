@@ -1,4 +1,5 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+
 /* #5DBAE5(bleu), #F460FC(rose), #196C08(vert),
  #C7B14A(gold) #AA9225(satin gold) #53534F(gray)*/
 
@@ -25,7 +26,8 @@ h6{
 }
 .form-step-indicator{
     padding: 1%;
-    border: solid 1px #000;
+    border: solid 1px #777;
+    border-radius: 10px;
 }
 #progress_bar{
     list-style-type: none;
@@ -131,6 +133,59 @@ confirmation-card table{
 .conditions{
     font-size: 8px !important;
 }
+.promotion{
+    align-items: center !important;
+}
+.promotion h5{
+    color: #5DBAE5;
+    font-size: 1.6em;
+}
+.promotion .btn-secondary{
+    width: 200px;
+    height: 100%;
+    margin: 0 auto 0;
+    padding: 10px;
+    background:#5DBAE5 !important;
+    color: #fff;
+}
+
+#downloadAsPdf{
+  width: 200px;
+  height: 100%;
+  margin: 0 auto 0;
+  padding: 10px;
+  background:#5DBAE5;
+  animation: pulse 3s infinite;
+  transform: scale(1);
+  box-shadow: 0000 #53534F;
+  border: #C7B14A;
+}
+
+.bi-megaphone{
+  font-size: 70px;
+  animation: pulse 2s infinite;
+  transform: scale(1);
+  box-shadow: 0000 #53534F;
+  color: #C7B14A !important;
+}
+/* https://blog.hubspot.com/website/css-animation */
+
+@keyframes pulse{
+    0%{
+        transform: scale(0.95);
+        box-shadow: #5DBAE5;
+    }
+    70%{   
+        transform: scale(1);
+        box-shadow: #5DBAE5;
+    }
+    100%{
+        
+        transform: scale(0.95);
+        box-shadow: #5DBAE5;
+    }
+}
+
 
 
 
