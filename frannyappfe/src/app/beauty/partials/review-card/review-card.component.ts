@@ -42,5 +42,9 @@ export class ReviewCardComponent implements OnInit {
     
   }
 
+  gotoView(el:number){
+    this.router.navigate(["beauty/reviews/view/" + el]);
+  }
+
 
 }

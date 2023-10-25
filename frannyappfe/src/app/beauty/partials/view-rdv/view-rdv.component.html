@@ -1,0 +1,31 @@
+<section>
+    <div class="card card-container my-2" *ngFor="let rdv of filteredrdvList">
+        <div  class="card-body">
+          <h6 class="card-title"><span>Rendez-vous:</span> {{rdv.rdvcode}}/{{rdv.rdv_id}}</h6>
+          <hr>
+          <div class="card-subtitle mb-2 text-muted">{{rdv.category}} - {{rdv.ville}} - {{rdv.quartier}} - <span ngClass="{{rdv.rdvstate}} " > {{rdv.rdvstate}}</span> </div>
+          <hr>
+          <p class="card-text"><span>Client Name:</span>{{rdv.client_name}} </p>
+          <hr>
+          <p class="card-text"><span>Client Phone:</span> {{rdv.client_phone}}</p>
+          <hr>
+          <p class="card-text"><span>Client Email:</span>  {{rdv.client_email}}</p>
+          <hr>
+          <p class="card-text"> <span>Date du rdv:</span> {{rdv.rdvdate}}</p>
+          <hr>
+          <p class="card-text"><span>Price:</span>  {{rdv.rdv_price}} </p>
+          <hr>
+          <p class="card-text"><span> State:</span> {{rdv.rdvstate}} </p>
+          <hr>
+          <p class="card-text"><span>Assigned to:  </span>{{ rdv.bname }}</p>
+          <hr>
+          <p class="card-text"><span>Comments:</span>{{rdv.comments}} </p>
+          <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===CancelApt)" (click)="gotoUpdate(rdv.rdv_id || 1) " class="card-link btn btn-success">Update</button>
+          <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===OnApt || rdv.rdvstate===CancelApt )" (click)="gotoAssign(rdv.rdv_id || 1) " class="card-link btn btn-secondary">Assign</button>
+          <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===CancelApt)"   (click)="gotoCancel(rdv.rdv_id || 1) " class="card-link btn btn-danger"><i class="bi bi-x-circle"> Cancel</i></button>
+          <button  *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===CancelApt || rdv.rdvstate===schedApt)" (click)="gotoPayment(rdv.rdv_id|| 1) " class="card-link btn btn-primary">Make Payment</button>
+          <button *ngIf="(rdv.is_review == false && rdv.rdvstate===complApt)" (click)="gotoReview(rdv.rdv_id || 1)"  class="card-link btn btn-primary">Add review</button>
+        
+        </div>
+      </div>
+    </section>
