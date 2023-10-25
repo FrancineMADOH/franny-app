@@ -1,18 +1,18 @@
 
-<div class="searchFormClass col-lg-4 search-bar">
+<div class="searchFormClass col-lg-4 my-2 search-bar">
     <form #searchbeautifyer="ngForm"
     (ngSubmit)="searchBeautifyerTerm(searchbeautifyer.value)"
     class="d-inline">
         <div class="form-group">
             <input id="search" class="beauty-search" minlength="5" name="search" required ngModel #search="ngModel" placeholder="Search..."
                 type="text">
-            <button [disabled]="!searchbeautifyer.valid" class="btn mx-2" type="submit">Search</button>
+            <button [disabled]="!searchbeautifyer.valid" class="btn btn-success mx-2" type="submit">Search</button>
         </div>
     </form>
 </div>
 
 <!--Trying a table -->
-<section class="name_table">
+<section class="beautifyers_table">
     <table class="table">
         <thead>
           <tr>
@@ -34,8 +34,8 @@
             <td>{{el.phone }}</td>
             <td>{{el.admin_name}} </td>
             <td>
-                <a (click)="gotoUpdate(el.beautif_id || 1)" ><i class="icon bi-pen m-4"></i></a>
-                <a (click)="gotoView(el.beautif_id || 1)" ><i class="icon bi-eye"></i></a>
+                <a (click)="gotoUpdate(el.beautif_id || 1)" class="btn btn-success m-1" ><i class="icon bi-pen mx-1"></i>edit</a>
+                <a (click)="gotoView(el.beautif_id || 1)"  class="btn btn-secondary m-1" ><i class="icon bi-eye mx-1 "></i>view</a>
             </td>
           </tr>
         </tbody>

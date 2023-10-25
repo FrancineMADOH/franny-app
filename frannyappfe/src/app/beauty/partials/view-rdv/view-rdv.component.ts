@@ -1,35 +1,24 @@
-import { Component,OnInit } from '@angular/core';
-import { Rendezvous } from '../../models/rdv';
-import { BeautyService } from '../../services/beauty.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Rendezvous } from '../../models/rdv';
 
 @Component({
-  selector: 'app-rdv-card',
-  templateUrl: './rdv-card.component.html',
-  styleUrls: ['./rdv-card.component.css']
+  selector: 'app-view-rdv',
+  templateUrl: './view-rdv.component.html',
+  styleUrls: ['./view-rdv.component.css']
 })
-export class RdvCardComponent implements OnInit{
-
+export class ViewRdvComponent implements OnInit {
+  rdv!:Rendezvous;
   rdvList:Rendezvous[] = []; 
   filteredrdvList:Rendezvous[] = [];
   CancelApt = "Cancelled";
   schedApt= "Scheduled"
   OnApt= "Ongoing"
   complApt= "Completed"
-  constructor(private router:Router , private beauty:BeautyService){
-        this.filteredrdvList = this.rdvList;
-
-  }
-
   ngOnInit(): void {
-    this.beauty.getRendezvousList().subscribe((res)=>{
-      res.map((data)=>{
-        this.rdvList.push(data);
-        return this.rdvList;
-      })
-    })
     
   }
+  constructor(private router:Router){}
 
   gotoUpdate(id:number){
     this.router.navigate(["/beauty/rendezvous/update/"+id]);
@@ -37,7 +26,6 @@ export class RdvCardComponent implements OnInit{
   gotoView(el:number){
     this.router.navigate(["beauty/rendezvous/view/" + el]);
   }
-  
   gotoAssign(id:number){
     this.router.navigate(["/beauty/rendezvous/assign/"+id]);
   }
@@ -50,5 +38,6 @@ export class RdvCardComponent implements OnInit{
   gotoReview(id:number){
     this.router.navigate(["beauty/reviews/add/"+id]);
   }
+
 
 }

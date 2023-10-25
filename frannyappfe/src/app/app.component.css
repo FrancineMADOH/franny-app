@@ -2,3 +2,5 @@ html,body{
     min-height:100vh;
     height: auto;
 }
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";

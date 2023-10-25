@@ -1,30 +1,38 @@
-<section>
-<div class="card card-container my-2" *ngFor="let rdv of filteredrdvList">
-    <div  class="card-body">
-      <h6 class="card-title"><span>Rendez-vous:</span> {{rdv.rdvcode}}/{{rdv.rdv_id}}</h6>
-      <hr>
-      <div class="card-subtitle mb-2 text-muted">{{rdv.category}} - {{rdv.ville}} - {{rdv.quartier}} - <span ngClass="{{rdv.rdvstate}} " > {{rdv.rdvstate}}</span> </div>
-      <hr>
-      <p class="card-text"><span>Client Name:</span>{{rdv.client_name}} </p>
-      <hr>
-      <p class="card-text"><span>Client Phone:</span> {{rdv.client_phone}}</p>
-      <hr>
-      <p class="card-text"><span>Client Email:</span>  {{rdv.client_email}}</p>
-      <hr>
-      <p class="card-text"> <span>Date du rdv:</span> {{rdv.rdvdate}}</p>
-      <hr>
-      <p class="card-text"><span>Price:</span>  {{rdv.rdv_price}} </p>
-      <hr>
-      <p class="card-text"><span> State:</span> {{rdv.rdvstate}} </p>
-      <hr>
-      <p class="card-text"><span>Assigned to:  </span>{{ rdv.bname }}</p>
-      <hr>
-      <p class="card-text"><span>Comments:</span>{{rdv.comments}} </p>
-      <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===CancelApt)" (click)="gotoUpdate(rdv.rdv_id || 1) " class="card-link btn btn-success">Update</button>
-      <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===OnApt || rdv.rdvstate===CancelApt )" (click)="gotoAssign(rdv.rdv_id || 1) " class="card-link btn btn-secondary">Assign</button>
-      <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===CancelApt)"   (click)="gotoCancel(rdv.rdv_id || 1) " class="card-link btn btn-danger">Cancel</button>
-      <button  *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===CancelApt || rdv.rdvstate===schedApt)" (click)="gotoPayment(rdv.rdv_id|| 1) " class="card-link btn btn-primary">Make Payment</button>
-      <button *ngIf="(rdv.is_review == false && rdv.rdvstate===complApt)" (click)="gotoReview(rdv.rdv_id || 1)"  class="card-link btn btn-primary">Add review</button>
-    </div>
-  </div>
+<section class="prestation_table">
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Client</th>
+          <th scope="col">Category</th>
+          <th scope="col">Date</th>
+          <th scope="col">Price</th>
+          <th scope="col">State</th>
+          <th scope="col">Assigned To</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+       <tr *ngFor="let el of filteredrdvList" ngClass="{{ 0 + el.rdvstate}}">
+          <th scope="row"> {{el.rdv_id}} </th>
+          <td>{{el.client_name}}</td>
+          <td>{{el.category }}</td>
+          <td>{{el.rdvdate }}</td>
+          <td>{{el.rdv_price}}</td>
+          <td>{{el.rdvstate }}</td>
+          <td>{{el.bname}} </td>
+          <td>
+            <button *ngIf="!(el.rdvstate===complApt || el.rdvstate===OnApt || el.rdvstate===CancelApt )" (click)="gotoAssign(el.rdv_id || 1) " class="card-link btn btn-secondary m-1">Assign</button>
+            <button *ngIf="!(el.rdvstate===complApt || el.rdvstate===CancelApt)"   (click)="gotoCancel(el.rdv_id || 1) " class="card-link btn btn-danger m-1"><i class="bi bi-x-circle m-1"></i>Cancel</button>
+            <button  *ngIf="!(el.rdvstate===complApt || el.rdvstate===CancelApt || el.rdvstate===schedApt)" (click)="gotoPayment(el.rdv_id|| 1) " class="card-link btn btn-primary m-1">Make Payment</button>
+            <button *ngIf="(el.is_review == false && el.rdvstate===complApt)" (click)="gotoReview(el.rdv_id || 1)"  class="card-link btn btn-primary m-1">Add review</button>
+          
+
+            <a (click)="gotoUpdate(el.rdv_id || 1)" class="card-link btn btn-success mx-1"><i class="icon bi-pen mx-1"></i>edit</a>
+            <a (click)="gotoView(el.rdv_id || 1)" class="card-link btn btn-secondary mx-1"><i class="icon bi-eye mx-1"></i>view</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 </section>
+

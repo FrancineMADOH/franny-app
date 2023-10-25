@@ -32,6 +32,7 @@ export class FaqCardComponent implements OnInit {
 
   //deletequestion
   deleteFaq(deleteFaqForm:any){
+    console.log('i am clicked ')
     this.beauty.deleteFaq(deleteFaqForm).subscribe((res:any)=>{
       alert(res.message);
     })

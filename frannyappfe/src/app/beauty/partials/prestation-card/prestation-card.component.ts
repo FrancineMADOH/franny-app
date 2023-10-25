@@ -32,6 +32,10 @@ export class PrestationCardComponent implements OnInit {
     this.router.navigate(['beauty/prestations/update/' + el])
   }
 
+  gotoView(el:number){
+    this.router.navigate(["beauty/prestations/view/" + el]);
+  }
+
   searchPrestationByTerm(query:string){
     const searchterm =  query.search.toString();
     if(!query){

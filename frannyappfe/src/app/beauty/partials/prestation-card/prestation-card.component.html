@@ -8,15 +8,35 @@
       </div>
   </form>
 </div>
-<section>
-<div class="card my-2 card-container" *ngFor="let el of filteredList" >
-    <div class="card-body">
-      <h5 class="card-title">{{el.title}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted"> {{el.price}} {{el.category}}</h6>
-      <p class="card-text">{{ el.seance }} </p>
-      <p class="card-text"> {{el.gold_price}}  {{el.gold}} </p>
-      <p class="card-text"> {{el.premium_price }} {{el.premium}} </p>
-      <button (click)="gotoUpdate(el.pres_id || 1)" class="card-link btn btn-success">Update</button>
-    </div>
-  </div>
+  <section class="prestation_table">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Prestation</th>
+            <th scope="col">Category</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Classic</th>
+            <th scope="col">Gold</th>
+            <th scope="col">Premium</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr *ngFor="let el of filteredList">
+            <th scope="row"> {{el.pres_id}} </th>
+            <td>{{el.title}}</td>
+            <td>{{el.category }}</td>
+            <td>{{el.duration }}</td>
+            <td>{{el.price}}</td>
+            <td>{{el.gold_price }}</td>
+            <td>{{el.premium_price}} </td>
+            <td>
+              <a (click)="gotoUpdate(el.pres_id || 1)" class="card-link btn btn-success m-3"><i class="icon bi-pen mx-1"></i>edit</a>
+              <a (click)="gotoView(el.pres_id || 1)" class="card-link btn btn-secondary"><i class="icon bi-eye mx-1"></i>view</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 </section>
+
