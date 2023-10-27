@@ -51,4 +51,27 @@ export class RdvCardComponent implements OnInit{
     this.router.navigate(["beauty/reviews/add/"+id]);
   }
 
+  searchByTerm(query:string){
+    const searchterm =  query.search.toString();
+    if(!query){
+      this.filteredrdvList = this.rdvList;
+    }
+    this.filteredrdvList = this.rdvList.filter( 
+      Rendezvous =>
+        //console.log(Prestation.title.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase()))
+        Rendezvous.client_name.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase() )||
+        Rendezvous?.category.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase()) ||
+        // Rendezvous?.rdv_price.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase())||
+        Rendezvous?.rdvstate.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase())||
+        Rendezvous?.quartier.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase())
+
+       );
+      
+      if(this.filteredrdvList.length==0){
+        this.filteredrdvList = this.rdvList;
+        alert('Empty query');
+      }
+
+}
+
 }
