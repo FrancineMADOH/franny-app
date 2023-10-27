@@ -1,6 +1,6 @@
-<section class="">
+  <app-empty *ngIf="emptydb"></app-empty>
   <!--Trying a table -->
-  <section class="faqs_table">
+  <section class="faqs_table" *ngIf="!emptydb">
     <table class="table">
       <thead>
         <tr>
@@ -17,15 +17,16 @@
           <td>{{el.question}}</td>
           <td>{{el.reponse }}</td>
           <td>{{el.category}}</td>
-          <td>
-            <form #deleteFaqForm="ngForm" *ngIf="isAuth" (ngSubmit)="deleteFaq(el.faq_id)" class="my-2">
-
+          <td *ngIf="isAuth">
+            <form #deleteFaqForm="ngForm"  (ngSubmit)="deleteFaq(deleteFaqForm,el.faq_id || 1 )" class="my-2">
               <button type="submit" class="btn btn-danger"> <i class="bi bi-trash"></i></button>
             </form>
-            <!-- <a (click)="gotoUpdate(el.beautif_id || 1)" ><i class="icon bi-pen m-4"></i></a> -->
-            <!-- <a (click)="gotoView(el.beautif_id || 1)" ><i class="icon bi-eye"></i></a> -->
-            <!-- Modal -->
-            <div class="modal fade" id="updateBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+<!-- <div class="modal fade" id="updateBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
               aria-labelledby="updateBackdropLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -41,11 +42,4 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-</section>
+            </div> -->

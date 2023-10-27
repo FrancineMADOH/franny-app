@@ -36,14 +36,15 @@ h5 {
 #btn-secondary{
   margin: 0 auto 0;
   padding: 10px;
-  background:#5DBAE5 !important;
+  background:#53534F !important;
   color: #fff;
   border: none !important;
 }
 
-#btn-sucess{
+.btn-success{
   padding: 10px;
-  background:#53534F !important;
+  background:#5DBAE5 !important;
+
   color: #fff;
   border: none !important;
 }

@@ -33,7 +33,12 @@ export class revStore{
 
     async show(id:number):Promise<Review>{
         const conn = await client.connect();
-        const sql_command = "SELECT * FROM reviews WHERE review_id=$1;";
+        const sql_command = `
+        SELECT r.*, rdv.client_name,b.bname FROM reviews r 
+        LEFT JOIN rendezvous rdv ON  r.rdvid = rdv.rdv_id 
+        LEFT JOIN beautifyers b ON rdv.doneby = b.beautif_id
+        WHERE review_id=$1;
+        ` 
         const result =  await conn.query(sql_command,[id]);
         conn.release();
         return result.rows[0];

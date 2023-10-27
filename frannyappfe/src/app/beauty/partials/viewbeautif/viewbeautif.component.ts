@@ -11,11 +11,16 @@ import { Beautifyer } from '../../models/beautifyer';
 export class ViewbeautifComponent implements OnInit {
   id!:number;
   beautif!: Beautifyer;
+  loading = true;
 
-  constructor(private route: ActivatedRoute,private beauty:BeautyService, private router: Router ){}
+  constructor(private route: ActivatedRoute,
+    private beauty:BeautyService, private router: Router ){}
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.params['id']);
+    setTimeout(()=>{
+      this.loading = false;
+    }, 1000)
     this.beauty.getBeautifyers(this.id).subscribe((data)=>{
       this.beautif = data;
       console.log(data)

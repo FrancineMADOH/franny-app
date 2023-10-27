@@ -16,6 +16,13 @@ h1{
     font-size: 30px !important;
 }
 
+h5{
+    color: #F460FC;
+    font-size: 20px !important;
+
+}
+
+
 .btn-secondary{
     width: 150px;
     height: 100%;
@@ -24,8 +31,4 @@ h1{
     background:#5DBAE5 !important;
     color: #fff;
     border: none !important;
-}
-
-i{
-    /* font-size: 30px; */
 }

@@ -14,6 +14,7 @@ export class BeautifyerCardComponent implements OnInit {
   beautifList:Beautifyer[]= [];
   filteredList:Beautifyer[]=[];
   searchVal:string= "";
+  emptydb = true;
 
 constructor(private beau: BeautyService, public router: Router){
   this.filteredList = this.beautifList
@@ -26,6 +27,10 @@ ngOnInit():void{
       return this.beautifList;  
     });
   }); 
+
+  if(this.beautifList.length == 0){
+    this.emptydb = false;
+  }
 }
 
 gotoUpdate(el:number){
