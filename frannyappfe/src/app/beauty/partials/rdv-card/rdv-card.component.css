@@ -74,17 +74,19 @@ p {
 h6 {
   font-weight: bolder;
 }
+
 .card-subtitle {
   font-size: 21px;
   font-weight: bold;
 }
 section {
   display: flex;
-  /* border: 2px solid green; */
-  width: 100%;
-  /* gap: 45px; */
   gap: 5%;
   padding: 0 13px;
   z-index: -1;
   flex-wrap: wrap;
+}
+table  button{
+  height: 30px;
+  padding: 3px;
 }
