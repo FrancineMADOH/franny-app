@@ -48,6 +48,11 @@ export class PrestationCardComponent implements OnInit {
         Prestation?.category.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase()) ||
         Prestation?.seance.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase())
        );
+      
+      if(this.filteredList.length==0){
+        this.filteredList = this.prestationList;
+        alert('Empty query');
+      }
 
   }
 }

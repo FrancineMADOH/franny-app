@@ -1,3 +1,23 @@
 small{
     color:red;
 }
+
+.btn-success{
+    margin: 0 auto 0;
+    padding: 10px;
+    border-radius: 0px;
+    background:#53534F !important;
+    color: #fff;
+    border-radius: 0px;
+    border: none !important;
+  }
+
+.btn-secondary{
+    margin: 0 auto 0;
+    padding: 10px;
+    border-radius: 0px;
+    background:#5DBAE5 !important;
+    color: #fff;
+    border: none !important;
+    border-radius: 0px;
+}

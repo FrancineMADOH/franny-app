@@ -1,3 +1,24 @@
 small{
     color:red;
 }
+.btn-secondary{
+    margin: 0 auto 0;
+    padding: 10px;
+    border-radius: 0px;
+    background:#53534F !important;
+    color: #fff;
+    float: right;
+    border: none !important;
+}
+.btn-primary{
+    margin: 0 auto 0;
+    padding: 10px;
+    border-radius: 0px;
+    background-color:#5DBAE5 !important;
+    color: #fff;
+    border: none !important;
+}
+label{
+    font-weight: bold;
+    margin: 5px;
+}

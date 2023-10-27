@@ -1,25 +1,28 @@
-<section>
-    <div class="card card-container my-2" *ngFor="let rdv of filteredrdvList">
+<section class="container">
+  <div class="spinner-grow" role="status" *ngIf="isloading">
+    <span class="sr-only">Loading...</span>
+  </div>
+    <div class="card  my-2" *ngIf="!isloading">
+      <div class="card-header">
+        <h5 class="card-title"><span class="attributes">Rendez-vous:</span> {{rdv.rdvcode}}/{{rdv.rdv_id}}</h5>
+          <div class="card-subtitle mb-2 text-center text-muted">{{rdv.category}} - {{rdv.ville}} - {{rdv.quartier}} - <span ngClass="{{rdv.rdvstate}} " > {{rdv.rdvstate}}</span> </div>
+      </div>
         <div  class="card-body">
-          <h6 class="card-title"><span>Rendez-vous:</span> {{rdv.rdvcode}}/{{rdv.rdv_id}}</h6>
+          <p class="card-text"><span class="attributes">Client Name:</span>{{rdv.client_name}} </p>
           <hr>
-          <div class="card-subtitle mb-2 text-muted">{{rdv.category}} - {{rdv.ville}} - {{rdv.quartier}} - <span ngClass="{{rdv.rdvstate}} " > {{rdv.rdvstate}}</span> </div>
+          <p class="card-text"><span class="attributes">Client Phone:</span> {{rdv.client_phone}}</p>
           <hr>
-          <p class="card-text"><span>Client Name:</span>{{rdv.client_name}} </p>
+          <p class="card-text"><span class="attributes">Client Email:</span>  {{rdv.client_email}}</p>
           <hr>
-          <p class="card-text"><span>Client Phone:</span> {{rdv.client_phone}}</p>
+          <p class="card-text"> <span class="attributes">Date du rdv:</span> {{rdv.rdvdate}}</p>
           <hr>
-          <p class="card-text"><span>Client Email:</span>  {{rdv.client_email}}</p>
+          <p class="card-text"><span class="attributes">Price:</span>  {{rdv.rdv_price}} </p>
           <hr>
-          <p class="card-text"> <span>Date du rdv:</span> {{rdv.rdvdate}}</p>
+          <p class="card-text"><span class="attributes"> State:</span> {{rdv.rdvstate}} </p>
           <hr>
-          <p class="card-text"><span>Price:</span>  {{rdv.rdv_price}} </p>
+          <p class="card-text"><span class="attributes">Assigned to:  </span>{{ rdv.bname }}</p>
           <hr>
-          <p class="card-text"><span> State:</span> {{rdv.rdvstate}} </p>
-          <hr>
-          <p class="card-text"><span>Assigned to:  </span>{{ rdv.bname }}</p>
-          <hr>
-          <p class="card-text"><span>Comments:</span>{{rdv.comments}} </p>
+          <p class="card-text"><span class="attributes">Comments:</span>{{rdv.comments}} </p>
           <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===CancelApt)" (click)="gotoUpdate(rdv.rdv_id || 1) " class="card-link btn btn-success">Update</button>
           <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===OnApt || rdv.rdvstate===CancelApt )" (click)="gotoAssign(rdv.rdv_id || 1) " class="card-link btn btn-secondary">Assign</button>
           <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===CancelApt)"   (click)="gotoCancel(rdv.rdv_id || 1) " class="card-link btn btn-danger"><i class="bi bi-x-circle"> Cancel</i></button>

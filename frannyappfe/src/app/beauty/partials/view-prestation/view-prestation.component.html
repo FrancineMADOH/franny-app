@@ -1,11 +1,27 @@
-
-< <div class="card my-2 card-container" >
-    <div class="card-body">
-      <h5 class="card-title">title</h5>
-      <h6 class="card-subtitle mb-2 text-muted"> price category</h6>
-      <p class="card-text"> el.seance  </p>
-      <p class="card-text"> el.gold_price el.gold </p>
-      <p class="card-text"> premium_price el.premium </p>
-      <button (click)="gotoUpdate( 1)" class="card-link btn btn-success">Update</button>
-    </div>
+<main class="container text-center">
+  <div class="spinner-border" role="status" *ngIf="isloading">
+    <span class="sr-only">Loading...</span>
   </div>
+
+  <div class="card my-2 card-container" *ngIf="!isloading" >
+    <div class="card-header">
+      <h5 class="card-title text-center">{{prestation.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-center text-muted">{{prestation.category}}</h6>
+    </div>
+      <div class="card-body">
+        <h6>Classic - {{prestation.price}}</h6>
+        <p class="card-text"> {{prestation.seance}}  </p>
+        <hr>
+        <h6>Gold - {{prestation.gold_price}}</h6>
+        <p class="card-text">{{prestation.gold}} </p>
+        <hr>
+        <h6>Premium - {{prestation.premium_price}}</h6>
+        <p class="card-text"> {{prestation.premium}} </p>
+        <hr>
+        <p class="text-center">
+        <button (click)="gotoUpdate( prestation.pres_id||1)" class="card-link btn btn-secondary">Update</button>
+        </p>
+      </div>
+    </div>
+</main>
+

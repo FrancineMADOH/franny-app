@@ -7,8 +7,8 @@
     <div class="paiement" *ngIf="!isloading">
         <h3 class="text-center">Bienvenu, {{rdv.client_name}} </h3>
 
-        <p>Vous etes sur le point de Regler votre facture.</p>
-        <p class="text-center">Montant:{{rdv.rdv_price}} XAF</p>
+        <p class="text-center">Vous etes sur le point de Regler votre facture.</p>
+        <p class="text-center fw-bold">Montant:{{rdv.rdv_price}} XAF</p>
        
             <form *ngIf="!paid" #paymentForm="ngForm" (ngSubmit)="makeCashPayment(paymentForm)">
                 <div class="form-group">
@@ -20,16 +20,18 @@
                     </select>
                     <small>*Payment mobile bientot disponible</small>
                 </div>
-                <button type="submit" [disabled]="!paymentForm['valid']" class="btn btn-success m-2">Confirmer le
-                    paiement</button>
+                <p class="text-center">
+                    <button type="submit" [disabled]="!paymentForm['valid']" class="btn btn-success m-2">Confirmer le
+                        paiement</button>
+                </p> 
             </form>
 
     </div>
 
     <div class="paid" *ngIf="paid">
         <h3>Thank you for your paiement</h3>
+        <p *ngIf="(!isauth && paid==true)">You can now close this window</p>
     </div>
-    <button class="btn btn-secondary" *ngIf="isauth" (click)="back()">Back to rendez-vous List</button>
-    <p *ngIf="(!isauth && paid==true)">You can now close this window</p>
+    <button class="btn btn-secondary my-2" *ngIf="isauth" (click)="back()">Back to rendez-vous List</button>
 
 </main>

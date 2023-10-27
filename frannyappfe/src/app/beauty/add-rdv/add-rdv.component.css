@@ -5,6 +5,9 @@
     font-family: 'FiraSansRegular';
     font-size: 14px;
 }
+main{
+    padding: 2%;
+}
 h1{
     color: #F460FC;
     font-weight: bold !important;
