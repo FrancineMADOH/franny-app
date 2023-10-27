@@ -122,6 +122,9 @@ export class BeautyService {
   addReview(review:Review):Observable<Review>{
     return this.http.post<Review>(environment.baseUrl + "/reviews",review).pipe(catchError(this.handleError));
   }
+  getReviewbyId(id:number):Observable<Review>{
+    return this.http.get<Review>(environment.baseUrl + `/reviews/${id}`).pipe(catchError(this.handleError));
+  }
 //https://www.positronx.io/angular-httpclient-http-service/
 
 //handle anny error that occurs

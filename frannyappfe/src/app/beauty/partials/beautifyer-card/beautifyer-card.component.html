@@ -1,5 +1,6 @@
-
-<div class="searchFormClass col-lg-4 my-2 search-bar">
+<app-empty  *ngIf="emptydb" ></app-empty>
+<main *ngIf="!emptydb" >
+  <div class="searchFormClass col-lg-4 my-2 search-bar">
     <form #searchbeautifyer="ngForm"
     (ngSubmit)="searchBeautifyerTerm(searchbeautifyer.value)"
     class="d-inline">
@@ -42,3 +43,5 @@
       </table>
 </section>
 
+
+</main>
