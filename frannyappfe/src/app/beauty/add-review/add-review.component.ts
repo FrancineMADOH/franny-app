@@ -36,8 +36,7 @@ export class AddReviewComponent implements OnInit {
       this.rdv = res;
       this.values.push(this.rdv.client_name)
       this.values.push(this.rdv.bname);
-      this.date = this.rdv.rdvdate.split('T')
-      console.log(this.rdv)
+      this.date = this.rdv.rdvdate.split(' ')
             return this.rdv;
     });
     this.isauth = this.auth.isLogin();
@@ -56,7 +55,10 @@ export class AddReviewComponent implements OnInit {
     if(this.isauth){
       this.router.navigate(['beauty/rendezvous']);
     }else{
-      this.router.navigate(['beauty/'])
+      alert('Review Successfull. You can now close this window');
+      setTimeout(() => {
+        this.router.navigate(['beauty/'])
+      }, 1000);
     }
   }
 

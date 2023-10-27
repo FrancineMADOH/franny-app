@@ -16,6 +16,8 @@ export class RdvFormComponent implements OnInit {
   iscreateMode!:boolean;
   rdvCode = "";
   rdv!: Rendezvous;
+  restrict_date = new Date().toISOString().split('T')[0];
+  prestation!:Prestation;
   prestations:Prestation[] = [];
   seance = [ "Classic","Gold","Premium" ];
   appointment_type =  ["Personnel","Familial","Evenement","Entreprise"];
@@ -61,13 +63,17 @@ export class RdvFormComponent implements OnInit {
     if(!this.iscreateMode){
       this.action = "Update";
       this.beauty.getRendezvous(Number(this.id)).subscribe((res)=>{
-        console.log(res)
+        this.beauty.getPrestation(Number(res.prestation)).subscribe((data)=>{
+          this.prestation = data;
+         console.log(data)
+          return this.prestation;
+        });
         this.addRendezvousForm.form.setValue({
           client_name: res.client_name,
           client_phone: res.client_phone ,
           client_email:res.client_email ,
           rdvdate:res.rdvdate ,
-          prestation: res.title ,
+          prestation: res.prestation ,
           category: res.category,
           rdvcode: res.rdvcode,
          // rdvtype: res.rdvtype,
@@ -127,15 +133,15 @@ export class RdvFormComponent implements OnInit {
       this.addRendezvousForm.value.rdvcode  = this.rdvCode;
     //   this.addRendezvousForm.value.rdv_price = parseInt(this.addRendezvousForm.value.rdv_price);
     console.log(this.addRendezvousForm.value)
-      // if(this.addRendezvousForm.valid){
-    //   this.rdv = this.addRendezvousForm.value;
-    //   this.beauty.updateRendezvous(id,this.rdv).subscribe((res:any)=>{
-    //     console.log(res);
-    //     alert(res.message);
-    //     this.router.navigate(['beauty/rendezvous']);
-    //   });
-    //   this.addRendezvousForm.reset();
-    // }
+      if(this.addRendezvousForm.valid){
+      this.rdv = this.addRendezvousForm.value;
+      this.beauty.updateRendezvous(id,this.rdv).subscribe((res:any)=>{
+        console.log(res);
+        alert(res.message);
+        this.router.navigate(['beauty/rendezvous']);
+      });
+      this.addRendezvousForm.reset();
+    }
 
   }
   backToRdv(){

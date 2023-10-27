@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Rendezvous } from '../../models/rdv';
+import { BeautyService } from '../../services/beauty.service';
 
 @Component({
   selector: 'app-view-rdv',
@@ -15,10 +16,26 @@ export class ViewRdvComponent implements OnInit {
   schedApt= "Scheduled"
   OnApt= "Ongoing"
   complApt= "Completed"
+  id!:number;
+  isloading= true;
+
+  constructor(private router:Router, private route:ActivatedRoute,
+    private beauty:BeautyService){}
+
+
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+
+    setTimeout(() => {
+      this.isloading =false;
+    }, 1000);
+
+    this.beauty.getRendezvous(this.id).subscribe((res)=>{
+      this.rdv = res;
+      return this.rdv
+    })
     
   }
-  constructor(private router:Router){}
 
   gotoUpdate(id:number){
     this.router.navigate(["/beauty/rendezvous/update/"+id]);

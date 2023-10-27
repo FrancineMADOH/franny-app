@@ -37,6 +37,7 @@
             <input  class="form-control" 
             ngModel
             required
+            min="{{restrict_date}}"
             #rdvdate="ngModel"
             placeholder="choose a date"
             type="datetime-local" 
@@ -95,10 +96,10 @@
             ngModel
             #rdv_price="ngModel" 
             name="rdv_price" id="rdv_price">
-            <option selected>Choose Your prestation type</option>
-                <option *ngFor="let el of prestations" value="{{ el.price}}">Classic</option>
-                <option *ngFor="let el of prestations" value="{{el.gold_price}}">Gold</option>
-                <option *ngFor="let el of prestations"  value="{{el.premium_price}}">Premium</option>
+            <option selected value="0">Choisissez votre séance</option>
+            <option >Classic</option>
+            <option >Gold</option>
+            <option>Premium</option>
             </select>
         </div>
         <small *ngIf="!rdv_price.valid && rdv_price.touched" >Choose the type of prestation you want</small>
@@ -148,5 +149,6 @@
         </div>  
         <button type="submit" [disabled]="!addRendezvousForm['valid']" class="btn btn-success m-3  ">{{action}}</button> 
     </form>
-    <button (click)="backToRdv()" class="btn btn-danger m-3">Cancel</button>
+    <hr>
+    <button (click)="backToRdv()" class="btn btn-secondary m-3">Cancel</button>
 </div>
