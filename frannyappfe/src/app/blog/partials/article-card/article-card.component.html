@@ -15,6 +15,9 @@
                     </div>
                 </form>
             </div>
+            <div *ngIf="emptyquery" class="text-center text-muted my-2">
+                <p >Empty query! try something else...</p>
+            </div>
         
 
         
@@ -31,7 +34,7 @@
                     <div>
                         <ul class="social_icons">
                             <li>
-                                <span class=""> By: {{post.admin_name}} | </span> 
+                                <span class=""> By: {{post.admin_name}} |</span> 
                             </li>
                             <li>
                                 <a  href="{{post.facebook_url}}" target="_blank"><i class="bi bi-facebook"></i></a>

@@ -30,6 +30,7 @@ signtheUserIn(email:string,admin_password:string){
     
     if(typeof(res)=='string'){
       localStorage.setItem("acces_token", res);
+      localStorage.setItem("admin_email", email)
       this.getAdminInfos(email).subscribe((res:any)=>{
         this.currentUser = res;
         this.router.navigate(['dashboard/' + res.email]);
@@ -60,9 +61,14 @@ getAdminInfos(email:string): Observable<any>{
 getAccesToken(){
   return localStorage.getItem('acces_token');
 };
+
 isLogin():boolean {
   let authToken = localStorage.getItem('acces_token');
   return (authToken!==null)? true:false;
+}
+getEmail():string{
+  let email = localStorage.getItem('admin_email');
+  return email || '';
 }
 bEmail = new BehaviorSubject("");
 
@@ -74,6 +80,7 @@ updatedEmail(email:string){
 
 logout(){
   if(localStorage.removeItem('acces_token') == null){
+    localStorage.removeItem("admin_email")
     this.router.navigate(['/login']);
   }
 }
