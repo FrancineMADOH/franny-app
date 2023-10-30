@@ -8,7 +8,7 @@ export interface Admin {
     email:string,                 
     admin_password?:string,               
    // avatar:string //{data:Buffer,contentType:string }  
-    activ_date?:string,              
+    activ_date:string,              
     superuser?:boolean
 }
 

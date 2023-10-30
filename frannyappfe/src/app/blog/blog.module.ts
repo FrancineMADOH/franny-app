@@ -13,7 +13,6 @@ import { ArticleFormComponent } from './partials/article-form/article-form.compo
 import { ArticleCardComponent } from './partials/article-card/article-card.component';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { CommentCardComponent } from './partials/comment-card/comment-card.component';
-import { AdminCardComponent } from './partials/admin-card/admin-card.component';
 import { FormsModule } from '@angular/forms';
 import { BlogViewComponent } from './blog-view/blog-view.component';
 import { BlogStatsComponent } from './blog-stats/blog-stats.component';
@@ -34,7 +33,6 @@ import { SharedModule } from '../shared/shared.module';
     ArticleFormComponent,
     ArticleCardComponent,
     CommentCardComponent,
-    AdminCardComponent,
     BlogViewComponent,
     BlogStatsComponent,
   ],

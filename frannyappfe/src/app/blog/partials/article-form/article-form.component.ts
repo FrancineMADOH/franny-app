@@ -31,7 +31,7 @@ export class ArticleFormComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.iscreateMode = !this.id;
-    this.email = this.auth.bEmail.value;
+    this.email = this.auth.getEmail()
     //get the connected admin
     this.auth.getAdminInfos(this.email).subscribe((res)=>{
       this.admin = res;
@@ -64,6 +64,7 @@ export class ArticleFormComponent implements OnInit {
       this.addArticle.value.create_at = this.create_at;
       this.addArticle.value.author = this.admin.admin_id;
       this.post =  this.addArticle.value;
+      console.log(this.post)
       this.blog.saveBlogPost(this.post).subscribe((res:any)=>{
         alert(res.message)
       })

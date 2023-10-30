@@ -16,6 +16,7 @@ export class ArticleCardComponent implements OnInit {
   filteredPostList:PostResult[] = [];
   isAdmin!:boolean;
   isEmpty!:boolean;
+  emptyquery= false;
 
   constructor(private blog:BlogService,
     private auth:AuthService,
@@ -24,6 +25,7 @@ export class ArticleCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     //if article list is empty display the empty component 
     this.isAdmin= this.auth.isLogin();
        this.blog.getblogpostList().subscribe((data)=>{
@@ -51,7 +53,7 @@ export class ArticleCardComponent implements OnInit {
 
   
   searchArticleByTerm(query:string){
-    const searchterm = query.search.toString();
+    let searchterm = query.search.toString();
     if(!query){
       this.filteredPostList = this.postList;
     }
@@ -61,6 +63,11 @@ export class ArticleCardComponent implements OnInit {
     PostResult?.category.toLowerCase().includes(searchterm.toLocaleLowerCase()) ||
     PostResult?.content.toLowerCase().includes(searchterm.toLocaleLowerCase())
      )
+
+    if(this.filteredPostList.length==0){
+      this.filteredPostList = this.postList;
+      this.emptyquery = true;
+    }
   }
 
 }
