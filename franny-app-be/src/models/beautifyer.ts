@@ -39,7 +39,9 @@ export class beautyStore{
 
     async show(id:number):Promise<Beautifyer>{
         const conn = await client.connect();
-        const sql_command =  "SELECT * FROM beautifyers WHERE beautif_id=$1;"
+        const sql_command =  `SELECT b.*, a.admin_name FROM beautifyers b
+        LEFT JOIN admins a ON b.create_by = a.admin_id
+        WHERE beautif_id=$1;`
         const result = await conn.query(sql_command,[id]);
         conn.release();
         return result.rows[0];

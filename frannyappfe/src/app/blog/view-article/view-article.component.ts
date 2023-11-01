@@ -23,7 +23,10 @@ export class ViewArticleComponent implements OnInit {
   commentList:Comment[]= [];
   isAdmin!:boolean;
   loading = true;
-  topApplause:Post[] = [];
+  AllPost:Post[] =[];
+  feminityPosts:Post[] = [];
+  maternityPosts:Post[] = [];
+  familyPosts:Post[] = [];
   blog_post_id!:number;
   html!:any;
   @ViewChild("commentForm",{static:true}) commentForm:any;
@@ -56,13 +59,6 @@ export class ViewArticleComponent implements OnInit {
         return this.commentList;
       })
     });
-    
-    this.blog.topApplause(Number(this.id)).subscribe((res)=>{
-      res.map((post:any)=>{
-        this.topApplause.push(post)
-        return this.topApplause;
-      })
-    })
   }
 
 onComment(commentForm:any){

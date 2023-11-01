@@ -32,6 +32,10 @@ export class PrestationCardComponent implements OnInit {
     this.router.navigate(['beauty/prestations/update/' + el])
   }
 
+  gotoView(el:number){
+    this.router.navigate(["beauty/prestations/view/" + el]);
+  }
+
   searchPrestationByTerm(query:string){
     const searchterm =  query.search.toString();
     if(!query){
@@ -44,6 +48,11 @@ export class PrestationCardComponent implements OnInit {
         Prestation?.category.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase()) ||
         Prestation?.seance.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase())
        );
+      
+      if(this.filteredList.length==0){
+        this.filteredList = this.prestationList;
+        alert('Empty query');
+      }
 
   }
 }

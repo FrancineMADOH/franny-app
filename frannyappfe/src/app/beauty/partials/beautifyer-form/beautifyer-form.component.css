@@ -1,0 +1,25 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+* {
+  font-family: 'FiraSansRegular';
+  font-size: 14px;
+}
+
+.btn-secondary {
+  margin: 0 auto 0;
+  padding: 10px;
+  background: #53534F !important;
+  color: #fff;
+  border: none !important;
+}
+
+label {
+  font-weight: bold;
+}
+
+.btn-success {
+  margin: 0 auto 0;
+  padding: 10px;
+  background-color: #5DBAE5 !important;
+  border: none !important;
+}

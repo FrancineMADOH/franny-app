@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="spinner-grow text-center" role="status" *ngIf="isloading">
+    <span class="sr-only">Loading...</span>
+  </div>
+
+  
+<div class="card my-2" *ngIf="!isloading">
+  <div class="card-body" >
+    <div class="card-header my-4">
+      <h5 class="card-title text-center">Review No:{{rev.rdvid }} </h5>
+    </div>
+    <p><span class="attributes ">Client Name: </span> {{rev.client_name}} </p>
+    <hr>
+    <p><span class="attributes">Done by: </span> {{rev.bname}}</p>
+    <hr>
+    <p><span class="attributes">Note:</span>{{rev.note}}</p>
+    <hr>
+    <p><span class="attributes">Review date:</span>{{rev.review_date.split(" ")[0] }} </p>   
+    <hr>
+    <p class="card-text text-center"><span class="attributes">Commentaire</span></p> 
+    <p class="card-text"> {{rev.comment}}</p>
+  </div>
+</div>
+</div>

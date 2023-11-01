@@ -1,0 +1,25 @@
+main{
+    padding: 2%;
+    font-family: 'FiraSansRegular';
+    font-size: 14px;
+    margin: 0 auto;
+}
+h5{
+    font-weight: bold;
+    color: #F460FC;
+}
+.card-body > h6{
+    font-weight: bold;
+    color: #53534F;
+}
+
+.btn-secondary{
+    margin: 0 auto 0;
+    padding: 10px;
+    border-radius: 0px;
+    background:#53534F !important;
+    color: #fff;
+    border: none !important;
+  }
+  
+  

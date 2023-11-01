@@ -14,12 +14,14 @@ export class FaqCardComponent implements OnInit {
   faqList:Faq[]=[];
   id!:string;
   isAuth!:boolean;
+  emptydb= true;
 
   @ViewChild("deleteFaqForm", {static: true}) deleteFaqForm:any;
 
   constructor(private beauty:BeautyService,
     private auth:AuthService
     ){}
+
   ngOnInit(): void {
     this.isAuth = this.auth.isLogin()
     this.beauty.getFaqList().subscribe((res:Faq[])=>{
@@ -28,13 +30,19 @@ export class FaqCardComponent implements OnInit {
         return this.faqList;
       });
     });
+
+    if(this.faqList.length == 0){
+      this.emptydb = false;
+    }
   }
 
   //deletequestion
-  deleteFaq(deleteFaqForm:any){
-    this.beauty.deleteFaq(deleteFaqForm).subscribe((res:any)=>{
+  deleteFaq(deleteFaqForm:any,id:number){
+    console.log('i am clicked ')
+    this.beauty.deleteFaq(id).subscribe((res:any)=>{
       alert(res.message);
-    })
+      location.reload();
+    });
   }
 
 

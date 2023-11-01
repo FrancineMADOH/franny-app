@@ -1,0 +1,21 @@
+.container{
+    padding: 8%;
+    font-family: 'FiraSansRegular';
+    font-size: 14px;
+  }
+  .card{
+    max-width: 750px;
+    margin: 0 auto;
+  }
+  h5{
+    color: #F460FC;
+    font-weight: bold;
+  }
+  
+  .attributes{
+    font-weight: bold;
+    font-size: 16px;
+    padding:2px;
+  }
+  
+  
