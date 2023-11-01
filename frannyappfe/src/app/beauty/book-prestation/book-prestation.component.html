@@ -1,187 +1,260 @@
-<div class="container">
-    <div class="confirmation-message" *ngIf="showconfirm" >
-        <h4>Votre rendez-vous a ete enregistre</h4>
+<div class="container m-1">
+    <h1 class="text-center display-1">Prendre un rendez-vous</h1>
+    <div class="confirmation-message" *ngIf="showconfirm">
+        <h4 class="text-center display-4">Votre rendez-vous a été enregistré</h4>
     </div>
-        <div class="form-step-indicator">
-            <h1>Prendre un rendez-vous</h1>
+    <div class="cote-a-cote">
+        <div class="col-lg-6  form-step-indicator m-1 ">
             <ul id="progress_bar">
-                <li [ngClass]="step==1? 'active':'inactive'" >Informations Personelles</li>
-                <li [ngClass]="step==2? 'active':'inactive'" >Details du service</li>
-                <li [ngClass]="step==3? 'active':'inactive'" >Confirmation</li>
+                <li [ngClass]="step==1? 'active':'inactive'">Informations Personelles</li>
+                <li [ngClass]="step==2? 'active':'inactive'">Détails Prestation</li>
+                <li [ngClass]="step==3? 'active':'inactive'">Confirmation</li>
 
-            </ul> 
-        </div>
-        <div class="cote-a-cote">
-        <div class="col-lg-6 m-1">
-        <div class="step_one" *ngIf="step==1">
-            <form [formGroup]="personalDetails" id="rdv_form"  >
-                <div class="form-group my-2">
-                    <label  for="client_name">Votre nom</label>
-                    <input type="text" 
-                    class="form-control"
-                    formControlName="client_name"
-                    [ngClass]="{'is-invalid': personal_step && personal['client_name'].errors}"
-                    required
-                    maxlength="100"
-                    placeholder="Entrez votre nom"
-                    id="client_name">
-                    <!-- <small style="color:red;" *ngIf="!personal['client_name'].errors?.['required']">Please enter your name</small> -->
-                </div>
-                <div class="form-group">
-                    <label for="client_phone">Entrez votre numero de telephone</label>
-                    <input type="text"
-                     id="client_phone"
-                     formControlName="client_phone"
-                     maxlength="9"
-                     required
-                     placeholder="[0-9] -  max 9 characters"
-                    pattern="[0-9]*" name="client_phone" class="form-control">
-                    <!-- <small *ngIf="!client_phone.valid && client_phone.touched" style="color:red;">Please enter a valid phone number</small> -->
-                </div>
-                <div class="form-group my-2">
-                    <label for="client_email">Entrez votre address email</label>
-                    <input class="form-control" 
-                    formControlName="client_email"
-                    type="email" name="client_email" id="client_email">
-                    <!-- <small *ngIf="!client_email.valid && client_email.touched" style="color:red;">Invalid email</small> -->
-                </div>
-                <div class="location m-2">
-                    <div class="form-group m-3">
-                        <label for="ville">Quelle ville habitez-vous ?</label>
-                        <select class="form-control" 
-                        required
-                        formControlName="ville"
-                        name="ville" id="ville">
-                            <option value="" selected>Votre Ville</option>
-                            <option value="Yaounde">Yaounde</option>
-                        </select>
-                        <!-- <small *ngIf="!ville.valid && ville.touched" style="color:red;">Please choose a town</small> -->
+            </ul>
+            <div class="step_one" *ngIf="step==1">
+                <form [formGroup]="personalDetails" id="rdv_form">
+                    <div class="form-group my-1">
+                        <label for="client_name">Entrez Votre nom</label>
+                        <input type="text" class="form-control" formControlName="client_name"
+                            [ngClass]="{'is-invalid': personal_step && personal['client_name'].errors}" required
+                            maxlength="100" placeholder="Entrez votre nom" id="client_name">
+                        <small *ngIf="!personal['client_name'].valid && personal['client_name'].touched">Please enter
+                            your name</small>
                     </div>
-                   
-                    <div class="form-group m-3">
-                        <label for="quartier">Quelle Quartier habitez-vous  ? </label>
-                        <select class="form-control"
-                        required
-                        formControlName="quartier"
-                        name="quartier" id="quartier">
-                            <option value="" selected>Quartier</option>
-                            <option *ngFor="let quartier of AllQuartier" value="{{quartier}}">{{quartier}}</option>
-                        </select>
-                        <!-- <small *ngIf="!quartier.valid && quartier.touched" style="color:red;">Please choose a your quartiier</small> -->
+                    <div class="form-group">
+                        <label for="client_phone">Entrez votre numéro de téléphone</label>
+                        <input type="text" id="client_phone" formControlName="client_phone" maxlength="9" required
+                            placeholder="[0-9] -  max 9 characters" pattern="[0-9]*" name="client_phone"
+                            class="form-control">
+                        <small *ngIf="!personal['client_phone'].valid && personal['client_phone'].touched">Numero
+                            invalide</small>
                     </div>
-                </div>
-                <input type="button" (click)="nextStep()" [disabled]="!personalDetails['valid']" name="nextStep" class="btn btn-primary  action-button nextStep" value="Suivant">
-            </form>
-        </div>
-        
-        <form [formGroup]="serviceDetails" (ngSubmit)="onSubmit()" id="rdv_form" *ngIf="step == 2">
-            <div class="form-group my-2">
-                <label for="rdvtype">Pour qui prennez-vous rendez-vous</label>
-                <select class="form-control" required 
-                formControlName="rdvtype" 
-                 name="rdvtype" id="rdvtype">
-                    <option value="0" selected>Type de rendez-vous</option>
-                    <option *ngFor="let element of appointment_type" value="{{element }}">{{element}}</option>
-                </select>
-                <!-- <small *ngIf="!prestation.valid && prestation.touched" style="color:red;">Please choose a type for your -->
+                    <div class="form-group my-1">
+                        <label for="client_email">Entrez votre address email</label>
+                        <input class="form-control" formControlName="client_email" type="email" name="client_email"
+                            id="client_email">
+                        <small *ngIf="!personal['client_email'].valid && personal['client_email'].touched">Ce champs est
+                            obligatoire</small>
+                    </div>
+                    <div class="location my-1">
+                        <div class="form-group m-3">
+                            <label for="ville">Quelle ville habitez-vous ?</label>
+                            <select class="form-control" required formControlName="ville" name="ville" id="ville">
+                                <option value="" selected>Votre Ville</option>
+                                <option value="Yaounde">Yaounde</option>
+                            </select>
+                            <small *ngIf="!personal['ville'].valid && personal['ville'].touched">Ce champs est
+                                obligatoire</small>
+                        </div>
+
+                        <div class="form-group m-3">
+                            <label for="quartier">Quelle Quartier habitez-vous ? </label>
+                            <select class="form-control" required formControlName="quartier" name="quartier"
+                                id="quartier">
+                                <option value="" selected>Quartier</option>
+                                <option *ngFor="let quartier of AllQuartier" value="{{quartier}}">{{quartier}}</option>
+                            </select>
+                            <small *ngIf="!personal['quartier'].valid && personal['quartier'].touched">Ce champs est
+                                obligatoire</small>
+                        </div>
+                    </div>
+                    <input type="button" (click)="nextStep()" [disabled]="!personalDetails['valid']" name="nextStep"
+                        class="btn btn-primary  action-button nextStep" value="Suivant">
+                </form>
+            </div>
+
+            <form [formGroup]="serviceDetails" (ngSubmit)="onSubmit()" id="rdv_form" *ngIf="step == 2">
+                <div class="form-group my-1">
+                    <label for="rdvtype">Pour qui prennez-vous rendez-vous</label>
+                    <select class="form-control" required formControlName="rdvtype" name="rdvtype" id="rdvtype">
+                        <option value="0" selected>Type de rendez-vous</option>
+                        <option *ngFor="let element of appointment_type" value="{{element }}">{{element}}</option>
+                    </select>
+                    <small *ngIf="!service['rdvtype'].valid && service['rdvtype'].touched">Ce champs est
+                        obligatoire</small>
+
+                    <!-- <small *ngIf="!prestation.valid && prestation.touched" style="color:red;">Please choose a type for your -->
                     <!-- prestation</small> -->
-            </div>   
-            <div class="seance_desc">
-            <div class="form-group my-2">
-            <label for="rdv_price">Type de Seance</label>
-                <select class="form-control"
-                required
-                formControlName = "rdv_price"
-                name="rdv_price" id="rdv_price">
-                <option selected value="0">Choisissez votre seance</option>
-                    <option value="{{prestation.price}}">Classic</option>
-                    <option value="{{prestation.gold_price}}">Gold</option>
-                    <option value="{{prestation.premium_price}}">Premium</option>
-                </select>
-            </div>
-          
-            </div>         
-            <div class="date_prestation">
-                <div class="form-group mx-2">
-                <label for="rdvdate">Date du rendez-vous</label>
-                <input  class="form-control"
-                required
-                formControlName="rdvdate"
-                placeholder="choose a date"
-                type="date" 
-                name="rdvdate" id="rdvdate">
-                <!-- <small *ngIf="!rdvdate.valid && rdvdate.touched"  style="color:red;">Please choose a date for your appointment</small> -->
-            </div>
-             <div class="form-group ms-2">
-                <label for="rdvdate">Quelle heure vous convient ?</label>
-                <input  class="form-control" 
-                required
-                formControlName="rdvtime"
-                placeholder="choose a date"
-                type="time" 
-                name="rdvtime" id="rdvdate">
-                <!-- <small *ngIf="!rdvdate.valid && rdvdate.touched"  style="color:red;">Please choose a date for your appointment</small> -->
-            </div>
-            </div>
-            <div class="form-group my-2">
-                <label for="comments">Des Questions?</label>
-                <textarea class="form-control"
-                id="comments"
-                placeholder="Nous sommes a votre ecoute!"
-                formControlName="comments"
-                name="comments"></textarea>
-            </div>
-            <input type="button" (click)="previousStep()" name="previousStep" class="btn btn-primary nextStep action-button-previous" value="Etape Precedente">
-            <button type="submit" (click)="nextStep();"   [disabled]="!serviceDetails['valid']"  class="btn btn-success m-3">Confirmer</button>
-        </form>
-        <button (click)="backToPrestation()" *ngIf="step<=2" class="btn btn-danger m-3">Annuler</button>
-
-    
-        <div class="confirmation-card"  id="confirmationcard" *ngIf="step == 3">
-            <h4>Felicitations 🎉🎉🎊 votre rendez-vous est reserve </h4>
-            <div class="card prestation-card" #dataToExport>
-                <div class="card-header">
-                    <h4 class="card-title">Franny Beauty</h4>
-                    <h6 class="card-subtitle">Soins de beaute a domicile</h6>
                 </div>
-                <div class="card-body row">
-                    <div class=" m-1">
-                        <p> <span class="mx-2"> Mr/Mrs:{{rdvfromServer.client_name}}</span> <span class="m-2">Contact:{{rdvfromServer.client_phone}} </span></p>
+                <div class="seance_desc">
+                    <div class="form-group my-1">
+                        <label for="rdv_price">Type de Séance</label>
+                        <select class="form-control" required 
+                        formControlName="rdv_price" name="rdv_price"
+                            id="rdv_price">
+                            <option selected value="0">Choisissez votre séance</option>
+                            <option value="{{prestation.price}}">Classic</option>
+                            <option value="{{prestation.gold_price}}">Gold</option>
+                            <option value="{{prestation.premium_price}}">Premium</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="date_prestation">
+                    <div class="form-group mx-1">
+                        <label for="rdvdate">Date du rendez-vous</label>
+                        <input class="form-control" required formControlName="rdvdate" placeholder="choose a date"
+                            type="date" min="{{restrict_date}}" name="rdvdate" id="rdvdate">
+                        <!-- <small *ngIf="!rdvdate.valid && rdvdate.touched"  style="color:red;">Please choose a date for your appointment</small> -->
+                    </div>
+                    <div class="form-group mx-1">
+                        <label for="rdvdate">Quelle heure vous convient ?</label>
+                        <input class="form-control" required formControlName="rdvtime" placeholder="choose a date"
+                            type="time" min="07:30" min="22:00" name="rdvtime" id="rdvdate">
+                        <!-- <small *ngIf="!rdvdate.valid && rdvdate.touched"  style="color:red;">Please choose a date for your appointment</small> -->
+                    </div>
+                </div>
+                <div class="form-group my-1">
+                    <label for="comments">Des Questions?</label>
+                    <textarea class="form-control" id="comments" placeholder="Nous sommes a votre écoute!"
+                        formControlName="comments" name="comments"></textarea>
+                </div>
+                <input type="button" (click)="previousStep()" name="previousStep"
+                    class="btn btn-primary nextStep action-button-previous" value="Etape Précédente">
+                <button type="submit" (click)="nextStep();" [disabled]="!serviceDetails['valid']"
+                    class="btn btn-success confirmer  m-3">Confirmer</button>
+            </form>
+            <hr />
+            <button (click)="backToPrestation()" *ngIf="step<=2" class="btn btn-danger cancel m-3">Annuler</button>
+
+
+            <div class="confirmation-card" id="confirmationcard" *ngIf="step == 3">
+                <h4 class="text-center display-4">
+                    Felicitations
+                    <i class="bi bi-balloon"></i>
+                    <i class="bi bi-balloon"></i>
+                    <i class="bi bi-balloon"></i>
+                    votre rendez-vous est réservé,
+                </h4>
+                <div class="card prestation-card" #dataToExport>
+                    <div class="card-header">
+                        <h4 class="card-title text-center display-4">Franny Beauty</h4>
+                        <h6 class="card-subtitle text-center">Soins de beauté a domicile</h6>
+                    </div>
+                    <div class="card-body row">
+                        <div class=" m-1">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Mr/Mrs: {{rdvfromServer.client_name}} </td>
+                                        <td>Contact: {{rdvfromServer.client_phone}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Prestation: {{prestation.title}}</td>
+                                        <td class="fw-bold">Prix: {{rdvfromServer.rdv_price}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date: {{rdvfromServer.rdvdate.split(" ")[0]}} </td>
+                                        <td>Heure: {{rdvfromServer.rdvdate.split(" ")[1]}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{rdvfromServer.ville}}</td>
+
+                                        <td>Quartier:{{rdvfromServer.quartier}}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>{{rdvfromServer.rdvcode}}</td>
+
+                                        <td>Categorie:{{rdvfromServer.category}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- <p><span class="mx-2"> Mr/Mrs:{{rdvfromServer.client_name}}</span> <span class="m-2">Contact:{{rdvfromServer.client_phone}} </span></p>
                         <p><span class="mx-2"  >Prestation:{{prestation.title}} </span> <span class="mx-2">Prix:{{rdvfromServer.rdv_price}} </span></p>
                         <p><span class="mx-2">Date:{{rdvfromServer.rdvdate.split(" ")[0]}} </span><span class="mx-2">Heure:{{rdvfromServer.rdvdate.split(" ")[1]}}</span></p>
                         <p><span class="mx-2">Ville:{{rdvfromServer.ville}} </span>/<span class="mx-2">Quartier:{{rdvfromServer.quartier}} </span></p>
-                        <p></p>
+                        <p></p> -->
+                        </div>
+                        <hr>
+                        <div class="m-1  row ">
+                            <div class="col-lg-6 text-center">
+                                <img class="qrcode" src="{{qrCode}}"><br />
+                                <p>Scannez ce Code pour effectuer le paiement de votre prestation</p>
+                            </div>
+                            <div class="col-lg-6" >
+                                <ul class="cancellation-conditions text-justify">
+                                   
+                                        <li class="conditions" *ngFor="let reason of cancelationConiditions"> {{reason}}</li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <hr>
-                    <div class=" m-1">
-                       <img class="qrcode" src="{{qrCode}}">
-                        <small>Scannez ce Code pour effectuer le paiement de votre prestation</small>
+                    <div class="card-footer text-muted">
+                        <h6 class="text-center">Contactez-nous</h6>
+                        <table class="table">
+                            <tr>
+                                <td class="text-center"><i class="bi bi-phone"></i>(+237) 693861216</td>
+                                <td class="text-center"><i class="bi bi-whatsapp"></i>(+237) 673869974</td>
+                                <td class="text-center"><i class="bi bi-facebook"></i>@frannyNetwork</td>
+                                <td class="text-center"><i class="bi bi-instagram"></i>@frannyNetwork</td>
+                            </tr>
+                        </table>
+                        <h6 class="text-center">
+                            <i class="bi bi-c-square"></i>
+                            {{copydate}} Franny Network
+                            <i class="bi bi-copyright"></i>
+                        </h6>
+
                     </div>
-                </div>
-                <div class="card-footer text-muted">
-                    <h6 class="text-center">Contactez-nous</h6>
-                    <p> <span>📱 : 673869974 </span><span>📧 : contact@franny.com </span></p>
-                    <p> <span><a class="fa">&#xf09a; </a> @franny </span><span><a class="fa">&#xf099;</a> @franny </span></p>
-                </div>
+                </div>              
             </div>
-            <a type="button" (click)="downloadAsPdf()"  class="btn btn-success">Telecharger</a>
         </div>
-        </div>
-       
+
         <!-- colone de droite -->
-        <div class="col-lg-5 prestation-infos m-1" *ngIf="presAvailable && step<=2"  >
-            <h4 class="text-center">{{prestation.title}}</h4>
-            <h6 class="text-muted text-center" >Temp estime:{{prestation.duration}}</h6> 
-            <h5>Classique - {{prestation.price}} </h5>
-            <p>
-                <span>{{prestation.seance}} </span>
-            </p>
-            <h5> Gold - {{prestation.gold_price}} </h5>
-            <p>{{prestation.gold}} </p>
-            <h5>Premium - {{prestation.premium_price}} </h5>
-            <p>{{prestation.premium}} </p>
+        <div class="col-lg-5 prestation-infos my-1">
+            <div  *ngIf="presAvailable && step<=2">
+                <h4 class="text-center my-2 display-4">{{prestation.title}}</h4>
+                <h6 class="text-muted text-center"><i class="bi bi-clock"></i> {{prestation.duration}}</h6>
+                <h5 class="classic">Classic | {{prestation.price}} XAF </h5>
+                <p class="text-justify">
+                    {{prestation.seance}}
+                </p>
+                <h5 class="gold"> Gold | {{prestation.gold_price}} XAF </h5>
+                <p class="text-justify">{{prestation.gold}} </p>
+                <h5 class="premium">Premium | {{prestation.premium_price}} XAF </h5>
+                <p class="text-justify">{{prestation.premium}} </p>
+            </div>
+
+            <div class="text-center p-2 promotion" *ngIf="presAvailable && step==3">
+                <div>
+                    <a type="button my-2"  (click)="downloadAsPdf()" id="downloadAsPdf" class="btn btn-success">Téléchargez la carte</a>
+                </div>
+                
+                <div class="card my-4" style="width: 40rem;">
+                    <i class="bi bi-megaphone"></i>
+                    <div class="card-body">
+                      <h5 class="card-title fw-bold">Jusqua 50% de reduction offert !</h5>
+                      <h6></h6>
+                      <p class="card-text">
+                        Telechargez et collectez 5 carte de rendez-vous.
+                        Saissez le code de vos cinq derniers rendez-vous et obtenez jusqua 50% de reduction sur votre prochaine commande
+                      </p>
+                      <form #couponForm="ngForm" (ngSubmit)="getCoupon()">
+                        <div class="form-group my-2"> 
+                        <label for="rdvs-code">Code des cinq derniers rendez-vous</label>
+                            <input type="text" class="form-control" 
+                            required
+                            ngModel
+                            #rdvs_code="ngModel"
+                            maxlength="100" 
+                            placeholder="Saisir les codes  de vos cinq derniers rendez-vous"
+                            id="rdvs-code">
+                            <small *ngIf="rdvs_code.valid && rdvs_code.touched">Please enter
+                                your name
+                            </small>
+                        </div>
+                        <button class="btn btn-secondary my-2" type="submit">Obtenir une reduction</button>
+                    </form>
+                    </div>
+                  </div>
+            </div>
+    
         </div>
-       
+
+        
     </div>
 </div>
 <!-- https://www.section.io/engineering-education/how-to-generate-qr-codes-using-nodejs/ -->

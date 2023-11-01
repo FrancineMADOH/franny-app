@@ -21,7 +21,7 @@ export class beautyHandler {
         try {
             const id = parseInt(req.params.id);
             const beautif = await beauty.show(id);
-            res.status(200).json({data:beautif});      
+            res.status(200).json(beautif);      
         } catch (err) {
             console.log(err);
             res.status(500).json(err);

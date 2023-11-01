@@ -1,25 +1,36 @@
-<div class="main">
+<div class="main container ">
+  <div class="spinner-grow text-center" role="status" *ngIf="loading" >
+    <span class="sr-only">Loading...</span>
+  </div>
     <section>
-        <div class="card my-2 b-card">
+        <div class="card my-2" *ngIf="!loading" >
+          <div class="card-header text-center">
+            <h5 class="card-title"><span class="attributes">Franny Recruit No:</span>
+              {{ beautif.beautif_id }}/{{beautif.beautif_id}}
+             </h5>
+          </div>
           <div class="card-body">
-              <h5 class="card-title"><span>Franny Recruit No:</span> {{ beautif.beautifcode }}/{{beautif.beautif_id}}</h5>
-              <!-- <h6 class="card-subtitle mb-2 text-muted fs-4 ">Details</h6> -->
-              <p><span>Address: </span>{{ beautif.ville }}<span class="quartier"> - {{beautif.quartier}}</span></p>
+              
+              <p><span class="attributes">Address: </span>{{ beautif.ville }}<span class="quartier"> - {{beautif.quartier}}</span></p>
               <hr>
-              <p><span>Name: </span>{{ beautif.bname }} </p>
+              <p><span class="attributes">Name: </span>{{ beautif.bname }} </p>
               <hr>
-              <p><span>Phone:</span> {{beautif.phone}}</p>
+              <p><span class="attributes">Phone:</span> {{beautif.phone}}</p>
               <hr>
-              <p><span>Email:</span> {{beautif.email}} </p>
+              <p><span class="attributes">Email:</span> {{beautif.email}} </p>
               <hr>
+              <p ><span class=" attributes">Responsable: </span> <span>{{beautif.admin_name}}</span> </p>
+              <hr/>
               <div>
-                <span>Description:</span>
+                <p class="attributes card-text text-center">Details</p>
                 <p class="card-text">{{beautif.details}} </p>
               </div>
               <hr>
-              <p class="card-text"><span>Responsable:</span> {{beautif.admin_name}}</p>
-              <button (click)="gotoUpdate(beautif.beautif_id || 1)" class="card-link btn btn-secondary">Update</button>
+              <div class="card-footer text-center">
+                <button (click)="gotoUpdate(beautif.beautif_id || 1)" class="card-link btn btn-secondary">Update</button>
+              </div>
           </div>
       </div>
+      <p></p>
       </section>
 </div>

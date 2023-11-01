@@ -1,3 +1,98 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+/* #5DBAE5(bleu), #F460FC(rose), #196C08(vert),
+ #C7B14A(gold) #AA9225(satin gold) #53534F(gray)*/
+
+
+*{
+    font-family: 'FiraSansRegular';
+    font-size: 14px;
+}
+h1{
+    color: #F460FC;
+    font-weight: bold !important;
+    padding: 1%;
+    margin-top: 1%;
+    font-size: 30px !important;
+}
+h4{
+    font-size: 20px !important;
+    color: #5DBAE5;
+
+}
+h6{
+    color: #F460FC;
+    font-size: 13px !important;
+}
+.form-step-indicator{
+    padding: 1%;
+    border: solid 1px #777;
+    border-radius: 10px;
+}
+#progress_bar{
+    list-style-type: none;
+    display: flex;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#progress_bar li{ 
+    margin-right: 20px;
+}
+.form-step-indicator .active{
+    background-color: #5DBAE5;
+    padding: 2px;
+    color:#fff;
+}
+.form-step-indicator .cancel{
+    float: right;
+    border-radius: 0px;
+}
+.form-step-indicator .nextStep{
+    background-color: #5DBAE5;
+    color:#fff;
+    width: 150px;
+    border: solid #fff 1px;
+    border-radius: 0px;
+}
+.form-step-indicator .confirmer{
+    background-color: #196C08;
+    color:#fff;
+    width: 150px;
+    border: solid #fff 1px;
+    border-radius: 0px;
+}
+.form-step-indicator small{
+    color: red;
+}
+
+.prestation-infos{
+    margin-left: 3%;
+}
+
+.prestation-infos h4{
+    color: #5DBAE5;
+    font-weight: bold;
+}
+
+.classic{
+    color:#53534F;
+    font-weight: bold;
+    font-style: oblique;
+    font-size:1em;
+}
+.gold{
+    color:#C7B14A;
+    font-weight: bold;
+    font-style: oblique;
+    font-size:1em;
+}
+.premium{
+    color:#196C08;
+    font-weight: bold;
+    font-style: oblique;
+    font-size:1em;
+}
 .location{
     display: flex;
 }
@@ -10,6 +105,90 @@
 }
 .confirmation-message{
     background-color: rgb(156, 230, 156) !important;
+    margin-top: 40px;
+    padding: 20px;
+    height: 40px;
+    color: #fff;
+
+}
+confirmation-card {
+    max-width: 500px;
+    margin: 0 auto;
+}
+confirmation-card h4,i{
+    color: #5DBAE5 !important;
+    font-weight: bold;
+}
+confirmation-card h6{
+    color: #F460FC !important;
+    font-weight: bold;
+}
+.prestation-card{
+    border: solid 1px #000;
+    border-radius: 0px;
+}
+confirmation-card table{
+    border-style: none;
+}
+.conditions{
+    font-size: 8px !important;
+}
+.promotion{
+    align-items: center !important;
+}
+.promotion h5{
+    color: #5DBAE5;
+    font-size: 1.6em;
+}
+.promotion .btn-secondary{
+    width: 200px;
+    height: 100%;
+    margin: 0 auto 0;
+    padding: 10px;
+    background:#5DBAE5 !important;
+    color: #fff;
+}
+
+#downloadAsPdf{
+  width: 200px;
+  height: 100%;
+  margin: 0 auto 0;
+  padding: 10px;
+  background:#5DBAE5;
+  animation: pulse 3s infinite;
+  transform: scale(1);
+  box-shadow: 0000 #53534F;
+  border: #C7B14A;
+}
+
+.bi-megaphone{
+  font-size: 70px;
+  animation: pulse 2s infinite;
+  transform: scale(1);
+  box-shadow: 0000 #53534F;
+  color: #C7B14A !important;
+}
+/* https://blog.hubspot.com/website/css-animation */
+
+@keyframes pulse{
+    0%{
+        transform: scale(0.95);
+        box-shadow: #5DBAE5;
+    }
+    70%{   
+        transform: scale(1);
+        box-shadow: #5DBAE5;
+    }
+    100%{
+        
+        transform: scale(0.95);
+        box-shadow: #5DBAE5;
+    }
 }
 
 
+
+
+@media screen{
+    
+}

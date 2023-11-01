@@ -35,6 +35,9 @@ import { MakepaiementComponent } from './makepaiement/makepaiement.component';
 import { SharedModule } from '../shared/shared.module';
 import { EmptyComponent } from '../shared/empty/empty.component';
 import { ViewbeautifComponent } from './partials/viewbeautif/viewbeautif.component';
+import { ViewPrestationComponent } from './partials/view-prestation/view-prestation.component';
+import { ViewRdvComponent } from './partials/view-rdv/view-rdv.component';
+import { ViewReviewComponent } from './partials/view-review/view-review.component';
 
 
 @NgModule({
@@ -69,6 +72,9 @@ import { ViewbeautifComponent } from './partials/viewbeautif/viewbeautif.compone
     BookPrestationComponent,
     MakepaiementComponent,
     ViewbeautifComponent,
+    ViewPrestationComponent,
+    ViewRdvComponent,
+    ViewReviewComponent,
   ],
   imports: [
     CommonModule,
