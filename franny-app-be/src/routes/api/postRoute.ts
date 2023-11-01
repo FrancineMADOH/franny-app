@@ -10,7 +10,7 @@ postRouter.get("",methods.index);
 postRouter.get("/topten/:id",methods.topten);
 postRouter.get("/topapplause",methods.topapplause);
 postRouter.get("/:term", methods.search);
-postRouter.get("/:category", methods.category);
+postRouter.get("/category/:category", methods.category);
 postRouter.get("/show/:id",methods.show);
 postRouter.put("/:id",verifyToken,methods.update);
 postRouter.delete("/:id",verifyToken,methods.delete);

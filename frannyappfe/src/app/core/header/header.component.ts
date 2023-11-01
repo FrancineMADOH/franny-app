@@ -15,15 +15,10 @@ import { AuthService } from 'src/app/authentication/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   navbarCollapse:boolean = true;
-  user:any = {}
-
+  email!:string;
   constructor(public auth:AuthService, private activateRoute:ActivatedRoute){
-    // this.auth.email.subscribe((val)=>{
-    //   this.currentUser = val;
-    //   console.log(this.currentUser);
-    // }) ;
-    this.user = this.auth.currentUser
-
+    
+    this.email = this.auth.getEmail();
   }
 
   ngOnInit() {

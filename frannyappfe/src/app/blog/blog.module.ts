@@ -14,9 +14,10 @@ import { ArticleCardComponent } from './partials/article-card/article-card.compo
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { CommentCardComponent } from './partials/comment-card/comment-card.component';
 import { FormsModule } from '@angular/forms';
-import { BlogViewComponent } from './blog-view/blog-view.component';
 import { BlogStatsComponent } from './blog-stats/blog-stats.component';
 import { SharedModule } from '../shared/shared.module';
+import { BlogcategoryComponent } from './blogcategory/blogcategory.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -33,15 +34,16 @@ import { SharedModule } from '../shared/shared.module';
     ArticleFormComponent,
     ArticleCardComponent,
     CommentCardComponent,
-    BlogViewComponent,
     BlogStatsComponent,
+    BlogcategoryComponent,
   ],
   imports: [
     CommonModule,
     CoreModule,
     SharedModule,
     AuthenticationModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ]
 })
 export class BlogModule { }

@@ -26,7 +26,6 @@ import { AddReviewComponent } from './beauty/add-review/add-review.component';
 import { UpdateRdvComponent } from './beauty/update-rdv/update-rdv.component';
 import { UpdateBeautifComponent } from './beauty/update-beautif/update-beautif.component';
 import { UpdatePrestationComponent } from './beauty/update-prestation/update-prestation.component';
-import { BlogViewComponent } from './blog/blog-view/blog-view.component';
 import { ConfirmationComponent } from './beauty/confirmation/confirmation.component';
 import { AssignrdvComponent } from './beauty/assignrdv/assignrdv.component';
 import { CancelrdvComponent } from './beauty/cancelrdv/cancelrdv.component';
@@ -39,6 +38,7 @@ import { ViewbeautifComponent } from './beauty/partials/viewbeautif/viewbeautif.
 import { ViewPrestationComponent } from './beauty/partials/view-prestation/view-prestation.component';
 import { ViewRdvComponent } from './beauty/partials/view-rdv/view-rdv.component';
 import { ViewReviewComponent } from './beauty/partials/view-review/view-review.component';
+import { BlogcategoryComponent } from './blog/blogcategory/blogcategory.component';
 
 
 const routes: Routes = [
@@ -88,7 +88,8 @@ const routes: Routes = [
   {path:"beauty/faqs", component:FaqsComponent},
   {path:"beauty/category/:catName", component: CategoryComponent},
   {path:"beauty/:category/book/:id", component: BookPrestationComponent},
-  {path:"beauty/rendezvous/payment/:id", component: MakepaiementComponent}
+  {path:"beauty/rendezvous/payment/:id", component: MakepaiementComponent},
+  {path:"posts/:catName",component:BlogcategoryComponent }
  
 
 

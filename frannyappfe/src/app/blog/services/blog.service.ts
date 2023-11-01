@@ -61,6 +61,13 @@ export class BlogService {
     return this.http.post<any>(environment.baseUrl + "/contact",mailInfos).pipe(catchError(this.handleErrors));
   }
 
+  // get post by category
+  //category/:category
+  getpostbyCategory(category:string):Observable<any>{
+    return this.http.get<any>(environment.baseUrl + `/posts/category/${category}`).pipe(catchError(this.handleErrors));
+  }
+  
+
 
   //handle errors
   handleErrors(error:HttpErrorResponse ):Observable <any>{

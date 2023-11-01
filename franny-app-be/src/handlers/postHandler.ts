@@ -145,8 +145,7 @@ export class postHandler {
         try{
             const category = req.params.category;
             const posts =  await poststore.category(category);
-            res.status(200);
-            res.json(posts);
+            res.status(200).json(posts);
         }catch(err){
             console.log(err);
             res.status(500).json(err);

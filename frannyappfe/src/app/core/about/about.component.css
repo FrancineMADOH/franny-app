@@ -75,8 +75,13 @@ section.body {
   color:#53534F ;
 }
 /* #5DBAE5(bleu), #F460FC(rose), #196C08(vert), #C7B14A(gold) #AA9225(satin gold) #53534F(gray)*/
-i, h1{
+h1{
   color:#F460FC ;
+  font-weight: bold;
+  font-size: 30px;
+}
+i{
+  color:#5DBAE5 ;
   font-weight: bold;
   font-size: 30px;
 }
@@ -95,7 +100,7 @@ button:hover{
   background-color:#5DBAE5 ;
 }
 a:hover{
-  color:#5DBAE5 ;
+  color:#F460FC ;
   text-decoration: none;
 }
 td {

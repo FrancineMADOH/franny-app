@@ -97,7 +97,9 @@ export class postStore {
         //category
         async category(term:string):Promise<Post[]>{
                 const conn = await client.connect();
-                const sql_command = "SELECT * FROM posts WHERE category = $1;";
+                const sql_command = `SELECT p.*, a.admin_name,a.email,a.twitter_url,a.facebook_url,a.linkedin_url
+                FROM posts p LEFT JOIN admins a ON a.admin_id = p.author
+                WHERE category = $1;`;
                 const result = await conn.query(sql_command,[term]);
                 conn.release();
                 return result.rows;

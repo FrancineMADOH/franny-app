@@ -8,7 +8,7 @@
                 <h5>Ouverture</h5>
                     <p>Tous les jours de 7h30 - 22h</p>
                     <h5>DISPONIBILITÉS</h5>
-                <p>24h/24 et 7j/7</p>
+                <p>7j/7</p>
                 <!-- Button trigger modal -->
              <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#biblioModal">
                 Réserver
@@ -146,11 +146,11 @@
             <div class="card m-4" *ngFor="let el of faqs">
                 <div class="card-body">
                     <div class="card-title">
-                        <p class="text-muted">{{el.question}}</p>
+                        <p class="question">{{el.question}}</p>
                         <p class="category">{{el.category}} </p>
                         
                     </div>
-                    <p class="card-text ">{{el.reponse}} </p>
+                    <p class="card-text answer">{{el.reponse}} </p>
     
                 </div>
             </div>

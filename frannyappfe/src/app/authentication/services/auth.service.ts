@@ -70,13 +70,6 @@ getEmail():string{
   let email = localStorage.getItem('admin_email');
   return email || '';
 }
-bEmail = new BehaviorSubject("");
-
-email: Observable<string> = this.bEmail.asObservable();
-
-updatedEmail(email:string){
-  this.bEmail.next(email) ;
-}
 
 logout(){
   if(localStorage.removeItem('acces_token') == null){

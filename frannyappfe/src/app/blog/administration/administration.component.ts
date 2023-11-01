@@ -24,7 +24,6 @@ export class AdministrationComponent implements OnInit {
         return this.adminList;
       })
     });
-    this.adminEmail = this.auth.bEmail.value;
     //get the connected user
     this.auth.getAdminInfos(this.adminEmail).subscribe((res)=>{
       this.admin = res;
@@ -36,6 +35,7 @@ export class AdministrationComponent implements OnInit {
   deleteAdminAccount(id:number){
     this.auth.deleteAdmin(id).subscribe((res:any)=>{
       alert(res.message);
+      window.location.reload();
       //this.router.navigate([admin'])
     });
 
