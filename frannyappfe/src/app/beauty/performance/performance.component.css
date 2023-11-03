@@ -25,6 +25,13 @@ h5{
     font-weight: bold;
 }
 
+h4{
+    color: #5DBAE5;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 25px;
+}
+
 .card{
     border-radius: 12px;
 }
@@ -37,3 +44,6 @@ h5{
     margin-top: -35px;
 }
 
+.ranking_metrics{
+    display: flex;
+}

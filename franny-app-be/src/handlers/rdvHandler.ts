@@ -174,14 +174,35 @@ export class rdvHandler {
 
         try {
             const metrics = await rdv.metrics();
-            //const top_earner = await rdv.topEarners();
             res.status(200).json(metrics);
         } catch (err){
             console.log(err);
-            res.status(500).json({message:"Internal server error! Try again later"});
+            res.status(500).json({message:"Internal server error! Try again later"});    
+        }
+
+    }
+
+    async rankingMetrics(req:Request,res:Response){
+        try {
+            const topEarners = await rdv.topEarners();
+            res.status(200).json(topEarners);
+        } catch(err){
+            console.log(err);
+            res.status(500).json({message:"Internal server error"})
             
         }
-      
+    }
+
+    async topPrestation(req:Request,res:Response){
+        try {
+            const topPrestation = await rdv.topPrestation();
+            res.status(200).json(topPrestation);
+            
+        } catch(err){
+            console.log(err);
+            res.status(500).json({message:"Internal server error"});
+            
+        }
 
     }
 

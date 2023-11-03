@@ -106,6 +106,13 @@ export class BeautyService {
     return this.http.get<any>(environment.baseUrl + '/rendezvous/metrics').pipe(catchError(this.handleError));
   }
 
+  topEarners():Observable<any>{
+    return this.http.get<any>(environment.baseUrl + '/rendezvous/topEarners').pipe(catchError(this.handleError));
+  }
+  topPrestation():Observable<any>{
+    return this.http.get<any>(environment.baseUrl + '/rendezvous/topPrestation').pipe(catchError(this.handleError));
+  }
+
 
   // getRendezvousByState(state:string):Observable<Rendezvous[]>{/payment/:id
   //   return this.http.get<Rendezvous[]>(environment.baseUrl + "").pipe(catchError(this.handleError));

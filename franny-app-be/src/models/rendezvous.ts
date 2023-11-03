@@ -185,15 +185,35 @@ export class rdvStore {
         return result.rows[0];
     }
 
-    // async topEarners():Promise<any>{
-    //     const conn = await client.connect();
-    //     const sql_command = `
-    //         SELECT doneby, SUM(rdv_price) AS earned 
-    //         FROM rendezvous WHERE rdvstate='Completed' GROUP BY doneby
-    //         ;
-    //     `
-    //     const result = await client.query(sql_command);
-    //     conn.release();
-    //     return result.rows[0];
-    // }
+    async topEarners():Promise<any>{
+        const conn = await client.connect();
+        const sql_command = `
+            SELECT r.doneby, SUM(r.rdv_price) AS earned, b.bname
+            FROM rendezvous r
+            LEFT JOIN beautifyers b ON b.beautif_id = r.doneby
+            WHERE rdvstate='Completed'
+            GROUP BY r.doneby,b.bname
+            LIMIT 5
+            ;
+        `
+        const result = await client.query(sql_command);
+        conn.release();
+        return result.rows;
+    }
+
+    async topPrestation():Promise<any>{
+        const conn = await client.connect();
+        const sql_command = `
+        SELECT r.prestation, SUM(r.rdv_price) AS earned, p.title
+            FROM rendezvous r
+            LEFT JOIN prestations p ON p.pres_id = r.prestation
+            WHERE rdvstate='Completed' 
+            GROUP BY r.prestation, p.title
+            LIMIT 5
+            ;
+        `
+        const result = await client.query(sql_command);
+        conn.release();
+        return result.rows;
+    }
 }

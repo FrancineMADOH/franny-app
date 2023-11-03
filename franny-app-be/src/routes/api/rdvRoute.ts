@@ -17,5 +17,9 @@ rdvRouter.get("/view/:id",verifyToken,methods.show);
 rdvRouter.get("/:state/count",verifyToken, methods.stateCount);
 rdvRouter.put("/delete/:id",verifyToken, methods.delete);
 rdvRouter.get("/metrics", verifyToken ,methods.performanceMetrics);
+rdvRouter.get("/topEarners", verifyToken ,methods.rankingMetrics);
+rdvRouter.get("/topPrestation", verifyToken ,methods.topPrestation);
+
+
 
 export default rdvRouter;

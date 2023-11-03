@@ -9,7 +9,8 @@ import { BeautyService } from '../services/beauty.service';
 export class PerformanceComponent implements OnInit {
 
   metrics!:any;
-
+  topEarners:any[] = [];
+  prestations:any[] = [];
   constructor(private beauty:BeautyService){}
 
   ngOnInit(): void {
@@ -17,6 +18,22 @@ export class PerformanceComponent implements OnInit {
       this.metrics = res;
       console.log(this.metrics)
       return this.metrics
+    });
+    
+
+    //tables
+    this.beauty.topEarners().subscribe((res)=>{
+      res.map((el:any)=>{
+        this.topEarners.push(el);
+      })
+      return this.topEarners;
+    });
+
+    this.beauty.topPrestation().subscribe((res)=>{
+      res.map((el:any)=>{
+        this.prestations.push(el);
+      })
+      return this.prestations;
     })
     
   }
