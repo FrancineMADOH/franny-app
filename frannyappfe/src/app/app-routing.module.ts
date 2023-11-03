@@ -71,7 +71,7 @@ const routes: Routes = [
   {path:"beauty/rendezvous/update/:id", component:UpdateRdvComponent, canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/assign/:id", component:AssignrdvComponent , canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/cancel/:id", component:CancelrdvComponent , canActivate:[AuthGuard]},
-  {path:"beauty/preformance", component:PerformanceComponent,canActivate:[AuthGuard]},
+  {path:"beauty/performance", component:PerformanceComponent,canActivate:[AuthGuard]},
 
   {path:"beauty/beautifyers/update/:id", component:UpdateBeautifComponent, canActivate:[AuthGuard]},
   {path:"beauty/prestations/update/:id", component:UpdatePrestationComponent, canActivate:[AuthGuard]},

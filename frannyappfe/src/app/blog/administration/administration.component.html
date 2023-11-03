@@ -10,7 +10,7 @@
               <th scope="col">Username</th>
               <th scope="col">Email</th>
               <th scope="col">Joined Date</th>
-              <th scope="col"  *ngIf="!isSuperAdmin" >Actions</th>
+              <th scope="col"  *ngIf="isSuperAdmin" >Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -20,7 +20,7 @@
               <td>{{admin.username}}</td>
               <td>{{admin.email}}</td>
               <td>{{admin.activ_date.split(" ")[0]}}</td>
-              <td>
+              <td *ngIf="isSuperAdmin">
                 <form action="">
                   <button (click)="deleteAdminAccount(admin.admin_id || 1)" class="btn btn-danger" *ngIf="!isSuperAdmin" type="submit"><i class="icon bi-trash mx-1"></i>Delete</button>
                 </form>

@@ -328,7 +328,7 @@ Generating Component without spec.ts file in Angular 2+
     }
   }
 }`
-
+The DATE_TRUNC() function is used to truncate a date, time, or timestamp to a specified interval, such as the day, week, or month, in PostgreSQL and SQL Server. The DATE_TRUNC() function is particularly useful for time series analysis to understand how a value changes over time.
 <h1>What we do </h1>
     <p>
         we educate woman...

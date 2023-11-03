@@ -1,3 +1,4 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 main {
     /* margin-top: 15% ; */
     font-family: 'FiraSansRegular';
@@ -12,7 +13,7 @@ main {
 }
 
 span,
-h4 {
+h4,i {
     color: #F460FC;
 }
 

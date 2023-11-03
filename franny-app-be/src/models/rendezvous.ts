@@ -163,21 +163,37 @@ export class rdvStore {
     }
 
     //rendezvous metrics
-    async metrics():Promise<void> {
+    async metrics():Promise<any> {
         const conn = await client.connect();
         const sql_command = `
-       ( SELECT COUNT(*) FROM beautifyers AS total_beautif),
-        (SELECT COUNT(*) FROM prestations AS total_pres),
-        (SELECT COUNT(*) FROM reviews) AS total_reviews,
-        SELECT COUNT(*) FROM rendezvous AS total_rdv,
-        SELECT COUNT(*) FROM rendezvous WHERE rdvstate = $1 AS cancelled_rdv,
-        SELECT COUNT(*) FROM rendezvous WHERE rdvstate = $2 AS ongoing_rdv,
-        SELECT COUNT(*) FROM rendezvous WHERE rdvstate = $3 AS sched_rdv,
-        SELECT COUNT(*) FROM rendezvous WHERE rdvstate = $4 AS completed_rdv,
-        SELECT COUNT(*) FROM rendezvous WHERE is_review = true AS reviewed_rdv,
-        `;
-        const result = await client.query(sql_command,["Cancelled","Ongoing","Scheduled","Completed"])
+         SELECT 
+                    (SELECT CAST(COUNT(*) AS INTEGER) FROM beautifyers) AS total_beautif,
+                    (SELECT CAST(COUNT(*) AS INTEGER) FROM prestations) AS  total_pres,
+                    (SELECT CAST(COUNT(*) AS INTEGER)  FROM reviews) AS  total_review,
+                    (SELECT CAST(COUNT(*) AS INTEGER)  FROM rendezvous) AS total_rdv,
+                    (SELECT CAST(COUNT(*) AS INTEGER) FROM rendezvous WHERE rdvstate = 'Scheduled') AS sched_apt,
+                    (SELECT CAST(COUNT(*) AS INTEGER)  FROM rendezvous WHERE rdvstate = 'Completed') AS comp_apt,
+                    (SELECT CAST(COUNT(*) AS INTEGER)  FROM rendezvous WHERE rdvstate = 'Cancelled') AS canc_apt,
+                    (SELECT CAST(COUNT(*) AS INTEGER) FROM rendezvous WHERE rdvstate = 'Ongoing') AS ong_apt,
+                    (SELECT CAST(COUNT(*) AS INTEGER)  FROM rendezvous WHERE is_review = true) AS rev_apt,
+                    (SELECT CAST(SUM(rdv_price) AS INTEGER)  FROM rendezvous WHERE rdvstate='Completed') AS earnings,
+                    (SELECT CAST(SUM(rdv_price)  AS INTEGER) FROM rendezvous WHERE rdvstate='Completed' AND CAST(rdvdate AS TIMESTAMP) >= DATE_TRUNC('month',CURRENT_DATE) ) AS month_earnings
+                    ;
+                `
+        const result = await client.query(sql_command);
         conn.release();
         return result.rows[0];
     }
+
+    // async topEarners():Promise<any>{
+    //     const conn = await client.connect();
+    //     const sql_command = `
+    //         SELECT doneby, SUM(rdv_price) AS earned 
+    //         FROM rendezvous WHERE rdvstate='Completed' GROUP BY doneby
+    //         ;
+    //     `
+    //     const result = await client.query(sql_command);
+    //     conn.release();
+    //     return result.rows[0];
+    // }
 }

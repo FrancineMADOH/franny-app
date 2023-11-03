@@ -78,7 +78,7 @@ export class BeautyService {
     return this.http.get<Rendezvous[]>(environment.baseUrl + "/rendezvous" ).pipe(catchError(this.handleError));
   }
   getRendezvous(id:number): Observable<Rendezvous>{
-    return this.http.get<Rendezvous>(environment.baseUrl +`/rendezvous/${id}` ).pipe(catchError(this.handleError));
+    return this.http.get<Rendezvous>(environment.baseUrl +`/rendezvous/view/${id}` ).pipe(catchError(this.handleError));
   }
   updateRendezvous(id:number,rdv:Rendezvous):Observable<Rendezvous>{
     return this.http.put<Rendezvous>(environment.baseUrl + `/rendezvous/${id}`,{rdv}).pipe(catchError(this.handleError));
@@ -100,6 +100,10 @@ export class BeautyService {
       link,
       client
     }).pipe(catchError(this.handleError));
+  }
+
+  getMetrics():Observable<any>{
+    return this.http.get<any>(environment.baseUrl + '/rendezvous/metrics').pipe(catchError(this.handleError));
   }
 
 

@@ -28,6 +28,7 @@ export class AdministrationComponent implements OnInit {
     this.auth.getAdminInfos(this.adminEmail).subscribe((res)=>{
       this.admin = res;
       this.isSuperAdmin = Boolean(this.admin.superuser);
+      console.log(this.isSuperAdmin)
       return this.admin;
     });    
   }

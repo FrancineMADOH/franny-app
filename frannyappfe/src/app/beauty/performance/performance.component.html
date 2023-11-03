@@ -1,177 +1,192 @@
-<div class="main container" style="">
-<h1>DASHBOARD</h1>
-    <div class="dashboard-row">
-        <div class="mt-3 mb-3 dashboard-element">
-          <div class="div1">
-            <div class="img-box">
-              <img src="assets/images/beautifier icon.jfif" alt="">
-            </div>
-            <p>Beautifiers</p>
-          </div>
-          <p class="card-body"><span>10</span> beautifier(s)</p>
+<div class="main container">
+
+  <h1 class="text-center my-4">APPOINTEMENT DASHBOARD</h1>
+
+  <div class="row my-4">
+    <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center icon">
+          <i class="bi bi-person-workspace"></i>
         </div>
-        <div class="mt-3 mb-3 dashboard-element">
-          <div class="div1">
-            <div class="img-box">
-              <img src="assets/images/prestation icon 2.png" alt="">
-            </div>
-            <p>Prestations</p>
-          </div>
-          <p class="card-body"><span>10</span> prestations(s)</p>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{metrics.total_beautif}}</h5>
+          <p class="card-text">Beautifyer(s)</p>
         </div>
-        <div class="mt-3 mb-3 dashboard-element">
-          <div class="div1">
-            <div class="img-box">
-              <img src="assets/images/rendezvous 3.png" alt="">
-            </div>
-            <p>Rendezvous</p>
-          </div>
-          <p class="card-body"><span>10</span> rendezvous</p>
-        </div>
-        <div class="mt-3 mb-3 dashboard-element">
-          <div class="div1">
-            <div class="img-box">
-              <img src="assets/images/review icon 1.png" alt="">
-            </div>
-            <p>Reviews</p>
-          </div>
-          <p class="card-body"><span>10</span> review(s)</p>
-        </div>
+      </div>
     </div>
 
-    <div class="dashboard-row">
-        <div class="mt-3 mb-3 dashboard-element">
-          <div class="div1">
-            <div class="img-box">
-              <img src="assets/images/review icon 1.png" alt="">
-            </div>
-            <p>Canceled Rendezvous</p>
-          </div>
-          <p class="card-body"><span>10</span> canceled</p>
+    <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center icon">
+          <i class="bi bi-card-list"></i>
         </div>
-        <div class="mt-3 mb-3 dashboard-element">
-          <div class="div1">
-            <div class="img-box">
-              <img src="assets/images/review icon 1.png" alt="">
-            </div>
-            <p>Ongoing Rendezvous</p>
-          </div>
-          <p class="card-body"><span>10</span> ongoing</p>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{metrics.total_pres}}</h5>
+          <p class="card-text">Prestation(s)</p>
         </div>
-        <div class="mt-3 mb-3 dashboard-element">
-          <div class="div1">
-            <div class="img-box">
-              <img src="assets/images/review icon 1.png" alt="">
-            </div>
-            <p>Scheduled Rendezvous</p>
-          </div>
-          <p class="card-body"><span>10</span> scheduled</p>
-        </div>
-        <div class="mt-3 mb-3 dashboard-element">
-          <div class="div1">
-            <div class="img-box">
-              <img src="assets/images/review icon 1.png" alt="">
-            </div>
-            <p>Completed Rendezvous</p>
-          </div>
-          <p class="card-body"><span>10</span> completed</p>
-        </div>
-        <div class="mt-3 mb-3 dashboard-element">
-          <div class="div1">
-            <div class="img-box">
-              <img src="assets/images/review icon 1.png" alt="">
-            </div>
-            <p>Top 5 Beautifiers</p>
-          </div>
-          <div class="div2">
-
-            <ul class="list-group">
-              <li class="list-group-item">
-                <div>
-                  <p>Francine</p>
-                  <p>10000XAF</p>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div>
-                  <p>Alex</p>
-                  <p>9000XAF</p>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div>
-                  <p>Charles</p>
-                  <p>7000XAF</p>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div>
-                  <p>Anderson</p>
-                  <p>6000XAF</p>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div>
-                  <p>Che</p>
-                  <p>5000XAF</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="mt-3 mb-3 dashboard-element">
-           <div class="div1">
-            <div class="img-box">
-              <img src="assets/images/review icon 1.png" alt="">
-            </div>
-            <p>Top 5 Prestations</p>
-          </div>
-          <div class="div2">
-            <ul class="list-group">
-              <li class="list-group-item"><p>An item</p></li>
-              <li class="list-group-item"><p>A second item</p></li>
-              <li class="list-group-item"><p>A third item</p></li>
-              <li class="list-group-item"><p>A fourth item</p></li>
-              <li class="list-group-item"><p>And a fifth one</p></li>
-            </ul>
-          </div>
-        </div>
+      </div>
     </div>
 
-    <div class="row">
-        <h1>Chart</h1>
+    <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center icon">
+          <i class="bi bi-chat-dots"></i>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{metrics.total_review}}</h5>
+          <p class="card-text">Reviews(s)</p>
+        </div>
+      </div>
     </div>
-    <div class="dashboard-row">
-      <h1>TABLE</h1>
+
+    <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center icon">
+          <i class="bi bi-calendar"></i>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{metrics.total_rdv}}</h5>
+          <p class="card-text">Appointments(s)</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- second row -->
+  <div class="row dashboard-metrics">
+
+    <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center icon">
+          <i class="bi bi-calendar-date"></i>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{metrics.sched_apt}}</h5>
+          <p class="card-text">Scheduled Appointement(s)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center icon">
+          <i class="bi bi-calendar2-check"></i>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{metrics.comp_apt}}</h5>
+          <p class="card-text">Completed Appointements(s)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center icon">
+          <i class="bi bi-calendar-x"></i>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{metrics.canc_apt}}</h5>
+          <p class="card-text">Cancelled Appointements(s)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center icon">
+          <i class="bi bi-hourglass-top"></i>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{metrics.ong_apt}}</h5>
+          <p class="card-text">Ongoing Appointments(s)</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- third row -->
+  <div class="row dashboard-metrics">
+
+    <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center icon">
+          <i class="bi bi-envelope"></i>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{metrics.rev_apt}}</h5>
+          <p class="card-text">Reviewed Appointement(s)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center icon">
+          <i class="bi bi-piggy-bank"></i>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{metrics.earnings}} XAF</h5>
+          <p class="card-text">Totally Earn</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center icon">
+          <i class="bi bi-cash-coin"></i>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{metrics.month_earnings}} XAF</h5>
+          <p class="card-text">Earn this Month</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <div class="text-center icon">
+          <i class="bi bi-hourglass-top"></i>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{metrics.ong_apt}}</h5>
+          <p class="card-text">Ongoing Appointments(s)</p>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+
+  <div class=" row ranking_metrics my-4">
+    <div class="col-lg-6 mx-2">
+      <h4 class="text-center">Top Beautifyers</h4>
       <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Amount Earned</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
+    <div class="col-lg-6 mx-2">
+      <h4 class="text-center">Top Prestations</h4>
+
+    </div>
+
+  </div>
+
 
 </div>

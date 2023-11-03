@@ -1,0 +1,86 @@
+.main {
+    /* border: 1px solid red; */
+    box-sizing: border-box;
+  }
+  *{
+    font-family: 'FiraSansRegular';
+    font-size: 14px;
+}
+h1{
+    color: #F460FC;
+    font-weight: bold !important;
+    padding: 1%;
+    margin-top: 1%;
+    font-size: 30px;
+    text-align: center;
+}
+  .dashboard-row {
+    /* border: 2px solid green; */
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    /* justify-content: space-evenly; */
+    gap: 2%;
+  }
+  .dashboard-element img {
+    height: 20px;
+    width: 20px;
+    /* border: 1px solid red; */
+  }
+  .dashboard-row .dashboard-element {
+    width: 23%;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px 0 rgba(128, 128, 128, 0.614);
+    padding: 10px;
+  }
+  /* .dashboard-row .dashboard-element:hover {
+    box-shadow: 0 2px 6px 0 rgba(128, 128, 128, 0.614), 4px 0 6px 0 rgba(128, 128, 128, 0.565);
+  } */
+  .dashboard-element p {
+    margin: 0;
+    color: #F460FC;
+    font-weight: bold;
+  }
+  .div1 {
+    /* border: 1px dotted magenta; */
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .div2 {
+    margin: 15px 10px;
+  }
+  .div2 p {
+    color: rgba(50, 49, 49, 0.705) !important;
+    font-size: 16px;
+    font-weight: 500 !important;
+  }
+  .div2 div{
+    display: flex;
+    justify-content: space-between;
+  }
+  .list-group-item {
+    padding: 0 5px !important;
+  }
+  .img-box {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 100%;
+    border: 0.5px solid #f460fc73;
+    /* background: #f460fc3c; */
+  }
+  .table-container {
+    border: 2px solid red;
+    width: 100%;
+  }
+  .card-body {
+    color: rgba(35, 33, 33, 0.908) !important;
+    padding: 15px 10px;
+    font-size: 20px;
+    font-weight: 500 !important;
+  }
+  
+  

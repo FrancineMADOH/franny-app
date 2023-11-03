@@ -81,6 +81,8 @@ export class rdvHandler {
                         Votre prestation sera realise par <strong>${agent.bname}</strong>, le <strong>${req.body.date} a ${req.body.heure}</strong>.</p>
                         <p><strong>Merci pour votre confiance!</strong> </p>
                        <p> Pour toute indisposition lors de  la realisation de votre prestation contactez nous aux adresses ci-dessous.</p>`
+                    }).catch((err)=>{
+                        res.status(400).json({message:"Failed to send email, try again", error:err.message})
                     });
             }
             res.status(200).json({message:`Appointment assigned to ${agent.bname}! and client Notified!`});
@@ -111,7 +113,9 @@ export class rdvHandler {
                     html:`Clicquez sur <a href="${req.body.link}">ici</a> pour nous laisser un avis sur votre prestation 
                     du ${req.body.rdvdate} realise par <strong>${req.body.bname} </strong>
                     <p>N'hesitez pas a nous contacter aux addresses ci-dessous.</p>`
-                  });
+                  }).catch((err)=>{
+                    res.status(400).json({message:"Failed to send email, try again", error:err.message})
+                });;
             }
             res.status(200).json({message:"Payment successfull!"});
         }catch(err:any){
@@ -166,20 +170,20 @@ export class rdvHandler {
     }
 
     //send review email
-    async sendReviewEmail(req:Request,res:Response){
+    async performanceMetrics(req:Request,res:Response){
+
+        try {
+            const metrics = await rdv.metrics();
+            //const top_earner = await rdv.topEarners();
+            res.status(200).json(metrics);
+        } catch (err){
+            console.log(err);
+            res.status(500).json({message:"Internal server error! Try again later"});
+            
+        }
       
 
     }
-    // async category(req:Request,res:Response){
-    //     try{
-    //         const data:Rendezvous = req.body;
-    //         const new_rdv = await rdv.create(data);
-    //         res.status(201).json(rdv);
-    //     }catch(err){
-    //         console.log(err);
-    //         res.status(500).json(err);
-    //     }
-    // }
 
     async delete(req:Request,res:Response){
         try{
