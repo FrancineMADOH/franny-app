@@ -18,10 +18,11 @@ h1{
 }
 .dashboard-metrics{
     margin-top: 50px;
+    margin-bottom: 20px;
 }
 h5{
     color: #F460FC;
-    font-size: 2.9em;
+    font-size: 2em;
     font-weight: bold;
 }
 
@@ -34,16 +35,24 @@ h4{
 
 .card{
     border-radius: 12px;
+    width: 14rem;
 }
 
 .icon i{
-    font-size:50px;
+    font-size:40px;
     color: #5DBAE5;
 }
 .icon{
-    margin-top: -35px;
-}
+    margin-top: -25px;
+} 
 
 .ranking_metrics{
     display: flex;
+}
+
+@media screen  and(max-width:768px){
+    .card{
+        margin-bottom: 50px;
+    }
+    
 }

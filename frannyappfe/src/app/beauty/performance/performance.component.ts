@@ -11,9 +11,14 @@ export class PerformanceComponent implements OnInit {
   metrics!:any;
   topEarners:any[] = [];
   prestations:any[] = [];
+  isLoading = false;
   constructor(private beauty:BeautyService){}
 
   ngOnInit(): void {
+
+    setTimeout(()=>{
+      this.isLoading = true;
+    },2000)
     this.beauty.getMetrics().subscribe((res)=>{
       this.metrics = res;
       console.log(this.metrics)

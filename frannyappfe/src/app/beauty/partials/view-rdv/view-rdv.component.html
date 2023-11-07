@@ -23,6 +23,8 @@
           <p class="card-text"><span class="attributes">Assigned to:  </span>{{ rdv.bname }}</p>
           <hr>
           <p class="card-text"><span class="attributes">Comments:</span>{{rdv.comments}} </p>
+          <hr>
+          <p class="card-text" *ngIf="rdv.rdvstate===CancelApt"><span class="attributes">Cancellation reason:</span>{{rdv.cancellation_reason}} </p>
           <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===CancelApt)" (click)="gotoUpdate(rdv.rdv_id || 1) " class="card-link btn btn-success">Update</button>
           <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===OnApt || rdv.rdvstate===CancelApt )" (click)="gotoAssign(rdv.rdv_id || 1) " class="card-link btn btn-secondary">Assign</button>
           <button *ngIf="!(rdv.rdvstate===complApt || rdv.rdvstate===CancelApt)"   (click)="gotoCancel(rdv.rdv_id || 1) " class="card-link btn btn-danger"><i class="bi bi-x-circle"> Cancel</i></button>
