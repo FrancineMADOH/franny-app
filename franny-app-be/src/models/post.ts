@@ -114,4 +114,41 @@ export class postStore {
                 return result.rows[0];
         }
 
+        //dashboard
+        async dashboardKpi():Promise<any>{
+                const conn = await client.connect();
+                const sql_command = `
+                SELECT
+                     (SELECT CAST(COUNT(*) AS INTEGER) FROM posts) AS totalPosts,
+                     (SELECT CAST(COUNT(*) AS INTEGER) FROM posts WHERE category='Feminity') as feminity,
+                     (SELECT CAST(COUNT(*) AS INTEGER) FROM posts WHERE category='Maternity') as maternity,
+                     (SELECT CAST(COUNT(*) AS INTEGER) FROM posts WHERE category='Family') as family,
+                     (SELECT CAST(COUNT(*) AS INTEGER) FROM comments) AS total_comment,
+                     (SELECT CAST(SUM(applause) AS INTEGER) FROM posts) AS total_applause;
+                `
+                const result = await conn.query(sql_command);
+                conn.release();
+                return result.rows[0];
+
+        }
+
+        //most commented
+        async mostCommented():Promise<any>{
+                const conn = await client.connect();
+                const sql_command = `
+                SELECT  CAST(COUNT(c.comment_body) AS INTEGER) AS total_comment,CAST(COUNT(p.applause) AS INTEGER) AS total_applause,p.title, a.admin_name
+                  FROM comments c 
+                        LEFT JOIN posts p
+                        ON p.post_id = c.blog_post_id
+                        LEFT JOIN admins a
+                        ON p.author = a.admin_id
+                GROUP BY p.title, a.admin_name
+                ORDER BY total_comment
+                LIMIT 5;
+                `
+                const result = await client.query(sql_command)
+                conn.release();
+                return result.rows;
+        }
+
 }

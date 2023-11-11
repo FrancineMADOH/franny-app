@@ -29,7 +29,7 @@ import { UpdatePrestationComponent } from './beauty/update-prestation/update-pre
 import { ConfirmationComponent } from './beauty/confirmation/confirmation.component';
 import { AssignrdvComponent } from './beauty/assignrdv/assignrdv.component';
 import { CancelrdvComponent } from './beauty/cancelrdv/cancelrdv.component';
-import { BlogStatsComponent } from './blog/blog-stats/blog-stats.component';
+// import { BlogStatsComponent } from './blog/blog-stats/blog-stats.component';
 import { PerformanceComponent } from './beauty/performance/performance.component';
 import { CategoryComponent } from './beauty/category/category.component';
 import { BookPrestationComponent } from './beauty/book-prestation/book-prestation.component';
@@ -39,6 +39,7 @@ import { ViewPrestationComponent } from './beauty/partials/view-prestation/view-
 import { ViewRdvComponent } from './beauty/partials/view-rdv/view-rdv.component';
 import { ViewReviewComponent } from './beauty/partials/view-review/view-review.component';
 import { BlogcategoryComponent } from './blog/blogcategory/blogcategory.component';
+import { StatisticsComponent } from './blog/statistics/statistics.component';
 
 
 const routes: Routes = [
@@ -55,7 +56,7 @@ const routes: Routes = [
   {path:"posts/edit/:id", component:EditArticleComponent, canActivate:[AuthGuard]},
   {path:"posts/view/:id/:slug", component:ViewArticleComponent},
   {path:"id/bibliographie", component: BibliographieComponent, canActivate:[AuthGuard]},
-  {path:"posts/statistics",component: BlogStatsComponent,canActivate:[AuthGuard] },
+  {path:"posts/statistics",component: StatisticsComponent,canActivate:[AuthGuard] },
   {path:"beauty/faqs", component:FaqsComponent, canActivate:[AuthGuard]},
   {path:"beauty", component:BeautyPageComponent},
   {path:"about",component:AboutComponent},

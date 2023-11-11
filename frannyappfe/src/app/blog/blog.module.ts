@@ -14,10 +14,10 @@ import { ArticleCardComponent } from './partials/article-card/article-card.compo
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { CommentCardComponent } from './partials/comment-card/comment-card.component';
 import { FormsModule } from '@angular/forms';
-import { BlogStatsComponent } from './blog-stats/blog-stats.component';
 import { SharedModule } from '../shared/shared.module';
 import { BlogcategoryComponent } from './blogcategory/blogcategory.component';
 import { RouterModule } from '@angular/router';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 
 
@@ -34,8 +34,8 @@ import { RouterModule } from '@angular/router';
     ArticleFormComponent,
     ArticleCardComponent,
     CommentCardComponent,
-    BlogStatsComponent,
     BlogcategoryComponent,
+    StatisticsComponent,
   ],
   imports: [
     CommonModule,

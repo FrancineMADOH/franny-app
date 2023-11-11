@@ -66,6 +66,13 @@ export class BlogService {
   getpostbyCategory(category:string):Observable<any>{
     return this.http.get<any>(environment.baseUrl + `/posts/category/${category}`).pipe(catchError(this.handleErrors));
   }
+
+  getpostbykpi():Observable<any>{
+    return this.http.get<any>(environment.baseUrl + `/posts/kpi`).pipe(catchError(this.handleErrors));
+  }
+  getposmostCommented():Observable<any>{
+    return this.http.get<any>(environment.baseUrl + `/posts/mostreaded`).pipe(catchError(this.handleErrors));
+  }
   
 
 

@@ -1,0 +1,58 @@
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.main {
+  /* border: 1px solid red; */
+  padding: 1%;
+}
+*{
+  font-family: 'FiraSansRegular';
+  font-size: 16px;
+}
+h1{
+    color: #F460FC;
+    font-weight: bold !important;
+    padding: 1%;
+    font-size: 30px;
+    text-align: center;
+}
+.dashboard-metrics{
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+h5{
+    color: #F460FC;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+h4{
+    color: #5DBAE5;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+.card{
+    border-radius: 12px;
+    width: 14rem;
+}
+
+.icon i{
+    font-size:40px;
+    color: #5DBAE5;
+}
+.icon{
+    margin-top: -25px;
+} 
+
+.ranking_metrics{
+    display: flex;
+}
+
+@media screen  and(max-width:768px){
+    .card{
+        margin-bottom: 50px;
+    }
+    
+}

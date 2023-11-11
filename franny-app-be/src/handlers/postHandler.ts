@@ -164,4 +164,30 @@ export class postHandler {
             res.status(500).json(err);
         }
     }
+
+    //dashboard kpi
+    async blogdashboard(req: Request, res: Response){
+        try {
+            const kpi = await poststore.dashboardKpi();
+            res.status(200).json(kpi);
+            
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+            
+        }
+    }
+
+    //articles ranking
+    async mostcommented(req: Request, res: Response){
+        try {
+            const mostreaded = await poststore.mostCommented();
+            res.status(200).json(mostreaded);
+            
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+            
+        }
+    }
 }

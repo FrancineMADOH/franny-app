@@ -179,8 +179,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let el of topEarners">
-            <th scope="row">{{el.doneby }} </th>
+          <tr *ngFor="let el of topEarners; index as i">
+            <th scope="row">{{i+1 }} </th>
             <td>{{el.bname }} </td>
             <td>{{el.earned }} XAF </td>
           </tr>
@@ -199,8 +199,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let el of prestations">
-              <th scope="row">{{el.prestation }} </th>
+            <tr *ngFor="let el of prestations;index as i">
+              <th scope="row">{{i+1 }} </th>
               <td>{{el.title }} </td>
               <td>{{el.earned }} XAF </td>
             </tr>
