@@ -30,8 +30,8 @@
                         <div class="modal-body form-group my-2" *ngIf="!reservationDone">
                             <form (ngSubmit)="SendNotif()" #sendNotifForm="ngForm" >
                                 <label for="phone">Laissez nous votre contact pour un service comme vous voulez quand vous voulez !</label>
-                                <input required name="phone" id="phone" ngModel #phone="ngModel" class="form-control my-4" type="text" pattern="[0-9]" maxlength="10" placeholder="(+237)">
-                                 <button (click)="reservationDone=!reservationDone" [disabled]="sendNotifForm.invalid"  class="btn btn-primary" type="submit">Réserver</button>
+                                <input required name="phone" id="phone" ngModel #phone="ngModel" class="form-control my-4" type="text" pattern="[0-9]" maxlength="9" minlength="9" placeholder="(+237)...">
+                                <button (click)="reservationDone=!reservationDone" [disabled]="!sendNotifForm.valid"  class="btn btn-primary" type="submit">Réserver</button>
                             </form>
                         </div>
                     </div>

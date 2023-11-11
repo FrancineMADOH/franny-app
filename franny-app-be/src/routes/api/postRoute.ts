@@ -16,6 +16,7 @@ postRouter.put("/:id",verifyToken,methods.update);
 postRouter.delete("/:id",verifyToken,methods.delete);
 postRouter.get("/kpi",verifyToken,methods.blogdashboard);
 postRouter.get("/mostreaded",verifyToken,methods.mostcommented);
+postRouter.put("/like/:id", methods.likebp);
 
 
 export default postRouter;

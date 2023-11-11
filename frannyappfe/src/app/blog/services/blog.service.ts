@@ -73,6 +73,9 @@ export class BlogService {
   getposmostCommented():Observable<any>{
     return this.http.get<any>(environment.baseUrl + `/posts/mostreaded`).pipe(catchError(this.handleErrors));
   }
+  likeblogPost(id:number):Observable<any>{
+    return this.http.put<any>(environment.baseUrl + `/posts/like/${id}`,{}).pipe(catchError(this.handleErrors));
+  }
   
 
 

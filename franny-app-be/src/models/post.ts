@@ -151,4 +151,16 @@ export class postStore {
                 return result.rows;
         }
 
+        //like an article
+        async likeblogpost(id:number):Promise<any>{
+                const conn = await client.connect();
+                const sql_command = ` UPDATE posts
+                                          SET applause = applause + 1
+                                      WHERE post_id =$1 ;`
+                const result = await conn.query(sql_command,[id]);
+                conn.release();
+                return result.rows[0]
+
+        }
+
 }

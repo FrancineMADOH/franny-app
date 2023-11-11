@@ -43,7 +43,7 @@ export class postHandler {
             //res.redirect(`/posts/${post.post_id}/${post.slug}`)
         }catch(err:any){
             console.log(err.message);
-            res.status(500).json({err});
+            res.status(500).json({message:"Internal server error"});
         }
     }
 
@@ -76,7 +76,7 @@ export class postHandler {
                 res.status(200).json({message:"Post updated!"});
             }catch(err){
                 console.log(err);
-                res.status(500).json(err);
+                res.status(500).json({message:"Internal server error"});
             }
         }
 
@@ -87,7 +87,7 @@ export class postHandler {
             res.status(200).json(posts);
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
         }
     }
 
@@ -100,7 +100,8 @@ export class postHandler {
 
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
+
         }
     }
 
@@ -113,7 +114,7 @@ export class postHandler {
             res.json(posts);
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
         }
     }
 
@@ -124,7 +125,8 @@ export class postHandler {
             res.status(200).json(posts);
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
+
         }
     }
 
@@ -136,7 +138,8 @@ export class postHandler {
             res.status(200).json(posts);
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
+
         }
     }
 
@@ -148,7 +151,7 @@ export class postHandler {
             res.status(200).json(posts);
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
         }
     }
 
@@ -161,7 +164,7 @@ export class postHandler {
             res.status(200).json({message:"Post deleted!"});
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
         }
     }
 
@@ -173,7 +176,7 @@ export class postHandler {
             
         } catch (err) {
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
             
         }
     }
@@ -186,7 +189,21 @@ export class postHandler {
             
         } catch (err) {
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
+            
+        }
+    }
+
+    //like blogpost
+    async likebp(req: Request, res: Response){
+        const postId = parseInt(req.params.id);
+        try {
+            const result = await poststore.likeblogpost(postId);
+            res.status(200).json({message:"Liked!"})
+            
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({error:"Internal server error"})
             
         }
     }

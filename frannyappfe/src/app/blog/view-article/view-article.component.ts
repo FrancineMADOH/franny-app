@@ -29,22 +29,28 @@ export class ViewArticleComponent implements OnInit {
   familyPosts:Post[] = [];
   blog_post_id!:number;
   html!:any;
+  like!:any;
+  mysubscription:any;
+  hasliked!:string;
+  hascomment!:string;
+
   @ViewChild("commentForm",{static:true}) commentForm:any;
+  @ViewChild("likebp", {static:true}) likebp:any;
 
   constructor(public blog:BlogService, 
     private auth:AuthService,
     private router:Router,
     private sanitized:DomSanitizer, 
-    private route:ActivatedRoute){}
+    private route:ActivatedRoute){
+      
+    }
 
   ngOnInit(): void {
 
   setTimeout(() => {
       this.loading = false;
-    }, 1000);
-
-  this.isAdmin= this.auth.isLogin()
-
+  }, 1000);
+  this.isAdmin= this.auth.isLogin();
   this.commentsubmit = false;
   this.id = this.route.snapshot.params['id'];
   
@@ -59,6 +65,16 @@ export class ViewArticleComponent implements OnInit {
         return this.commentList;
       })
     });
+
+    let usersession = JSON.parse(localStorage.getItem('status') || '');
+    console.log(usersession)
+
+    if(this.id == usersession.post){
+      this.hasliked = usersession.status;
+    }
+
+   // this.hascomment = localStorage.getItem('comment') || ""
+
   }
 
 onComment(commentForm:any){
@@ -74,6 +90,7 @@ onComment(commentForm:any){
     this.comment_class = this.succesMessage.split(" ")[0]
     commentForm.reset();
     this.commentsubmit = !this.commentsubmit;
+    //localStorage.setItem('comment',"commented")
     
   }
 
@@ -93,6 +110,21 @@ onComment(commentForm:any){
   }
   backtoPost(){
     this.router.navigate(['posts/']);
+  }
+
+  onSubmit(likebp:any){
+    this.blog.likeblogPost(Number(this.id)).subscribe((res)=>{
+      console.log(res);
+      this.like = document.getElementById("like");
+      this.like.classList.toggle("liked");
+      this.like.classList.add("disabled");
+      this.post.applause +=1;
+      let session={
+        'status':"liked",
+        'post':this.id
+      }
+      localStorage.setItem('status',JSON.stringify(session))
+    })
   }
 
 }

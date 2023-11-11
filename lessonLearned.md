@@ -368,3 +368,5 @@ The DATE_TRUNC() function is used to truncate a date, time, or timestamp to a sp
     </p>
 
     <p> we adhere to the economic sustainabiity standard</p>
+
+https://www.positronx.io/angular-responsive-carousel-examples/#tc_7853_05 (boostrap angular carrousel component)

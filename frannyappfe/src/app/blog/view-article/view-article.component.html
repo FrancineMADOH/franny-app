@@ -49,11 +49,22 @@
         <div class="action col-lg-12">
             <!-- Button trigger modal -->
             <div class="actions text-center">
-                <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#commentModal">
-                    <i class="bi bi-chat mx-2"></i>Add comment
-                </button>
-                <button class="btn btn-success"><i class="bi bi-heart-fill"></i> | {{post.applause}}</button>
-                <button class="btn btn-secondary disabled mx-3">Comments | {{commentList.length}}</button>
+                <div>
+                    <form #likebp="ngForm" (ngSubmit)="onSubmit(likebp)" >
+                        <button type="submit" id="like" data-toggle="tooltip" [ngClass]="hasliked" data-placement="top" title="Like" class="btn like">
+                            
+                            <i class="bi bi-heart-fill"></i></button> {{post.applause}}
+                        </form>
+                </div>
+                <div>
+                    <button type="button" class="btn  m-3"  data-bs-toggle="modal" data-toggle="tooltip"  data-placement="top" title="Add Comment" data-bs-target="#commentModal">
+                        <i class="bi bi-chat mx-2"></i>{{ commentList.length}}
+                    </button>
+                </div>
+                <div>
+                    <button data-toggle="tooltip" data-placement="top" title="Share" class="btn"><i class="bi bi-share"></i></button>
+
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" *ngIf="!commentsubmit" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
                     aria-hidden="true">
