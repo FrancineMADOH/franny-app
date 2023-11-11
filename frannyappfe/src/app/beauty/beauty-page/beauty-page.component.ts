@@ -4,6 +4,8 @@ import { Prestation } from '../models/prestation';
 import { Faq } from '../models/faq';
 import { Review } from '../models/review';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-beauty-page',
@@ -21,10 +23,16 @@ export class BeautyPageComponent implements OnInit {
   reviewsthree:Review[]= [];
   reviews:Review[] = [];
   reservationDone!:boolean;
+  slideInterval = 10000;
   constructor(private beauty:BeautyService,
     private router:Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    config:NgbCarouselConfig
     ){
+      config.interval = 5000;  
+      config.wrap = true;  
+      config.keyboard = true;  
+      config.pauseOnHover = true; 
     }
 
    ngOnInit():void {

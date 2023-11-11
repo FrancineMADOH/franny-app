@@ -5,6 +5,7 @@ import { FaqFormComponent } from './partials/faq-form/faq-form.component';
 import { FaqCardComponent } from './partials/faq-card/faq-card.component';
 import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BeautifyerCardComponent } from './partials/beautifyer-card/beautifyer-card.component';
 import { BeautifyerFormComponent } from './partials/beautifyer-form/beautifyer-form.component';
 import { PrestationFormComponent } from './partials/prestation-form/prestation-form.component';
@@ -82,7 +83,8 @@ import { ViewReviewComponent } from './partials/view-review/view-review.componen
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ]
 })
 export class BeautyModule { }
