@@ -7,6 +7,7 @@ import { Faq } from '../models/faq';
 import { Prestation } from '../models/prestation';
 import { Rendezvous } from '../models/rdv';
 import { Review } from '../models/review';
+import { Notification } from '../models/notification';
 import { catchError,map } from 'rxjs';
 
 
@@ -113,6 +114,22 @@ export class BeautyService {
     return this.http.get<any>(environment.baseUrl + '/rendezvous/topPrestation').pipe(catchError(this.handleError));
   }
 
+  // Notification
+
+  createNotif(phone:string):Observable<any>{
+    return this.http.post<any>(environment.baseUrl + '/notifications',{phone}).pipe(catchError(this.handleError));
+  }
+  getnewNotif():Observable<Notification[]>{
+    return this.http.get<any>(environment.baseUrl + '/notifications').pipe(catchError(this.handleError));
+
+  }
+  getallNotif():Observable<Notification[]>{
+    return this.http.get<any>(environment.baseUrl + '/notifications/new').pipe(catchError(this.handleError));
+
+  }
+  resoleveNotif(state:string,comment:string,id:number):Observable<any>{
+    return this.http.put<any>(environment.baseUrl + `/notifications/resolve/:${id}`,{state,comment}).pipe(catchError(this.handleError));
+  }
 
   // getRendezvousByState(state:string):Observable<Rendezvous[]>{/payment/:id
   //   return this.http.get<Rendezvous[]>(environment.baseUrl + "").pipe(catchError(this.handleError));

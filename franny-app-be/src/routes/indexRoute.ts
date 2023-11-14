@@ -8,6 +8,7 @@ import beautyRouter from "./api/beautyRoute";
 import presRouter from "./api/presRoute";
 import rdvRouter from "./api/rdvRoute";
 import revRouter from "./api/revRoute";
+import notifRouter from "./api/notifRoute";
 
 const router = express.Router();
 
@@ -25,5 +26,6 @@ router.use("/beautifyers", beautyRouter);
 router.use("/prestations", presRouter);
 router.use("/rendezvous",rdvRouter );
 router.use("/reviews", revRouter);
+router.use("/notifications", notifRouter);
 
 export default router;

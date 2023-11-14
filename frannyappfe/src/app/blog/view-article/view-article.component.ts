@@ -5,6 +5,7 @@ import { Post, PostResult } from '../models/post';
 import { BlogService } from '../services/blog.service';
 import { Comment } from '../models/comment';
 import { AuthService } from 'src/app/authentication/services/auth.service';
+import { type } from 'jquery';
 
 
 @Component({
@@ -33,6 +34,8 @@ export class ViewArticleComponent implements OnInit {
   mysubscription:any;
   hasliked!:string;
   hascomment!:string;
+  usersession:any;
+  session:any[] = [];
 
   @ViewChild("commentForm",{static:true}) commentForm:any;
   @ViewChild("likebp", {static:true}) likebp:any;
@@ -66,15 +69,9 @@ export class ViewArticleComponent implements OnInit {
       })
     });
 
-    let usersession = JSON.parse(localStorage.getItem('status') || '');
-    console.log(usersession)
-
-    if(this.id == usersession.post){
-      this.hasliked = usersession.status;
-    }
-
-   // this.hascomment = localStorage.getItem('comment') || ""
-
+   this.usersession = JSON.parse(localStorage.getItem('status') || '');
+   console.log(Array.from(this.usersession))
+    console.log(typeof(this.usersession))
   }
 
 onComment(commentForm:any){
@@ -119,11 +116,9 @@ onComment(commentForm:any){
       this.like.classList.toggle("liked");
       this.like.classList.add("disabled");
       this.post.applause +=1;
-      let session={
-        'status':"liked",
-        'post':this.id
-      }
-      localStorage.setItem('status',JSON.stringify(session))
+      this.session.push(this.id)
+
+      localStorage.setItem('status',JSON.stringify(this.session));
     })
   }
 

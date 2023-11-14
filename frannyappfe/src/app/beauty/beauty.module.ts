@@ -39,6 +39,7 @@ import { ViewbeautifComponent } from './partials/viewbeautif/viewbeautif.compone
 import { ViewPrestationComponent } from './partials/view-prestation/view-prestation.component';
 import { ViewRdvComponent } from './partials/view-rdv/view-rdv.component';
 import { ViewReviewComponent } from './partials/view-review/view-review.component';
+import { NotificationComponent } from './notification/notification.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { ViewReviewComponent } from './partials/view-review/view-review.componen
     ViewPrestationComponent,
     ViewRdvComponent,
     ViewReviewComponent,
+    NotificationComponent,
   ],
   imports: [
     CommonModule,

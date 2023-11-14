@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BeautyService } from '../services/beauty.service';
 import { Prestation } from '../models/prestation';
 import { Faq } from '../models/faq';
@@ -24,6 +24,10 @@ export class BeautyPageComponent implements OnInit {
   reviews:Review[] = [];
   reservationDone!:boolean;
   slideInterval = 10000;
+
+  @ViewChild("sendNotifForm", {static: true})sendNotifForm:any;
+
+
   constructor(private beauty:BeautyService,
     private router:Router,
     private route:ActivatedRoute,
@@ -84,7 +88,16 @@ export class BeautyPageComponent implements OnInit {
   }
 
   //TODO
-  SendNotif(){}
+  SendNotif(sendNotifForm:any){
+    console.log(sendNotifForm.valid)
+    if(sendNotifForm.valid){
+      console.log(sendNotifForm.value)
+      this.beauty.createNotif(sendNotifForm.value.phone).subscribe((res)=>{
+        console.log(res);
+      });
+    }
+    this.reservationDone=!this.reservationDone
+  }
  
 
 
