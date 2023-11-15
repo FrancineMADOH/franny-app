@@ -96,7 +96,10 @@ export class BeautyPageComponent implements OnInit {
         console.log(res);
       });
     }
-    this.reservationDone=!this.reservationDone
+    // setTimeout(() => {
+    //   this.reservationDone=!this.reservationDone
+    // }, 2000);
+    this.reservationDone=this.reservationDone
   }
  
 

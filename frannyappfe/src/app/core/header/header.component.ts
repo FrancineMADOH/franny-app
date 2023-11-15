@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/authentication/services/auth.service';
+import { BeautyService } from 'src/app/beauty/services/beauty.service';
 
 @Component({
   selector: 'app-header',
@@ -16,12 +17,21 @@ import { AuthService } from 'src/app/authentication/services/auth.service';
 export class HeaderComponent implements OnInit {
   navbarCollapse:boolean = true;
   email!:string;
-  constructor(public auth:AuthService, private activateRoute:ActivatedRoute){
-    
+  notifs:Notification[] = [];
+
+  constructor(public auth:AuthService,
+    private beauty:BeautyService,
+     private activateRoute:ActivatedRoute){
     this.email = this.auth.getEmail();
   }
 
   ngOnInit() {
+    this.beauty.getnewNotif().subscribe((res)=>{
+      res.map((el:any)=>{
+        this.notifs.push(el);
+      });
+
+    })
   }
   
 }

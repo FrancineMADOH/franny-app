@@ -40,6 +40,7 @@ import { ViewRdvComponent } from './beauty/partials/view-rdv/view-rdv.component'
 import { ViewReviewComponent } from './beauty/partials/view-review/view-review.component';
 import { BlogcategoryComponent } from './blog/blogcategory/blogcategory.component';
 import { StatisticsComponent } from './blog/statistics/statistics.component';
+import { NotificationComponent } from './beauty/notification/notification.component';
 
 
 const routes: Routes = [
@@ -82,7 +83,10 @@ const routes: Routes = [
   {path:"beauty/prestations/view/:id",component:ViewPrestationComponent , canActivate:[AuthGuard]},
   {path:"beauty/rendezvous/view/:id",component:ViewRdvComponent , canActivate:[AuthGuard]},
   {path:"beauty/reviews/view/:id",component:ViewReviewComponent , canActivate:[AuthGuard]},
-
+   
+  //notifications
+  {path:"beauty/notifications",component:NotificationComponent, canActivate:[AuthGuard]},
+  
   //public routes
   {path:"beauty/rendezvous/confirmation",component:ConfirmationComponent},
   {path:"beauty/reviews/add/:id", component:AddReviewComponent},

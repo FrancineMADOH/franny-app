@@ -3,6 +3,8 @@
   margin: 0;
   padding: 0;
 }
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
 .navbar{
     font-family: 'FiraSansRegular';
     background-color: #53534F;
@@ -10,7 +12,7 @@
     position: sticky;
     top: 0;
 }
-a {
+nav a {
     color:#F460FC;
 }
 .brand{
@@ -25,4 +27,21 @@ button{
 }
 a .active {
     color:white;
+}
+
+.notification a:hover{
+    color: #F460FC;
+}
+.notification a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.notification {
+    align-items: center;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    background-color: #ace2fc;
+
 }
