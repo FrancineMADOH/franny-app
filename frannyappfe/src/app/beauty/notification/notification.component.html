@@ -1,1 +1,55 @@
-<p>notification works!</p>
+
+<div class="container">
+    <h4 class="text-center">NOTIFICATIONS</h4>
+
+    <div class="row">
+
+        <div class="card" *ngFor="let el of notifications" >
+            <h5 class="card-title">{{ el.client_number}} sent you a message </h5>
+            <div class="card-body">
+                <p>{{ el.comment }}</p>
+            </div>
+            <!-- Button trigger modal -->
+         <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#biblioModal">
+            Réserver
+        </button> 
+        </div>
+           <!-- Modal -->
+           <div class="modal fade" id="biblioModal" tabindex="-1" aria-labelledby="biblioModalLabel"
+           aria-hidden="true">
+           <div class="modal-dialog">
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <h4 class="modal-title text-center fw-bold" id="biblioModalLabel"> Prestation personalisée </h4>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                   </div>
+
+                   <div *ngIf="isresolve" class="message-sent text-center m-4">
+                       Notification Marked as fake
+                    </div>
+
+                    <div *ngIf="isresolve" class="message-sent text-center m-4">
+                        <p>Notification resolved</p>
+                     </div>
+
+                   <div class="modal-body form-group my-2" *ngIf="">
+                       <form (ngSubmit)="resolveNotif(sendNotifForm)" #sendNotifForm="ngForm">
+                           <button  class="btn btn-primary" type="submit">Resolve</button>
+                       </form>
+                       <form (ngSubmit)="resolveNotif(sendNotifForm)" #sendNotifForm="ngForm">
+                        <button  class="btn btn-primary" type="submit">Mark As Fake</button>
+                    </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+ 
+
+  
+
+  
+ 
+       
+
+</div>
