@@ -116,8 +116,8 @@ export class BeautyService {
 
   // Notification
 
-  createNotif(phone:string):Observable<any>{
-    return this.http.post<any>(environment.baseUrl + '/notifications',{phone}).pipe(catchError(this.handleError));
+  createNotif(phone:string,perso_name:string):Observable<any>{
+    return this.http.post<any>(environment.baseUrl + '/notifications',{phone,perso_name}).pipe(catchError(this.handleError));
   }
   getnewNotif():Observable<Notification[]>{
     return this.http.get<any>(environment.baseUrl + '/notifications').pipe(catchError(this.handleError));
@@ -128,7 +128,7 @@ export class BeautyService {
 
   }
   resoleveNotif(state:string,comment:string,id:number):Observable<any>{
-    return this.http.put<any>(environment.baseUrl + `/notifications/resolve/:${id}`,{state,comment}).pipe(catchError(this.handleError));
+    return this.http.put<any>(environment.baseUrl + `/notifications/resolve/`,{state,comment,id}).pipe(catchError(this.handleError));
   }
 
   // getRendezvousByState(state:string):Observable<Rendezvous[]>{/payment/:id

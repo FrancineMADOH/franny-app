@@ -1,0 +1,28 @@
+.content{
+    max-width: 750px;
+    margin: 0 auto;
+}
+.card-body{
+    display: flex;
+    justify-content: space-between;
+    
+}
+button{
+    height: 30px !important;
+    color: #fff;
+    border-width: 0px;
+    padding-top: 1px;
+}
+.btn-primary{
+    background-color: #5DBAE5;
+}
+
+.resolve_form{
+    display: flex;
+    justify-content: space-between;
+}
+
+.message-sent{
+    color: green;
+    font-weight: bold;
+}

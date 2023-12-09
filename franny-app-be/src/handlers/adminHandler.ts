@@ -78,7 +78,7 @@ export class adminHandler {
 
             if(admin){
                 const token = genToken(admin);
-                console.log("auth succeed!");
+                console.log(`${admin.admin_name} logs in at ${new Date().toISOString()}`);
                 res.status(200).json(token);
             } else {
                  res.status(200).json({"message":"Wrong Credentials!"});

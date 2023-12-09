@@ -24,6 +24,7 @@ export class BeautyPageComponent implements OnInit {
   reviews:Review[] = [];
   reservationDone!:boolean;
   slideInterval = 10000;
+  reservation_message!:string;
 
   @ViewChild("sendNotifForm", {static: true})sendNotifForm:any;
 
@@ -89,17 +90,14 @@ export class BeautyPageComponent implements OnInit {
 
   //TODO
   SendNotif(sendNotifForm:any){
-    console.log(sendNotifForm.valid)
     if(sendNotifForm.valid){
-      console.log(sendNotifForm.value)
-      this.beauty.createNotif(sendNotifForm.value.phone).subscribe((res)=>{
-        console.log(res);
+      this.beauty.createNotif(sendNotifForm.value.phone,sendNotifForm.value.perso_name).subscribe((res)=>{
+        this.reservation_message = res.message;
       });
     }
-    // setTimeout(() => {
-    //   this.reservationDone=!this.reservationDone
-    // }, 2000);
-    this.reservationDone=this.reservationDone
+    setTimeout(() => {
+      this.reservationDone=!this.reservationDone
+    }, 2000);
   }
  
 

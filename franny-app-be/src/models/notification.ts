@@ -6,16 +6,17 @@ export type Notification = {
     date_resolved:Date ,
     notif_state:string ,
     client_number:string ,
-    comment:string
+    comment:string,
+    perso_name:string
 }
 
 export class NotificationStore {
 
-    async create(client_number:string):Promise<any>{
+    async create(client_number:string,perso_name:string):Promise<Notification>{
         const conn = await client.connect();
-        const sql_query = `INSERT INTO notifications(client_number) 
-        VALUES($1) RETURNING *;`;
-        const result =   await client.query(sql_query,[client_number]);
+        const sql_query = `INSERT INTO notifications(client_number,perso_name) 
+        VALUES($1,$2) RETURNING *;`;
+        const result =   await client.query(sql_query,[client_number,perso_name]);
         conn.release();
         return result.rows[0];
     }
@@ -38,7 +39,7 @@ export class NotificationStore {
 
     async resolve(state: string,comment:string,date:string,id:number):Promise<Notification>{
         const conn = await client.connect();
-        const sql_query = `UPDATE notifications SET state=$1, comment=$2,date=$3 
+        const sql_query = `UPDATE notifications SET notif_state=$1, comment=$2,date_resolved=$3 
         WHERE notif_id=$4 RETURNING *;
         `
         const result = await client.query(sql_query,[state,comment,date,id]);

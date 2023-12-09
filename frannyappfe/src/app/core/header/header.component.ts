@@ -22,10 +22,11 @@ export class HeaderComponent implements OnInit {
   constructor(public auth:AuthService,
     private beauty:BeautyService,
      private activateRoute:ActivatedRoute){
-    this.email = this.auth.getEmail();
   }
 
   ngOnInit() {
+    this.email = this.auth.getEmail();
+
     this.beauty.getnewNotif().subscribe((res)=>{
       res.map((el:any)=>{
         this.notifs.push(el);

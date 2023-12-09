@@ -7,3 +7,5 @@ CREATE TABLE notifications(
     client_number VARCHAR(15) NOT NULL,
     comment TEXT
 );
+
+ALTER TABLE notifications ADD COLUMN perso_name VARCHAR(100);

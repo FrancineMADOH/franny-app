@@ -8,10 +8,11 @@ export class NotificationHandler{
 
     async create(req:Request,res:Response){
         const client_number = req.body.phone;
+        const perso_name = req.body.perso_name;
 
         try {
-            await notif.create(client_number);  
-            res.status(200).json({message:"New notification"});
+            await notif.create(client_number,perso_name);  
+            res.status(200).json({message:"Message sent!  "});
         } catch (err) {
             console.log(err);
             res.status(500).json({message:"Internal server error"});   
@@ -41,11 +42,14 @@ export class NotificationHandler{
             
         }
     }
+
+
     async resolve(req:Request,res:Response){
         const comment = req.body.comment;
         const state = req.body.state;
         const date = new Date().toISOString();
-        const id = Number(req.params.id);
+        const id = req.body.id;
+        console.log(req.body)
         try {
             await notif.resolve(state,comment,date,id);
             res.status(200).json({message:'Notification resolved'});    

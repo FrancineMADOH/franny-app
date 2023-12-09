@@ -8,7 +8,7 @@ const notifRouter = express.Router();
 notifRouter.post("",methods.create);
 notifRouter.get("",methods.index);
 notifRouter.get("/new",methods.new);
-notifRouter.put("/resolve/:id",methods.resolve);
+notifRouter.put("/resolve/",methods.resolve);
 
 export default notifRouter;
 
