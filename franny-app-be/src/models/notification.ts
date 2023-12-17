@@ -23,7 +23,17 @@ export class NotificationStore {
 
     async index():Promise<Notification[]>{
         const conn = await client.connect();
-        const sql_query = `SELECT * FROM notifications;`
+        const sql_query = `SELECT * FROM notifications
+        ORDER BY (
+            CASE notif_state
+
+            WHEN 'new' THEN 1
+            WHEN 'resolve' THEN 2
+            WHEN 'fake' THEN 3
+            
+            END
+            );
+        `
         const result = await conn.query(sql_query);
         conn.release();
         return result.rows;

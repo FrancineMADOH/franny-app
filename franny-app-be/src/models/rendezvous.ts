@@ -47,7 +47,20 @@ export class rdvStore {
     //index: List of rdv 
     async index(): Promise<Rendezvous[]> {
         const conn = await client.connect();
-        const sql_command = "SELECT r.*,b.bname FROM rendezvous r LEFT JOIN beautifyers b ON b.beautif_id = r.doneby ORDER BY CAST(rdvdate AS DATE) DESC;";
+        const sql_command = `
+        SELECT r.*,b.bname 
+        FROM rendezvous r 
+        LEFT JOIN beautifyers b ON b.beautif_id = r.doneby
+        ORDER BY (
+            CASE rdvstate
+            WHEN 'Scheduled' THEN 1
+            WHEN 'Ongoing' THEN 2
+            WHEN 'Completed' THEN 3
+            WHEN 'Cancelled' THEN 4
+
+            END
+            )
+        ;`;
         const result = await client.query(sql_command);//INNER JOIN prestations p ON r.prestation = p.pres_id
         conn.release();
         return result.rows;
@@ -171,6 +184,7 @@ export class rdvStore {
                     (SELECT CAST(COUNT(*) AS INTEGER) FROM prestations) AS  total_pres,
                     (SELECT CAST(COUNT(*) AS INTEGER)  FROM reviews) AS  total_review,
                     (SELECT CAST(COUNT(*) AS INTEGER)  FROM rendezvous) AS total_rdv,
+                    (SELECT CAST(COUNT(*) AS INTEGER)  FROM notifications) AS total_notif,
                     (SELECT CAST(COUNT(*) AS INTEGER) FROM rendezvous WHERE rdvstate = 'Scheduled') AS sched_apt,
                     (SELECT CAST(COUNT(*) AS INTEGER)  FROM rendezvous WHERE rdvstate = 'Completed') AS comp_apt,
                     (SELECT CAST(COUNT(*) AS INTEGER)  FROM rendezvous WHERE rdvstate = 'Cancelled') AS canc_apt,

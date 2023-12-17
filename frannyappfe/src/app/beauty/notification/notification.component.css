@@ -26,3 +26,12 @@ button{
     color: green;
     font-weight: bold;
 }
+#new{
+    background-color: rgb(210, 252, 210);
+}
+#fake{
+    background-color: rgb(247, 202, 202);
+}
+#resolve{
+    background-color: rgb(194, 191, 191);
+}

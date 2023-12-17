@@ -49,7 +49,6 @@ export class NotificationHandler{
         const state = req.body.state;
         const date = new Date().toISOString();
         const id = req.body.id;
-        console.log(req.body)
         try {
             await notif.resolve(state,comment,date,id);
             res.status(200).json({message:'Notification resolved'});    

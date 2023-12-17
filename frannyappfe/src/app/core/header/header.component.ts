@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.email = this.auth.getEmail();
 
-    this.beauty.getnewNotif().subscribe((res)=>{
+    this.beauty.getallNotif().subscribe((res)=>{
       res.map((el:any)=>{
         this.notifs.push(el);
       });

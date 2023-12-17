@@ -4,10 +4,10 @@
 
     <div class="row content">
 
-        <div class="card my-2" *ngFor="let el of notifications" >
-            <div class="card-body">
+        <div class="card my-2" *ngFor="let el of notifications" id="{{el.notif_state}}">
+            <div class="card-body" >
                 <h6 class="card-title">{{ el.perso_name }} sent you a message. Contact the person through: {{ el.client_number}} </h6>
-                <button type="button" (click)= getId(el.notif_id) class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#biblioModal">
+                <button *ngIf="el.notif_state=='new'" type="button"  (click)= getId(el.notif_id) class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#biblioModal">
                     Resolve
                 </button>
             </div>
@@ -30,7 +30,7 @@
                             <p>{{message}}</p>
                         </div>
 
-                        <div >
+                        <div>
                             <form  (ngSubmit)="resolveNotif(resolveNotifForm)" #resolveNotifForm="ngForm">
                                 <textarea required
                                 name="comment" 
