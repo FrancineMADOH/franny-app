@@ -108,7 +108,7 @@ export class rdvStore {
     //make paiement 
     async makepaiement(rdv_id:number,rdvstate:string,pm:string,pdate:string){
         const conn = await client.connect();
-        const sql_command = "UPDATE rendezvous SET rdvstate=$2, payment_method=$3,payment_date=$4 WHERE rdv_id=$1;"
+        const sql_command = "UPDATE rendezvous SET rdvstate=$2, paiement_method=$3,paiement_date=$4 WHERE rdv_id=$1;"
         const result = await conn.query(sql_command,[rdv_id,rdvstate,pm,pdate]);
         conn.release();
         return result.rows[0];

@@ -5,9 +5,16 @@
         <span class="sronly sr-only">Loading...</span>
     </div>
     <div class="paiement" *ngIf="!isloading">
-        <h3 class="text-center">Bienvenu, {{rdv.client_name}} </h3>
+        <h3 class="text-center">Bienvenue, {{rdv.client_name}} </h3>
 
-        <p class="text-center">Vous etes sur le point de Regler votre facture.</p>
+        <p *ngIf="!paid" class="text-center">Vous etes sur le point de Regler votre facture.</p>
+        <div class="paid" *ngIf="paid">
+            <h4 class="thankyou text-center">
+               <span class="title-word-1">Thank you</span>  
+               <span class="title-word-2"> for your </span>
+               <span class="title-word-3"> payment</span></h4>
+            <p *ngIf="(!isauth && paid==true)">You can now close this window</p>
+        </div>
         <p class="text-center fw-bold">Montant:{{rdv.rdv_price}} XAF</p>
        
             <form *ngIf="!paid" #paymentForm="ngForm" (ngSubmit)="makeCashPayment(paymentForm)">
@@ -16,9 +23,9 @@
                     <select name="pm" id="pm" required ngModel #pm="ngModel" class="form-control">
                         <option value="0" [selected] selected>Selectionnez une methode de paiement</option>
                         <option value="Cash">Cash</option>
-                        <!-- <option value="Mobile ">Mobile</option> -->
+                        <option value="Mobile">Mobile</option>
                     </select>
-                    <small>*Payment mobile bientot disponible</small>
+                    <!-- <small>*Payment mobile bientot disponible</small> -->
                 </div>
                 <p class="text-center">
                     <button type="submit" [disabled]="!paymentForm['valid']" class="btn btn-success m-2">Confirmer le
@@ -28,10 +35,7 @@
 
     </div>
 
-    <div class="paid" *ngIf="paid">
-        <h3>Thank you for your paiement</h3>
-        <p *ngIf="(!isauth && paid==true)">You can now close this window</p>
-    </div>
+   
     <button class="btn btn-secondary my-2" *ngIf="isauth" (click)="back()">Back to rendez-vous List</button>
 
 </main>

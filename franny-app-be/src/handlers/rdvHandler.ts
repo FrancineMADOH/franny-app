@@ -22,7 +22,7 @@ export class rdvHandler {
             const code = await qr.toDataURL(`${url}${newRdv.rdv_id}`);
             res.status(201).json({message:"Appointement scheduled!", data:newRdv,qrcode:code});
         }catch(err:any){
-            res.status(500).json(err.message);
+            res.status(500).json({message:"Internal server error"});
         }
     }
 
@@ -33,7 +33,8 @@ export class rdvHandler {
             res.status(200).json(rendezvous);
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            //res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
         }
     }
 
@@ -44,7 +45,8 @@ export class rdvHandler {
             res.status(200).json(rendezvous);
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            //res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
         }
     }
 
@@ -57,7 +59,8 @@ export class rdvHandler {
             res.status(200).json({message:"Appointment updated !"});
         }catch(err:any){
             console.log(err);
-            res.status(500).json(err);
+            //res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
         }
     }
 
@@ -143,7 +146,8 @@ export class rdvHandler {
             res.status(200).json(rdvs);
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            //res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
         }
     }
 
@@ -154,7 +158,8 @@ export class rdvHandler {
             res.status(200).json(state_rdv);
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            //res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
         }
     }
 
@@ -165,7 +170,8 @@ export class rdvHandler {
             res.status(200).json(state_rdv);
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            //res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
         }
     }
 
@@ -213,7 +219,8 @@ export class rdvHandler {
             res.status(200).json(del_rdv);
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            //res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
         }
     }
 }

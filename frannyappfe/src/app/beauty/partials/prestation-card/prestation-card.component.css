@@ -2,7 +2,7 @@
 
 .btn-secondary{
   margin: 0 auto 0;
-  padding: 10px;
+  padding: 5px;
   color: #fff;
   border: none !important;
   background:#53534F !important;
@@ -10,7 +10,7 @@
 }
 
 .btn-success{
-  padding: 10px;
+  padding: 5px;
   background:#5DBAE5 !important;
   color: #fff;
   border: none !important;
