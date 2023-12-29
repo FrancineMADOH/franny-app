@@ -24,7 +24,13 @@ h4{
   margin-top: 1%;
   font-size: 20px !important;
 }
-
+/* figure{
+  border: solid 1px #777;
+  border-radius: 12px;
+} */
+figcaption{
+  font-size: 10px;
+}
 .social_icons{
     display: flex !important;
     flex-wrap: wrap;

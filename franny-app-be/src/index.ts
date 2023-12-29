@@ -18,6 +18,7 @@ const corsOptions = {
 
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
+app.use('/public', express.static(path.join('public')));//https://stackoverflow.com/questions/67033797/get-request-for-image-to-angular-component-returns-404-not-found
 app.use(express.static(path.join(__dirname, "../public/views")));
 //console.log(path.join(__dirname, "../public/"))
 //app.use(express.urlencoded({ extended: true,}));

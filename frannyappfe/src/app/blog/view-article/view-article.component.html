@@ -11,36 +11,39 @@
         <div class="row">
             <div class="col-lg-9 px-3 ">
                 <div class="jumbotron my-2">
-                    <!-- TODO: put a background image here -->
                     <h1 class="text-center">{{post.title }} </h1>
-                <div class="text-center lead m-4">
-                    <p>
-                       <span class="attributes">Category:</span>  <span>{{post.category}}</span> | <span class="attributes">Published at:</span>   <span>{{post.create_at }}</span>
+                        <div class="text-center lead m-4">
+                            <p>
+                            <span class="attributes">Category:</span>  <span>{{post.category}}</span> | <span class="attributes">Published at:</span>   <span>{{post.create_at }}</span>
 
-                    </p>
-                    <p>
-                        <span>  {{post.admin_name}} |</span> 
-                        
-                        <span>
-                            <a  href="{{post.facebook_url}}" target="_blank"><i class="bi bi-facebook mx-2"></i></a>
-        
-                        </span>
-                        <span>
-                            <a href="{{post.linkedin_url}}" target="_blank"><i class="bi bi-linkedin mx-2"></i></a>
-        
-                        </span>
-                        <span>
-                            <a href="{{post.twitter_url}}" target="_blank"><i class="bi bi-twitter mx-2"></i></a>
-        
-                        </span>
-                    </p>
-                        
-                </div>
-                <div class="text-center lead">
-                   
-                </div>
+                            </p>
+                            <p>
+                                <span>  {{post.admin_name}} |</span> 
+                                
+                                <span>
+                                    <a  href="{{post.facebook_url}}" target="_blank"><i class="bi bi-facebook mx-2"></i></a>
                 
+                                </span>
+                                <span>
+                                    <a href="{{post.linkedin_url}}" target="_blank"><i class="bi bi-linkedin mx-2"></i></a>
+                
+                                </span>
+                                <span>
+                                    <a href="{{post.twitter_url}}" target="_blank"><i class="bi bi-twitter mx-2"></i></a>
+                
+                                </span>
+                            </p>
+                                
+                        </div>
+                        <div class="text-center lead">
+                            <figure>
+                                <img class="img img-fluid" [src]="post.illustration" alt="blog post illustration">
+                                <figcaption>credit</figcaption>
+                            </figure>
+                            
+                        </div>
                 </div>
+
                 <div  [innerHTML]="html" class="content">
                 
                 </div>

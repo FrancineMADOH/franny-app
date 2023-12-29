@@ -61,6 +61,8 @@ export class ViewArticleComponent implements OnInit {
       this.post = data;
       this.html = this.sanitized.bypassSecurityTrustHtml(data.content)
     });
+    console.log(this.post)
+
 
     this.blog.getallComment(Number(this.id)).subscribe((res)=>{
       res.map((comment:any)=>{
