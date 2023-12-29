@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 import { Post } from '../models/post';
@@ -13,6 +13,8 @@ export class BlogService {
 
 
   //get blog post list
+  
+
 
   getblogpostList():Observable<Post[]>{
     return this.http.get<Post[]>(environment.baseUrl +"/posts").pipe(catchError(this.handleErrors));
@@ -26,8 +28,10 @@ export class BlogService {
     return this.http.get<Post>(environment.baseUrl +`/posts/show/${id}`).pipe(catchError(this.handleErrors));
   }
 
-  saveBlogPost(post:Post):Observable<Post>{
-    return this.http.post<any>(environment.baseUrl+"/posts", {post}).pipe(catchError(this.handleErrors));
+  saveBlogPost(post:any):Observable<Post>{
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    return this.http.post<any>(environment.baseUrl+"/posts", post,{headers}).pipe(catchError(this.handleErrors));
   }
 
   deletePost(id:number):Observable<Post>{

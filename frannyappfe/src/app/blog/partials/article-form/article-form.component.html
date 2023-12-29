@@ -1,6 +1,6 @@
 <div class="container">
 
-<form #addArticle="ngForm" enctype="application/x-www-form-urlencoded" (ngSubmit)="onSubmit()">
+<form #addArticle="ngForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()">
 <div class="form-group my-2">
     <label for="title">Title</label>
     <input type="text" 
@@ -51,34 +51,20 @@
     required></textarea>
     <small  *ngIf="content.touched && !content.valid">Please provide a valid content</small>
   </div>
-  <!-- <div class="form-group my-2">
-    <label for="create_at">Date de creation</label>
-    <input type="string"  class="form-control"  name="create_at" id="create_at" readonly  placeholder="{{create_at}}">
-  </div> -->
-    <!-- <div class="form-group my-2">
-    <label for="author">Author</label>
-    <select class="form-select" 
-    name="author"
-    required
-    ngModel
-    #author="ngModel"
-      id="author">
-      <option selected>Select article authory</option>
-      <option value=""></option>
-    </select>
-    <small *ngIf="!author.valid && author.touched">Please select the author</small>
-  </div>  -->
-    <div  class="my-4 form-group">
+    <div  class="my-4 form-group file-upload">
         <label for="illustration">Add Illustration</label>
         <input 
+        required
         type="file"
-         multiple="multiple" 
-         accept="image/*"
-          #illustration="ngModel" 
-          ngModel 
-          name="illustration"  id="illustration">
+        multiple 
+        (change)="selectImage($event)"
+        accept="image/*"
+        ngModel
+        name="illustration"  
+        id="illustration">
      </div>
      <button type="submit"  [disabled]="!addArticle.valid" class="btn btn-success">Publish</button>
      <button (click)="backToPosts()" class="btn btn-secondary m-3">Cancel</button>
     </form>
+    <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, quos ea, possimus harum iste unde fugit quis, quaerat ipsa hic inventore? At, quasi assumenda nobis sequi enim libero exercitationem ut? -->
 </div>

@@ -3,13 +3,12 @@ import ejs from "ejs";
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import fileupload from "express-fileupload";
 import router from "./routes/indexRoute";
+
 
 const app:express.Application = express();
 const port = 4000;
 const domain = "http://localhost:4200";
-// const domain = "https://e076-129-0-226-28.ngrok-free.app";
 
 
 const corsOptions = {
@@ -20,11 +19,14 @@ const corsOptions = {
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 app.use(express.static(path.join(__dirname, "../public/views")));
+//console.log(path.join(__dirname, "../public/"))
+//app.use(express.urlencoded({ extended: true,}));
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(fileupload());
-app.use(bodyParser.json());
+//app.use(express.json());
+app.use(bodyParser.json())
 app.use(cors(corsOptions));
 
+//router
 app.use("/api", router);
 
 

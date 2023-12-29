@@ -1,49 +1,61 @@
 import {Request,Response,NextFunction } from "express";
 import { Post, postStore} from "../models/post";
 import { postValidation } from "../middlewares/validation";
-import { uploadillustration } from "../middlewares/upload";
 import slugify from "slugify";
 import {marked } from "marked";
 import {JSDOM} from "jsdom";
 import createDomPurify from "dompurify";
 const dompurify  = createDomPurify(new JSDOM().window)
 
-
+marked.use({mangle: false,headerIds: false});
 const poststore = new postStore();
- 
-export class postHandler {
-    async create(req:Request, res:Response,next:NextFunction){
-        uploadillustration.single("illustration")
-        console.log(req.file)
-    //console.log(req.body.post)
-    //uploadillustration(req.body.post.illustration)
-    const {error} = postValidation(req.body.posttitle)
-    let slug =  slugify(req.body.post.title, {lower:true, strict:true});
-    if(error){
-        return res.status(400).json(error.details[0].message);
-    } 
 
+export class postHandler {
+    
+
+    async create(req:Request, res:Response,next:NextFunction){
+        console.log(req.file)
+
+        if (!req.file) {
+            console.log("No file received");
+            return res.json({
+              message: "Please upload an illustration for your post"
+            });
+        }
+
+    const {error} = postValidation(req.body.title)
+    let slug =  slugify(req.body.title, {lower:true, strict:true});
+    // if(error){
+    //     return res.status(400).json({message:error.details[0].message});
+    // } 
+   
+    //     )
+
+    const host = req.headers.host;
+    const filePath = req.protocol + "://" + host + '/' + req.file.path.split("\\").join('/');
     //sanitized the request body
-    let sanitizedHtml =  dompurify.sanitize(marked(req.body.post.content));
+    let sanitizedHtml =  dompurify.sanitize(marked(req.body.content));
         const post:Post = {
-            title : req.body.post.title,
-            summary : req.body.post.summary,
+            title : req.body.title,
+            summary : req.body.summary,
             content : sanitizedHtml,
-            category : req.body.post.category,
+            category : req.body.category,
             slug : slug,
-            illustration:req.body.post.illustration,
-            author: req.body.post.author,
-            create_at: req.body.post.create_at,
+            illustration:filePath,
+            author: Number(req.body.author),
+            create_at: req.body.create_at,
             applause:0
         }
+        console.log(post)
     
         try{
-            const new_post = await poststore.create(post);
-            res.status(201).json({message:"Blog post added!"});
+            await poststore.create(post);
+            console.log('post added!')
+            return res.status(201).json({message:"Blog post added!"});
             //res.redirect(`/posts/${post.post_id}/${post.slug}`)
         }catch(err:any){
             console.log(err.message);
-            res.status(500).json({message:"Internal server error"});
+            return res.status(500).json({message:"Internal server error"});
         }
     }
 

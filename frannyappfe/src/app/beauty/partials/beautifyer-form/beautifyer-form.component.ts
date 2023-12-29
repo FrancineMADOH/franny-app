@@ -97,8 +97,8 @@ export class BeautifyerFormComponent implements OnInit {
       this.beautif = this.addBeautifForm.value;
       this.beauti.addBeautifyer(this.beautif).subscribe((res)=>{
         alert(res.message);
-        this.router.navigate(["beauty/beautifyers"]);
       });
+      this.router.navigate(["beauty/beautifyers"]);
     }
     this.addBeautifForm.reset()
   }

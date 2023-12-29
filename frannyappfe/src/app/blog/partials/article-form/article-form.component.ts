@@ -18,6 +18,7 @@ export class ArticleFormComponent implements OnInit {
   email = "";
   admin!:any;
   create_at =  new Date().toLocaleString();
+  illustration!:any;
 
 
   @ViewChild("addArticle", {static:true}) addArticle:any;
@@ -31,12 +32,13 @@ export class ArticleFormComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.iscreateMode = !this.id;
-    this.email = this.auth.getEmail()
+    
     //get the connected admin
     this.auth.getAdminInfos(this.email).subscribe((res)=>{
-      this.admin = res;
+      this.admin = res[0];
       return this.admin;
     });
+
     //get 
     if(!this.iscreateMode){
       this.blog.viewPost(Number(this.id)).subscribe((res)=>{
@@ -45,11 +47,19 @@ export class ArticleFormComponent implements OnInit {
           category: res.category,
           summary: res.summary, 
           content: res.content,
-          illustration: res.illustration
+          //illustration: res.illustration
         })
       })
     }
 
+  }
+
+  selectImage(event:any){
+    if(event.target.files.length > 0){
+      const file = event.target.files[0]
+      this.illustration = file;
+      
+    }
   }
 
   onSubmit(){
@@ -59,19 +69,32 @@ export class ArticleFormComponent implements OnInit {
       this.editPost(this.addArticle)
     }
   }
+
   savePosttoDatabase(addArticle:any){
     if(this.addArticle.valid){
+      let post:FormData = new FormData()
       this.addArticle.value.create_at = this.create_at;
       this.addArticle.value.author = this.admin.admin_id;
-      this.post =  this.addArticle.value;
-      console.log(this.post)
-      this.blog.saveBlogPost(this.post).subscribe((res:any)=>{
+      this.addArticle.value.illustration = this.illustration
+
+      post.append('illustration',this.illustration)
+      post.append('title',this.addArticle.value.title) 
+      post.append('category',this.addArticle.value.category)
+      post.append('summary',this.addArticle.value.summary)
+      post.append('content',this.addArticle.value.content)
+      post.append('create_at', this.addArticle.value.create_at)
+      post.append('author',this.addArticle.value.author)
+
+      this.blog.saveBlogPost(post).subscribe((res:any)=>{
         alert(res.message)
-      })
+      });
+      
     }
+
     this.addArticle.reset();
     this.router.navigate(['/posts'])
   }
+  
 
   
   editPost(addArticle:any){
