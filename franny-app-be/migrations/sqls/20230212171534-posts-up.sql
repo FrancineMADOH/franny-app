@@ -10,6 +10,7 @@ CREATE TABLE posts(
    slug VARCHAR(200),
    applause INT DEFAULT 0,
    category VARCHAR(50),
+   imgcredit VARCHAR(255),
    FOREIGN KEY(author) REFERENCES admins(admin_id) ON DELETE CASCADE
 
 );

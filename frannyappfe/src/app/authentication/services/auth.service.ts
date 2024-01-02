@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders ,HttpErrorResponse} from '@angular/common/http';
 import { JwtResponse } from '../models/jwt-response';
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { Router } from '@angular/router';
 import { Admin } from '../models/admin';
 import { environment } from 'src/app/environment/env';
@@ -13,8 +14,11 @@ import { catchError,map } from 'rxjs';
 export class AuthService {
   headers = new HttpHeaders().set("Content-Type", "application/json");
   currentUser = {};
+  fcbk!:SafeHtml
+  twitter!:SafeHtml
+  linked!:SafeHtml
 
-constructor(private http: HttpClient, public router:Router) { }
+constructor(private http: HttpClient, public router:Router,public sanitized:DomSanitizer) { }
 
 createAdmin(admin: Admin):Observable<Admin>{
     return this.http.post<Admin>(environment.baseUrl + "/admins", admin)
@@ -25,16 +29,15 @@ createAdmin(admin: Admin):Observable<Admin>{
 getAllUsers():Observable<Admin[]>{
   return this.http.get<Admin[]>(environment.baseUrl + "/admins")
 }
+
 signtheUserIn(email:string,admin_password:string){
   return this.http.post(environment.baseUrl + '/admins/signin', {email,admin_password}).subscribe((res:any)=>{
-    
-    if(typeof(res)=='string'){
-      localStorage.setItem("acces_token", res);
+    if(res.token){
+      console.log(res)
+      localStorage.setItem("acces_token", res.token);
       localStorage.setItem("admin_email", email)
-      this.getAdminInfos(email).subscribe((res:any)=>{
-        this.currentUser = res;
-        this.router.navigate(['dashboard/' + res.email]);
-      });
+      localStorage.setItem("admin_id", res.admin)
+      this.router.navigate(['dashboard/' + email]);
     } else{
         alert("Wrong Credentials!");
     }
@@ -49,17 +52,18 @@ deleteAdmin(id:number){
   return this.http.delete(environment.baseUrl + '/admins/delete')
 }
 
-//get the connected agent information
+//get the connected admin information
 getAdminInfos(email:string): Observable<any>{
   return this.http.get(environment.baseUrl + `/admins/${email}`).pipe(
    map((res:any)=>{
-    return res //|| {}
+    return res 
    }),
    catchError(this.handleError));
 }
 
 getAccesToken(){
-  return localStorage.getItem('acces_token');
+  let token =  localStorage.getItem('acces_token');
+  return token;
 };
 
 isLogin():boolean {
@@ -69,6 +73,11 @@ isLogin():boolean {
 getEmail():string{
   let email = localStorage.getItem('admin_email');
   return email || '';
+}
+
+getID():string{
+  let admin_id = localStorage.getItem('admin_id')
+  return admin_id || ''
 }
 
 logout(){

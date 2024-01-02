@@ -48,6 +48,10 @@ button {
     color:#5DBAE5;
 
 }
+.social_links{
+    display: flex;
+    margin-right: 3px;
+}
 .blog_section a:hover {
     color:#F460FC;
 

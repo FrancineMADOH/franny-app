@@ -11,11 +11,7 @@ export class BlogService {
 
   constructor(private http:HttpClient) { }
 
-
   //get blog post list
-  
-
-
   getblogpostList():Observable<Post[]>{
     return this.http.get<Post[]>(environment.baseUrl +"/posts").pipe(catchError(this.handleErrors));
   }

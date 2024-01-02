@@ -11,7 +11,8 @@ export type Post ={
         illustration:string ,
         slug:string,
         applause:number,
-        category :string
+        category :string,
+        imgcredit:string
      
 }
 
@@ -19,7 +20,7 @@ export class postStore {
         //create
         async create(p:Post):Promise<Post>{
                 const conn = await client.connect();
-                const sql_command = "INSERT INTO posts(title,summary,content,author,create_at,illustration,slug,applause,category) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *;";
+                const sql_command = "INSERT INTO posts(title,summary,content,author,create_at,illustration,slug,applause,category,imgcredit) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *;";
                 const result = await conn.query(sql_command,[
                         p.title,
                         p.summary,
@@ -29,7 +30,8 @@ export class postStore {
                         p.illustration,
                         p.slug,
                         p.applause,
-                        p.category
+                        p.category,
+                        p.imgcredit
                 ]);
                 conn.release();
                 return result.rows[0]; 
@@ -56,9 +58,9 @@ export class postStore {
         //update
         async update(p:Post,id:number):Promise<Post>{
                 const conn = await client.connect();
-                const sql_command = "UPDATE posts SET title=$1,summary=$2,content=$3,author=$4,illustration=$5,slug=$6,category=$7 WHERE post_id=$8 RETURNING *;";
+                const sql_command = "UPDATE posts SET title=$1,summary=$2,content=$3,author=$4,illustration=$5,slug=$6,category=$7,imgcredit=$8 WHERE post_id=$9 RETURNING *;";
                 const result = await conn.query(sql_command, [
-                        p.title,p.summary,p.content,p.author,p.illustration,p.slug,p.category,id
+                        p.title,p.summary,p.content,p.author,p.illustration,p.slug,p.category,p.imgcredit,id
                 ]);
                 conn.release();
                 return result.rows[0];

@@ -44,6 +44,7 @@ export class postHandler {
             illustration:filePath,
             author: Number(req.body.author),
             create_at: req.body.create_at,
+            imgcredit: req.body.imgcredit,
             applause:0
         }
         console.log(post)
@@ -80,6 +81,7 @@ export class postHandler {
                         illustration:req.body.post.illustration,
                         author: req.body.post.author,
                         create_at: req.body.post.create_at,
+                        imgcredit: req.body.imgcredit,
                         applause:0
                     }
                     try{  

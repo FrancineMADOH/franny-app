@@ -75,11 +75,10 @@ export class adminHandler {
             const email = req.body.email;
             const pass = req.body.admin_password;
             const admin = await adStore.show(email,pass);
-
             if(admin){
                 const token = genToken(admin);
                 console.log(`${admin.admin_name} logs in at ${new Date().toISOString()}`);
-                res.status(200).json(token);
+                res.status(200).json({token:token,admin:admin.admin_id});
             } else {
                  res.status(200).json({"message":"Wrong Credentials!"});
             }
@@ -115,7 +114,7 @@ export class adminHandler {
 
             const admin_email =  await adStore.home(email);
             if(admin_email){
-                const update_admin = await adStore.update(email,pass);
+                await adStore.update(email,pass);
                 res.status(200).json({"message":"Password successfully updated"});
             } else{
                 console.log("admin do no exist");
@@ -131,7 +130,7 @@ export class adminHandler {
     async delete(req:Request, res:Response){
         try{
             const email = req.body.email;
-            const del_admin = await adStore.delete(email);
+            await adStore.delete(email);
             res.status(200);
             res.json({message:"Admin succesfully deleted! This action is irreversible"});
         }catch(err){

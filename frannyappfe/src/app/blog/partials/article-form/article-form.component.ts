@@ -23,7 +23,8 @@ export class ArticleFormComponent implements OnInit {
 
   @ViewChild("addArticle", {static:true}) addArticle:any;
   
-  constructor(private router:Router,
+  constructor(
+    private router:Router,
     private route:ActivatedRoute,
     private blog:BlogService,
     private auth:AuthService
@@ -34,10 +35,8 @@ export class ArticleFormComponent implements OnInit {
     this.iscreateMode = !this.id;
     
     //get the connected admin
-    this.auth.getAdminInfos(this.email).subscribe((res)=>{
-      this.admin = res[0];
-      return this.admin;
-    });
+    this.admin = this.auth.getID()
+    console.log(this.admin)
 
     //get 
     if(!this.iscreateMode){
@@ -47,8 +46,9 @@ export class ArticleFormComponent implements OnInit {
           category: res.category,
           summary: res.summary, 
           content: res.content,
-          //illustration: res.illustration
-        })
+          illustration: "",
+          imgcredit:res.imgcredit
+        });
       })
     }
 
@@ -74,7 +74,7 @@ export class ArticleFormComponent implements OnInit {
     if(this.addArticle.valid){
       let post:FormData = new FormData()
       this.addArticle.value.create_at = this.create_at;
-      this.addArticle.value.author = this.admin.admin_id;
+      this.addArticle.value.author = this.admin;
       this.addArticle.value.illustration = this.illustration
 
       post.append('illustration',this.illustration)
@@ -84,6 +84,7 @@ export class ArticleFormComponent implements OnInit {
       post.append('content',this.addArticle.value.content)
       post.append('create_at', this.addArticle.value.create_at)
       post.append('author',this.addArticle.value.author)
+      post.append('imgcredit', this.addArticle.value.imgcredit)
 
       this.blog.saveBlogPost(post).subscribe((res:any)=>{
         alert(res.message)

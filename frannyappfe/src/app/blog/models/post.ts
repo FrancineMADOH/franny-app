@@ -9,6 +9,7 @@ export interface Post{
         slug:string,
         applause:number,
         category :string
+        imgcredit:string
 }
 
 export interface PostResult extends Post{
