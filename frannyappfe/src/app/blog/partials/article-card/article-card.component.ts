@@ -32,10 +32,14 @@ export class ArticleCardComponent implements OnInit {
         data.map((post:any)=>{
           this.postList.push(post);
           return this.postList;
-        })});
+    })});
 
-    this.postList.length == 0 ? this.isEmpty== true : this.isEmpty==false;
-    
+    setTimeout(() => {
+      if(this.postList.length == 0){
+        this.isEmpty = true
+      }
+      
+    }, 1000);
   }
 
   viewblogPost(id:number,slug:string){ 

@@ -25,11 +25,11 @@ export class postHandler {
 
     const {error} = postValidation(req.body.title)
     let slug =  slugify(req.body.title, {lower:true, strict:true});
-    // if(error){
-    //     return res.status(400).json({message:error.details[0].message});
-    // } 
+    if(error){
+        return res.status(400).json({message:error.details[0].message});
+    } 
    
-    //     )
+        
 
     const host = req.headers.host;
     const filePath = req.protocol + "://" + host + '/' + req.file.path.split("\\").join('/');
@@ -47,7 +47,6 @@ export class postHandler {
             imgcredit: req.body.imgcredit,
             applause:0
         }
-        console.log(post)
     
         try{
             await poststore.create(post);
@@ -60,33 +59,41 @@ export class postHandler {
         }
     }
 
-        //update
-        async update(req:Request, res:Response){
+    //update
+    async update(req:Request, res:Response){
             
                 console.log(req.body)
                 const {error} = postValidation(req.body.posttitle)
-                let slug =  slugify(req.body.post.title, {lower:true, strict:true});
-                if(error){
-                    return res.status(400).json(error.details[0].message);
-                } 
-            
+                let slug =  slugify(req.body.title, {lower:true, strict:true});
+                // if(error){
+                //     return res.status(400).json({message:error.details[0].message});
+                // } 
+                const host = req.headers.host;
+                const filePath = req.protocol + "://" + host + '/' + req.file?.path.split("\\").join('/');
+                console.log(filePath)
+
                 //sanitized the request body
-                let sanitizedHtml =  dompurify.sanitize(marked(req.body.post.content));
-                    const post:Post = {
-                        title : req.body.post.title,
-                        summary : req.body.post.summary,
-                        content : sanitizedHtml,
-                        category : req.body.post.category,
-                        slug : slug,
-                        illustration:req.body.post.illustration,
-                        author: req.body.post.author,
-                        create_at: req.body.post.create_at,
-                        imgcredit: req.body.imgcredit,
-                        applause:0
-                    }
-                    try{  
-                const id = parseInt(req.params.id);
-                await poststore.update(post,id);
+                let sanitizedHtml =  dompurify.sanitize(marked(req.body.content));
+                const post:Post = {
+                    title : req.body.title,
+                    summary : req.body.summary,
+                    content : sanitizedHtml,
+                    category : req.body.category,
+                    slug : slug,
+                    illustration:filePath || req.body.illustration,
+                    author: Number(req.body.author),
+                    create_at: req.body.create_at,
+                    imgcredit: req.body.imgcredit,
+                    applause:0
+                }
+                 console.log(req.params.id)
+
+                
+                
+              
+                try{  
+                // const id = parseInt(req.params.id);
+                // await poststore.update(post,id);
                 res.status(200).json({message:"Post updated!"});
             }catch(err){
                 console.log(err);

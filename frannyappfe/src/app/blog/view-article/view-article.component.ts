@@ -33,7 +33,7 @@ export class ViewArticleComponent implements OnInit {
   like!:any;
   mysubscription:any;
   hasliked!:string;
-  hascomment!:string;
+  // hascomment!:string;
   usersession:any;
   session:any[] = [];
 
@@ -52,6 +52,7 @@ export class ViewArticleComponent implements OnInit {
 
   setTimeout(() => {
       this.loading = false;
+      
   }, 1000);
   this.isAdmin= this.auth.isLogin();
   this.commentsubmit = false;
@@ -61,8 +62,6 @@ export class ViewArticleComponent implements OnInit {
       this.post = data;
       this.html = this.sanitized.bypassSecurityTrustHtml(data.content)
     });
-    console.log(this.post)
-
 
     this.blog.getallComment(Number(this.id)).subscribe((res)=>{
       res.map((comment:any)=>{
@@ -70,10 +69,24 @@ export class ViewArticleComponent implements OnInit {
         return this.commentList;
       })
     });
+    // setTimeout(() => {
+    //   if(localStorage.getItem(`comment${this.id}`)?.includes(this.id)){
+    //     console.log('the user commented this article ')
+    //     let hascomment = (document.getElementById("addcomment") as HTMLInputElement);
+    //     hascomment.disabled = true;
+    //   }
 
-   this.usersession = JSON.parse(localStorage.getItem('status') || '');
-   console.log(Array.from(this.usersession))
-    console.log(typeof(this.usersession))
+    //   if(localStorage.getItem(`comment${this.id}`)?.includes(this.id)){
+    //     console.log('the user liked this article ')
+    //     let hasliked = (document.getElementById("like") as HTMLInputElement);
+    //     console.log(hasliked)
+    //     hasliked.disabled = true;
+    //   }
+      
+    // }, 2000);
+   
+
+  
   }
 
 onComment(commentForm:any){
@@ -87,9 +100,9 @@ onComment(commentForm:any){
      window.location.reload();
     }
     this.comment_class = this.succesMessage.split(" ")[0]
+    console.log(this.comment_class)
     commentForm.reset();
     this.commentsubmit = !this.commentsubmit;
-    //localStorage.setItem('comment',"commented")
     
   }
 
@@ -113,14 +126,11 @@ onComment(commentForm:any){
 
   onSubmit(likebp:any){
     this.blog.likeblogPost(Number(this.id)).subscribe((res)=>{
-      console.log(res);
       this.like = document.getElementById("like");
       this.like.classList.toggle("liked");
       this.like.classList.add("disabled");
       this.post.applause +=1;
       this.session.push(this.id)
-
-      localStorage.setItem('status',JSON.stringify(this.session));
     })
   }
 

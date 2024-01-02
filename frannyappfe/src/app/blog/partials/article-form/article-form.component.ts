@@ -13,7 +13,7 @@ export class ArticleFormComponent implements OnInit {
 
   categories = ["Maternity","Feminity","Family"];
   id!:string;
-  post!:Post;
+  //post!:Post;
   iscreateMode!:boolean;
   email = "";
   admin!:any;
@@ -36,7 +36,6 @@ export class ArticleFormComponent implements OnInit {
     
     //get the connected admin
     this.admin = this.auth.getID()
-    console.log(this.admin)
 
     //get 
     if(!this.iscreateMode){
@@ -100,10 +99,26 @@ export class ArticleFormComponent implements OnInit {
   
   editPost(addArticle:any){
     if(this.addArticle.valid){
+      let post:FormData = new FormData()
+
+      // this.addArticle.value.create_at = this.create_at;
+      // this.addArticle.value.author = this.admin.admin_id;
+      // this.post = this.addArticle.value;
+
       this.addArticle.value.create_at = this.create_at;
-      this.addArticle.value.author = this.admin.admin_id;
-      this.post = this.addArticle.value;
-      this.blog.editPost(Number(this.id),this.post).subscribe((res:any)=>{
+      this.addArticle.value.author = this.admin;
+      this.addArticle.value.illustration = this.illustration
+
+      //post.append('illustration',this.illustration)
+      post.append('title',this.addArticle.value.title) 
+      post.append('category',this.addArticle.value.category)
+      post.append('summary',this.addArticle.value.summary)
+      post.append('content',this.addArticle.value.content)
+      post.append('create_at', this.addArticle.value.create_at)
+      post.append('author',this.addArticle.value.author)
+      post.append('imgcredit', this.addArticle.value.imgcredit)
+      console.log(post)
+      this.blog.editPost(Number(this.id),post).subscribe((res:any)=>{
         alert(res.message)
       });
     }

@@ -24,10 +24,7 @@ h4{
   margin-top: 1%;
   font-size: 20px !important;
 }
-/* figure{
-  border: solid 1px #777;
-  border-radius: 12px;
-} */
+
 figcaption{
   font-size: 10px;
 }
@@ -86,29 +83,26 @@ figcaption{
     text-justify: inter-word;
 }
 
-.comment-list{
-    padding: 2% ;
-    margin: 1%;
-}
 .comment-list .card{
     margin: 5px;
     border-radius: 0px;
     text-align: justify;
-    text-justify: inter-word;
-    
+    text-justify: inter-word;  
 }
 
 .actions {
-    border: 1px solid #000;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
+.publicte {
+  height: 100%;
+  border: solid 1px #000;
+}
 
 .actions i{
   font-size: 1.8em;
-
 }
 .more_articles{
   padding: 1% ;
@@ -134,21 +128,21 @@ figcaption{
   background-position: center center;
   background-size: 80%;
   background-repeat: no-repeat;
-  padding: 12%;
+  padding: 10%;
 }
 .maternity{
   background-image: url(" ../../../assets/images/maternity.avif" );
   background-position: center center;
   background-size: 80%;
   background-repeat: no-repeat;
-  padding: 12%;
+  padding: 10%;
 }
 .family{
   background-image: url("../../../assets/images/family.avif");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 12%;
+  padding: 10%;
 }
 .like{
   color: #5DBAE5;
@@ -183,6 +177,10 @@ button.liked i{
     padding: 1%;
     margin-top: 1%;
     font-size: 20px !important;
+}
+.publicte {
+  width: 100%;
+  /* margin-left: 15%; */
 }
 
 h4{

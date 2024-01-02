@@ -16,8 +16,10 @@ export class BlogService {
     return this.http.get<Post[]>(environment.baseUrl +"/posts").pipe(catchError(this.handleErrors));
   }
 
-  editPost(id:number,post:Post):Observable<Post>{
-    return this.http.put<Post[]>(environment.baseUrl +`/posts/${id}`, {id,post}).pipe(catchError(this.handleErrors));
+  editPost(id:number,post:any):Observable<Post>{
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    return this.http.put<Post[]>(environment.baseUrl +`/posts/${id}`, post,{headers}).pipe(catchError(this.handleErrors));
   }
   
   viewPost(id:number):Observable<Post>{
