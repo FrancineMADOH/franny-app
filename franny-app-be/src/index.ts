@@ -16,7 +16,7 @@ const domain = fe_url
 
 
 const corsOptions = {
-  origin:domain,
+  origin:"*",
   optionsSuccessStatus:200
 };
 
