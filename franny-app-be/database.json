@@ -1,14 +1,14 @@
 {
     "dev": {
       "driver": "pg",
-      "host": "postgres://francine:ozOIGpo0w4O3lDqQ1Yag4cFMXWNGhf72@dpg-cmafe7gl5elc73ejc8h0-a.oregon-postgres.render.com/franny_760o",
+      "host": "postgres://dpg-cmafe7gl5elc73ejc8h0-a.oregon-postgres.render.com",
       "database": "franny_760o",
       "user": "francine",
       "password": "ozOIGpo0w4O3lDqQ1Yag4cFMXWNGhf72"
     },
     "test": {
       "driver": "pg",
-      "host": "postgres://francine:ozOIGpo0w4O3lDqQ1Yag4cFMXWNGhf72@dpg-cmafe7gl5elc73ejc8h0-a.oregon-postgres.render.com/franny_760o",
+      "host": "postgres:dpg-cmafe7gl5elc73ejc8h0-a.oregon-postgres.render.com",
       "database": "franny_760o",
       "user": "francine",
       "password": "ozOIGpo0w4O3lDqQ1Yag4cFMXWNGhf72"
