@@ -8,7 +8,8 @@ const {
     POSTGRES_DB,
     POSTGRES_USER,
     POSTGRES_PASSWORD,
-    ENV
+    ENV,
+    POSTGRES_PORT
 } = process.env;
 
 console.log(ENV);
@@ -21,8 +22,11 @@ if(ENV==="dev"){
         host:POSTGRES_HOST,
         user:POSTGRES_USER,
         database:POSTGRES_DB,
-        password:POSTGRES_PASSWORD
+        password:POSTGRES_PASSWORD,
+        port:Number(POSTGRES_PORT),
+
     });
+    console.log('dev bd connected')
 }
 
 if(ENV==="test"){
@@ -31,8 +35,16 @@ if(ENV==="test"){
        host:POSTGRES_HOST,
        user:POSTGRES_USER,
        database:POSTGRES_DB,
-       password:POSTGRES_PASSWORD
+       password:POSTGRES_PASSWORD,
+       port:Number(POSTGRES_PORT),
+       ssl: {
+        rejectUnauthorized: false
+      },
+    
    });
+  
+   console.log('test bd connected')
+
 }
 
 

@@ -4,11 +4,15 @@ import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import router from "./routes/indexRoute";
+import dotenv from "dotenv"
+
+dotenv.config();
+const fe_url = process.env.FE__URL
 
 
 const app:express.Application = express();
 const port = 4000;
-const domain = "http://localhost:4200";
+const domain = fe_url
 
 
 const corsOptions = {

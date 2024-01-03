@@ -109,7 +109,7 @@ export class ArticleFormComponent implements OnInit {
       this.addArticle.value.author = this.admin;
       this.addArticle.value.illustration = this.illustration
 
-      //post.append('illustration',this.illustration)
+      post.append('illustration',this.illustration)
       post.append('title',this.addArticle.value.title) 
       post.append('category',this.addArticle.value.category)
       post.append('summary',this.addArticle.value.summary)
@@ -117,7 +117,6 @@ export class ArticleFormComponent implements OnInit {
       post.append('create_at', this.addArticle.value.create_at)
       post.append('author',this.addArticle.value.author)
       post.append('imgcredit', this.addArticle.value.imgcredit)
-      console.log(post)
       this.blog.editPost(Number(this.id),post).subscribe((res:any)=>{
         alert(res.message)
       });

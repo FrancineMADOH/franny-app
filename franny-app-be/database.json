@@ -1,16 +1,16 @@
 {
     "dev": {
       "driver": "pg",
-      "host": "127.0.0.1",
-      "database": "franny",
-      "user": "postgres",
-      "password": "123456789"
+      "host": "postgres://francine:ozOIGpo0w4O3lDqQ1Yag4cFMXWNGhf72@dpg-cmafe7gl5elc73ejc8h0-a.oregon-postgres.render.com/franny_760o",
+      "database": "franny_760o",
+      "user": "francine",
+      "password": "ozOIGpo0w4O3lDqQ1Yag4cFMXWNGhf72"
     },
     "test": {
       "driver": "pg",
-      "host": "127.0.0.1",
-      "database": "franny_test",
-      "user": "postgres",
-      "password": "123456789"
+      "host": "postgres://francine:ozOIGpo0w4O3lDqQ1Yag4cFMXWNGhf72@dpg-cmafe7gl5elc73ejc8h0-a.oregon-postgres.render.com/franny_760o",
+      "database": "franny_760o",
+      "user": "francine",
+      "password": "ozOIGpo0w4O3lDqQ1Yag4cFMXWNGhf72"
     }
   }

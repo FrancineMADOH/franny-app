@@ -70,7 +70,6 @@ export class postHandler {
                 // } 
                 const host = req.headers.host;
                 const filePath = req.protocol + "://" + host + '/' + req.file?.path.split("\\").join('/');
-                console.log(filePath)
 
                 //sanitized the request body
                 let sanitizedHtml =  dompurify.sanitize(marked(req.body.content));
