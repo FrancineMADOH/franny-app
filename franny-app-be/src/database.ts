@@ -37,7 +37,7 @@ if(ENV==="test"){
        database:POSTGRES_DB,
        password:POSTGRES_PASSWORD,
        port:Number(POSTGRES_PORT),
-       ssl: true
+       ssl:true
     
    });
   
