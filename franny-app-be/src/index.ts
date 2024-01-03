@@ -16,7 +16,7 @@ const domain = fe_url
 
 
 const corsOptions = {
-  origin:"*",
+  origin:domain,
   optionsSuccessStatus:200
 };
 
@@ -30,6 +30,11 @@ app.use(bodyParser.urlencoded({extended:true}));
 //app.use(express.json());
 app.use(bodyParser.json())
 app.use(cors(corsOptions));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", domain); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 //router
 app.use("/api", router);
