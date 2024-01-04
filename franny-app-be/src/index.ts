@@ -37,7 +37,7 @@ app.use(cors(corsOptions))
 app.use("/api", router);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send(`<h1>Welcomme to franny</h1>`)
+  res.send(`<h1>Welcome to franny</h1>`)
 });
 
 app.listen(port, () => {
