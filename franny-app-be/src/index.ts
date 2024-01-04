@@ -15,40 +15,29 @@ const port = 4000;
 const domain = fe_url
 
 
-// const corsOptions = {
-//   origin:domain,
-//   optionsSuccessStatus:200
-// };
+const corsOptions = {
+  origin:domain,
+  optionsSuccessStatus:200,
+  methods: "GET, PUT,POST,PUT,PATCH"
+};
 
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 app.use('/public', express.static(path.join('public')));//https://stackoverflow.com/questions/67033797/get-request-for-image-to-angular-component-returns-404-not-found
-app.use(express.static(path.join(__dirname, "../public/views")));
-//console.log(path.join(__dirname, "../public/"))
+// app.use(express.static(path.join(__dirname, "../public/views")));
 //app.use(express.urlencoded({ extended: true,}));
 app.use(bodyParser.urlencoded({extended:true}));
 //app.use(express.json());
 app.use(bodyParser.json())
 
-app.use(cors({
-  origin: "*"
-}
-))
-app.options('*', cors())
-app.use((req,res,next)=>{
-    res.header('Access-Control-Allow-Headers, *, Access-Control-Allow-Origin', 'Origin, X-Requested-with, Content_Type,Accept,Authorization');
-    if(req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Methods','PUT,POST,PATCH,DELETE,GET');
-        return res.status(200).json({});
-    }
-    next();
-});
+app.use(cors(corsOptions))
+
 
 //router
 app.use("/api", router);
 
 app.get("/", (req: Request, res: Response) => {
-  res.render("index.html")
+  res.send('Welcome to franny')
 });
 
 app.listen(port, () => {
