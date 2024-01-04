@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "build": "npx tsc",
+    "deploy":"node ./build/index.js",
     "start": "nodemon src/index.ts",
     "prettier": "prettier --config .prettierrc . --ext .ts --write",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./build --onSuccess \"node ./build/server.js\"",

@@ -41,8 +41,6 @@ if(ENV==="test"){
     
    });
   
-   console.log('test bd connected')
-
 }
 
 
