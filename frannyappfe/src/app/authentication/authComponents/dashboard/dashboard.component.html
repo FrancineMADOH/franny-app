@@ -11,6 +11,13 @@
                 <li >  <a class="fa" [href]="'{{twitter}}'" target="_blank" rel="noopener noreferrer"><i class="bi bi-twitter mx-2"></i></a> </li>
                 <li >  <a class="fa" [href]="'{{linked}}'" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin mx-2"></i></a> </li>
             </ul>
+            <div class="notification m-2 text-center">
+                <p>
+                  <a routerLink="/beauty/notifications">
+                    <i class="bi bi-bell"></i>|<span class="mx-1">{{notifs.length}}</span> 
+                  </a>
+                </p>
+              </div>
             </div>
             <p class="m-4">
                 <strong>Update Profile ?</strong><br/>

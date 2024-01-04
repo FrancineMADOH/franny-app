@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject,Observable } from 'rxjs';
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import { BeautyService } from 'src/app/beauty/services/beauty.service';
 
 
 @Component({
@@ -16,9 +17,11 @@ export class DashboardComponent implements OnInit {
   fcbk!:SafeHtml
   twitter!:SafeHtml
   linked!:SafeHtml
+  notifs:Notification[] = [];
 
   constructor(private auth: AuthService, 
     public sanitized:DomSanitizer,
+    private beauty:BeautyService,
 
     private route:ActivatedRoute ){
   }
@@ -29,6 +32,16 @@ export class DashboardComponent implements OnInit {
     this.fcbk = this.sanitized.bypassSecurityTrustHtml(res.facebook_url);
     this.linked = this.sanitized.bypassSecurityTrustHtml(res.linkedin_url);
     this.twitter = this.sanitized.bypassSecurityTrustHtml(res.twitter_url);
+
+   // this.email = this.auth.getEmail();
+
+    this.beauty.getallNotif().subscribe((res)=>{
+      res.map((el:any)=>{
+        this.notifs.push(el);
+      });
+
+    })
+  
 
     });
   }
