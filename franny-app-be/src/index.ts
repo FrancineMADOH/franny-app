@@ -18,7 +18,8 @@ const domain = fe_url
 const corsOptions = {
   origin:domain,
   optionsSuccessStatus:200,
-  methods: "GET, PUT,POST,PUT,PATCH"
+  methods: "GET, PUT,POST,PUT,PATCH",
+  credentials: true,
 };
 
 app.set('view engine', 'html');
