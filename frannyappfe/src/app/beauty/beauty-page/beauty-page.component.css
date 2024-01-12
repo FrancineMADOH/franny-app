@@ -173,6 +173,9 @@ small{
 }
 
 /*faqs*/
+.faqs{
+    background-color: #f8f6f6;
+}
 .faqs .category{
     color: #F460FC
 }

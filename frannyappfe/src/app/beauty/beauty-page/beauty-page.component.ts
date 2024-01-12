@@ -64,13 +64,13 @@ export class BeautyPageComponent implements OnInit {
         this.faqtrhree = this.faqs.slice(-3);
       });
       //reviews the 3 best one
-      this.beauty.getReviewList().subscribe((res)=>{
-        res.map((data)=>{
-          res.map((data)=>{
-            this.reviews.push(data);
-          })
-          this.reviewsthree = this.reviews.slice(-3);
-        })})
+      // this.beauty.getReviewList().subscribe((res)=>{
+      //   res.map((data)=>{
+      //     res.map((data)=>{
+      //       this.reviews.push(data);
+      //     })
+      //     this.reviewsthree = this.reviews.slice(-3);
+      //   })})
   }
 
   allFaq(){

@@ -1,10 +1,14 @@
 /* #5DBAE5(bleu), #F460FC(rose), #196C08(vert), #C7B14A(gold) #AA9225(satin gold) #53534F(gray)*/
-* {
-  margin: 0;
-  padding: 0;
-}
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-
+header{
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+* {
+    margin: 0;
+    padding: 0;
+  }
 .navbar{
     font-family: 'FiraSansRegular';
     background-color: #53534F;
