@@ -85,7 +85,7 @@ export class adminHandler {
            
         }catch(err){
             console.log(err);
-            res.status(401).json(`Access denied ${err}`);
+            res.status(401).json({message:`Access denied ${err}`});
         }
     }
 
@@ -97,7 +97,7 @@ export class adminHandler {
             const adminInfos = await adStore.home(email);
             res.status(200).json(adminInfos);
         }catch(err:any){
-            res.status(500).send(err.message);
+            res.status(500).send({message:err.message});
             
         }
     }
@@ -122,7 +122,7 @@ export class adminHandler {
             } 
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({message:err});
         }
     }
 
@@ -135,7 +135,7 @@ export class adminHandler {
             res.json({message:"Admin succesfully deleted! This action is irreversible"});
         }catch(err){
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({message:err});
         }
     }
 }

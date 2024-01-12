@@ -31,6 +31,22 @@ small{
     color: #5DBAE5;
     font-weight: bold;
 }
+
+.why_us h3{
+    color: #5DBAE5;
+    font-weight: bold;
+}
+.why_us .card {
+    border: solid #000 0px;
+}
+.why_us h5{
+    color: #F460FC;
+    font-weight: bold;
+}
+.why_us i{
+    color:#53534F;
+    font-size: 30px;
+}
 .disponibilite{
     background-color: white !important;
     border-radius: 50%;
@@ -61,7 +77,7 @@ small{
 }
 
 .prestation_links a{
- color: #f8f6f6;
+ background-color: #f8f6f6;
  font-size: 15px;  
 }
 
@@ -90,6 +106,8 @@ small{
 
 .prestation_list{
     background-color: #f8f6f6;
+
+    /* background-color: #fff; */
     padding: 2%;
 }
 .element-pres{
@@ -102,13 +120,29 @@ small{
     display: flex;
     justify-content: space-between;
 }
+.why_us{
+    background-color: #fff;
+}
+.prestation_list h5{
+    color: #F460FC;
+    font-weight: bold;
+}
+.prestation_list h3{
+    font-weight: bold;
+}
 
 .prestation_list a{
     text-decoration: none !important;
     color: #5DBAE5;
 }
 .prestation_list h3{
-    color: #53534F;
+    color: #5DBAE5;
+    font-weight: bold !important;
+    margin: 10px 0 20px 0;
+}
+
+.why_us h3{
+    color: #5DBAE5;
     font-weight: bold !important;
     margin: 10px 0 20px 0;
 }

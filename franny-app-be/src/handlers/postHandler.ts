@@ -116,6 +116,7 @@ export class postHandler {
         try{
             const id = parseInt( req.params.id);
             const post = await poststore.show(id);
+            console.log(post)
             res.status(200).json(post);
 
         }catch(err){

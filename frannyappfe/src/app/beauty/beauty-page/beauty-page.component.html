@@ -69,6 +69,94 @@
         </div>
     </div>
 
+    <!-- liste des services -->
+    <div class="row text-center prestation_list">
+        <h3 class="my-3 text-center">Nos Services</h3>
+
+        <div class="col-lg-4">
+            <h5>Coiffure</h5>
+            <div *ngFor="let el of coiffure" class="element-pres">
+                <div>
+                    <a  routerLink="/beauty/{{el.category}}/book/{{ el.pres_id}}"> 
+                        {{el.title}} 
+                    </a>
+                </div>
+                <div>
+                    <a class="m-2"  routerLink="/beauty/{{el.category}}/book/{{ el.pres_id}}">
+                        {{el.price}} XAF <i class="icon bi-chevron-right"></i>
+                    </a>
+                </div>
+                
+            </div>
+          
+        </div>
+        <div class="col-lg-4">
+            <h5 >Maquillage</h5>
+            <div *ngFor="let el of makeup" class="element-pres">
+               
+                    <a routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
+                        {{el.title}}
+                    </a>
+                
+                <div>
+                    <a class="m-2" routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >
+                        {{el.price}} XAF <i class="icon bi-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 text-center">
+            <h5>Onglerie</h5>
+            <div *ngFor="let el of onglerie" class="element-pres">
+                <div>
+                    <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >{{el.title}}
+                    </a>
+                </div>
+                <div>
+                    <a class="m-2" routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >{{el.price}} XAF
+                        <i class="icon bi-chevron-right"></i>
+                    </a>
+                </div>   
+            </div>
+       
+        </div>
+    </div>
+
+     <!-- Why choose us -->    
+    <div class="row why_us">
+        <h3 class="my-3 text-center">Pourquoi nous choisir ?</h3>
+
+        <div class="col-lg-4">
+            <div class="card p-4">
+                <p class="text-center"> <i class="icon bi-alarm text-center"></i> </p>
+                <div class="card-body">
+                  <h5 class="card-title text-center">Flexibilité</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card p-4" >
+                <p class="text-center"> <i class="icon bi-arrow-90deg-right tex-center"></i> </p>
+                <div class="card-body">
+                  <h5 class="card-title text-center">Rapidité</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card  p-4">
+                <p class="text-center"><i class="bi bi-briefcase-fill tex-center"></i></p>
+                <div class="card-body">
+                  <h5 class="card-title text-center">Professionalisme</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Services via les listes -->    
     <div class="row prestation_links">
         <h3 class="my-3 text-center">Nos Prestations</h3>
         <div  class="col-lg-4 Coiffure">
@@ -137,56 +225,7 @@
         </ngb-carousel>
     </div>
 
-    <!-- liste des services -->
-    <div class="row text-center prestation_list">
-        <div class="col-lg-4">
-            <h3>Coiffure</h3>
-            <div *ngFor="let el of coiffure" class="element-pres">
-                <div>
-                    <a  routerLink="/beauty/{{el.category}}/book/{{ el.pres_id}}"> 
-                        {{el.title}} 
-                    </a>
-                </div>
-                <div>
-                    <a class="m-2"  routerLink="/beauty/{{el.category}}/book/{{ el.pres_id}}">
-                        {{el.price}} XAF <i class="icon bi-chevron-right"></i>
-                    </a>
-                </div>
-                
-            </div>
-          
-        </div>
-        <div class="col-lg-4">
-            <h3 >Maquillage</h3>
-            <div *ngFor="let el of makeup" class="element-pres">
-               
-                    <a routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
-                        {{el.title}}
-                    </a>
-                
-                <div>
-                    <a class="m-2" routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >
-                        {{el.price}} XAF <i class="icon bi-chevron-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 text-center">
-            <h3>Onglerie</h3>
-            <div *ngFor="let el of onglerie" class="element-pres">
-                <div>
-                    <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >{{el.title}}
-                    </a>
-                </div>
-                <div>
-                    <a class="m-2" routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >{{el.price}} XAF
-                        <i class="icon bi-chevron-right"></i>
-                    </a>
-                </div>   
-            </div>
-       
-        </div>
-    </div>
+    
 
     <!-- les revues -->
     <div class="row reviews">
