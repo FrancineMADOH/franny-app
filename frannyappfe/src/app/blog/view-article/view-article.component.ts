@@ -5,7 +5,6 @@ import { Post, PostResult } from '../models/post';
 import { BlogService } from '../services/blog.service';
 import { Comment } from '../models/comment';
 import { AuthService } from 'src/app/authentication/services/auth.service';
-import { type } from 'jquery';
 
 
 @Component({
@@ -25,6 +24,7 @@ export class ViewArticleComponent implements OnInit {
   isAdmin!:boolean;
   loading = true;
   AllPost:Post[] =[];
+  allLikes:any = []
   feminityPosts:Post[] = [];
   maternityPosts:Post[] = [];
   familyPosts:Post[] = [];
@@ -32,10 +32,7 @@ export class ViewArticleComponent implements OnInit {
   html!:any;
   like!:any;
   mysubscription:any;
-  hasliked!:string;
-  // hascomment!:string;
-  usersession:any;
-  session:any[] = [];
+  hasliked = 'test'
 
   @ViewChild("commentForm",{static:true}) commentForm:any;
   @ViewChild("likebp", {static:true}) likebp:any;
@@ -59,8 +56,9 @@ export class ViewArticleComponent implements OnInit {
   this.id = this.route.snapshot.params['id'];
   
     this.blog.viewPost(Number(this.id)).subscribe((data)=>{
-      this.post = data;
+      this.post = data.post;
       this.html = this.sanitized.bypassSecurityTrustHtml(data.content)
+      this.allLikes = data.likes
     });
 
     this.blog.getallComment(Number(this.id)).subscribe((res)=>{
@@ -69,21 +67,7 @@ export class ViewArticleComponent implements OnInit {
         return this.commentList;
       })
     });
-    // setTimeout(() => {
-    //   if(localStorage.getItem(`comment${this.id}`)?.includes(this.id)){
-    //     console.log('the user commented this article ')
-    //     let hascomment = (document.getElementById("addcomment") as HTMLInputElement);
-    //     hascomment.disabled = true;
-    //   }
-
-    //   if(localStorage.getItem(`comment${this.id}`)?.includes(this.id)){
-    //     console.log('the user liked this article ')
-    //     let hasliked = (document.getElementById("like") as HTMLInputElement);
-    //     console.log(hasliked)
-    //     hasliked.disabled = true;
-    //   }
-      
-    // }, 2000);
+   
    
 
   
@@ -125,13 +109,12 @@ onComment(commentForm:any){
   }
 
   onSubmit(likebp:any){
-    this.blog.likeblogPost(Number(this.id)).subscribe((res)=>{
-      this.like = document.getElementById("like");
-      this.like.classList.toggle("liked");
-      this.like.classList.add("disabled");
-      this.post.applause +=1;
-      this.session.push(this.id)
-    })
+  //   this.blog.likeblogPost(Number(this.id)).subscribe((res)=>{
+  //     // this.like = document.getElementById("like");
+  //     // this.like.classList.toggle("liked");
+  //     // this.like.classList.add("disabled");
+  //     this.post.applause +=1;
+  //   })
   }
 
 }

@@ -16,6 +16,12 @@ export type Post ={
      
 }
 
+export type Like = {
+        id?:number,
+        email: string,
+        postid: number
+}
+
 export class postStore {
         //create
         async create(p:Post):Promise<Post>{
@@ -164,5 +170,27 @@ export class postStore {
                 return result.rows[0]
 
         }
+
+         //register a like so the same person dont like many time
+         async registerLike(id:number,email:string):Promise<Like>{
+                const conn = await client.connect();
+                const sql_command = "INSERT INTO likes(postid,email) VALUES($1,$2) RETURNING *;";
+                const result = await conn.query(sql_command,[
+                        id,
+                        email
+                ]);
+                conn.release();
+                return result.rows[0]; 
+        }
+
+        //get all the likes
+        async get_all_likes(id:number):Promise<Like[]>{
+                const conn = await client.connect();
+                const sql_command = "SELECT * FROM likes WHERE postid=$1;";
+                const result = await conn.query(sql_command,[id]);
+                conn.release();
+                return result.rows;
+        }
+
 
 }

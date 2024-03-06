@@ -116,8 +116,9 @@ export class postHandler {
         try{
             const id = parseInt( req.params.id);
             const post = await poststore.show(id);
-            console.log(post)
-            res.status(200).json(post);
+            const likes = await poststore.get_all_likes(id)
+            console.log(likes)
+            res.status(200).json({post, likes});
 
         }catch(err){
             console.log(err);
@@ -218,8 +219,11 @@ export class postHandler {
     //like blogpost
     async likebp(req: Request, res: Response){
         const postId = parseInt(req.params.id);
+        const email = req.body.email;
+        
         try {
-            const result = await poststore.likeblogpost(postId);
+            await poststore.likeblogpost(postId);
+            await poststore.registerLike(postId,email)
             res.status(200).json({message:"Liked!"})
             
         } catch (err) {

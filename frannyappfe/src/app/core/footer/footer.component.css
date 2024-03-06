@@ -1,5 +1,8 @@
 .footer{
     background-color: #53534F;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 .brand{
     color:#F460FC;

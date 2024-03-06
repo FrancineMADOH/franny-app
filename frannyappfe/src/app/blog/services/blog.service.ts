@@ -22,7 +22,7 @@ export class BlogService {
     return this.http.put<Post[]>(environment.baseUrl +`/posts/${id}`, post,{headers}).pipe(catchError(this.handleErrors));
   }
   
-  viewPost(id:number):Observable<Post>{
+  viewPost(id:number):Observable<any>{
     return this.http.get<Post>(environment.baseUrl +`/posts/show/${id}`).pipe(catchError(this.handleErrors));
   }
 
@@ -75,10 +75,9 @@ export class BlogService {
   getposmostCommented():Observable<any>{
     return this.http.get<any>(environment.baseUrl + `/posts/mostreaded`).pipe(catchError(this.handleErrors));
   }
-  likeblogPost(id:number):Observable<any>{
-    return this.http.put<any>(environment.baseUrl + `/posts/like/${id}`,{}).pipe(catchError(this.handleErrors));
+  likeblogPost(id:number,email:string):Observable<any>{
+    return this.http.put<any>(environment.baseUrl + `/posts/like/${id}`,{email}).pipe(catchError(this.handleErrors));
   }
-  
 
 
   //handle errors
