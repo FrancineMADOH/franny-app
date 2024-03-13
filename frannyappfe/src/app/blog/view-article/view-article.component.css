@@ -148,9 +148,12 @@ figcaption{
   color: #5DBAE5;
   background-color: #fff !important;
 }
+button.liked_already{
+    color: #5DBAE5;
+}
 
 button.liked {
-  color: #F460FC;
+  color: #F460FC !important;
   pointer-events: none;
   cursor: not-allowed;
 }
@@ -182,6 +185,7 @@ button.liked i{
   width: 100%;
   /* margin-left: 15%; */
 }
+
 
 h4{
       color: #5DBAE5;

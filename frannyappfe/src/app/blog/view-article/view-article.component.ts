@@ -34,8 +34,10 @@ export class ViewArticleComponent implements OnInit {
   mysubscription:any;
   hasliked = 'test'
 
+  user_has_liked!:boolean;
+
   @ViewChild("commentForm",{static:true}) commentForm:any;
-  @ViewChild("likebp", {static:true}) likebp:any;
+  @ViewChild("likeForm", {static:true}) likeForm:any;
 
   constructor(public blog:BlogService, 
     private auth:AuthService,
@@ -57,7 +59,7 @@ export class ViewArticleComponent implements OnInit {
   
     this.blog.viewPost(Number(this.id)).subscribe((data)=>{
       this.post = data.post;
-      this.html = this.sanitized.bypassSecurityTrustHtml(data.content)
+      this.html = this.sanitized.bypassSecurityTrustHtml(this.post.content)
       this.allLikes = data.likes
     });
 
@@ -67,8 +69,6 @@ export class ViewArticleComponent implements OnInit {
         return this.commentList;
       })
     });
-   
-   
 
   
   }
@@ -81,13 +81,40 @@ onComment(commentForm:any){
      this.blog.addComment(this.comment).subscribe((res:any)=>{
       this.succesMessage = res.message;
      })
-     window.location.reload();
+     window.location.reload();// arevoir avec un cron
     }
     this.comment_class = this.succesMessage.split(" ")[0]
     console.log(this.comment_class)
     commentForm.reset();
     this.commentsubmit = !this.commentsubmit;
     
+  }
+
+  onbpLike(likeForm:any){
+    if(likeForm.valid){
+      //check if the same email has not yet like the article
+     this.user_has_liked =  this.allLikes.some((item:any) => item.email === likeForm.value.email);
+
+     if(this.user_has_liked == true){
+
+      this.like = document.getElementById("like");
+      this.like.classList.toggle("liked_already");
+      
+
+     }else{
+          //like the blogpost 
+          likeForm.value.blog_post_id = Number(this.id);
+          this.blog.likeblogPost(likeForm.value.blog_post_id,likeForm.value.email).subscribe((res:any)=>{
+            //console.log(res)
+            this.like = document.getElementById("like");
+            this.like.classList.toggle("liked");
+            this.like.classList.add("disabled");
+          })
+
+     }
+      
+  
+    }
   }
 
   deleteComment(id:number){
@@ -109,7 +136,7 @@ onComment(commentForm:any){
   }
 
   onSubmit(likebp:any){
-  //   this.blog.likeblogPost(Number(this.id)).subscribe((res)=>{
+  //   this.blog.likeblogPost(Number(this.id), email).subscribe((res)=>{
   //     // this.like = document.getElementById("like");
   //     // this.like.classList.toggle("liked");
   //     // this.like.classList.add("disabled");
