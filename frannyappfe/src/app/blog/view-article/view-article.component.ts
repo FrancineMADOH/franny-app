@@ -108,7 +108,9 @@ onComment(commentForm:any){
             //console.log(res)
             this.like = document.getElementById("like");
             this.like.classList.toggle("liked");
+            this.post.applause +=1;
             this.like.classList.add("disabled");
+
           })
 
      }
@@ -141,15 +143,6 @@ onComment(commentForm:any){
   }
   backtoPost(){
     this.router.navigate(['posts/']);
-  }
-
-  onSubmit(likebp:any){
-  //   this.blog.likeblogPost(Number(this.id), email).subscribe((res)=>{
-  //     // this.like = document.getElementById("like");
-  //     // this.like.classList.toggle("liked");
-  //     // this.like.classList.add("disabled");
-  //     this.post.applause +=1;
-  //   })
   }
 
 }
