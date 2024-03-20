@@ -14,10 +14,8 @@ export class postHandler {
     
 
     async create(req:Request, res:Response,next:NextFunction){
-        console.log(req.file)
 
         if (!req.file) {
-            console.log("No file received");
             return res.json({
               message: "Please upload an illustration for your post"
             });
@@ -25,12 +23,10 @@ export class postHandler {
 
     const {error} = postValidation(req.body.title)
     let slug =  slugify(req.body.title, {lower:true, strict:true});
-    if(error){
-        return res.status(400).json({message:error.details[0].message});
-    } 
+    // if(error){
+    //     return res.status(400).json({message:error.details[0].message});
+    // } 
    
-        
-
     const host = req.headers.host;
     const filePath = req.protocol + "://" + host + '/' + req.file.path.split("\\").join('/');
     //sanitized the request body
@@ -47,12 +43,11 @@ export class postHandler {
             imgcredit: req.body.imgcredit,
             applause:0
         }
+        console.log(post)
     
         try{
             await poststore.create(post);
-            console.log('post added!')
             return res.status(201).json({message:"Blog post added!"});
-            //res.redirect(`/posts/${post.post_id}/${post.slug}`)
         }catch(err:any){
             console.log(err.message);
             return res.status(500).json({message:"Internal server error"});
@@ -61,38 +56,24 @@ export class postHandler {
 
     //update
     async update(req:Request, res:Response){
-            
-                console.log(req.body)
-                const {error} = postValidation(req.body.posttitle)
-                let slug =  slugify(req.body.title, {lower:true, strict:true});
-                // if(error){
-                //     return res.status(400).json({message:error.details[0].message});
-                // } 
-                const host = req.headers.host;
-                const filePath = req.protocol + "://" + host + '/' + req.file?.path.split("\\").join('/');
-
+                const {error} = postValidation(req.body.post)
+                let slug =  slugify(req.body.post.title, {lower:true, strict:true});
+                // // if(error){
+                // //     return res.status(400).json({message:error.details[0].message});
+                // // } 
                 //sanitized the request body
-                let sanitizedHtml =  dompurify.sanitize(marked(req.body.content));
-                const post:Post = {
-                    title : req.body.title,
-                    summary : req.body.summary,
+                let sanitizedHtml =  dompurify.sanitize(marked(req.body.post.content));
+                const post:any = {
+                    title : req.body.post.title,
+                    summary : req.body.post.summary,
                     content : sanitizedHtml,
-                    category : req.body.category,
+                    category : req.body.post.category,
                     slug : slug,
-                    illustration:filePath || req.body.illustration,
-                    author: Number(req.body.author),
-                    create_at: req.body.create_at,
-                    imgcredit: req.body.imgcredit,
-                    applause:0
                 }
-                 console.log(req.params.id)
 
-                
-                
-              
                 try{  
-                // const id = parseInt(req.params.id);
-                // await poststore.update(post,id);
+                const id = parseInt(req.params.id);
+                await poststore.update(post,id);
                 res.status(200).json({message:"Post updated!"});
             }catch(err){
                 console.log(err);
@@ -117,7 +98,6 @@ export class postHandler {
             const id = parseInt( req.params.id);
             const post = await poststore.show(id);
             const likes = await poststore.get_all_likes(id)
-            console.log(likes)
             res.status(200).json({post, likes});
 
         }catch(err){

@@ -40,18 +40,18 @@ export class ArticleFormComponent implements OnInit {
     //get 
     if(!this.iscreateMode){
       this.blog.viewPost(Number(this.id)).subscribe((res)=>{
-        this.addArticle.form.setValue({
-          title: res.title,
-          category: res.category,
-          summary: res.summary, 
-          content: res.content,
-          illustration: "",
-          imgcredit:res.imgcredit
+        this.addArticle.form.patchValue({
+          title: res.post.title,
+          category: res.post.category,
+          summary: res.post.summary, 
+          content: res.post.content,
         });
       })
     }
 
   }
+
+  //https://medium.com/@ayushgrwl365/a-guide-to-internationalization-i18n-in-angular-a6ca7a9bc027
 
   selectImage(event:any){
     if(event.target.files.length > 0){
@@ -95,34 +95,27 @@ export class ArticleFormComponent implements OnInit {
     this.router.navigate(['/posts'])
   }
   
-
-  
   editPost(addArticle:any){
     if(this.addArticle.valid){
-      let post:FormData = new FormData()
-
-      // this.addArticle.value.create_at = this.create_at;
-      // this.addArticle.value.author = this.admin.admin_id;
-      // this.post = this.addArticle.value;
-
+      let post;
       this.addArticle.value.create_at = this.create_at;
       this.addArticle.value.author = this.admin;
       this.addArticle.value.illustration = this.illustration
+      post= {
+      'title':this.addArticle.value.title,
+      'category':this.addArticle.value.category,
+      'summary':this.addArticle.value.summary,
+      'content':this.addArticle.value.content,
+      'create_at': this.addArticle.value.create_at,
+      'author':this.addArticle.value.author,
+      }
 
-      post.append('illustration',this.illustration)
-      post.append('title',this.addArticle.value.title) 
-      post.append('category',this.addArticle.value.category)
-      post.append('summary',this.addArticle.value.summary)
-      post.append('content',this.addArticle.value.content)
-      post.append('create_at', this.addArticle.value.create_at)
-      post.append('author',this.addArticle.value.author)
-      post.append('imgcredit', this.addArticle.value.imgcredit)
-      this.blog.editPost(Number(this.id),post).subscribe((res:any)=>{
+        this.blog.editPost(Number(this.id),post).subscribe((res:any)=>{
         alert(res.message)
       });
     }
     this.addArticle.reset();
-    this.router.navigate(['/posts'])
+   this.router.navigate(['/posts'])
     
   }
 

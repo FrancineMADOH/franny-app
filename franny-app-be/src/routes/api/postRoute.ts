@@ -12,11 +12,13 @@ postRouter.get("/topapplause",methods.topapplause);
 //postRouter.get("/:term", methods.search);
 postRouter.get("/category/:category", methods.category);
 postRouter.get("/show/:id",methods.show);
-postRouter.put("/:id",verifyToken,uploadillustration.single('illustration'),methods.update);
 postRouter.delete("/:id",verifyToken,methods.delete);
 postRouter.get("/kpi",verifyToken,methods.blogdashboard);
 postRouter.get("/mostreaded",verifyToken,methods.mostcommented);
 postRouter.put("/like/:id", methods.likebp);
+postRouter.patch("/:id/update",methods.update);
+
+
 
 
 export default postRouter;

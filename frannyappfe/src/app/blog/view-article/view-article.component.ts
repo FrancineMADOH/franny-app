@@ -117,6 +117,14 @@ onComment(commentForm:any){
     }
   }
 
+  shareContent(){
+      const shareText = 'Check out this awesome content!';
+      const shareUrl =   window.location.href;
+      const whatsappUrl = `whatsapp://send?text=${encodeURIComponent(shareText)}%20${encodeURIComponent(shareUrl)}`;
+      // Open WhatsApp with the share URL
+      window.location.href = whatsappUrl;
+  }
+
   deleteComment(id:number){
     this.blog.deleteComment(id).subscribe((res)=>{
       alert(res.message);

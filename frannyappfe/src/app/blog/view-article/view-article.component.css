@@ -151,6 +151,11 @@ figcaption{
 button.liked_already{
     color: #5DBAE5;
 }
+.modal-title{
+  color: #F460FC !important;
+font-weight: bold;
+text-transform: uppercase;
+}
 
 button.liked {
   color: #F460FC !important;
@@ -181,9 +186,21 @@ button.liked i{
     margin-top: 1%;
     font-size: 20px !important;
 }
-.publicte {
-  width: 100%;
-  /* margin-left: 15%; */
+.input-like{
+  border-radius: 8px;
+  width: 70%;
+  border: solid #777 1px;
+  height: 30px;
+  padding: 10px;
+}
+.button-like{
+  background-color: #5DBAE5;
+  color: #fff;
+  width: 20%;
+  height: 30px;
+  border-radius: 8px;
+  border: solid 1px #777;
+
 }
 
 

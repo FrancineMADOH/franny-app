@@ -15,12 +15,6 @@ export class BlogService {
   getblogpostList():Observable<Post[]>{
     return this.http.get<Post[]>(environment.baseUrl +"/posts").pipe(catchError(this.handleErrors));
   }
-
-  editPost(id:number,post:any):Observable<Post>{
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
-    return this.http.put<Post[]>(environment.baseUrl +`/posts/${id}`, post,{headers}).pipe(catchError(this.handleErrors));
-  }
   
   viewPost(id:number):Observable<any>{
     return this.http.get<Post>(environment.baseUrl +`/posts/show/${id}`).pipe(catchError(this.handleErrors));
@@ -78,6 +72,10 @@ export class BlogService {
   likeblogPost(id:number,email:string):Observable<any>{
     return this.http.put<any>(environment.baseUrl + `/posts/like/${id}`,{email}).pipe(catchError(this.handleErrors));
   }
+
+editPost(id:number,post:any):Observable<any>{
+    return this.http.patch<any>(environment.baseUrl + `posts/${id}/update`,{post}).pipe(catchError(this.handleErrors));
+}
 
 
   //handle errors

@@ -64,9 +64,9 @@ export class postStore {
         //update
         async update(p:Post,id:number):Promise<Post>{
                 const conn = await client.connect();
-                const sql_command = "UPDATE posts SET title=$1,summary=$2,content=$3,author=$4,illustration=$5,slug=$6,category=$7,imgcredit=$8 WHERE post_id=$9 RETURNING *;";
+                const sql_command = "UPDATE posts SET title=$1,summary=$2,content=$3,slug=$4,category=$5 WHERE post_id=$6 RETURNING *;";
                 const result = await conn.query(sql_command, [
-                        p.title,p.summary,p.content,p.author,p.illustration,p.slug,p.category,p.imgcredit,id
+                        p.title,p.summary,p.content,p.slug,p.category,id
                 ]);
                 conn.release();
                 return result.rows[0];

@@ -5,17 +5,17 @@
 <div class=" container-fluid" *ngIf="!loading">
     <div class="header">
         <button *ngIf="isAdmin" class="btn btn-secondary m-3" (click)="editblogPost(post.post_id)">Edit</button>
-        <button class="btn btn-primary m-3" (click)="backtoPost()">All articles</button>
+        <button class="btn btn-primary m-3" (click)="backtoPost()">Tous les articles</button>
     </div>
     <div class="body">
         <div class="row">
-            <div class="col-lg-9 px-3 ">
+            <div class="col-lg-9 px-3 offset-lg-1">
                 <div class="jumbotron my-2">
                     <h1 class="text-center">{{post.title }} </h1>
                     <div class="text-center lead m-4">
                         <p>
-                            <span class="attributes">Category:</span> <span>{{post.category}}</span> | <span
-                                class="attributes">Published at:</span> <span>{{post.create_at }}</span>
+                            <span class="attributes">Categorie:</span> <span>{{post.category}}</span> | <span
+                                class="attributes">Publié le:</span> <span>{{post.create_at }}</span>
 
                         </p>
                         <p>
@@ -44,14 +44,14 @@
                     </div>
                 </div>
 
-                <div [innerHTML]="html" class="content">
+                <div [innerHTML]="html" class="content text-justfy">
 
                 </div>
             </div>
 
 
         </div>
-        <div class="action col-lg-9">
+        <div class="action col-lg-9 offset-lg-1">
             <!-- Button trigger modal -->
             <div class="actions text-center">
                 <div>
@@ -67,17 +67,23 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="biblioModalLabel">Entrez votre email pour aimer cet article</h5>
+
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body like_form">
-                                    <form id="" ngClass="" #likeForm="ngForm" (ngSubmit)="onbpLike(likeForm)">
-                                        <input ngModel #email="ngModel" type="email" class="mx-3" name="email"
-                                            id="email" aria-describedby="emailHelp"
-                                            placeholder="Add You email to like this blogpost">
-                                        <small *ngIf="email.invalid && email.touched">Email is required</small>
-                                        <button   type="submit" [disabled]="likeForm.invalid" data-bs-dismiss="modal">Like</button>
-                                    </form>
+                                <form id="like_form"  #likeForm="ngForm"
+                                    (ngSubmit)="onbpLike(likeForm)">
+                                    
+                                        <input ngModel #email="ngModel" type="email" class="form-control" required
+                                        minlength="8" maxlength="100" name="email" class="input-like m-1" id="email" aria-describedby="emailHelp"
+                                        placeholder="Votre email">                     
+                                    
+                                    <button class="button-like" type="submit" data-bs-dismiss="modal" [disabled]="likeForm.invalid">Like</button>
+                                    <small style="color: red;" *ngIf="email.invalid && email.touched">Email non valide</small>
+                                </form>
+
                                 </div>
                             </div>
                         </div>
@@ -89,9 +95,12 @@
                         <i class="bi bi-chat mx-2"></i>{{ commentList.length}}
                     </button>
                 </div>
+
+                <!--share area-->
                 <div>
-                    <button data-toggle="tooltip" data-placement="top" title="Share" class="btn"><i
-                            class="bi bi-share"></i></button>
+                    <button (click)="shareContent()" id="shareButton" data-toggle="tooltip" data-placement="top" title="Share to whatsapp" class="btn">
+                        <i class="bi bi-share"></i> 
+                    </button>
 
                 </div>
                 <!-- Modal -->
@@ -100,51 +109,45 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="biblioModalLabel">Add comment</h5>
+                                <h5 class="modal-title" id="biblioModalLabel">Ajouter un commentaire</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form id="comment_form" ngClass="{{comment_class}}" #commentForm="ngForm"
                                     (ngSubmit)="onComment(commentForm)">
-                                    <div class="form-group  m-2">
-                                        <label for="user_name">Votre Nom</label>
+                                    <div class="form-group  my-2">
                                         <input ngModel #user_name="ngModel" type="user_name" class="form-control"
                                             minlength="8" name="user_name" id="user_name"
-                                            aria-describedby="user_nameHelp" placeholder="Enter your Name">
+                                            aria-describedby="user_nameHelp" placeholder="Votre nom">
                                     </div>
-                                    <small *ngIf="user_name.invalid && user_name.touched">Email is required</small>
-                                    <div class="form-group  m-2">
-                                        <label for="email">Votre email</label>
+                                    <small *ngIf="user_name.invalid && user_name.touched">Ce champs est requis</small>
+                                    <div class="form-group  my-2">
                                         <input ngModel #email="ngModel" type="email" class="form-control" required
                                             minlength="8" name="email" id="email" aria-describedby="emailHelp"
-                                            placeholder="We will not publish your email">
+                                            placeholder="Votre email (Nous ne le publirons pas)">
                                     </div>
-                                    <small *ngIf="email.invalid && email.touched">Email is required</small>
-                                    <label for="comment_body">Votre commentaire</label>
-                                    <div class="form-group  m-2">
+                                    <small *ngIf="email.invalid && email.touched">Ce champs est requis</small>
+                                    <div class="form-group  my-2">
                                         <textarea ngModel #comment_body="ngModel" type="comment_body"
-                                            class="form-control" required maxlength="300" name="comment_body"
+                                            class="form-control" required minlength="30" maxlength="300" name="comment_body"
                                             id="comment_body" aria-describedby="comment_bodyHelp"
-                                            placeholder="Your comment...max 300 characters"></textarea>
+                                            placeholder="30 - 300 characters max"></textarea>
                                     </div>
-                                    <small *ngIf="comment_body.invalid && comment_body.touched">Comment is
-                                        required</small>
+                                    <small *ngIf="comment_body.invalid && comment_body.touched">Ce champs est requis</small>
                                     <button class="btn btn-primary" type="submit"
-                                        [disabled]="commentForm.invalid">Ajouter un commentaire</button>
+                                        [disabled]="commentForm.invalid">Ajouter</button>
                                 </form>
                                 <p *ngIf="commentsubmit" class="text-center">{{succesMessage}} </p>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="comment-list">
-                <h3 class="text-center">Comments</h3>
+                <h3 class="text-center">Commentaires</h3>
                 <div class="card m-2" *ngFor="let comment of commentList">
                     <div class="card-body">
                         <p class="card-title">
@@ -163,20 +166,20 @@
         </div>
     </div>
     <hr>
-    <div class="col-lg-11 offset-lg-1 more_articles">
-        <h1 class="text-center">All categories</h1>
+    <div class="more_articles">
+        <h1 class="text-center">Toutes les catégories</h1>
         <div class="row category_links">
             <div class="col-lg-4 feminity">
-                <h3>Feminity</h3>
-                <a class="text-center" routerLink="/posts/Feminity">Read More...</a>
+                <h3>Féminité</h3>
+                <a class="text-center" routerLink="/posts/Feminity">Voir plus...</a>
             </div>
             <div class="col-lg-4 maternity">
-                <h3>Maternity</h3>
-                <a routerLink="/posts/Maternity">Read More...</a>
+                <h3>Maternité</h3>
+                <a routerLink="/posts/Maternity">Voir plus...</a>
             </div>
-            <div class="col-lg-3  family">
-                <h3>Family</h3>
-                <a routerLink="/posts/Family">Read More...</a>
+            <div class="col-lg-4 family">
+                <h3>Famille</h3>
+                <a routerLink="/posts/Family">Voir plus...</a>
             </div>
         </div>
     </div>
