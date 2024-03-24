@@ -37,6 +37,8 @@ export class ArticleCardComponent implements OnInit {
     setTimeout(() => {
       if(this.postList.length == 0){
         this.isEmpty = true
+      } else{
+        this.isEmpty = false
       }
       
     }, 1000);

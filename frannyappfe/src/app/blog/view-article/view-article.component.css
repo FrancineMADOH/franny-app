@@ -163,8 +163,26 @@ button.liked {
   cursor: not-allowed;
 }
 button.liked i{
-  animation: anim 0.75s ease-in-out;
-  -webkit-animation: anim 0.75s ease-in-out;
+  animation: anim 1s ease-in-out;
+  -webkit-animation: anim 1s ease-in-out;
+}
+
+
+.input-like{
+  border-radius: 8px;
+  width: 70%;
+  border: solid #777 1px;
+  height: 30px;
+  padding: 10px;
+}
+.button-like{
+  background-color: #5DBAE5;
+  color: #fff;
+  width: 20%;
+  height: 30px;
+  border-radius: 8px;
+  border: solid 1px #777;
+
 }
 @keyframes anim {
   100% {
