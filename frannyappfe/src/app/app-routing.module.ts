@@ -41,6 +41,7 @@ import { ViewReviewComponent } from './beauty/partials/view-review/view-review.c
 import { BlogcategoryComponent } from './blog/blogcategory/blogcategory.component';
 import { StatisticsComponent } from './blog/statistics/statistics.component';
 import { NotificationComponent } from './beauty/notification/notification.component';
+import { NotfoundComponent } from './shared/notfound/notfound.component';
 
 
 const routes: Routes = [
@@ -49,6 +50,7 @@ const routes: Routes = [
   {path:"signup", component: SignupFormComponent },
   {path:"reset", component:ResetFormComponent},
   {path:"login", component:LoginFormComponent},
+  
   //make a route for update profile
   // {path:"posts",  component:AllArticlesComponent },
   {path:"posts",  component:AllArticlesComponent},
@@ -94,7 +96,8 @@ const routes: Routes = [
   {path:"beauty/category/:catName", component: CategoryComponent},
   {path:"beauty/:category/book/:id", component: BookPrestationComponent},
   {path:"beauty/rendezvous/payment/:id", component: MakepaiementComponent},
-  {path:"posts/:catName",component:BlogcategoryComponent }
+  {path:"posts/:catName",component:BlogcategoryComponent },
+
  
 
 
