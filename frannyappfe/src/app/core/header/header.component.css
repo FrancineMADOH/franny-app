@@ -12,7 +12,6 @@ header{
 .navbar{
     font-family: 'FiraSansRegular';
     background-color: #53534F;
-    padding: 20px 95px;
     position: sticky;
     top: 0;
 }

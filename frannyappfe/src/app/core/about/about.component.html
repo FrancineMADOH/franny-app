@@ -1,16 +1,47 @@
 <div class="container">
   <div class="message-sent" *ngIf="messageSent">
-    <h3 class="text-center">Message sent !</h3>
+    <h3 class="text-center">Message Envoyé !</h3>
   </div>
     <div class="row my-5 p-2">
         <div class="col-lg-8 text-justify">
           <h1 class="fw-bold text-center">
-            ABOUT US
+            Qui Sommes Nous ?
           </h1>
           <div>
             <p class="main-hero-text">We promote family maternity and feminity</p>
             <p>We focus on protecting the family, empowering women and girls and educating them</p>
-            <a href="#contact" class="btn fw-bold">Contact Us</a>
+             <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary m-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+             Nous Contacter
+            </button>
+              <!-- Modal -->
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title text-center" id="staticBackdropLabel">Votre Message</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form (ngSubmit)="sendMessagetoSever()" #sendMessage="ngForm">
+                        <div class="form-group">
+                          <input type="email" ngModel class="form-control m-1" id="from" aria-describedby="email"
+                            placeholder="votre email" name="from" #from="ngModel" >
+                          
+                        </div>
+                        <small *ngIf="!from.valid && from.touched ">Please provide a valid title </small>
+
+                        <div class="form-group my-2">
+                          <textarea class="form-control m-1" id="text" placeholder="Nous sommes  à votre écoute!" 
+                            name="text" ngModel #text="ngModel"></textarea>
+                                            </div>
+                        <small *ngIf="!text.valid && text.touched ">Please provide a valid title </small>
+                        <button [disabled]="!sendMessage['valid']" type="submit" class="btn my-2 fw-bold">Envoyer</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
         <div class="col-lg-3">
@@ -83,7 +114,7 @@
           cupiditate inventore.</p>
       </div>
       <div class="col-lg-3 ">
-        <img class="img img-fluid" src="assets/images/luwadlin-bosman-LCwmq67sAmE-unsplash (1).jpg" alt="">
+        <img class="img img-fluid" src="/assets/images/women.png" alt="A set women having fun">
       </div>
     </div>
 
@@ -99,29 +130,33 @@
   <section id="contact" class="row  m-2">
     <div class="my-2 text-center">
       <h1 class="text-center fw-bold  m-2 p-3">Contactez-Nous</h1>
-      <form (ngSubmit)="sendMessage()" [formGroup]="emailInfos">
+      <form (ngSubmit)="sendMessagetoSever()" #sendMessage="ngForm">
         <div class="form-group">
-          <input type="email" formControlName="from" class="form-control m-1" id="from" aria-describedby="email"
-            placeholder="votre email">
-          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email</small> -->
-        </div>
+          <input type="email" ngModel class="form-control m-1" id="from" aria-describedby="email"
+            placeholder="votre email" name="from" #from="ngModel"  >
+           
+          </div>
+          <small *ngIf="!text.valid && text.touched ">Please provide a valid title </small>
+
         <div class="form-group my-2">
-          <textarea class="form-control m-1" id="text" placeholder="Nous sommes a votre ecoute!" formControlName="text"
-            name="text"></textarea>
-        </div>
-        <button [disabled]="!emailInfos['valid']" type="submit" class="btn my-2 fw-bold">Envoyer</button>
+          <textarea class="form-control m-1" id="text" ngModel placeholder="Nous sommes  à votre écoute!" 
+            name="text" #text="ngModel"></textarea>
+            
+          </div>
+          <small *ngIf="!text.valid && text.touched ">Please provide a valid title </small>
+
+        <button [disabled]="!sendMessage['valid']" type="submit" class="btn my-2 fw-bold">Envoyer</button>
       </form>
     </div>
 
     <div class="col-lg-12  social-link p-2">
-      <h4 class="text-center fw-bold m-2 p-2">Rejoignez nous sur les Reseaux</h4>
+      <h4 class="text-center fw-bold m-2 p-2">Rejoignez nous sur les Réseaux</h4>
             <ul class="social_links text-center">
               <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i> </a></li>
               <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a> </li>
               <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-x"></i> </a></li>
               <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a> </li>
               <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i></a> </li>
-              <!-- <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-phone"></i></a> </li>  -->
            </ul>       
     </div>
   </section>

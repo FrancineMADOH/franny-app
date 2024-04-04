@@ -50,6 +50,8 @@ const routes: Routes = [
   {path:"signup", component: SignupFormComponent },
   {path:"reset", component:ResetFormComponent},
   {path:"login", component:LoginFormComponent},
+
+  
   
   //make a route for update profile
   // {path:"posts",  component:AllArticlesComponent },
@@ -97,6 +99,10 @@ const routes: Routes = [
   {path:"beauty/:category/book/:id", component: BookPrestationComponent},
   {path:"beauty/rendezvous/payment/:id", component: MakepaiementComponent},
   {path:"posts/:catName",component:BlogcategoryComponent },
+
+  //Not found page
+  {path:'404' , component:NotfoundComponent},
+  {path:'**', redirectTo:'/404', pathMatch:'full'},
 
  
 

@@ -6,7 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -22,12 +22,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FontAwesomeModule,
     HeaderComponent,
     FormsModule,
-    ReactiveFormsModule
   ],
   exports:[
     SidebarComponent,
     HeaderComponent,
-    FooterComponent 
+    FooterComponent ,
+    AboutComponent
   ]
 })
 export class CoreModule {

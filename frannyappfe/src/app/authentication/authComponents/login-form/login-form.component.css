@@ -4,16 +4,17 @@
     text-align: center;
     border:solid #9c9c9a 1px;
     border-radius: 5%;
-    padding:2%;
-    margin-top: 1%;
+    padding:1%;
+    margin-top: 2%;
     margin-bottom: 1%;
+    max-height: fit-content!important;
 }
 small{
     color: red;
 }
 
 .login-header{
-    margin:80px 0 5px 0 ;
+    margin:60px 0 5px 0 ;
 }
 
 .login-form{

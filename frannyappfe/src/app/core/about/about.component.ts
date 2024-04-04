@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup,Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CoreService } from '../core.service';
-import { faArrowLeft, faStar , fas} from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faStar, fas } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -11,31 +12,28 @@ import { faArrowLeft, faStar , fas} from '@fortawesome/free-solid-svg-icons';
 })
 export class AboutComponent implements OnInit {
 
-  emailInfos!:FormGroup;
-  responseMessage!:string;
-  messageSent!:boolean;
+  @ViewChild ("sendMessage", {static:true}) sendMessage:any;
+  responseMessage!: string;
+  messageSent!: boolean;
 
-  constructor(private core:CoreService, private formBuilder:FormBuilder){}
+  constructor(private core: CoreService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.messageSent = false
-    //contactFranny
-    this.emailInfos = this.formBuilder.group({
-      from:["",Validators.required],
-      text:["",Validators.required]
-    });
+   
 
   }
 
 
-  sendMessage(){
-    if(this.emailInfos.valid){
+
+  sendMessagetoSever() {
+    if (this.sendMessage.valid) {
       const infos = {
-        from: this.emailInfos.value.from,
-        text: this.emailInfos.value.text
+        from: this.sendMessage.value.from,
+        text: this.sendMessage.value.text
       }
       console.log(infos)
-      this.core.contactFranny(infos).subscribe((res)=>{
+      this.core.contactFranny(infos).subscribe((res) => {
         console.log(res)
         this.responseMessage = res.message;
         return this.responseMessage;
@@ -44,7 +42,7 @@ export class AboutComponent implements OnInit {
         this.messageSent = true;
       }, 2000);
     }
-    this.emailInfos.reset();
+    this.sendMessage.reset();
   }
 
 }

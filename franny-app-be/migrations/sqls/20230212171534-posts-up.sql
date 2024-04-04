@@ -11,7 +11,7 @@ CREATE TABLE posts(
    applause INT DEFAULT 0,
    category VARCHAR(50),
    imgcredit VARCHAR(255),
-   updated_by INT NOT NULL
+   updated_by INT NOT NULL,
    FOREIGN KEY(author) REFERENCES admins(admin_id) ON DELETE CASCADE
    FOREIGN KEY(updated_by) REFERENCES admins(admin_id) ON DELETE CASCADE
 );
