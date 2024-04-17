@@ -113,7 +113,7 @@ figcaption{
   font-weight: bold;
 }
 .more_articles h3{
-    color: #F460FC;
+    color: #000;
     font-weight: bold !important;
     padding: 1%;
     margin-top: 1%;
@@ -123,22 +123,27 @@ figcaption{
 .more_articles a:hover{
   color:#5DBAE5;
 }
+
+.more_articles a{
+  color:red;
+  margin-left: 20%px;
+}
 .feminity{
-  background-image: url( "../../../assets/images/feminity.avif");
+  background-image: url( "../../../assets/images/feminity.png");
   background-position: center center;
   background-size: 80%;
   background-repeat: no-repeat;
   padding: 10%;
 }
 .maternity{
-  background-image: url(" ../../../assets/images/maternity.avif" );
+  background-image: url(" ../../../assets/images/maternity.png" );
   background-position: center center;
   background-size: 80%;
   background-repeat: no-repeat;
   padding: 10%;
 }
 .family{
-  background-image: url("../../../assets/images/family.avif");
+  background-image: url("../../../assets/images/family.png");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;

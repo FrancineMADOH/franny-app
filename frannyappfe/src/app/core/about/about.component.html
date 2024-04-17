@@ -1,7 +1,5 @@
 <div class="container">
-  <div class="message-sent" *ngIf="messageSent">
-    <h3 class="text-center">Message Envoyé !</h3>
-  </div>
+ 
     <div class="row my-5 p-2">
         <div class="col-lg-8 text-justify">
           <h1 class="fw-bold text-center">
@@ -11,10 +9,10 @@
             <p class="main-hero-text">We promote family maternity and feminity</p>
             <p>We focus on protecting the family, empowering women and girls and educating them</p>
              <!-- Button trigger modal -->
-            <button type="button" class="btn btn-secondary m-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <a type="button" class="btn btn-secondary m-3" >
              Nous Contacter
-            </button>
-              <!-- Modal -->
+            </a>
+              <!-- Modal
               <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -23,7 +21,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form (ngSubmit)="sendMessagetoSever()" #sendMessage="ngForm">
+                      <form (ngSubmit)="sendMessagetoSever(sendMessage)" #sendMessage="ngForm">
                         <div class="form-group">
                           <input type="email" ngModel class="form-control m-1" id="from" aria-describedby="email"
                             placeholder="votre email" name="from" #from="ngModel" >
@@ -36,16 +34,16 @@
                             name="text" ngModel #text="ngModel"></textarea>
                                             </div>
                         <small *ngIf="!text.valid && text.touched ">Please provide a valid title </small>
-                        <button [disabled]="!sendMessage['valid']" type="submit" class="btn my-2 fw-bold">Envoyer</button>
+                        <button [disabled]="!sendMessage['valid']"  data-bs-dismiss="modal" type="submit" class="btn my-2 fw-bold">Envoyer</button>
                       </form>
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
           </div>
         </div>
         <div class="col-lg-3">
-          <img class="img img-fluid" src="assets/images/cowomen-ZKHksse8tUU-unsplash (1).jpg" alt="">
+          <img class="img img-fluid" src="assets/images/women.png" alt="happy women day">
         </div>
     </div>
 
@@ -61,7 +59,7 @@
     <!--Our vision-->
     <div class="row my-5 p-2">
             <div class="col-lg-3">
-              <img class="img img-fluid" src="assets/images/luwadlin-bosman-LCwmq67sAmE-unsplash (1).jpg" alt="">
+              <img class="img img-fluid" src="/assets/images/super_woman.png" alt="super woman">
             </div>
             <div class="col-lg-9">
               <h1 class="fw-bold text-center">
@@ -83,14 +81,14 @@
               cupiditate inventore.</p>
           </div>
           <div class="col-lg-3">
-            <img class="img img-fluid" src="assets/images/luwadlin-bosman-LCwmq67sAmE-unsplash (1).jpg" alt="">
+            <img class="img img-fluid" src="assets/images/women_finish_line.png" alt="women objectivefinish line">
           </div>
     </div>
 
     <!--problems we are solving  -->
     <div class="row my-5 p-2">
       <div class="col-lg-3 text-center">
-        <img class="img img-fluid" src="assets/images/luwadlin-bosman-LCwmq67sAmE-unsplash (1).jpg" alt="">
+        <img class="img img-fluid" src="assets/images/question.png" alt="problem solving">
       </div>
       <div class="col-lg-9">
         <h1 class="fw-bold text-center">
@@ -127,29 +125,39 @@
     </div>
 
   </section>
-  <section id="contact" class="row  m-2">
-    <div class="my-2 text-center">
-      <h1 class="text-center fw-bold  m-2 p-3">Contactez-Nous</h1>
+  <section id="mytest"  class="text-center row p-2 m-2">
+    <h1 class="text-center fw-bold  m-2 p-3">Contactez-Nous</h1>
+
+    <div class="col-lg-4"></div>
+
+    <div id="contact" class="col-lg-4 my-2 p-3">
+      <div class="message-sent" *ngIf="messageSent">
+        <h3 class="text-center">Message Envoyé !</h3>
+      </div>
       <form (ngSubmit)="sendMessagetoSever()" #sendMessage="ngForm">
         <div class="form-group">
-          <input type="email" ngModel class="form-control m-1" id="from" aria-describedby="email"
-            placeholder="votre email" name="from" #from="ngModel"  >
-           
+          <input type="email" nge ngModel class="form-control m-1" id="from" aria-describedby="email"
+            placeholder="votre email" required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+             name="from" #from="ngModel">
+             <small style="color: red;"  *ngIf="!from.valid && from.touched ">Email incorrect </small>
+
           </div>
-          <small *ngIf="!text.valid && text.touched ">Please provide a valid title </small>
 
         <div class="form-group my-2">
-          <textarea class="form-control m-1" id="text" ngModel placeholder="Nous sommes  à votre écoute!" 
-            name="text" #text="ngModel"></textarea>
-            
-          </div>
-          <small *ngIf="!text.valid && text.touched ">Please provide a valid title </small>
+          <textarea class="form-control m-1" id="text" required ngModel placeholder="Nous sommes  à votre écoute!" 
+            name="text" minlength="50" #text="ngModel"></textarea>
+            <small style="color:red;" *ngIf=" !text.valid && text.touched ">Ce champs est requis</small>
 
-        <button [disabled]="!sendMessage['valid']" type="submit" class="btn my-2 fw-bold">Envoyer</button>
+          </div>
+          <button [disabled]="!sendMessage['valid']" type="submit" class="btn my-2 fw-bold">Envoyer</button>
+
       </form>
     </div>
 
-    <div class="col-lg-12  social-link p-2">
+    <div class="col-lg-4"></div>
+
+    <!-- <div class="  social-link p-2">
       <h4 class="text-center fw-bold m-2 p-2">Rejoignez nous sur les Réseaux</h4>
             <ul class="social_links text-center">
               <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i> </a></li>
@@ -158,6 +166,6 @@
               <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a> </li>
               <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i></a> </li>
            </ul>       
-    </div>
+    </div> -->
   </section>
 </div>

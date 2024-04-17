@@ -32,7 +32,7 @@ export class AboutComponent implements OnInit {
         from: this.sendMessage.value.from,
         text: this.sendMessage.value.text
       }
-      console.log(infos)
+      // console.log(infos)
       this.core.contactFranny(infos).subscribe((res) => {
         console.log(res)
         this.responseMessage = res.message;
@@ -41,7 +41,7 @@ export class AboutComponent implements OnInit {
       setTimeout(() => {
         this.messageSent = true;
       }, 2000);
-    }
+     }
     this.sendMessage.reset();
   }
 

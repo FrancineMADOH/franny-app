@@ -31,6 +31,9 @@ button{
 a .active {
     color:white;
 }
+.navbar-brand{
+    font-size: 15px;
+ }
 
 .notification a:hover{
     color: #F460FC;
@@ -47,4 +50,17 @@ a .active {
     font-weight: bold;
     background-color: #ace2fc;
 
+}
+
+@media screen and (max-width: 768px) {
+
+    .navbar-brand{
+       font-size: 12px;
+    }
+
+    li{
+        margin-left: 6px;
+        margin-bottom: 3px;
+    }
+    
 }
