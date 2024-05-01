@@ -42,9 +42,7 @@ export class postHandler {
             create_at: req.body.create_at,
             imgcredit: req.body.imgcredit,
             applause:0
-        }
-        console.log(post)
-    
+        }    
         try{
             await poststore.create(post);
             return res.status(201).json({message:"Blog post added!"});
