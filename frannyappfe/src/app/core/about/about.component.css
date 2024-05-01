@@ -5,6 +5,9 @@
   font-size: 14px;
   font-family: 'FiraSansRegular';
 }
+.main-hero-text{
+  text-align: justify;
+}
 
 .message-sent{
     background-color: rgb(162, 238, 162);
@@ -19,6 +22,18 @@
   border-bottom-left-radius:18px;
   border-bottom-right-radius:18px;
 }
+
+.our_core_value li,.our_mission_check li {
+  color: #000 ;
+  text-align: justify;
+}
+
+.our_core_value i,.our_mission_check i {
+  color: #5DBAE5 ;
+   font-size: 1.5rem;
+   font-weight: bold;
+}
+
 
 
 ul{
@@ -81,6 +96,17 @@ td {
 .btn{
   background-color: #53534F ;
   color:#fff ;
+}
+q{
+  font-size: 1.3rem;
+
+}
+.unlink a{
+  color:#5DBAE5 !important;
+}
+
+.unlink a:hover {
+  color:#F460FC !important;
 }
 
 

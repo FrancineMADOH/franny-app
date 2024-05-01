@@ -5,6 +5,6 @@ html,body{
 
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
-.principal-container {
-    min-height: fit-content;
+.principal_container {
+    height: 90dvh !important;
 }
