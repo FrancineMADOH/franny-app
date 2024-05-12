@@ -12,6 +12,9 @@ small{
     margin-bottom: 10px;
     font-size:10px;
 }
+ngb-carousel{
+    width: 90%;
+}
 
 .personalize{
     background-color: #f8f6f6;

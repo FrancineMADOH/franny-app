@@ -25,6 +25,8 @@ export class BeautyPageComponent implements OnInit {
   reservationDone!:boolean;
   slideInterval = 10000;
   reservation_message!:string;
+  restrict_date = new Date().toISOString().split('T')[0];
+
 
   @ViewChild("sendNotifForm", {static: true})sendNotifForm:any;
 

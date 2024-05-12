@@ -1,6 +1,6 @@
-<div class="main my-4 container">
+<div class="main my-4 container-fluid">
     <!-- description du service -->
-    <div class="row  my-4">
+    <!-- <div class="row  my-4">
         <div class="col-lg-6 text-center personalize">
             <h4 class="fw-bold">Services beauté personalisée à domicile</h4>  
             <div class="disponibilite">
@@ -9,13 +9,13 @@
                     <p>Tous les jours de 7h30 - 22h</p>
                     <h5>DISPONIBILITÉS</h5>
                 <p>7j/7</p>
-                <!-- Button trigger modal -->
+                 Button trigger modal 
              <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#biblioModal">
                 Réserver
             </button> 
             </div>
             
-            <!-- Modal -->
+             Modal 
             <div class="modal fade" id="biblioModal" tabindex="-1" aria-labelledby="biblioModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
@@ -60,14 +60,187 @@
             </div>
         </div>
 
-        <!--video explicative -->
+        video explicative 
         <div class="col-lg-6 text-center personalize">
             <video controls width="500">
                 <source src="../../../assets/flower.webm" type="video/webm" />
             </video>
             <h4 class="m-3 fw-bold">Comment ca marche ?</h4>
+        </div> 
+    </div> -->
+
+      <!--Carrousel-->
+    <div class="carrousel" >
+        <!-- <h3 class="my-3 text-center">CATALOGUE</h3> -->
+        <ngb-carousel 
+        [showNavigationArrows]="true"
+        [showNavigationIndicators]="true"
+        [keyboard]="true"
+        [pauseOnHover]="true"
+        [wrap]="true"
+        [activeId]="'secondSlide'"
+        >
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper w-100" >
+                <img src="assets/images/family.jpg/"  alt="personnal appointment">
+              </div>
+              <div class="carousel-caption">
+                <h4>PERSONNEL</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img src="assets/images/family.jpg" alt="Family apointment">
+              </div>
+              <div class="carousel-caption">
+                <h4>FAMILIAL</h4>
+                <p>Camet consectetur adipisicing elit. Nobis error nulla non delectus facilis quidem</p>
+              </div>
+            </ng-template>
+
+            <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                  <img src="assets/images/family.jpg" alt="Family apointment">
+                </div>
+                <div class="carousel-caption">
+                  <h4>ÉVÉNEMENT</h4>
+                  <p>Consectetur tortor volutpat pretium.lorem Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+              </ng-template>
+
+              <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                  <img src="assets/images/family.jpg" alt="Family apointment">
+                </div>
+                <div class="carousel-caption">
+                  <h4>ENTREPRISE</h4>
+                  <p>Consectetur tortor volutpat pretium.lorem Lorem ipsum, dolor sit amet itaque quam necessitatibus ipsum molestias! </p>
+                </div>
+              </ng-template>
+        </ngb-carousel>
+    </div>
+
+    <!--Nouveau design-->
+    <div class="row text-center prestation_list">
+        <h3 class="my-3 text-center">Nos Services</h3>
+
+        <div class="col-lg-4">
+            <h5>Coiffure</h5>
+            <div *ngFor="let el of coiffure" class="element-pres">
+                <div>
+                    <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#rdvModal">
+                        Réserver
+                    </button> 
+                    <div style="width: 100%;" class="modal fade" id="rdvModal" tabindex="-1" aria-labelledby="rdvModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title text-center fw-bold" id="biblioModalLabel"> Reserver {{el.title}}  </h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div *ngIf="reservationDone" class="message-sent text-center m-4">
+                                <p class="my-2"> {{ reservation_message }} </p>
+                                   Merci d'avoir contacter <span>Franny beauty</span>
+                                     Votre demande est en cours de traitement.
+                                
+                               </div>
+                            <div class="modal-body form-group my-2" *ngIf="!reservationDone" >
+                                <form (ngSubmit)="SendNotif(sendNotifForm)" #sendNotifForm="ngForm">
+                                    <!-- <label for="phone">Numero de telephone</label> -->
+                                    <small *ngIf=" phone.touched && phone.invalid">Numero incorrect entrez un chiffre  0 - 9</small>
+                                    <input required
+                                     name="phone" 
+                                     id="phone" 
+                                     ngModel 
+                                     #phone="ngModel"
+                                    class="form-control my-3 pres_perso_form"
+                                    type="text" pattern="[0-9]*" 
+                                    maxlength="9" minlength="9"
+                                    placeholder="Entrez votre Numero de telephone(+237)">
+                                    <input required
+                                        name="perso_name" 
+                                        id="perso_name" 
+                                        ngModel 
+                                        #perso_name="ngModel"
+                                        class="form-control my-3"
+                                        type="text"
+                                        maxlength="100" minlength="4"
+                                        placeholder="Votre Nom...">
+                                        <div class="my-2 mx-1">
+                                            <!-- <label for="rdvdate"></label> -->
+                                            <input class="form-control" required formControlName="rdvdate" placeholder="Date du rendez-vous"
+                                                type="date" min="{{restrict_date}}" name="rdvdate" id="rdvdate">
+                                            <!-- <small *ngIf="!rdvdate.valid && rdvdate.touched"  style="color:red;">Please choose a date for your appointment</small> -->
+                                        </div>
+                                        <div class="form-group my-2 mx-1">
+                                            <!-- <label for="rdvdate">Quelle heure vous convient ?</label> -->
+                                            <input class="form-control" required formControlName="rdvtime" placeholder="Quelle heure vous convient ?"
+                                                type="time" min="07:30" max="18:00" name="rdvtime" id="rdvdate">
+                                            <!-- <small *ngIf="!rdvdate.valid && rdvdate.touched"  style="color:red;">Please choose a date for your appointment</small> -->
+                                        </div>
+                                    <div class=" my-2 mx-1">
+                                        <input class="form-check-input mx-2" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                        <label class="form-check-label" for="type_prestation">Personnel</label>
+                                        <input class="form-check-input mx-2" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                        <label class="form-check-label" for="exampleCheck1">Familial</label>
+                                        <input class="form-check-input mx-2" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                        <label class="form-check-label" for="exampleCheck1">Evenement</label>
+                                    </div>
+                                          
+                                    <button  [disabled]="!sendNotifForm.valid"  class="btn btn-primary" type="submit">Réserver</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                    <a  routerLink="/beauty/{{el.category}}/book/{{ el.pres_id}}"> 
+                        {{el.title}} 
+                    </a>
+                </div>
+                <div>
+                    <a class="m-2"  routerLink="/beauty/{{el.category}}/book/{{ el.pres_id}}">
+                        {{el.price}} XAF <i class="icon bi-chevron-right"></i>
+                    </a>
+                </div>
+                
+            </div>
+          
+        </div>
+        <div class="col-lg-4">
+            <h5 >Maquillage</h5>
+            <div *ngFor="let el of makeup" class="element-pres">
+               
+                    <a routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}">
+                        {{el.title}}
+                    </a>
+                
+                <div>
+                    <a class="m-2" routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >
+                        {{el.price}} XAF <i class="icon bi-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 text-center">
+            <h5>Onglerie</h5>
+            <div *ngFor="let el of onglerie" class="element-pres">
+                <div>
+                    <a  routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >{{el.title}}
+                    </a>
+                </div>
+                <div>
+                    <a class="m-2" routerLink="/beauty/{{el.category}}/book/{{el.pres_id}}" >{{el.price}} XAF
+                        <i class="icon bi-chevron-right"></i>
+                    </a>
+                </div>   
+            </div>
+       
         </div>
     </div>
+
 
     <!-- liste des services -->
     <div class="row text-center prestation_list">
@@ -173,58 +346,7 @@
         </div>
     </div> -->
 
-    <!--Carrousel-->
-    <!-- <div class="carrousel">
-        <h3 class="my-3 text-center">CATALOGUE</h3>
-        <ngb-carousel
-        [showNavigationArrows]="true"
-        [showNavigationIndicators]="true"
-        [keyboard]="true"
-        [pauseOnHover]="true"
-        [wrap]="true"
-        [activeId]="'secondSlide'"
-        >
-            <ng-template ngbSlide>
-              <div class="picsum-img-wrapper w-100">
-                <img src="assets/images/personal.jpg/" alt="personnal appointment">
-              </div>
-              <div class="carousel-caption">
-                <h4>PERSONNEL</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-              </div>
-            </ng-template>
-            <ng-template ngbSlide>
-              <div class="picsum-img-wrapper">
-                <img src="assets/images/family.jpg" alt="Family apointment">
-              </div>
-              <div class="carousel-caption">
-                <h4>FAMILIAL</h4>
-                <p>Camet consectetur adipisicing elit. Nobis error nulla non delectus facilis quidem</p>
-              </div>
-            </ng-template>
-
-            <ng-template ngbSlide>
-                <div class="picsum-img-wrapper">
-                  <img src="assets/images/family.jpg" alt="Family apointment">
-                </div>
-                <div class="carousel-caption">
-                  <h4>ÉVÉNEMENT</h4>
-                  <p>Consectetur tortor volutpat pretium.lorem Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-              </ng-template>
-
-              <ng-template ngbSlide>
-                <div class="picsum-img-wrapper">
-                  <img src="assets/images/family.jpg" alt="Family apointment">
-                </div>
-                <div class="carousel-caption">
-                  <h4>ENTREPRISE</h4>
-                  <p>Consectetur tortor volutpat pretium.lorem Lorem ipsum, dolor sit amet itaque quam necessitatibus ipsum molestias! </p>
-                </div>
-              </ng-template>
-        </ngb-carousel>
-    </div> -->
-
+  
     
 
     <!-- les revues -->
