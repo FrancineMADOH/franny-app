@@ -12,7 +12,8 @@ export type Post ={
         slug:string,
         applause:number,
         category :string,
-        imgcredit:string
+        imgcredit:string,
+        updated_by:number
      
 }
 
@@ -26,7 +27,7 @@ export class postStore {
         //create
         async create(p:Post):Promise<Post>{
                 const conn = await client.connect();
-                const sql_command = "INSERT INTO posts(title,summary,content,author,create_at,illustration,slug,applause,category,imgcredit) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *;";
+                const sql_command = "INSERT INTO posts(title,summary,content,author,create_at,illustration,slug,applause,category,imgcredit,updated_by) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *;";
                 const result = await conn.query(sql_command,[
                         p.title,
                         p.summary,
@@ -37,7 +38,8 @@ export class postStore {
                         p.slug,
                         p.applause,
                         p.category,
-                        p.imgcredit
+                        p.imgcredit,
+                        p.updated_by
                 ]);
                 conn.release();
                 return result.rows[0]; 
@@ -64,9 +66,9 @@ export class postStore {
         //update
         async update(p:Post,id:number):Promise<Post>{
                 const conn = await client.connect();
-                const sql_command = "UPDATE posts SET title=$1,summary=$2,content=$3,slug=$4,category=$5 WHERE post_id=$6 RETURNING *;";
+                const sql_command = "UPDATE posts SET title=$1,summary=$2,content=$3,slug=$4,category=$5,updated_by=$6 WHERE post_id=$7 RETURNING *;";
                 const result = await conn.query(sql_command, [
-                        p.title,p.summary,p.content,p.slug,p.category,id
+                        p.title,p.summary,p.content,p.slug,p.category,p.updated_by,id
                 ]);
                 conn.release();
                 return result.rows[0];
