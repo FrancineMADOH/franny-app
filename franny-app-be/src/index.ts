@@ -33,20 +33,20 @@ app.use(bodyParser.json())
 
 app.use(cors(corsOptions))
 
-// app.use(function (req, res, next) {
-//     res.setHeader('Access-Control-Allow-Origin', "https://frannyapp-demo.netlify.app");
-//   res.setHeader('Access-Control-Allow-Origin', "https://frannyapp-demo.netlify.app");
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-//   next();
-// });
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', "http://localhost:4000");
+  res.setHeader('Access-Control-Allow-Origin', "http://localhost:4000");
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  next();
+});
 
 
 //router
 app.use("/api", router);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send(`<h1>Welcome to franny</h1>`)
+  res.send(`<h1 class="text-center">Welcome to franny</h1>`)
 });
 
 app.listen(port, () => {
