@@ -46,7 +46,6 @@ app.use(bodyParser.json())
 app.use(cors(corsOptions))
 
 app.use(function (req, res, next) {
-<<<<<<< HEAD
   if(environment=='test'){
   res.setHeader('Access-Control-Allow-Origin',  String(process.env.FE_URL_TEST));
   res.setHeader('Access-Control-Allow-Origin', String(process.env.FE_URL_TEST));
@@ -66,12 +65,6 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   }
   
-=======
-    res.setHeader('Access-Control-Allow-Origin', "http://localhost:4200");
-  res.setHeader('Access-Control-Allow-Origin', "http://localhost:4200");
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
->>>>>>> 2e4e8fc2b69f1aadafa721dd03ee56e6ea7e67b8
   next();
 });
 
