@@ -123,6 +123,7 @@ ng-template{
     background-color: #fff;
     display: flex;
     justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 .why_us{
     background-color: #fff;
@@ -179,6 +180,7 @@ ng-template{
 /*faqs*/
 .faqs{
     background-color: #f8f6f6;
+    margin-top: 7%;
 }
 .faqs .category{
     color: #F460FC
@@ -194,7 +196,8 @@ ng-template{
     padding: 10px;
 }
 .faqs .card{
-    border-radius: 10px;
+    border-radius: 20px;
+    box-shadow: rgba(121, 120, 120, 0.35) 0px -50px 36px -28px inset;
 }
 .faqs .btn{
     background-color: #5DBAE5;
@@ -238,6 +241,7 @@ ngb-carousel {
 ngb-carousel img {
     width: 100%;
     outline: none;
+    height: fit-content;
 }
 ngb-carousel {
     width: inherit;
@@ -261,13 +265,152 @@ ngb-carousel {
 .carousel-control-prev {
      z-index: 20;
 }
-
+.caption{
+    color: #000;
+    font-size: 16px;
+    text-align: justify;
+    font-weight: bold;
+}
 .carousel-control-next {
      z-index: 20;
 }
 .carousel-indicators{
     z-index: 20;
 }
+.carrousel-button{
+    background-color: #5DBAE5;
+    border: none;
+}
+.fadein-text i{
+  color: #5DBAE5;
+
+}
+.fadein-text{
+    border-radius: 22px;
+    animation: slideInUp ease 2s;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 44px 45px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+}
+
+
+.fadein-text:hover{
+    animation: fadeInDown ease 1s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fadein-text-pres:hover{
+    animation: slideInUp ease 1s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes slideInUp {
+    0% {
+         opacity: 0;
+         transform: translateY(-50px);
+         }
+ 
+    100% { 
+        opacity: 1;
+        transform: translateY(0);
+        background-color: #fff;
+
+     }
+    
+  }
+  @-moz-keyframes slideInUp {
+    0% { opacity: 0;
+        transform: translateY(-50px);
+        background-color: #5DBAE5;
+     }
+    100% {
+         opacity: 1; 
+         transform: translateY(0);
+        background-color: #fff;
+
+        }
+  }
+  
+  @-webkit-keyframes slideInUp {
+    0% { opacity: 0; transform: translateY(-50px);
+        background-color: #53534F; }
+  
+    100% { opacity: 1; transform: translateY(0);
+        background-color: #fff;}
+  }
+  
+  @-o-keyframes slideInUp {
+    0% { opacity: 0;  transform: translateY(-50px);
+        background-color: #53534F;}
+    100% { opacity: 1; transform: translateY(0);
+        background-color: #fff;}
+  }
+  
+  @-ms-keyframes slideInUp {
+    0% { opacity: 0; transform: translateY(-50px);
+        background-color: #53534F; }
+    100% { opacity: 1;transform: translateY(0);
+        background-color: #fff; }
+  }
+
+@keyframes fadeInDown {
+    0% {
+         opacity: 0;
+         transform: translateY(-50px);
+         background-color: #5DBAE5;
+         }
+   
+    100% { 
+        opacity: 1;
+        transform: translateY(0);
+        background-color: #fff;
+
+     }
+    
+  }
+  @-moz-keyframes fadeInDown {
+    0% { opacity: 0;
+        transform: translateY(-50px);
+        background-color: #5DBAE5;
+     }
+    100% {
+         opacity: 1; 
+         transform: translateY(0);
+        background-color: #fff;
+
+        }
+  }
+  
+  @-webkit-keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-50px);
+        background-color: #53534F; }
+  
+    100% { opacity: 1; transform: translateY(0);
+        background-color: #fff;}
+  }
+  
+  @-o-keyframes fadeInDown {
+    0% { opacity: 0;  transform: translateY(-50px);
+        background-color: #53534F;}
+    100% { opacity: 1; transform: translateY(0);
+        background-color: #fff;}
+  }
+  
+  @-ms-keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-50px);
+        background-color: #53534F; }
+    100% { opacity: 1;transform: translateY(0);
+        background-color: #fff; }
+  }
 
 
 @media only screen and (max-width: 768px){
@@ -295,6 +438,12 @@ ngb-carousel {
         font-weight: bold;
         padding: 10px;
     }
+    .fadein-text{
+        margin-bottom: 5%;    
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 24px 25px, rgba(0, 0, 0, 0.12) 0px -6px 10px, rgba(0, 0, 0, 0.12) 0px 2px 4px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    
+    }
+    
    
 }
 

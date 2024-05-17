@@ -37,7 +37,19 @@ if(ENV==="test"){
        database:POSTGRES_DB,
        password:POSTGRES_PASSWORD,
        port:Number(POSTGRES_PORT),
-    //    ssl:true
+   });
+   console.log(`${POSTGRES_HOST} connected`)
+  
+}
+
+if(ENV==="production"){
+
+    client =   new Pool({
+       host:POSTGRES_HOST,
+       user:POSTGRES_USER,
+       database:POSTGRES_DB,
+       password:POSTGRES_PASSWORD,
+       port:Number(POSTGRES_PORT),
    });
    console.log(`${POSTGRES_HOST} connected`)
   
