@@ -35,6 +35,9 @@ h6{
     margin-top: 10px;
     font-weight: bold;
 }
+hr{
+    box-shadow: rgba(62, 137, 187, 0.35) 30px 25px 55px;
+}
 
 #progress_bar li{ 
     margin-right: 20px;

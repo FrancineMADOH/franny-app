@@ -44,6 +44,8 @@ export class BookPrestationComponent implements OnInit {
   rdvfromServer!:any;
   qrCode:any;
   copydate =  new Date().getFullYear();
+  reservation_message =""
+  reservationDone=false;
 
   presAvailable =  false;
   pdfName = "Carte Rendez-vous";
@@ -131,6 +133,7 @@ export class BookPrestationComponent implements OnInit {
       this.personal_step =  false;
     }
   }
+
 
   //submit the form 
   onSubmit(){

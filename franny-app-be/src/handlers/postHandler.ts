@@ -41,7 +41,8 @@ export class postHandler {
             author: Number(req.body.author),
             create_at: req.body.create_at,
             imgcredit: req.body.imgcredit,
-            applause:0
+            applause:0,
+            updated_by:Number(req.body.author)
         }    
         try{
             await poststore.create(post);
