@@ -12,9 +12,10 @@ small{
     margin-bottom: 10px;
     font-size:10px;
 }
-ngb-carousel{
-    width: 90%;
+ng-template{
+    width: 100%;
 }
+
 
 .personalize{
     background-color: #f8f6f6;
@@ -231,8 +232,8 @@ ngb-carousel{
 } 
 
 ngb-carousel {
-    max-width: 800px;
-    margin: 50px auto;
+    max-width: 100%;
+    margin: 5px auto;
 }
 ngb-carousel img {
     width: 100%;

@@ -27,6 +27,18 @@ export class BeautyPageComponent implements OnInit {
   reservation_message!:string;
   restrict_date = new Date().toISOString().split('T')[0];
 
+  carrousel_images = [
+    {"src":"assets/images/nails.jpg/","alt":"Woman taking care of nails","caption":"Brillez sans quitter votre maison. Réservez des services de beauté maintenant !", "title":"Soins de Beauté haut de gamme à domicile."},
+    {"src":"assets/images/nails.jpg","alt":"","caption":"", "title":"Des services de beauté complets à votre convenance.Réservez maintenant, brillez plus tard !"},
+    {"src":"assets/makeup.jpg","alt":"","caption":"Ayez fière allure, sentez-vous bien", "title":"Réservation Facile, résultats époustouflants."},
+    {"src":"assets/coiffure.webp","alt":"","caption":"Des cheveux aux ongles, nous faisons tout ! Confiez a nos professionnels votre mise en beauté pour vos évenement, Ne passez plus jamais inapercu.", "title":"Des esthéticiennes qualifiées à votre service, à tout moment."},
+    {"src":"assets/images/hairstyling.jpg/","alt":"","caption":" Un mariage ? une sortie de groupe ? un shooting ? Faites confiance  à notre équipe de professionels pour un Glow up certain.", "title":"La mise en beauté pour vos événements sans stress commencent ici!"},
+    {"src":"assets/images/mere.jpg/","alt":"","caption":"Nos prestations familiales sont conçu pour vous faire passer un moment de partage avec vos proches.", "title":"Un moment mere-fille ?"},
+    {"src":"assets/images/pres_makeup.jpg/","alt":"","caption":"Nos prestations familiales sont conçu pour vous faire passer un moment de partage avec vos proches.", "title":"Tous les jours de 7h30 - 22h"}
+
+
+  ]
+
 
   @ViewChild("sendNotifForm", {static: true})sendNotifForm:any;
 
