@@ -1,7 +1,7 @@
 <div class="container m-1">
     <div class="row pageheader">
         <div class="col-lg-6">
-            <h1 class="text-center display-1"> Réservation: {{prestation.title}}</h1> 
+            <h1 class="text-center display-1"> Réservation: {{prestation.title ? prestation.title:' Loading'}} </h1> 
         </div>
         <div class="col-lg-6  text-center">
             <h4 class="text-muted"><i class="bi bi-clock  display-1 mx-5"></i> {{prestation.duration}} Minutes</h4>
@@ -29,40 +29,6 @@
                 <p class="text-justify">{{prestation.premium}} </p>
             </div>
     
-            <div class="text-center p-2 promotion" *ngIf="presAvailable && step==3">
-                <div>
-                    <a type="button my-2"  (click)="downloadAsPdf()" id="downloadAsPdf" class="btn btn-success">Téléchargez la carte</a>
-                </div>
-                
-                <div class="card my-4" style="width: 40rem;">
-                    <i class="bi bi-megaphone"></i>
-                    <div class="card-body">
-                      <h5 class="card-title fw-bold">Jusqua 50% de reduction offert !</h5>
-                      <h6></h6>
-                      <p class="card-text">
-                        Telechargez et collectez 5 carte de rendez-vous.
-                        Saissez le code de vos cinq derniers rendez-vous et obtenez jusqua 50% de reduction sur votre prochaine commande
-                      </p>
-                      <form #couponForm="ngForm" (ngSubmit)="getCoupon()">
-                        <div class="form-group my-2"> 
-                        <label for="rdvs-code">Code des cinq derniers rendez-vous</label>
-                            <input type="text" class="form-control" 
-                            required
-                            ngModel
-                            #rdvs_code="ngModel"
-                            maxlength="100" 
-                            placeholder="Saisir les codes  de vos cinq derniers rendez-vous"
-                            id="rdvs-code">
-                            <small *ngIf="rdvs_code.valid && rdvs_code.touched">Please enter
-                                your name
-                            </small>
-                        </div>
-                        <button class="btn btn-secondary my-2" type="submit">Obtenir une reduction</button>
-                    </form>
-                    </div>
-                  </div>
-            </div>
-    
         </div>
 
 
@@ -75,7 +41,7 @@
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <h4 class="modal-title text-center fw-bold" id="reservationModalLabel"> Prestation personalisée </h4>
+              <h4 class="modal-title text-center fw-bold" id="reservationModalLabel"> Confirmation </h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div *ngIf="reservationDone" class="message-sent text-center">
@@ -84,30 +50,113 @@
                    Votre demande est en cours de traitement.
               
              </div>
-          <div class="modal-body form-group my-2" *ngIf="!reservationDone" >
-              <form (ngSubmit)="onSubmit()" #sendNotifForm="ngForm">
-                  <label for="phone">Laissez nous votre contact pour un service comme vous voulez quand vous voulez !</label>
-                  <small *ngIf=" phone.touched && phone.invalid">Numero incorrect entrez un chiffre  0 - 9</small>
-                  <input required
-                   name="phone" 
-                   id="phone" 
-                   ngModel 
-                   #phone="ngModel"
-                  class="form-control my-3 pres_perso_form"
-                  type="text" pattern="[0-9]*" 
-                  maxlength="9" minlength="9"
-                  placeholder="(+237)...">
-                  <input required
-                      name="perso_name" 
-                      id="perso_name" 
-                      ngModel 
-                      #perso_name="ngModel"
-                      class="form-control my-3"
-                      type="text"
-                      maxlength="100" minlength="4"
-                      placeholder="Votre Nom...">
-                  <!-- <button  [disabled]="!sendNotifForm.valid" style="border: none; background-color: #5DBAE5;"  class="btn btn-primary" type="submit">Réserver</button> -->
-              </form>
+          <div class="modal-body form-group my-2"  >
+              <div class="form_email" >
+                <form [formGroup]="rdvInfos"  (ngSubmit)="onSubmit()"  id="rdv_form">
+                    <div class="form-group my-1">
+                        <input type="text" class="form-control" formControlName="client_name"
+                             required
+                            maxlength="100" placeholder="Entrez votre nom" id="client_name">
+                        <!-- [ngClass]="{'is-invalid': personal_step && personal['client_name'].errors}" <small *ngIf="!personal['client_name'].valid && personal['client_name'].touched">Ce champs est requis</small> -->
+                    </div>
+                    <div class="form-group my-2" *ngIf="!email_form" >
+                        <input type="text"  id="client_phone" formControlName="client_phone" maxlength="9" required
+                            placeholder="Numéro de téléphone [0-9] -  max 9 characters" pattern="[0-9]*" name="client_phone"
+                            class="form-control">
+                        <!-- <small *ngIf="!personal['client_phone'].valid && personal['client_phone'].touched">Numero invalide</small> -->
+                    </div>
+                    <div class="form-group my-2" *ngIf="email_form">
+                        <input class="form-control" formControlName="client_email" type="email" name="client_email"
+                            id="client_email" placeholder="votre address email">
+                        <!-- <small *ngIf="!personal['client_email'].valid && personal['client_email'].touched">Ce champs est requis</small> -->
+                    </div>
+
+                    <div class="date_prestation d-flex">
+                        <div class="form-group my-1 mx-1">
+                            <label for="rdvdate">Date du rendez-vous</label>
+                            <input class="form-control" required formControlName="rdvdate" placeholder="choose a date"
+                                type="date" min="{{restrict_date}}" name="rdvdate" id="rdvdate" (change)="onInputChange($event)" >
+                            <!-- <small *ngIf="!personal['rdvdate'].valid && !personal['rdvdate'].touched"  style="color:red;">Please choose a date for your appointment</small> -->
+                        </div>
+                       
+                        <div class="form-group my-1 mx-4">
+                            <label for="rdvdate">Quelle heure vous convient ?</label>
+                            <select  required formControlName="rdvtime" name="rdvtime" id="rdvtime">
+                                <option value="" disabled selected>Selectionnez une heure</option>
+                                <option  *ngFor="let time of time_ranges_to_display" value="{{time}}">{{time}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--Les buttons-->
+                    <div class="">Type de Séance</div>
+                    <div class="d-flex">
+                    <div class="form-check mx-4 my-1">
+                        <input class="form-check-input" formControlName="rdv_price" value="{{prestation.price}}" type="radio" name="rdv_price" id="rdv_price" checked>
+                        <label class="form-check-label" for="rdv_price">
+                          Classic
+                        </label>
+                    </div>
+                      <div class="form-check mx-4 my-1">
+                        <input class="form-check-input" formControlName="rdv_price" value="{{prestation.gold_price}}" type="radio" name="rdv_price" id="rdv_price" >
+                        <label class="form-check-label" for="rdv_price">
+                          Gold
+                        </label>
+                      </div>
+                      <div class="form-check mx-4 my-1">
+                        <input class="form-check-input" formControlName="rdv_price" value="{{prestation.premium_price}}" type="radio" name="rdv_price" id="rdv_price" >
+                        <label class="form-check-label" for="rdv_price">
+                          Premium
+                        </label>
+                      </div>
+                    </div>
+                     
+                    <div class="my-2">Pour qui prennez-vous rendez-vous ?</div>
+                    <div class="d-flex">
+                    <div class="form-check mx-2">
+                        <input class="form-check-input" value="Personnel" formControlName="rdvtype" type="radio" name="rdvtype" checked>
+                        <label class="form-check-label" for="rdvtype">
+                          Personnel
+                        </label>
+                    </div>
+                    <div class="form-check mx-2">
+                        <input class="form-check-input" value="Groupe" formControlName="rdvtype" type="radio" name="rdvtype">
+                        <label class="form-check-label" for="rdvtype">
+                          Groupe
+                        </label>
+                      </div>
+                      <div class="form-check mx-2">
+                        <input class="form-check-input" value="Evenement" formControlName="rdvtype" type="radio" name="rdvtype" >
+                        <label class="form-check-label" for="rdvtype">
+                            Événement 
+                        </label>
+                      </div>
+                    </div>
+                    <!--villes -->
+                    <div class="my-2">Quelle ville habitez-vous ?</div>
+                    <div class="d-flex ">
+                        <div class="form-check mx-4">
+                            <input class="form-check-input" value="Douala" formControlName="ville" type="radio" name="ville" id="ville">
+                            <label class="form-check-label" for="ville">
+                              Douala
+                            </label>
+                          </div>
+                          <div class="form-check mx-4">
+                            <input class="form-check-input" value=" Yaounde" type="radio" formControlName="ville" name="ville" id="ville" checked>
+                            <label class="form-check-label" for="ville">
+                              Yaounde
+                            </label>
+                          </div>
+                          <!--[disabled]="!rdvInfos['valid']" <small *ngIf="!['ville'].valid && ['ville'].touched">Ce champs est obligatoire</small> -->
+                    </div>
+                    <button type="submit"  class="btn button-70  text-center action-button">Confirmer</button>
+                </form>
+              </div>
+              <hr>
+              <div class="text-center">
+                <a class="btn my-1" *ngIf="!email_form"  (click)="email_form=!email_form" >Utiliser l'addresse email</a>
+                <a class="btn my-1" *ngIf="email_form" (click)="email_form=!email_form" >Utiliser le numéro de téléphone</a>
+              </div>
+              
           </div>
       </div>
   </div>

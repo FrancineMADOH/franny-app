@@ -40,7 +40,6 @@ import { ViewPrestationComponent } from './partials/view-prestation/view-prestat
 import { ViewRdvComponent } from './partials/view-rdv/view-rdv.component';
 import { ViewReviewComponent } from './partials/view-review/view-review.component';
 import { NotificationComponent } from './notification/notification.component';
-import { BeautypagenewComponent } from './beautypagenew/beautypagenew.component';
 
 
 @NgModule({
@@ -79,7 +78,6 @@ import { BeautypagenewComponent } from './beautypagenew/beautypagenew.component'
     ViewRdvComponent,
     ViewReviewComponent,
     NotificationComponent,
-    BeautypagenewComponent,
   ],
   imports: [
     CommonModule,

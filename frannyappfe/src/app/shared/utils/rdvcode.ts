@@ -1,6 +1,6 @@
 
 //generate rendez vous code 
-function generaterdvCode(name: string, date: string, ville: string, quarter: string, pres: string) {//type: string
+function generaterdvCode(name: string, date: string, ville: string, pres: string) {//type: string
 
     let all_initials = "";
     //annee
@@ -12,13 +12,13 @@ function generaterdvCode(name: string, date: string, ville: string, quarter: str
     let init = splittedName.map((el) => el.charAt(0)).join("");
     let initials = init.slice(0, 2);
     //ville
-    let initial_ville = (ville[0] + ville.slice(-3)).trim();
-    let initial_quartier =  quarter[0] + quarter[1] + quarter.slice(-2) ;
+    let initial_ville = (ville[0] + ville.slice(-2)).trim();
+    //let initial_quartier =  quarter[0] + quarter[1] + quarter.slice(-2) ;
     //prestation
     let initial_pres = pres.slice(0,2);
      //type
     //let initial_type = type.slice(0,2);
-    all_initials = (dateCode  +'/'+ initials + '/'+ initial_ville +'/'+ initial_quartier + '/'+ initial_pres ).toLocaleUpperCase();//+ initial_type
+    all_initials = (dateCode  +'/'+ initials + '/'+ initial_ville + '/'+ initial_pres ).toLocaleUpperCase();//+ initial_type
     return all_initials.toLocaleUpperCase();
 }
 

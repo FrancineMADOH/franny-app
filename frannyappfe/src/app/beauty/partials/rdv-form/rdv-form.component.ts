@@ -101,7 +101,7 @@ export class RdvFormComponent implements OnInit {
     this.addRendezvousForm.value.rdvdate,
     this.addRendezvousForm.value.ville,
     this.addRendezvousForm.value.quartier,
-    this.addRendezvousForm.value.prestation,
+    // this.addRendezvousForm.value.prestation,
     //this.addRendezvousForm.value.category,
     //this.addRendezvousForm.value.rdvtype
     );
@@ -125,7 +125,7 @@ export class RdvFormComponent implements OnInit {
       this.addRendezvousForm.value.rdvdate,
       this.addRendezvousForm.value.ville,
       this.addRendezvousForm.value.quartier,
-      this.addRendezvousForm.value.prestation,
+      // this.addRendezvousForm.value.prestation,
       //this.addRendezvousForm.value.category,
       //this.addRendezvousForm.value.rdvtype
       );

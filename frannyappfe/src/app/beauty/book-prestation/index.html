@@ -259,3 +259,36 @@
     </div>
 </div>
 <!-- https://www.section.io/engineering-education/how-to-generate-qr-codes-using-nodejs/ -->
+<div class="text-center p-2 promotion" *ngIf="presAvailable && step==3">
+    <div>
+        <a type="button my-2"  (click)="downloadAsPdf()" id="downloadAsPdf" class="btn btn-success">Téléchargez la carte</a>
+    </div>
+    
+    <div class="card my-4" style="width: 40rem;">
+        <i class="bi bi-megaphone"></i>
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Jusqua 50% de reduction offert !</h5>
+          <h6></h6>
+          <p class="card-text">
+            Telechargez et collectez 5 carte de rendez-vous.
+            Saissez le code de vos cinq derniers rendez-vous et obtenez jusqua 50% de reduction sur votre prochaine commande
+          </p>
+          <form #couponForm="ngForm" (ngSubmit)="getCoupon()">
+            <div class="form-group my-2"> 
+            <label for="rdvs-code">Code des cinq derniers rendez-vous</label>
+                <input type="text" class="form-control" 
+                required
+                ngModel
+                #rdvs_code="ngModel"
+                maxlength="100" 
+                placeholder="Saisir les codes  de vos cinq derniers rendez-vous"
+                id="rdvs-code">
+                <small *ngIf="rdvs_code.valid && rdvs_code.touched">Please enter
+                    your name
+                </small>
+            </div>
+            <button class="btn btn-secondary my-2" type="submit">Obtenir une reduction</button>
+        </form>
+        </div>
+      </div>
+</div>

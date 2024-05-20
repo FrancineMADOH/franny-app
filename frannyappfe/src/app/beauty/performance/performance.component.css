@@ -36,7 +36,63 @@ h4{
 .card{
     border-radius: 12px;
     width: 14rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    border-radius: 22px;
+    animation: slideInUp ease 2s;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
 }
+
+@keyframes slideInUp {
+    0% {
+         opacity: 0;
+         transform: translateY(-50px);
+         }
+ 
+    100% { 
+        opacity: 1;
+        transform: translateY(0);
+        background-color: #fff;
+
+     }
+    
+  }
+  @-moz-keyframes slideInUp {
+    0% { opacity: 0;
+        transform: translateY(-50px);
+        background-color: #5DBAE5;
+     }
+    100% {
+         opacity: 1; 
+         transform: translateY(0);
+        background-color: #fff;
+
+        }
+  }
+  
+  @-webkit-keyframes slideInUp {
+    0% { opacity: 0; transform: translateY(-50px);
+        background-color: #53534F; }
+  
+    100% { opacity: 1; transform: translateY(0);
+        background-color: #fff;}
+  }
+  
+  @-o-keyframes slideInUp {
+    0% { opacity: 0;  transform: translateY(-50px);
+        background-color: #53534F;}
+    100% { opacity: 1; transform: translateY(0);
+        background-color: #fff;}
+  }
+  
+  @-ms-keyframes slideInUp {
+    0% { opacity: 0; transform: translateY(-50px);
+        background-color: #53534F; }
+    100% { opacity: 1;transform: translateY(0);
+        background-color: #fff; }
+  }
 
 .icon i{
     font-size:40px;

@@ -71,6 +71,8 @@ i{
 }
 #contact{
   border: solid 1px #555;
+  border-radius: 8px;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 a{
@@ -109,6 +111,24 @@ q{
   color:#F460FC !important;
 }
 
+input,textarea {
+
+  width: 100%;
+  color: rgb(36, 35, 42);
+  font-size: 16px;
+  line-height: 20px;
+  min-height: 28px;
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+  background: rgb(251, 251, 251);
+  transition: all 0.1s ease 0s;
+  :focus{
+      border: 2px solid rgb(124, 138, 255);
+  }
+
+}
 
 
 @media  screen and (max-width:900px) {

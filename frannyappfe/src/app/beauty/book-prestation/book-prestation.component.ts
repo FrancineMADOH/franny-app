@@ -8,6 +8,7 @@ import jsPDF, { jsPDFOptions } from 'jspdf';
 import moment from 'moment';
 import { Prestation } from '../models/prestation';
 import generaterdvCode from 'src/app/shared/utils/rdvcode';
+import restrictTimeSelection from 'src/app/shared/utils/restrict_time';
 //https://medium.com/@vkbiotech841/how-to-export-html-to-pdf-file-in-angular-2e92ceb7755d
 
 @Component({
@@ -25,8 +26,9 @@ export class BookPrestationComponent implements OnInit {
     "Nous ne sommes pas responsable des degats cause par nos employe suite a des rendezvous pris en dehors de notre plate forme"
 ]
 
-  personalDetails!: FormGroup;
+  rdvInfos!: FormGroup;
   serviceDetails!: FormGroup;
+  test = restrictTimeSelection('')
 
   personal_step = false;
   service_step = false;
@@ -46,11 +48,17 @@ export class BookPrestationComponent implements OnInit {
   copydate =  new Date().getFullYear();
   reservation_message =""
   reservationDone=false;
+  email_form = false;
+  times_ranges:string [] = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00']
+  today_time_ranges:string []= []
 
+  time_ranges_to_display:string [] = [];
+  
   presAvailable =  false;
   pdfName = "Carte Rendez-vous";
   showconfirm = false;
   restrict_date = new Date().toISOString().split('T')[0];
+  heure_actuelle = new Date().toISOString().split('T')[1].slice(0,5);
 
   constructor(private formBuilder:FormBuilder,
     private beauty: BeautyService,
@@ -60,9 +68,11 @@ export class BookPrestationComponent implements OnInit {
     
     ){}
 
+
   @ViewChild('dataToExport',  { read: ElementRef,static: false }) public dataToExport!:ElementRef;
 
   ngOnInit(): void {
+
     this.pres_id = this.route.snapshot.params['id'];
     this.category = this.route.snapshot.params['category'];
      //get the current prestation
@@ -79,99 +89,77 @@ export class BookPrestationComponent implements OnInit {
     //display prestation
     setTimeout(() => {
       this.presAvailable = true;  
-    }, 1000);
+    }, 2000);
+
+    this.times_ranges.map((el)=>{
+      if(restrictTimeSelection(el)){
+        this.today_time_ranges.push(el)  
+      }
+    })
 
     //personnal details form
-    this.personalDetails = this.formBuilder.group({
+    this.rdvInfos = this.formBuilder.group({
       client_name:['',Validators.required],
       client_phone:[null,Validators.required],
       client_email:[""],
       ville:["",Validators.required],
-      quartier:["",Validators.required]
-    });
-
-    //services details form
-    this.serviceDetails = this.formBuilder.group({
+      rdvdate: ["",Validators.required],
       rdvtype:["",Validators.required],
       rdv_price:[null,Validators.required],
-      rdvdate:[null,Validators.required],
       rdvtime:["",Validators.required],
-      comments:["",Validators.required]
     });
-    
-  }
-//get the form values
-  get personal(){
-    return this.personalDetails.controls;
+
   }
 
-  get service(){
-    return this.serviceDetails.controls;
-  }
-  //switch steps forward
-  nextStep(){
-    if(this.step == 1){
-      this.personal_step =  true;
-      if(this.personalDetails.invalid){ return}
-      this.step ++;
-    }
-
-    if(this.step==2){
-      this.service_step = true;
-      this.personal_step =  false;
-      if(this.serviceDetails.invalid){return }
-      setTimeout(() => {
-        this.step++;
-      }, 1000);
+  onInputChange(event: Event) {
+    const newValue = (event.target as HTMLInputElement).value;
+    console.log(newValue) ;
+    // You can perform additional logic here based on the new value
+    if(newValue == this.restrict_date){
+      this.time_ranges_to_display = this.today_time_ranges;
+    }else{
+      this.time_ranges_to_display = this.times_ranges;
     }
   }
 
-  //switch steps backward
-  previousStep(){
-    this.step--;
-    if(this.step==1){
-      this.personal_step =  false;
-    }
-  }
-
+  
 
   //submit the form 
   onSubmit(){
      //this.service_step = true;
-    if(this.serviceDetails.valid){
-    this.rdvdate = this.serviceDetails.value.rdvdate + " "+ this.serviceDetails.value.rdvtime;
+    if(this.rdvInfos.valid){
+    this.rdvdate = this.rdvInfos.value.rdvdate + " " + this.rdvInfos.value.rdvtime + ":00";
     //generate rdv code 
     this.rdvcode = generaterdvCode(
-        this.personalDetails.value.client_name,
+        this.rdvInfos.value.client_name,
         this.rdvdate,
-        this.personalDetails.value.ville,
-        this.personalDetails.value.quartier,
+        this.rdvInfos.value.ville,
         this.prestation.title
       );
     }
     this.rdv = {
-          client_name: this.personalDetails.value.client_name ,
-          client_phone:this.personalDetails.value.client_phone,
-          client_email:this.personalDetails.value.client_email,
+          client_name: this.rdvInfos.value.client_name ,
+          client_phone:this.rdvInfos.value.client_phone,
+          client_email:this.rdvInfos.value.client_email,
           rdvdate:this.rdvdate,
           prestation:this.pres_id,
           category:this.category,
           rdvcode:this.rdvcode,
-          rdvtype:this.serviceDetails.value.rdvtype,
-          rdv_price:this.serviceDetails.value.rdv_price,
-          ville:this.personalDetails.value.ville ,
-          quartier:this.personalDetails.value.quartier ,
-          comments: this.serviceDetails.value.comments,
+          rdvtype:this.rdvInfos.value.rdvtype,
+          rdv_price:this.rdvInfos.value.rdv_price,
+          ville:this.rdvInfos.value.ville ,
+          quartier: "",
+          comments: "",
           url: `${this.host}/beauty/rendezvous/payment/`
     }
-    //save rdv to the database
-    this.beauty.createRendezvous(this.rdv).subscribe((res:any)=>{
-      this.rdvfromServer = res.data;
-      this.qrCode =  res.qrcode
-    });
+    console.log(this.rdv)
+    // //save rdv to the database
+    // this.beauty.createRendezvous(this.rdv).subscribe((res:any)=>{
+    //   this.rdvfromServer = res.data;
+    //   this.qrCode =  res.qrcode
+    // });
   
-    this.personalDetails.reset();
-    this.serviceDetails.reset();
+    this.rdvInfos.reset();
     this.showconfirm = true;
     setTimeout(() => {
       this.showconfirm = false;

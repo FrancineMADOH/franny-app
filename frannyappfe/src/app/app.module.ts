@@ -26,7 +26,7 @@ import { SharedModule } from './shared/shared.module';
     AuthenticationModule,
     CoreModule,
     SharedModule,
-    //BeautyModule,
+    BeautyModule,
     BlogModule,
     HttpClientModule,
     FormsModule,
