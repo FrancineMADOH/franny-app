@@ -1,13 +1,13 @@
 <div class="container m-1">
     <div class="row pageheader">
         <div class="col-lg-6">
-            <h1 class="text-center display-1"> Réservation: {{prestation.title ? prestation.title:' Loading'}} </h1> 
+            <h1 class="text-center display-1" *ngIf="presAvailable"> Réservation: {{prestation.title }} </h1> 
         </div>
         <div class="col-lg-6  text-center">
-            <h4 class="text-muted"><i class="bi bi-clock  display-1 mx-5"></i> {{prestation.duration}} Minutes</h4>
-            <button type="button" class="btn btn-secondary carrousel-button" data-bs-toggle="modal"
+            <h6 *ngIf="presAvailable" class="text-muted"><i class="bi bi-clock  display-1 mx-1"></i> Temps estimé:{{prestation.duration}} Minutes</h6>
+            <button  type="button" class="btn btn-secondary carrousel-button" data-bs-toggle="modal"
                     data-bs-target="#reservationModal">
-                    Réserver | {{prestation.price}} XAF*
+                    Réserver | <span *ngIf="presAvailable">{{prestation.price}}</span>  XAF*
             </button>
         </div>
     </div>
@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="prestation-infos">
-            <div  *ngIf="presAvailable && step<=2">
+            <div  *ngIf="presAvailable">
                 <h4 class="classic">Classic | {{prestation.price}} XAF </h4>
                 <p class="text-justify">
                     {{prestation.seance}}
@@ -56,19 +56,21 @@
                     <div class="form-group my-1">
                         <input type="text" class="form-control" formControlName="client_name"
                              required
-                            maxlength="100" placeholder="Entrez votre nom" id="client_name">
-                        <!-- [ngClass]="{'is-invalid': personal_step && personal['client_name'].errors}" <small *ngIf="!personal['client_name'].valid && personal['client_name'].touched">Ce champs est requis</small> -->
+                            maxlength="100" placeholder="Entrez votre nom" id="client_name" >
+                            <!-- <small  *ngIf="rdvInfos.get('client_name')?.errors?.['required'] && rdvInfos.get('client_name')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
                     </div>
                     <div class="form-group my-2" *ngIf="!email_form" >
-                        <input type="text"  id="client_phone" formControlName="client_phone" maxlength="9" required
+                        <input type="text"  id="client_phone" formControlName="client_phone" maxlength="9" [required]="!email_form"
                             placeholder="Numéro de téléphone [0-9] -  max 9 characters" pattern="[0-9]*" name="client_phone"
                             class="form-control">
-                        <!-- <small *ngIf="!personal['client_phone'].valid && personal['client_phone'].touched">Numero invalide</small> -->
+                            <!-- <small  *ngIf="rdvInfos.get('client_phone')?.errors?.['required'] || rdvInfos.get('client_phone')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
+
                     </div>
                     <div class="form-group my-2" *ngIf="email_form">
-                        <input class="form-control" formControlName="client_email" type="email" name="client_email"
+                        <input class="form-control" formControlName="client_email" type="email" name="client_email" [required]="email_form"
                             id="client_email" placeholder="votre address email">
-                        <!-- <small *ngIf="!personal['client_email'].valid && personal['client_email'].touched">Ce champs est requis</small> -->
+                            <!-- <small  *ngIf="rdvInfos.get('client_email')?.errors?.['required'] || rdvInfos.get('client_email')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
+
                     </div>
 
                     <div class="date_prestation d-flex">
@@ -76,42 +78,47 @@
                             <label for="rdvdate">Date du rendez-vous</label>
                             <input class="form-control" required formControlName="rdvdate" placeholder="choose a date"
                                 type="date" min="{{restrict_date}}" name="rdvdate" id="rdvdate" (change)="onInputChange($event)" >
-                            <!-- <small *ngIf="!personal['rdvdate'].valid && !personal['rdvdate'].touched"  style="color:red;">Please choose a date for your appointment</small> -->
+                                <!-- <small  *ngIf="rdvInfos.get('rdvdate')?.errors?.['required'] || rdvInfos.get('rdvdate')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
+
                         </div>
                        
                         <div class="form-group my-1 mx-4">
                             <label for="rdvdate">Quelle heure vous convient ?</label>
                             <select  required formControlName="rdvtime" name="rdvtime" id="rdvtime">
-                                <option value="" disabled selected>Selectionnez une heure</option>
+                                <option value="" disabled selected>{{time_ranges_to_display.length == 0 ? 'Nous sommes fermé actuellement' :'Selectionnez une heure'}} </option>
                                 <option  *ngFor="let time of time_ranges_to_display" value="{{time}}">{{time}}</option>
                             </select>
+                            <!-- <small  *ngIf="rdvInfos.get('rdvtime')?.errors?.['required'] || rdvInfos.get('rdvtime')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
+
                         </div>
                     </div>
                     <!--Les buttons-->
                     <div class="">Type de Séance</div>
-                    <div class="d-flex">
+                    <div class="d-flex" style="justify-content: space-evenly;">
                     <div class="form-check mx-4 my-1">
-                        <input class="form-check-input" formControlName="rdv_price" value="{{prestation.price}}" type="radio" name="rdv_price" id="rdv_price" checked>
+                        <input class="form-check-input"  *ngIf="presAvailable" formControlName="rdv_price" value="{{prestation.price}}" type="radio" name="rdv_price" id="rdv_price" checked>
                         <label class="form-check-label" for="rdv_price">
                           Classic
                         </label>
                     </div>
                       <div class="form-check mx-4 my-1">
-                        <input class="form-check-input" formControlName="rdv_price" value="{{prestation.gold_price}}" type="radio" name="rdv_price" id="rdv_price" >
+                        <input class="form-check-input" formControlName="rdv_price" *ngIf="presAvailable" value="{{prestation.gold_price}}" type="radio" name="rdv_price" id="rdv_price" >
                         <label class="form-check-label" for="rdv_price">
                           Gold
                         </label>
                       </div>
                       <div class="form-check mx-4 my-1">
-                        <input class="form-check-input" formControlName="rdv_price" value="{{prestation.premium_price}}" type="radio" name="rdv_price" id="rdv_price" >
+                        <input class="form-check-input" formControlName="rdv_price" *ngIf="presAvailable" value="{{prestation.premium_price}}" type="radio" name="rdv_price" id="rdv_price" >
                         <label class="form-check-label" for="rdv_price">
                           Premium
                         </label>
                       </div>
                     </div>
+                    <!-- <small  *ngIf="rdvInfos.get('rdv_price')?.errors?.['required'] || rdvInfos.get('rdv_price')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
+
                      
                     <div class="my-2">Pour qui prennez-vous rendez-vous ?</div>
-                    <div class="d-flex">
+                    <div class="d-flex" style="justify-content: space-evenly;"> 
                     <div class="form-check mx-2">
                         <input class="form-check-input" value="Personnel" formControlName="rdvtype" type="radio" name="rdvtype" checked>
                         <label class="form-check-label" for="rdvtype">
@@ -131,9 +138,11 @@
                         </label>
                       </div>
                     </div>
+                    <!-- <small  *ngIf="rdvInfos.get('rdvtype')?.errors?.['required'] && rdvInfos.get('rdvtype')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
+
                     <!--villes -->
                     <div class="my-2">Quelle ville habitez-vous ?</div>
-                    <div class="d-flex ">
+                    <div class="d-flex " style="justify-content: space-evenly;">
                         <div class="form-check mx-4">
                             <input class="form-check-input" value="Douala" formControlName="ville" type="radio" name="ville" id="ville">
                             <label class="form-check-label" for="ville">
@@ -146,15 +155,15 @@
                               Yaounde
                             </label>
                           </div>
-                          <!--[disabled]="!rdvInfos['valid']" <small *ngIf="!['ville'].valid && ['ville'].touched">Ce champs est obligatoire</small> -->
+                          <!-- <small  *ngIf="rdvInfos.get('ville')?.errors?.['required'] || rdvInfos.get('ville')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
                     </div>
-                    <button type="submit"  class="btn button-70  text-center action-button">Confirmer</button>
+                    <button [disabled]="!rdvInfos['valid']" type="submit"  class="btn button-70  text-center action-button">Confirmer</button>
                 </form>
               </div>
               <hr>
               <div class="text-center">
-                <a class="btn my-1" *ngIf="!email_form"  (click)="email_form=!email_form" >Utiliser l'addresse email</a>
-                <a class="btn my-1" *ngIf="email_form" (click)="email_form=!email_form" >Utiliser le numéro de téléphone</a>
+                <a style="border: None;" class="btn my-1 choicelink" *ngIf="!email_form"  (click)="email_form=!email_form" >Utiliser l'addresse email</a>
+                <a style="border: None;" class="btn my-1 choicelink" *ngIf="email_form" (click)="email_form=!email_form" >Utiliser le numéro de téléphone</a>
               </div>
               
           </div>

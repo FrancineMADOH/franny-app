@@ -95,6 +95,9 @@ export class BookPrestationComponent implements OnInit {
       if(restrictTimeSelection(el)){
         this.today_time_ranges.push(el)  
       }
+
+
+      
     })
 
     //personnal details form
@@ -113,8 +116,6 @@ export class BookPrestationComponent implements OnInit {
 
   onInputChange(event: Event) {
     const newValue = (event.target as HTMLInputElement).value;
-    console.log(newValue) ;
-    // You can perform additional logic here based on the new value
     if(newValue == this.restrict_date){
       this.time_ranges_to_display = this.today_time_ranges;
     }else{
@@ -126,7 +127,6 @@ export class BookPrestationComponent implements OnInit {
 
   //submit the form 
   onSubmit(){
-     //this.service_step = true;
     if(this.rdvInfos.valid){
     this.rdvdate = this.rdvInfos.value.rdvdate + " " + this.rdvInfos.value.rdvtime + ":00";
     //generate rdv code 

@@ -164,7 +164,7 @@
       </div>
       <form (ngSubmit)="sendMessagetoSever()" #sendMessage="ngForm">
         <div class="form-group">
-          <input type="email" nge ngModel class="form-control m-1" id="from" aria-describedby="email"
+          <input type="email" ngModel class="form-control my-2" id="from" aria-describedby="email"
             placeholder="votre email" required
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
              name="from" #from="ngModel">
@@ -173,7 +173,7 @@
           </div>
 
         <div class="form-group my-2">
-          <textarea class="form-control m-1" id="text" required ngModel placeholder="Nous sommes  à votre écoute!" 
+          <textarea class="form-control my-3" id="text" required ngModel placeholder="Nous sommes  à votre écoute!" 
             name="text" minlength="50" #text="ngModel"></textarea>
             <small style="color:red;" *ngIf=" !text.valid && text.touched ">Ce champs est requis</small>
 
@@ -184,16 +184,5 @@
     </div>
 
     <div class="col-lg-4"></div>
-
-    <!-- <div class="  social-link p-2">
-      <h4 class="text-center fw-bold m-2 p-2">Rejoignez nous sur les Réseaux</h4>
-            <ul class="social_links text-center">
-              <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i> </a></li>
-              <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a> </li>
-              <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-x"></i> </a></li>
-              <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a> </li>
-              <li><a href="http://" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i></a> </li>
-           </ul>       
-    </div> -->
   </section>
 </div>

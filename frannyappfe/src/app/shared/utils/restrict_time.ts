@@ -18,14 +18,8 @@ function restrictTimeSelection(date:string) {
     const now = new Date();
     let selected_date = parse_time(date)
     const twoHoursFromNow = new Date(now.getTime() + 2 * 60 * 60 * 1000)
-  
-    if (selected_date < twoHoursFromNow) {
-        two_hour = selected_date >= twoHoursFromNow;
+          two_hour = selected_date >= twoHoursFromNow;
       return two_hour;
-    } else {
-      two_hour = selected_date >= twoHoursFromNow;
-      return two_hour;
-    }
   }
 
 export default restrictTimeSelection;
