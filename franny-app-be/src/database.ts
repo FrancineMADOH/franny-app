@@ -18,6 +18,19 @@ let client = new Pool();
 
 if(ENV==="dev"){
 
+    client =   new Pool({
+       host:POSTGRES_HOST,
+       user:POSTGRES_USER,
+       database:POSTGRES_DB,
+       password:POSTGRES_PASSWORD,
+       port:Number(POSTGRES_PORT),
+
+   });
+   console.log('dev db connected')
+}
+
+if(ENV==="test"){
+
      client =   new Pool({
         host:POSTGRES_HOST,
         user:POSTGRES_USER,
@@ -26,7 +39,7 @@ if(ENV==="dev"){
         port:Number(POSTGRES_PORT),
 
     });
-    console.log('dev bd connected')
+    console.log('test db connected')
 }
 
 if(ENV==="test"){
@@ -51,7 +64,7 @@ if(ENV==="production"){
        password:POSTGRES_PASSWORD,
        port:Number(POSTGRES_PORT),
    });
-   console.log(`${POSTGRES_HOST} connected`)
+   console.log(`production connected`)
   
 }
 

@@ -106,6 +106,7 @@ export class BookPrestationComponent implements OnInit {
       client_phone:[null,Validators.required],
       client_email:[""],
       ville:["",Validators.required],
+      quartier:["",Validators.required],
       rdvdate: ["",Validators.required],
       rdvtype:["",Validators.required],
       rdv_price:[null,Validators.required],

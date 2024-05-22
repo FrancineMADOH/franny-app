@@ -24,6 +24,7 @@ export class ViewReviewComponent implements OnInit {
 
     this.beauty.getReviewbyId(this.id).subscribe((res)=>{
       this.rev= res;
+      console.log(res)
       return this.rev;
     })
     

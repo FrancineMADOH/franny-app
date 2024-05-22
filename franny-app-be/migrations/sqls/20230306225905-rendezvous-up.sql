@@ -24,3 +24,4 @@ CREATE TABLE rendezvous(
 
 ALTER TABLE rendezvous ADD COLUMN created_at TIMESTAMPTZ;
 ALTER TABLE rendezvous ALTER COLUMN created_at SET DEFAULT now();
+ALTER TABLE rendezvous ADD COLUMN updated_at TIMESTAMPTZ;

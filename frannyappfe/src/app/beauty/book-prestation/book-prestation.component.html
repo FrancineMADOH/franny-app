@@ -52,7 +52,9 @@
              </div>
           <div class="modal-body form-group my-2"  >
               <div class="form_email" >
+                
                 <form [formGroup]="rdvInfos"  (ngSubmit)="onSubmit()"  id="rdv_form">
+                  <div class="">Informations personnelles</div>
                     <div class="form-group my-1">
                         <input type="text" class="form-control" formControlName="client_name"
                              required
@@ -72,8 +74,8 @@
                             <!-- <small  *ngIf="rdvInfos.get('client_email')?.errors?.['required'] || rdvInfos.get('client_email')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
 
                     </div>
-
-                    <div class="date_prestation d-flex">
+                    <div class="">Détails de la prestation</div>
+                    <div class="date_prestation" style="display: flex; justify-content: space-between;">
                         <div class="form-group my-1 mx-1">
                             <label for="rdvdate">Date du rendez-vous</label>
                             <input class="form-control" required formControlName="rdvdate" placeholder="choose a date"
@@ -82,10 +84,10 @@
 
                         </div>
                        
-                        <div class="form-group my-1 mx-4">
+                        <div class="form-group my-1 mx-2">
                             <label for="rdvdate">Quelle heure vous convient ?</label>
                             <select  required formControlName="rdvtime" name="rdvtime" id="rdvtime">
-                                <option value="" disabled selected>{{time_ranges_to_display.length == 0 ? 'Nous sommes fermé actuellement' :'Selectionnez une heure'}} </option>
+                                <option value="" disabled selected>{{today_time_ranges.length == 0 ? 'Fermé actuellement' :'Selectionnez une heure'}} </option>
                                 <option  *ngFor="let time of time_ranges_to_display" value="{{time}}">{{time}}</option>
                             </select>
                             <!-- <small  *ngIf="rdvInfos.get('rdvtime')?.errors?.['required'] || rdvInfos.get('rdvtime')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
@@ -93,7 +95,7 @@
                         </div>
                     </div>
                     <!--Les buttons-->
-                    <div class="">Type de Séance</div>
+                    <div class="">Type de Séance*</div>
                     <div class="d-flex" style="justify-content: space-evenly;">
                     <div class="form-check mx-4 my-1">
                         <input class="form-check-input"  *ngIf="presAvailable" formControlName="rdv_price" value="{{prestation.price}}" type="radio" name="rdv_price" id="rdv_price" checked>
@@ -117,7 +119,7 @@
                     <!-- <small  *ngIf="rdvInfos.get('rdv_price')?.errors?.['required'] || rdvInfos.get('rdv_price')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
 
                      
-                    <div class="my-2">Pour qui prennez-vous rendez-vous ?</div>
+                    <div class="my-2">Pour qui prennez-vous rendez-vous?*</div>
                     <div class="d-flex" style="justify-content: space-evenly;"> 
                     <div class="form-check mx-2">
                         <input class="form-check-input" value="Personnel" formControlName="rdvtype" type="radio" name="rdvtype" checked>
@@ -141,21 +143,26 @@
                     <!-- <small  *ngIf="rdvInfos.get('rdvtype')?.errors?.['required'] && rdvInfos.get('rdvtype')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
 
                     <!--villes -->
-                    <div class="my-2">Quelle ville habitez-vous ?</div>
+                    <div class="my-2">Localisation</div>
                     <div class="d-flex " style="justify-content: space-evenly;">
-                        <div class="form-check mx-4">
+                        <div class="form-check mx-2">
                             <input class="form-check-input" value="Douala" formControlName="ville" type="radio" name="ville" id="ville">
                             <label class="form-check-label" for="ville">
                               Douala
                             </label>
                           </div>
-                          <div class="form-check mx-4">
+                          <div class="form-check mx-2">
                             <input class="form-check-input" value=" Yaounde" type="radio" formControlName="ville" name="ville" id="ville" checked>
                             <label class="form-check-label" for="ville">
                               Yaounde
                             </label>
                           </div>
                           <!-- <small  *ngIf="rdvInfos.get('ville')?.errors?.['required'] || rdvInfos.get('ville')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
+                    </div>
+                    <div>
+                      <input type="text" class="form-control" formControlName="quartier"
+                       required
+                      maxlength="100" placeholder="Quelle Quartier habitez-vous ?" id="quartier" >
                     </div>
                     <button [disabled]="!rdvInfos['valid']" type="submit"  class="btn button-70  text-center action-button">Confirmer</button>
                 </form>

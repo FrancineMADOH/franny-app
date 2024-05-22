@@ -1,36 +1,40 @@
-<div class="main container ">
-  <div class="spinner-grow text-center" role="status" *ngIf="loading" >
+<div class="container">
+  <div class="spinner-grow text-center" role="status" *ngIf="loading">
     <span class="sr-only">Loading...</span>
   </div>
-    <section>
-        <div class="card my-2" *ngIf="!loading" >
-          <div class="card-header text-center">
-            <h5 class="card-title"><span class="attributes">Franny Recruit No:</span>
-              {{ beautif.beautif_id }}/{{beautif.beautif_id}}
-             </h5>
-          </div>
-          <div class="card-body">
-              
-              <p><span class="attributes">Address: </span>{{ beautif.ville }}<span class="quartier"> - {{beautif.quartier}}</span></p>
-              <hr>
-              <p><span class="attributes">Name: </span>{{ beautif.bname }} </p>
-              <hr>
-              <p><span class="attributes">Phone:</span> {{beautif.phone}}</p>
-              <hr>
-              <p><span class="attributes">Email:</span> {{beautif.email}} </p>
-              <hr>
-              <p ><span class=" attributes">Responsable: </span> <span>{{beautif.admin_name}}</span> </p>
-              <hr/>
-              <div>
-                <p class="attributes card-text text-center">Details</p>
-                <p class="card-text">{{beautif.details}} </p>
-              </div>
-              <hr>
-              <div class="card-footer text-center">
-                <button (click)="gotoUpdate(beautif.beautif_id || 1)" class="card-link btn btn-secondary">Update</button>
-              </div>
-          </div>
+    <div class="text-center my-2" *ngIf="!loading">
+      <div class="box card">
+        <div class="image">
+          <img src="img3.jpeg" alt="">
+        </div>
+        <div>
+          <p class="text-center empname">{{ beautif.bname }} </p>
+          <h5>FBA/{{ beautif.recruit_date.split('-')[0].slice(2,4)
+            }}/{{beautif.recruit_date.split('-')[1]}}/00{{beautif.beautif_id}}
+          </h5>
+
+          <p><span class="attributes">Address: </span>{{ beautif.ville }}<span class="quartier"> -
+              {{beautif.quartier}}</span></p>
+          <p><span class="attributes">Phone:</span> {{beautif.phone}}</p>
+          <p><span class="attributes">Email:</span> {{beautif.email}} </p>
+          <p><span class=" attributes">Responsable: </span> <span>{{beautif.admin_name}}</span> </p>
+        </div>
+        <hr/>
+        <div>
+          <p class="attributes text-center" style="font-weight: bold;">Details</p>
+          <p class="card-text ">{{beautif.details}} </p>
+        </div>
+
+        <div class="btns">
+          <button class="card-link btn">Print</button>
+          <button (click)="gotoUpdate(beautif.beautif_id || 1)" class="card-link btn btn-secondary">Update</button>
+        </div>
       </div>
-      <p></p>
-      </section>
+
+
+    </div>
+
+    <!--Plus tard mettre le nombre de prestation deja realise, le montant quelle a deja gagnee-->
+
+
 </div>
