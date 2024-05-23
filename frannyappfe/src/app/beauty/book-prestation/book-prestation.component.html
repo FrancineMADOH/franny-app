@@ -1,40 +1,47 @@
 <div class="container m-1">
-    <div class="row pageheader">
-        <div class="col-lg-6">
-            <h1 class="text-center display-1" *ngIf="presAvailable"> Réservation: {{prestation.title }} </h1> 
+    <div [ngStyle]="{'background-image': 'url(' + backgroundurl + ')'}" class="row pageheader">
+      <div>
+        <h1 class="text-center display-1" *ngIf="presAvailable"> Réservation: {{prestation.title }} </h1>
+          <h6 *ngIf="presAvailable" class="text-muted"><i class="bi bi-clock  display-1"></i> Temps
+            estimé:{{prestation.duration}} Minutes</h6>
+          <button type="button" class="btn btn-secondary carrousel-button" data-bs-toggle="modal"
+            data-bs-target="#reservationModal">
+            Réserver | <span *ngIf="presAvailable">{{prestation.price}}</span> XAF*
+          </button>
         </div>
-        <div class="col-lg-6  text-center">
-            <h6 *ngIf="presAvailable" class="text-muted"><i class="bi bi-clock  display-1 mx-1"></i> Temps estimé:{{prestation.duration}} Minutes</h6>
-            <button  type="button" class="btn btn-secondary carrousel-button" data-bs-toggle="modal"
-                    data-bs-target="#reservationModal">
-                    Réserver | <span *ngIf="presAvailable">{{prestation.price}}</span>  XAF*
-            </button>
-        </div>
-    </div>
-    <hr>
+      </div>
+    
+
     <div class="confirmation-message" *ngIf="showconfirm">
         <h4 class="text-center display-4">Votre rendez-vous a été enregistré</h4>
     </div>
 
-    <div class="row">
-        <div class="prestation-infos">
-            <div  *ngIf="presAvailable">
-                <h4 class="classic">Classic | {{prestation.price}} XAF </h4>
-                <p class="text-justify">
-                    {{prestation.seance}}
-                </p>
-                <h4 class="gold"> Gold | {{prestation.gold_price}} XAF </h4>
-                <p class="text-justify">{{prestation.gold}} </p>
-                <h4 class="premium">Premium | {{prestation.premium_price}} XAF </h4>
-                <p class="text-justify">{{prestation.premium}} </p>
-            </div>
-    
-        </div>
-
-
+    <div class="prestation-infos row">
+      <div class="col-lg-1 offset-1"> </div>
+      <div class="col-lg-3 mx-2" *ngIf="presAvailable">
+        <h4 class="classic my-2">Classic | {{prestation.price}} XAF </h4>
+        <p class="text-justify">
+          {{prestation.seance}}
+        </p>
+      </div>
+      <div class="col-lg-3 mx-2" *ngIf="presAvailable">
+        <h4 class="gold my-2"> Gold | {{prestation.gold_price}} XAF </h4>
+        <p class="text-justify">{{prestation.gold}} </p>
+      </div>
+      <div class="col-lg-3 mx-2" *ngIf="presAvailable">
+        <h4 class="premium my-2">Premium | {{prestation.premium_price}} XAF </h4>
+        <p class="text-justify">{{prestation.premium}} </p>
+      </div>
     </div>
 
-    
+    <div class="row indications text-center text-muted">
+      <p>
+      <span>* Les prix ici liste sont des prix unitaires</span> |
+      <span>* Le prix des prestation de groupe peut etre soumis a negociation</span>    |
+      <span>* Le prix de votre prestation varie en fonction la seance que vous choisissez</span>
+    </p>
+    </div>
+
   <!-- Modal  -->
   <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel"
   aria-hidden="true">

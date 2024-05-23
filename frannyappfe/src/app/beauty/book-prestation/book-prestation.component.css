@@ -35,8 +35,17 @@ h6{
     margin-top: 10px;
     font-weight: bold;
 }
-hr{
-    box-shadow: rgba(62, 137, 187, 0.35) 30px 25px 55px;
+
+
+.pageheader{
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 60vh;
+    padding-top: 10%;
+    text-align: center;
+    color: #fff;
+    /* filter: blur(5px); */
 }
 
 #progress_bar li{ 
@@ -70,12 +79,19 @@ hr{
 }
 
 .prestation-infos{
-    margin-left: 3%;
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+
+.prestation-infos .col-lg-3{
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    border-radius: 12px;
+    padding: 10px;
 }
 
 .prestation-infos h4{
-    color: #5DBAE5;
     font-weight: bold;
+    text-align: center;
 }
 
 .classic{

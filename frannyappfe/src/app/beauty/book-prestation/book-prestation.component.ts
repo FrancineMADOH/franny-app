@@ -53,6 +53,7 @@ export class BookPrestationComponent implements OnInit {
   today_time_ranges:string []= []
 
   time_ranges_to_display:string [] = [];
+  backgroundurl!:string;
   
   presAvailable =  false;
   pdfName = "Carte Rendez-vous";
@@ -65,6 +66,7 @@ export class BookPrestationComponent implements OnInit {
     private select:SelectServiceService,
     private router:Router,
     private route:ActivatedRoute,
+    // this.setBackgroundImage()
     
     ){}
 
@@ -86,18 +88,25 @@ export class BookPrestationComponent implements OnInit {
       });
     });
 
+    if(this.category == 'Coiffure'){
+      this.backgroundurl = "/assets/images/hairstyling.jpg"
+
+
+    }else if(this.category == 'Onglerie'){
+      this.backgroundurl = "/assets/images/blacknails.jpg"
+
+    }else  if(this.category == 'Make-Up'){
+      this.backgroundurl = "/assets/images/pres_makeup.jpg"
+    }
     //display prestation
     setTimeout(() => {
       this.presAvailable = true;  
-    }, 2000);
+    }, 1500);
 
     this.times_ranges.map((el)=>{
       if(restrictTimeSelection(el)){
         this.today_time_ranges.push(el)  
       }
-
-
-      
     })
 
     //personnal details form
@@ -114,6 +123,7 @@ export class BookPrestationComponent implements OnInit {
     });
 
   }
+
 
   onInputChange(event: Event) {
     const newValue = (event.target as HTMLInputElement).value;
