@@ -1,7 +1,7 @@
 <div class="container m-1">
     <div [ngStyle]="{'background-image': 'url(' + backgroundurl + ')'}" class="row pageheader">
       <div>
-        <h1 class="text-center display-1" *ngIf="presAvailable"> Réservation: {{prestation.title }} </h1>
+        <h1 class="text-center display-1" *ngIf="presAvailable"> Réservation {{prestation.title }} </h1>
           <h6 *ngIf="presAvailable" class="text-muted"><i class="bi bi-clock  display-1"></i> Temps
             estimé:{{prestation.duration}} Minutes</h6>
           <button type="button" class="btn btn-secondary carrousel-button" data-bs-toggle="modal"

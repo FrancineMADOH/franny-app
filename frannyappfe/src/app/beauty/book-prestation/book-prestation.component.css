@@ -44,7 +44,7 @@ h6{
     height: 60vh;
     padding-top: 10%;
     text-align: center;
-    color: #fff;
+    color: #fff !important;
     /* filter: blur(5px); */
 }
 
@@ -150,21 +150,6 @@ confirmation-card table{
 .conditions{
     font-size: 8px !important;
 }
-.promotion{
-    align-items: center !important;
-}
-.promotion h5{
-    color: #5DBAE5;
-    font-size: 1.6em;
-}
-.promotion .btn-secondary{
-    width: 200px;
-    height: 100%;
-    margin: 0 auto 0;
-    padding: 10px;
-    background:#5DBAE5 !important;
-    color: #fff;
-}
 
 
 .button-70 {
@@ -218,7 +203,6 @@ input[type='text'], select, input[type='date'],input[type='email'] {
     
 }
 
-
 #downloadAsPdf{
   width: 200px;
   height: 100%;
@@ -231,36 +215,18 @@ input[type='text'], select, input[type='date'],input[type='email'] {
   border: #C7B14A;
 }
 
-.bi-megaphone{
-  font-size: 70px;
-  animation: pulse 2s infinite;
-  transform: scale(1);
-  box-shadow: 0000 #53534F;
-  color: #C7B14A !important;
-}
+
 /* https://blog.hubspot.com/website/css-animation */
-
-@keyframes pulse{
-    0%{
-        transform: scale(0.95);
-        box-shadow: #5DBAE5;
-    }
-    70%{   
-        transform: scale(1);
-        box-shadow: #5DBAE5;
-    }
-    100%{
-        
-        transform: scale(0.95);
-        box-shadow: #5DBAE5;
-    }
-}
-
 
 @media only screen and (max-width: 768px){
     #reservationModal{
         margin-left: 5%;
         width: 90%;
     }
+
+    .prestation-infos .col-lg-3{
+        margin-bottom: 3%;
+    }
+    
 }
 
