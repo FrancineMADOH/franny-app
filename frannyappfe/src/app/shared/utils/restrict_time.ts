@@ -17,9 +17,17 @@ function restrictTimeSelection(date:string) {
     var two_hour;
     const now = new Date();
     let selected_date = parse_time(date)
-    const twoHoursFromNow = new Date(now.getTime() + 2 * 60 * 60 * 1000)
+    //sil nest pas encore 7h
+    if(now < parse_time('07:00')){
+        let twoHoursFromNow = new Date(now.getTime() + 0 * 60 * 60 * 1000)
           two_hour = selected_date >= twoHoursFromNow;
-      return two_hour;
+
+    }else{
+        let twoHoursFromNow = new Date(now.getTime() + 2 * 60 * 60 * 1000)
+          two_hour = selected_date >= twoHoursFromNow;
+    }
+    return two_hour;
+    
   }
 
 export default restrictTimeSelection;

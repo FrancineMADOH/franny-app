@@ -9,8 +9,9 @@ import moment from 'moment';
 import { Prestation } from '../models/prestation';
 import generaterdvCode from 'src/app/shared/utils/rdvcode';
 import restrictTimeSelection from 'src/app/shared/utils/restrict_time';
-//https://medium.com/@vkbiotech841/how-to-export-html-to-pdf-file-in-angular-2e92ceb7755d
+import { environment } from 'src/app/environment/env';
 
+//https://medium.com/@vkbiotech841/how-to-export-html-to-pdf-file-in-angular-2e92ceb7755d
 @Component({
   selector: 'app-book-prestation',
   templateUrl: './book-prestation.component.html',
@@ -112,7 +113,7 @@ export class BookPrestationComponent implements OnInit {
     //personnal details form
     this.rdvInfos = this.formBuilder.group({
       client_name:['',Validators.required],
-      client_phone:[null,Validators.required],
+      client_phone:[null],
       client_email:[""],
       ville:["",Validators.required],
       quartier:["",Validators.required],
@@ -147,11 +148,15 @@ export class BookPrestationComponent implements OnInit {
         this.rdvInfos.value.ville,
         this.prestation.title
       );
-    }
+    //provide a default 
+    let email;
+    let phone;
+    this.rdvInfos.value.client_email == "" ? email = environment.defaultEmail : email = this.rdvInfos.value.client_email;
+    this.rdvInfos.value.client_phone == null ? phone = environment.defaultPhone : phone = this.rdvInfos.value.client_phone;
     this.rdv = {
           client_name: this.rdvInfos.value.client_name ,
-          client_phone:this.rdvInfos.value.client_phone,
-          client_email:this.rdvInfos.value.client_email,
+          client_phone: phone,
+          client_email: email,
           rdvdate:this.rdvdate,
           prestation:this.pres_id,
           category:this.category,
@@ -159,23 +164,23 @@ export class BookPrestationComponent implements OnInit {
           rdvtype:this.rdvInfos.value.rdvtype,
           rdv_price:this.rdvInfos.value.rdv_price,
           ville:this.rdvInfos.value.ville ,
-          quartier: "",
+          quartier: this.rdvInfos.value.quartier,
           comments: "",
           url: `${this.host}/beauty/rendezvous/payment/`
     }
     console.log(this.rdv)
-    // //save rdv to the database
-    // this.beauty.createRendezvous(this.rdv).subscribe((res:any)=>{
-    //   this.rdvfromServer = res.data;
-    //   this.qrCode =  res.qrcode
-    // });
-  
+    //save rdv to the database
+    this.beauty.createRendezvous(this.rdv).subscribe((res:any)=>{
+      this.rdvfromServer = res.data;
+      console.log(res)
+      this.qrCode =  res.qrcode
+    });
+  }
     this.rdvInfos.reset();
     this.showconfirm = true;
     setTimeout(() => {
       this.showconfirm = false;
     }, 2000);
-    this.confirmation_step = true;
 
   }
   backToPrestation(){
@@ -214,12 +219,12 @@ export class BookPrestationComponent implements OnInit {
     const pdf = new jsPDF(jsPdfOptions);
     pdf.setFontSize(12);
     pdf.setTextColor('#2585fe');
-    pdf.text(this.pdfName ? this.pdfName.toUpperCase() : 'Untitled dashboard'.toUpperCase(), 25, 75);
+    pdf.text(this.pdfName ? this.pdfName.toUpperCase() : 'franny-Rdv'.toUpperCase(), 25, 75);
     pdf.setFontSize(14);
     pdf.setTextColor('#131523');
     pdf.text('Date: ' + moment().format('ll'), 25, 25);
     pdf.addImage(result, 'PNG', 25, 105, width, height); //TODO: Ajuster plus tard dans le css
-    pdf.save(this.rdvfromServer.rdvcode + '.pdf');
+    pdf.save(this.pdfName + '.pdf');
     this.router.navigate(['/beauty'])
     })
     .catch(error => {

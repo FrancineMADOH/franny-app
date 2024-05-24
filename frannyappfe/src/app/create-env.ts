@@ -9,6 +9,8 @@ const envConfigFile = `
 export const environment = {
   production: false,
   baseUrl: '${process.env ['API_URL']}',
+  defaultEmail: '${process.env ['DEFAULT_EMAIL']}',
+  defaultPhone: '${process.env ['DEFAULT_PHONE_NUMBER']}',
 };
 `;
 

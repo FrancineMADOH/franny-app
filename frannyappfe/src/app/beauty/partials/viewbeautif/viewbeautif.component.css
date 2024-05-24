@@ -53,7 +53,7 @@ hr{
   padding: 20px;
 }
 .container .box{
-  width: calc(40% - 10px);
+  width: calc(60% - 10px);
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -123,12 +123,7 @@ hr{
 .btns button:hover{
   color: #fff;
 }
-@media (max-width:1045px){
-  .container .box{
-    width: calc(50% - 10px);
-    margin-bottom: 20px;
-  }
-}
+
 @media (max-width:768px){
   .container .box{
     width: 100%;
