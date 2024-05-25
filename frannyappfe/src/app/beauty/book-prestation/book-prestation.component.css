@@ -90,7 +90,7 @@ h4 {
 }
 
 .choicelink {
-    color: #0dccea !important;
+    color: #5DBAE5 !important;
 }
 
 input[type='text'],
@@ -196,7 +196,10 @@ input[type='email'] {
         color: var(--primary);
     }
 }
-
+.invalid-border {
+    border: 1px solid red;
+  }
+  
 
 /* https://blog.hubspot.com/website/css-animation */
 
@@ -242,6 +245,8 @@ input[type='email'] {
         /* width: calc(var(--card-size) * 1.586); */
         width: 100%;
         height: auto;
+        grid-template-columns: 30% auto;
+
 
     }
 

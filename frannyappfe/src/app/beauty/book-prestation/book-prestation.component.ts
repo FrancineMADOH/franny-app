@@ -21,22 +21,8 @@ export class BookPrestationComponent implements OnInit {
 
   appointment_type =  ["Personnel","Familial","Evenement","Entreprise"];
   AllQuartier=[];
-  cancelationConiditions = [
-    "Toute anulation doit se faire minimum une heure avant la date du rdv",
-    "Apres trois annulations successive vous etes bani de notre plateforme pour une periode de trois mois minimum",
-    "Nous ne sommes pas responsable des degats cause par nos employe suite a des rendezvous pris en dehors de notre plate forme"
-]
 
   rdvInfos!: FormGroup;
-  serviceDetails!: FormGroup;
-  test = restrictTimeSelection('')
-
-  personal_step = false;
-  service_step = false;
-  confirmation_step = false;
-  step = 1;
-
-
   category!:string;
   prestation!:Prestation;
   pres_id!:string
@@ -113,7 +99,7 @@ export class BookPrestationComponent implements OnInit {
     //personnal details form
     this.rdvInfos = this.formBuilder.group({
       client_name:['',Validators.required],
-      client_phone:[null],
+      client_phone:[null, Validators.minLength(9)],
       client_email:[""],
       ville:["",Validators.required],
       quartier:["",Validators.required],
@@ -215,12 +201,9 @@ export class BookPrestationComponent implements OnInit {
     pdf.text(this.pdfName ? this.pdfName.toUpperCase() : 'franny-beauty-card'.toUpperCase(), 15, 45);
     pdf.setFontSize(12);
     pdf.setTextColor('#131523');
-    pdf.text( moment().format('ll'), 15, 15);
+    pdf.text( moment().format('ll' ) + `  ||  Contactez-nous au ${environment.defaultPhone}`, 15, 15);
     // pdf.text('Date: ' + moment().format('ll'), 25, 25);
     pdf.addImage(result, 'PNG', 25, 105, width , height);
-    pdf.setFontSize(12);
-    pdf.setTextColor('#F460FC');
-    pdf.text(`Vous avez des questions ? Contactez-nous au ${environment.defaultPhone}`, 15, 15);
     pdf.save(this.pdfName + '.pdf');
     this.router.navigate(['/beauty'])
     })

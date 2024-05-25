@@ -45,7 +45,7 @@
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <h4 class="modal-title text-center fw-bold" id="reservationModalLabel"> Confirmation </h4>
+              <h4 class="modal-title text-center fw-bold" style="text-transform: uppercase;" id="reservationModalLabel"> Confirmation </h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
          
@@ -56,7 +56,7 @@
                       <img class="qrcode" src="{{qrCode}}">
                   </div>
                   <div class="carte-details">
-                     <div class="name">{{rdvfromServer.client_name}}</div>
+                     <div class="name">{{rdvfromServer.client_name ?rdvfromServer.client_name : ' '}}</div>
                      <div class="occupation">Nom Client</div>
                      <div class="item">
                       <span class="value"> {{prestation.title}}</span>
@@ -69,8 +69,7 @@
                            <div class="value">{{rdvfromServer.rdvdate.split(" ")[1].slice(0,5) }}</div>
                            <div class="label">Heure</div>
                            <div class="value"> {{rdvfromServer.rdvdate.split(" ")[0]}}</div>
-                           <div class="label">Date</div>
-                         
+                           <div class="label">Date</div> 
                         </div>
                         
                         <div class="item">
@@ -96,13 +95,15 @@
                         <input type="text" class="form-control" formControlName="client_name"
                              required
                             maxlength="100" placeholder="Entrez votre nom" id="client_name" >
-                            <small  *ngIf="rdvInfos.get('client_name')?.errors?.['required'] && rdvInfos.get('client_name')?.errors?.['touched']"  >Ce champs est obligatoire</small>
+                            
+                            <small style="color: red; font-size: 11px;"  *ngIf="rdvInfos.get('client_name')?.touched && rdvInfos.get('client_name')?.invalid">Ce champs est requis</small>
                     </div>
                     <div class="form-group my-2" *ngIf="!email_form" >
                         <input type="text"  id="client_phone" formControlName="client_phone" maxlength="9" 
                             placeholder="Numéro de téléphone [0-9] -  9 chiffres" pattern="[0-9]*" name="client_phone"
                             class="form-control">
-                            <!-- <small  *ngIf="rdvInfos.get('client_phone')?.errors?.['required'] || rdvInfos.get('client_phone')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
+                            <small style="color: red; font-size: 11px;"  *ngIf="rdvInfos.get('client_phone')?.touched && !rdvInfos.get('client_phone')?.invalid">Ce champs est requis</small>
+                            <small style="color: red; font-size: 11px;"  *ngIf="rdvInfos.get('client_phone')?.invalid">Champs est requis - Min 9 chiffres</small>
 
                     </div>
                     <div class="form-group my-2" *ngIf="email_form">
@@ -116,62 +117,60 @@
                             <label for="rdvdate">Date du rendez-vous</label>
                             <input class="form-control" required formControlName="rdvdate" placeholder="choose a date"
                                 type="date" min="{{restrict_date}}" name="rdvdate" id="rdvdate" (change)="onInputChange($event)" >
-                                <!-- <small  *ngIf="rdvInfos.get('rdvdate')?.errors?.['required'] || rdvInfos.get('rdvdate')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
-
+                                <small style="color: red; font-size: 11px;"  *ngIf="rdvInfos.get('rdvdate')?.touched && rdvInfos.get('rdvdate')?.invalid">Ce champs est requis</small>
                         </div>
                        
                         <div class="form-group my-1 mx-2" style="color: #5DBAE5; font-weight: 400;">
-                            <label for="rdvdate">Quel Heure?</label>
+                            <label class="label" for="rdvdate">Quelle Heure vous convient?</label>
                             <select  required formControlName="rdvtime" name="rdvtime" id="rdvtime">
                                 <option value="" disabled selected>{{today_time_ranges.length == 0 ? 'Fermé actuellement' :'Selectionnez une heure'}} </option>
                                 <option  *ngFor="let time of time_ranges_to_display" value="{{time}}">{{time}}</option>
-                            </select>
-                            <!-- <small  *ngIf="rdvInfos.get('rdvtime')?.errors?.['required'] || rdvInfos.get('rdvtime')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
+                            </select><br/>
+                            <small style="color: red; font-size: 11px;"  *ngIf="rdvInfos.get('rdvtime')?.touched && rdvInfos.get('rdvtime')?.invalid">Ce champs est requis</small>
 
                         </div>
                     </div>
                     <!--Les buttons-->
                     <div class="my-2" style="color: #5DBAE5; font-weight: 400;">Type de Séance*</div>
-                    <div class="d-flex" style="justify-content: space-evenly;">
-                    <div class="form-check mx-4 my-1">
+                    <div class="d-flex" style="justify-content: space-between;">
+                    <div class="form-check mx-2 my-1">
                         <input class="form-check-input"  *ngIf="presAvailable" formControlName="rdv_price" value="{{prestation.price}}" type="radio" name="rdv_price" id="rdv_price" checked>
                         <label class="form-check-label" for="rdv_price">
                           Classic
                         </label>
                     </div>
-                      <div class="form-check mx-4 my-1">
-                        <input class="form-check-input" formControlName="rdv_price" *ngIf="presAvailable" value="{{prestation.gold_price}}" type="radio" name="rdv_price" id="rdv_price" >
-                        <label class="form-check-label" for="rdv_price">
+                      <div class="form-check mx-2 my-1">
+                        <input class="form-check-input" formControlName="rdv_price" *ngIf="presAvailable" value="{{prestation.gold_price}}" type="radio" name="rdv_price" id="Gold">
+                        <label class="form-check-label" for="Gold">
                           Gold
                         </label>
                       </div>
-                      <div class="form-check mx-4 my-1">
-                        <input class="form-check-input" formControlName="rdv_price" *ngIf="presAvailable" value="{{prestation.premium_price}}" type="radio" name="rdv_price" id="rdv_price" >
-                        <label class="form-check-label" for="rdv_price">
+                      <div class="form-check mx-2 my-1">
+                        <input class="form-check-input" formControlName="rdv_price" id="Premium" *ngIf="presAvailable" value="{{prestation.premium_price}}" type="radio" name="rdv_price">
+                        <label class="form-check-label" for="Premium">
                           Premium
                         </label>
                       </div>
                     </div>
-                    <!-- <small  *ngIf="rdvInfos.get('rdv_price')?.errors?.['required'] || rdvInfos.get('rdv_price')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
-
-                     
+                    <small style="color: red; font-size: 11px;"  *ngIf="rdvInfos.get('rdv_price')?.touched && rdvInfos.get('rdv_price')?.invalid">Ce champs est requis</small>                  
+                   
                     <div class="my-2" style="color: #5DBAE5; font-weight: 400;">Pour qui prennez-vous rendez-vous?*</div>
-                    <div class="d-flex" style="justify-content: space-evenly;"> 
+                    <div class="d-flex" style="justify-content: space-between;"> 
                     <div class="form-check mx-2">
-                        <input class="form-check-input" value="Personnel" formControlName="rdvtype" type="radio" name="rdvtype" checked>
+                        <input class="form-check-input" value="Personnel" formControlName="rdvtype" type="radio" name="rdvtype" for="rdvtype" checked>
                         <label class="form-check-label" for="rdvtype">
                           Personnel
                         </label>
                     </div>
                     <div class="form-check mx-2">
-                        <input class="form-check-input" value="Groupe" formControlName="rdvtype" type="radio" name="rdvtype">
+                        <input class="form-check-input" value="Groupe" formControlName="rdvtype" id="groupe" type="radio" name="rdvtype">
                         <label class="form-check-label" for="rdvtype">
                           Groupe
                         </label>
                       </div>
                       <div class="form-check mx-2">
-                        <input class="form-check-input" value="Evenement" formControlName="rdvtype" type="radio" name="rdvtype" >
-                        <label class="form-check-label" for="rdvtype">
+                        <input class="form-check-input" value="Evenement"  id="event" formControlName="rdvtype" type="radio" name="rdvtype" >
+                        <label class="form-check-label" for="event">
                             Événement 
                         </label>
                       </div>
@@ -181,25 +180,29 @@
                     <!--villes -->
                     <div class="my-2" style="color: #5DBAE5; font-weight: 400;">Localisation</div>
                     <div class="d-flex " style="justify-content: space-evenly;">
-                        <div class="form-check mx-2">
-                            <input class="form-check-input" value="Douala" formControlName="ville" type="radio" name="ville" id="ville">
+                        <div class="form-check mx-2 my-1">
+                            <input class="form-check-input" value="Douala" formControlName="ville" type="radio" name="ville">
                             <label class="form-check-label" for="ville">
                               Douala
                             </label>
                           </div>
-                          <div class="form-check mx-2">
+                          <div class="form-check mx-2 my-1">
                             <input class="form-check-input" value=" Yaounde" type="radio" formControlName="ville" name="ville" id="ville" checked>
                             <label class="form-check-label" for="ville">
                               Yaounde
                             </label>
                           </div>
-                          <!-- <small  *ngIf="rdvInfos.get('ville')?.errors?.['required'] || rdvInfos.get('ville')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
+                          <small style="color: red; font-size: 11px;"  *ngIf="rdvInfos.get('ville')?.touched && rdvInfos.get('ville')?.invalid">Ce champs est requis</small>                  
                     </div>
                     <div>
                       <input type="text" class="form-control" formControlName="quartier"
                        required
-                      maxlength="100" placeholder="Quelle Quartier habitez-vous ?" id="quartier" >
+                      maxlength="100" placeholder="Quel Quartier habitez-vous ?" id="quartier" ><br/>
+                      <small style="color: red; font-size: 11px;"  *ngIf="rdvInfos.get('quartier')?.touched && rdvInfos.get('quartier')?.invalid">Ce champs est requis</small>                  
+
                     </div>
+
+
                     <button [disabled]="!rdvInfos['valid']" type="submit"  class="btn button-70  text-center action-button">Confirmer</button>
                 </form>
               </div>
@@ -212,7 +215,7 @@
             
                 <div class="confirmation-message text-center" *ngIf="showconfirm">
                   <p style="color: #5DBAE5;" class="display-4">Votre rendez-vous a été enregistré</p>
-                  <a type="button"  (click)="downloadAsPdf()" id="downloadAsPdf" class="btn btn-success">Téléchargez la carte</a>
+                  <button type="button"  (click)="downloadAsPdf()" id="downloadAsPdf" data-bs-dismiss="modal" class="btn btn-success">Téléchargez la carte</button>
               </div>
                 
               

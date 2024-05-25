@@ -21,6 +21,18 @@ export class rdvHandler {
             const newRdv = await rdv.create(data);
             const code = await qr.toDataURL(`${url}${newRdv.rdv_id}`);
             res.status(201).json({message:"Appointement scheduled!", data:newRdv,qrcode:code});
+
+            //send notificationemail tofranny beauty administrator
+            await transporter.sendMail({
+                from: process.env.USER_EMAIL,
+                to: process.env.USER_EMAIL, // list of receivers
+                subject: `Nouveau rendez-vous sur votre plate forme`, 
+                html:`<p><strong>${req.body.client_name} </strong> a pris rendez-vous sur Franny Beauty.<br/></p>
+               <p>Connectez vous pour traiter cette operation.</p>`
+            }).catch((err)=>{
+                res.status(400).json({message:"Failed to send email, try again", error:err.message})
+            });
+    
         }catch(err:any){
             res.status(500).json({message:"Internal server error"});
         }
@@ -79,7 +91,7 @@ export class rdvHandler {
             await transporter.sendMail({
                         from: process.env.USER_EMAIL,
                         to:email, // list of receivers
-                        subject: `Bonjour ${client} Votre rendez-vous est Planifie!!`, 
+                        subject: `Bonjour ${client} Votre rendez-vous est Planifié!`, 
                         html:`<p>Votre rendez-vous <strong>${req.body.category} </strong>est en cours de traitement.<br/>
                         Votre prestation sera realise par <strong>${agent.bname}</strong>, le <strong>${req.body.date} a ${req.body.heure}</strong>.</p>
                         <p><strong>Merci pour votre confiance!</strong> </p>
