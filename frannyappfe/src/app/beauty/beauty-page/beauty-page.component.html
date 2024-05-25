@@ -10,7 +10,7 @@
             </div>
             <div class="carousel-caption">
                 <h4 class="carrousel-title">{{el.title}}</h4>
-                <p class="caption">{{el.caption}} </p>
+                <p class="caption text-center">{{el.caption}} </p>
                 <button type="button" class="btn btn-secondary carrousel-button" data-bs-toggle="modal"
                     data-bs-target="#biblioModal">
                     Réservez Maintenant
@@ -30,7 +30,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div *ngIf="reservationDone" class="message-sent text-center">
-              <p class="my-2"> {{ reservation_message }} </p>
+              <p class="my-2"> Message envoye  ! <span>&#128525; &#128525;</span> </p>
                  Merci d'avoir contacter <span>Franny beauty</span>
                    Votre demande est en cours de traitement.
               

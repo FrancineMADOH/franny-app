@@ -66,7 +66,7 @@ const routes: Routes = [
   {path:"beauty", component:BeautyPageComponent},
   {path:"about",component:AboutComponent},
   {path:"market", component:MarketSoonComponent},
-  {path:"beauty/rendezvous", component:RdvComponent},
+  {path:"beauty/rendezvous", component:RdvComponent,canActivate:[AuthGuard]},
   {path:"beauty/beautifyers", component:BeautifyerComponent, canActivate:[AuthGuard]},
 
   {path:"beauty/reviews", component:ReviewComponent, canActivate:[AuthGuard]},

@@ -4,6 +4,7 @@ import { rdvStore,Rendezvous } from "../models/rendezvous";
 import dotenv from "dotenv";
 import transporter from "../middlewares/email";
 import { beautyStore } from "../models/beautifyer";
+import { error } from "console";
 
 dotenv.config();
 
@@ -12,6 +13,19 @@ const beauty = new beautyStore();
 
 
 export class rdvHandler {
+
+    //rdv list
+    async index(req:Request,res:Response){
+        try{
+            const rendezvous = await rdv.index();
+           res.status(200).json(rendezvous);
+        }catch(err){
+            console.log(err);
+            //res.status(500).json(err);
+            res.status(500).json({message:"Internal server error"});
+        }
+    }
+
 
     //create rdv 
     async create(req:Request,res:Response){
@@ -38,18 +52,7 @@ export class rdvHandler {
         }
     }
 
-    //rdv list
-    async index(req:Request,res:Response){
-        try{
-            const rendezvous = await rdv.index();
-            res.status(200).json(rendezvous);
-        }catch(err){
-            console.log(err);
-            //res.status(500).json(err);
-            res.status(500).json({message:"Internal server error"});
-        }
-    }
-
+    
     //get a single rdv
     async show(req:Request,res:Response){
         try{
@@ -78,6 +81,7 @@ export class rdvHandler {
 
     //assign
     async assign(req:Request,res:Response){
+        let message;
         try{
             const  rdv_id =  parseInt(req.params.id);
             const  doneby = Number(req.body.doneby);
@@ -86,7 +90,6 @@ export class rdvHandler {
             const client = req.body.name;
             await rdv.assign(rdv_id,doneby,rdvstate);
             const agent = await beauty.show( Number(req.body.doneby))
-            console.log(agent)
             if(req.body.email){
             await transporter.sendMail({
                         from: process.env.USER_EMAIL,
@@ -97,18 +100,20 @@ export class rdvHandler {
                         <p><strong>Merci pour votre confiance!</strong> </p>
                        <p> Pour toute indisposition lors de  la realisation de votre prestation contactez nous aux adresses ci-dessous.</p>`
                     }).catch((err)=>{
-                        res.status(400).json({message:"Failed to send email, try again", error:err.message})
+                        message = err.mesage
+                        //res.status(400).json({message:"Failed to send email, try again", error:err.message})
                     });
             }
             res.status(200).json({message:`Appointment assigned to ${agent.bname}! and client Notified!`});
         }catch(err:any){
             console.log(err);
-            res.status(500).json({mesage:"Failed to send Message"});
+            res.status(500).json({mesage:"Failed to send Message", error:message});
         }
     }
 
     //make paiement 
     async makepaiement(req:Request,res:Response){
+        let message;
         try{
             const  rdv_id =  parseInt(req.params.id);
             const  rdvstate = req.body.rdvstate;
@@ -116,7 +121,6 @@ export class rdvHandler {
             const  pdate = new Date().toLocaleDateString();
             const email = req.body.email;
             const client = req.body.client;
-            console.log(req.body.link)
             
 
             await rdv.makepaiement(rdv_id,rdvstate,pm,pdate);
@@ -129,13 +133,14 @@ export class rdvHandler {
                     du ${req.body.rdvdate} realise par <strong>${req.body.bname} </strong>
                     <p>N'hesitez pas a nous contacter aux addresses ci-dessous.</p>`
                   }).catch((err)=>{
-                    res.status(400).json({message:"Failed to send email, try again", error:err.message})
+                    message = err.mesage
+                    //res.status(400).json({message:"Failed to send email, try again", error:err.message})
                 });;
             }
             res.status(200).json({message:"Payment successfull!"});
         }catch(err:any){
             console.log(err);
-            res.status(500).json({message:"Request failed! An error occurred!"});
+            res.status(500).json({message:"Request failed! An error occurred!",error:message});
         }
     }
     //cancel

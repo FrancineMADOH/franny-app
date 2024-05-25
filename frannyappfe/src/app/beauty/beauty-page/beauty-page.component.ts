@@ -28,16 +28,12 @@ export class BeautyPageComponent implements OnInit {
   restrict_date = new Date().toISOString().split('T')[0];
 
   carrousel_images = [
-    {"src":"assets/images/nails.jpg/","alt":"Woman taking care of nails","caption":"Brillez sans quitter le confort de votre maison.Votre salon vient a vous! Réservez des services de beauté maintenant !", "title":"Soins de Beauté haut de gamme à domicile."},
+    {"src":"assets/images/nails.jpg/","alt":"Woman taking care of nails","caption":"Brillez sans quitter le confort de votre maison.Votre salon vient a vous! Des services de beauté complets à votre convenance.Réservez maintenant, brillez plus tard  !", "title":"Soins de Beauté haut de gamme à domicile."},
     {"src":"assets/images/hairstyling.jpg/","alt":"","caption":"Des cheveux aux ongles, nous faisons tout ! Confiez a nos professionnels votre mise en beauté pour vos évenement, Ne passez plus jamais inapercu.", "title":"Des esthéticiennes qualifiées à votre service, à tout moment."},
-    {"src":"assets/images/nails.jpg","alt":"","caption":"Profitez de soins de beauté haut de gamme comme vous voulez, ou vous voulez ! A des prix defint toute concurrence.", "title":"Des services de beauté complets à votre convenance.Réservez maintenant, brillez plus tard !"},
     {"src":"assets/makeup.jpg","alt":"","caption":"Ayez fière allure, sentez-vous bien,Vos services de salon préférés, maintenant à la maison.Détendez-vous avec une expérience unique depuis le confort de votre maison", "title":"Réservation Facile, résultats époustouflants."},
     {"src":"assets/images/pres_makeup.jpg/","alt":"","caption":"Des cheveux aux ongles, nous faisons tout ! Confiez a nos professionnels votre mise en beauté pour vos évenement, Ne passez plus jamais inapercu.", "title":"Des esthéticiennes qualifiées à votre service, à tout moment."},
     {"src":"assets/images/hairstyling.jpg/","alt":"","caption":" Un mariage ? une sortie de groupe ? un shooting ? Faites confiance  à notre équipe de professionels pour un Glow up certain.", "title":"La mise en beauté pour vos événements sans stress commencent ici!"},
     {"src":"assets/images/mere.jpg/","alt":"","caption":"Nos prestations familiales sont conçu pour vous faire passer un moment de partage avec vos proches.", "title":"Un moment mere-fille ?"},
-    {"src":"assets/images/pres_makeup.jpg/","alt":"","caption":"Nos prestations familiales sont conçu pour vous faire passer un moment de partage avec vos proches.", "title":"Services beauté personalisée à domicile. Tous les jours de 7h30 - 22h"}
-
-
   ]
 
 

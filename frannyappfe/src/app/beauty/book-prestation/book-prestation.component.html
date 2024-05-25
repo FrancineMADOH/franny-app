@@ -56,7 +56,7 @@
                       <img class="qrcode" src="{{qrCode}}">
                   </div>
                   <div class="carte-details">
-                     <div class="name">{{rdvfromServer.client_name ?rdvfromServer.client_name : ' '}}</div>
+                     <div *ngIf="showconfirm"  class="name">{{rdvfromServer.client_name}}</div>
                      <div class="occupation">Nom Client</div>
                      <div class="item">
                       <span class="value"> {{prestation.title}}</span>
@@ -84,10 +84,7 @@
                      </div>
                   </div>
                </div>
-              
               </div>
-
-
               <!--Carte rendez vous ici -->
               <div class="form_email"  *ngIf="!showconfirm">
                 <form [formGroup]="rdvInfos"  (ngSubmit)="onSubmit()"  id="rdv_form">
@@ -121,9 +118,9 @@
                         </div>
                        
                         <div class="form-group my-1 mx-2" style="color: #5DBAE5; font-weight: 400;">
-                            <label class="label" for="rdvdate">Quelle Heure vous convient?</label>
+                            <label class="label-heure" for="rdvdate">Quelle Heure vous convient?</label>
                             <select  required formControlName="rdvtime" name="rdvtime" id="rdvtime">
-                                <option value="" disabled selected>{{today_time_ranges.length == 0 ? 'Fermé actuellement' :'Selectionnez une heure'}} </option>
+                                <option value="" disabled selected> Selectionnez une heure </option>
                                 <option  *ngFor="let time of time_ranges_to_display" value="{{time}}">{{time}}</option>
                             </select><br/>
                             <small style="color: red; font-size: 11px;"  *ngIf="rdvInfos.get('rdvtime')?.touched && rdvInfos.get('rdvtime')?.invalid">Ce champs est requis</small>

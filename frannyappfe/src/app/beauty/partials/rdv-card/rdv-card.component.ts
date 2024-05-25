@@ -22,8 +22,10 @@ export class RdvCardComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    console.log('test')
     this.beauty.getRendezvousList().subscribe((res)=>{
       res.map((data)=>{
+        console.log(data)
         this.rdvList.push(data);
         return this.rdvList;
       })

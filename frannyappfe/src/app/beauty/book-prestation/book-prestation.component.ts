@@ -162,7 +162,10 @@ export class BookPrestationComponent implements OnInit {
     });
   }
     this.rdvInfos.reset();
-    this.showconfirm = true;
+
+    setTimeout(() => {
+      this.showconfirm = true;
+    }, 2000);
   }
   backToPrestation(){
     this.router.navigate(['/beauty'])

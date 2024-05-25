@@ -41,8 +41,6 @@ export class MakepaiementComponent implements OnInit {
 
   makeCashPayment(paymentForm:any){
     paymentForm.value.rdvstate = this.rdvstate;
-    
-
     if(paymentForm.valid ){
       this.beauty.makepaiement(this.id,
          this.rdvstate,
@@ -53,10 +51,13 @@ export class MakepaiementComponent implements OnInit {
          this.link,
          this.rdv.client_name
          ).subscribe((res)=>{
-        alert(res.message);
+        this.isauth ? alert(res.message) : setTimeout(() => {
+          this.router.navigate(["beauty/"])
+        }, 2000);
       })
       paymentForm.reset();
-      this.paid = true;
+      this.paid = true;  
+      setTimeout
      }
   }
 
