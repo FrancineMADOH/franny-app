@@ -1,20 +1,15 @@
-<div class="container m-1">
-    <div [ngStyle]="{'background-image': 'url(' + backgroundurl + ')'}" class="row pageheader">
-      <div>
-        <h1 class="text-center display-1" *ngIf="presAvailable"> Réservation {{prestation.title }} </h1>
-          <h6 *ngIf="presAvailable"><i class="bi bi-clock  display-1 mx-2" style="font-size: 20px;"></i> {{prestation.duration}} Minutes</h6>
-          <button type="button" class="btn btn-secondary carrousel-button" data-bs-toggle="modal"
-            data-bs-target="#reservationModal">
-            Réserver | <span *ngIf="presAvailable">{{prestation.price}}</span> XAF*
-          </button>
-        </div>
-      </div>
-    
-
-    <div class="confirmation-message" *ngIf="showconfirm">
-        <h4 class="text-center display-4">Votre rendez-vous a été enregistré</h4>
+<div [ngStyle]="{'background-image': 'url(' + backgroundurl + ')'}" class="pageheader">
+  <div>
+    <h1 class="text-center display-1" *ngIf="presAvailable"> Réservation {{prestation.title }} </h1>
+      <h6 *ngIf="presAvailable"><i class="bi bi-clock  display-1 mx-2" style="font-size: 20px;"></i> {{prestation.duration}} Minutes</h6>
+      <button type="button" class="btn btn-secondary carrousel-button" data-bs-toggle="modal"
+        data-bs-target="#reservationModal">
+        Réserver | <span *ngIf="presAvailable">{{prestation.price}}</span> XAF *
+      </button>
     </div>
+  </div>
 
+<div class="container m-1">
     <div class="prestation-infos row">
       <div class="col-lg-1 offset-1"> </div>
       <div class="col-lg-3 mx-2" *ngIf="presAvailable">
@@ -35,11 +30,13 @@
 
     <div class="row indications text-center text-muted">
       <p>
-      <span>* Les prix ici liste sont des prix unitaires</span> |
-      <span>* Le prix des prestation de groupe peut etre soumis a negociation</span>    |
-      <span>* Le prix des preestation n'incluent pas celuide meches et extensions</span>|
-      <span>* Le prix de votre prestation varie en fonction la seance que vous choisissez</span>
+      <span>* Prix unitaires</span> |
+      <span>* Le prix des prestations de groupe peut être négocié</span>    |
+      <span>* La prestation n'incluent pas les meches et extensions</span>|
+      <span>* Le prix de votre prestation varie en fonction la séance que vous choisissez</span>
+      
     </p>
+    
     </div>
 
   <!-- Modal  -->
@@ -51,21 +48,55 @@
               <h4 class="modal-title text-center fw-bold" id="reservationModalLabel"> Confirmation </h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div *ngIf="reservationDone" class="message-sent text-center">
-              <p class="my-2"> {{ reservation_message }} </p>
-                 Merci d'avoir contacter <span>Franny beauty</span>
-                   Votre demande est en cours de traitement.
+         
+          <div class="modal-body form-group my-2">
+            <div class="carterdv" *ngIf="showconfirm">
+              <div class="carte col-sm-12" #dataToExport>
+                  <div class="carte-avatar">
+                      <img class="qrcode" src="{{qrCode}}">
+                  </div>
+                  <div class="carte-details">
+                     <div class="name">{{rdvfromServer.client_name}}</div>
+                     <div class="occupation">Nom Client</div>
+                     <div class="item">
+                      <span class="value"> {{prestation.title}}</span>
+                      <span class="label">Prestation</span>
+                   </div>  
+                     <div class="carte-about">
+                        <div class="item">
+                          <div class="value">{{rdvfromServer.rdv_price}} XAF</div>
+                           <div class="label">Prix</div>
+                           <div class="value">{{rdvfromServer.rdvdate.split(" ")[1].slice(0,5) }}</div>
+                           <div class="label">Heure</div>
+                           <div class="value"> {{rdvfromServer.rdvdate.split(" ")[0]}}</div>
+                           <div class="label">Date</div>
+                         
+                        </div>
+                        
+                        <div class="item">
+                           <div class="value">{{rdvfromServer.ville}}</div>
+                           <div class="label">Ville</div>
+                           <div class="value">{{rdvfromServer.quartier}}</div>
+                           <div class="label">Quartier</div>
+                           <div class="value"> {{rdvfromServer.client_phone}} </div>
+                           <div class="label">Téléphone</div>
+                        </div>
+                        
+                     </div>
+                  </div>
+               </div>
               
-             </div>
-          <div class="modal-body form-group my-2"  >
-              <div class="form_email" >
-                
+              </div>
+
+
+              <!--Carte rendez vous ici -->
+              <div class="form_email"  *ngIf="!showconfirm">
                 <form [formGroup]="rdvInfos"  (ngSubmit)="onSubmit()"  id="rdv_form">
                     <div class="form-group my-1">
                         <input type="text" class="form-control" formControlName="client_name"
                              required
                             maxlength="100" placeholder="Entrez votre nom" id="client_name" >
-                            <!-- <small  *ngIf="rdvInfos.get('client_name')?.errors?.['required'] && rdvInfos.get('client_name')?.errors?.['touched']"  >Ce champs est obligatoire</small> -->
+                            <small  *ngIf="rdvInfos.get('client_name')?.errors?.['required'] && rdvInfos.get('client_name')?.errors?.['touched']"  >Ce champs est obligatoire</small>
                     </div>
                     <div class="form-group my-2" *ngIf="!email_form" >
                         <input type="text"  id="client_phone" formControlName="client_phone" maxlength="9" 
@@ -90,7 +121,7 @@
                         </div>
                        
                         <div class="form-group my-1 mx-2" style="color: #5DBAE5; font-weight: 400;">
-                            <label for="rdvdate">Quel Heure ?</label>
+                            <label for="rdvdate">Quel Heure?</label>
                             <select  required formControlName="rdvtime" name="rdvtime" id="rdvtime">
                                 <option value="" disabled selected>{{today_time_ranges.length == 0 ? 'Fermé actuellement' :'Selectionnez une heure'}} </option>
                                 <option  *ngFor="let time of time_ranges_to_display" value="{{time}}">{{time}}</option>
@@ -173,10 +204,18 @@
                 </form>
               </div>
               <hr>
-              <div class="text-center">
+              <div class="text-center" *ngIf="!showconfirm">
                 <a style="border: None;" class="btn my-1 choicelink" *ngIf="!email_form"  (click)="email_form=!email_form" >Utiliser l'addresse email</a>
                 <a style="border: None;" class="btn my-1 choicelink" *ngIf="email_form" (click)="email_form=!email_form" >Utiliser le numéro de téléphone</a>
               </div>
+
+            
+                <div class="confirmation-message text-center" *ngIf="showconfirm">
+                  <p style="color: #5DBAE5;" class="display-4">Votre rendez-vous a été enregistré</p>
+                  <a type="button"  (click)="downloadAsPdf()" id="downloadAsPdf" class="btn btn-success">Téléchargez la carte</a>
+              </div>
+                
+              
               
           </div>
       </div>

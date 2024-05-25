@@ -36,6 +36,7 @@ export class BookPrestationComponent implements OnInit {
   confirmation_step = false;
   step = 1;
 
+
   category!:string;
   prestation!:Prestation;
   pres_id!:string
@@ -47,7 +48,6 @@ export class BookPrestationComponent implements OnInit {
   rdvfromServer!:any;
   qrCode:any;
   copydate =  new Date().getFullYear();
-  reservation_message =""
   reservationDone=false;
   email_form = false;
   times_ranges:string [] = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00']
@@ -57,7 +57,7 @@ export class BookPrestationComponent implements OnInit {
   backgroundurl!:string;
   
   presAvailable =  false;
-  pdfName = "Carte Rendez-vous";
+  pdfName = "Franny Beauty  - Carte Rendez-vous";
   showconfirm = false;
   restrict_date = new Date().toISOString().split('T')[0];
   heure_actuelle = new Date().toISOString().split('T')[1].slice(0,5);
@@ -172,16 +172,11 @@ export class BookPrestationComponent implements OnInit {
     //save rdv to the database
     this.beauty.createRendezvous(this.rdv).subscribe((res:any)=>{
       this.rdvfromServer = res.data;
-      console.log(res)
       this.qrCode =  res.qrcode
     });
   }
     this.rdvInfos.reset();
     this.showconfirm = true;
-    setTimeout(() => {
-      this.showconfirm = false;
-    }, 2000);
-
   }
   backToPrestation(){
     this.router.navigate(['/beauty'])
@@ -189,8 +184,6 @@ export class BookPrestationComponent implements OnInit {
   //TODO https://dev.to/williamjuan27/series/14719
   
   //generate pdf from rdv card
-  
-
   public downloadAsPdf(): void {
     //get the html element to convert and set properties
     const width = this.dataToExport.nativeElement.clientWidth;
@@ -214,16 +207,20 @@ export class BookPrestationComponent implements OnInit {
     let jsPdfOptions:jsPDFOptions = {
     orientation: orientation,
     unit: "pt",
-    format: [width + 40, height + 200]
+    format: [width + 100, height + 150]
     };
     const pdf = new jsPDF(jsPdfOptions);
     pdf.setFontSize(12);
-    pdf.setTextColor('#2585fe');
-    pdf.text(this.pdfName ? this.pdfName.toUpperCase() : 'franny-Rdv'.toUpperCase(), 25, 75);
-    pdf.setFontSize(14);
+    pdf.setTextColor('#F460FC');
+    pdf.text(this.pdfName ? this.pdfName.toUpperCase() : 'franny-beauty-card'.toUpperCase(), 15, 45);
+    pdf.setFontSize(12);
     pdf.setTextColor('#131523');
-    pdf.text('Date: ' + moment().format('ll'), 25, 25);
-    pdf.addImage(result, 'PNG', 25, 105, width, height); //TODO: Ajuster plus tard dans le css
+    pdf.text( moment().format('ll'), 15, 15);
+    // pdf.text('Date: ' + moment().format('ll'), 25, 25);
+    pdf.addImage(result, 'PNG', 25, 105, width , height);
+    pdf.setFontSize(12);
+    pdf.setTextColor('#F460FC');
+    pdf.text(`Vous avez des questions ? Contactez-nous au ${environment.defaultPhone}`, 15, 15);
     pdf.save(this.pdfName + '.pdf');
     this.router.navigate(['/beauty'])
     })
@@ -232,7 +229,6 @@ export class BookPrestationComponent implements OnInit {
     });
     }
 
-    getCoupon(){}
 }
 
 //https://mdbootstrap.com/docs/b4/jquery/plugins/rating/

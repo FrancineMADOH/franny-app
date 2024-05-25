@@ -32,9 +32,8 @@ a:active {
 /* #5DBAE5(bleu), #F460FC(rose), #196C08(vert), #C7B14A(gold) #AA9225(satin gold) #53534F(gray)*/
 
 @media screen and (max-width:768px) {
-
     .footer {
-        height: 15vh;
+        height: auto;
         display: flex;
         flex-wrap: wrap;
 
@@ -43,5 +42,5 @@ a:active {
         left: 0;
         z-index: 99999;
     }
-
+  
 }
