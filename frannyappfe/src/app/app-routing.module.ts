@@ -44,7 +44,7 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
 
 
 const routes: Routes = [
-  {path:"", redirectTo:"/beauty", pathMatch:"full"},
+  {path:"", redirectTo:"/login", pathMatch:"full"},
   {path:"dashboard/:email",component:DashboardComponent, canActivate:[AuthGuard]},
   {path:"signup", component: SignupFormComponent },
   {path:"reset", component:ResetFormComponent},
