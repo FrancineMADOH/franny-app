@@ -5,10 +5,8 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import router from "./routes/indexRoute";
 import dotenv from "dotenv"
-import { env } from "process";
 
 dotenv.config();
-const fe_url = process.env.FE__URL
 const environment = String(process.env.ENV);
 
 
@@ -47,7 +45,7 @@ app.use(cors(corsOptions))
 
 app.use(function (req, res, next) {
   if(environment=='test'){
-  res.setHeader('Access-Control-Allow-Origin',  String(process.env.FE_URL_TEST));
+  res.setHeader('Access-Control-Allow-Origin',  "https://frannyapp-demo.netlify.app"  );
   res.setHeader('Access-Control-Allow-Origin', String(process.env.FE_URL_TEST));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');

@@ -7,7 +7,7 @@
     "prestart": "npx tsx ./src/app/create-env.ts",
     "start": "ng serve",
     "prebuild": "npx tsx ./src/app/create-env.ts",
-    "build": "ng build",
+    "build": "ng build --aot",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
