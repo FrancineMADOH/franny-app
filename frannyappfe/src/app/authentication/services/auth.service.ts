@@ -33,7 +33,6 @@ getAllUsers():Observable<Admin[]>{
 signtheUserIn(email:string,admin_password:string){
   return this.http.post(environment.baseUrl + '/admins/signin', {email,admin_password}).subscribe((res:any)=>{
     if(res.token){
-      console.log(res)
       localStorage.setItem("acces_token", res.token);
       localStorage.setItem("admin_email", email)
       localStorage.setItem("admin_id", res.admin)
@@ -94,7 +93,6 @@ handleError(error:HttpErrorResponse):Observable<any>{
   if(error.error instanceof ErrorEvent){
     //Client Side error message
     errorMessage = error.message;
-    console.log(errorMessage);
   }else {
     //server side error
     errorMessage =  `Error Code: {error.status}\nMessage:${error.message}`
