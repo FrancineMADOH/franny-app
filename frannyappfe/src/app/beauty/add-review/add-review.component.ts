@@ -19,6 +19,9 @@ export class AddReviewComponent implements OnInit {
   isauth!:boolean;
   isuser!:boolean;
   isreview!:boolean;
+  mess!:string;
+  isloading=true;
+
 
   @ViewChild("addReviewForm", {static:true}) addReviewForm:any;
 
@@ -31,6 +34,9 @@ export class AddReviewComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.isreview =  false;
+    setTimeout(() => {
+      this.isloading = false;
+    }, 2000);
     //get infos about the rdv
     this.beauty.getRendezvous(Number(this.id)).subscribe((res)=>{
       this.rdv = res;
@@ -55,10 +61,12 @@ export class AddReviewComponent implements OnInit {
     if(this.isauth){
       this.router.navigate(['beauty/rendezvous']);
     }else{
-      alert('Review Successfull. You can now close this window');
+      this.isreview = !this.isreview
+      this.mess = 'Votre avis a été enregistré';
+
       setTimeout(() => {
-        this.router.navigate(['beauty/'])
-      }, 1000);
+       this.router.navigate(['beauty/'])
+      }, 3000);
     }
   }
 
