@@ -29,7 +29,7 @@ function set_domain(setdom:string){
 
 
 const corsOptions = {
-  origin:"*",
+  origin:"https://frannyapp-demo.netlify.app",
   optionsSuccessStatus:200,
   methods: "GET, PUT,POST,PUT,PATCH",
   credentials: true,
