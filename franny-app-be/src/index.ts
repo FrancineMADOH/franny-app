@@ -29,10 +29,10 @@ function set_domain(setdom:string){
 
 
 const corsOptions = {
-  origin:"https://frannyapp-demo.netlify.app",
+  origin:"https://665300e6620e7f4d124d8fba--frannyapp-demo.netlify.app",
   optionsSuccessStatus:200,
   methods: "GET, PUT,POST,PUT,PATCH",
-  credentials: true,
+  // credentials: true,
 };
 
 app.set('view engine', 'html');
@@ -44,7 +44,7 @@ app.use(bodyParser.json())
 app.use(cors(corsOptions))
 
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', "https://frannyapp-demo.netlify.app");
+  res.setHeader('Access-Control-Allow-Origin', "https://665300e6620e7f4d124d8fba--frannyapp-demo.netlify.app");
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   next();
