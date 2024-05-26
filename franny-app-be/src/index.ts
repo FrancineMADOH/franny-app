@@ -32,7 +32,7 @@ const corsOptions = {
   origin:"https://665300e6620e7f4d124d8fba--frannyapp-demo.netlify.app",
   optionsSuccessStatus:200,
   methods: "GET, PUT,POST,PUT,PATCH",
-  // credentials: true,
+  credentials: true,
 };
 
 app.set('view engine', 'html');
