@@ -29,7 +29,7 @@ function set_domain(setdom:string){
 
 
 const corsOptions = {
-  origin:set_domain(environment),
+  origin:"*",
   optionsSuccessStatus:200,
   methods: "GET, PUT,POST,PUT,PATCH",
   credentials: true,
