@@ -1,10 +1,11 @@
 {
   "dev": {
     "driver": "pg",
-    "host": "127.0.0.1",
-    "database": "franny",
-    "user": "postgres",
-    "password": "123456789"
+    "host": "dpg-cp9errkf7o1s739vl150-a.oregon-postgres.render.com",
+    "database": "franny_gq51",
+    "user": "franny_gq51_user",
+    "password": "5AiCPMoCq5BTNsTMyHfXeBPKYBGDO7JU",
+    "ssl":true
   
   },
   "test": {
