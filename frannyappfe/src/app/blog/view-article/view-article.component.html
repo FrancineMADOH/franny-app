@@ -37,7 +37,10 @@
 
                     </div>
                     <div class="text-center">
-                        <figure>
+                        <div *ngIf="env=='test'">
+                            <img src="/assets/images/family.png" class="img img-fluid" alt="enviromennt de test">
+                        </div>
+                        <figure *ngIf="env != 'test'" >
                             <img class="img img-fluid"  [src]="post.illustration" alt="BlogPost illustration">
                             <figcaption>Credit: {{ post.imgcredit }} </figcaption>
                         </figure>

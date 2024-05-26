@@ -5,6 +5,7 @@ import { Post, PostResult } from '../models/post';
 import { BlogService } from '../services/blog.service';
 import { Comment } from '../models/comment';
 import { AuthService } from 'src/app/authentication/services/auth.service';
+import { environment } from 'src/app/environment/env';
 
 
 @Component({
@@ -29,10 +30,11 @@ export class ViewArticleComponent implements OnInit {
   maternityPosts:Post[] = [];
   familyPosts:Post[] = [];
   blog_post_id!:number;
-  html!:any;
+  html!:any; 
   like!:any;
   mysubscription:any;
   hasliked = 'test'
+  env = environment.env
 
   user_has_liked!:boolean;
 

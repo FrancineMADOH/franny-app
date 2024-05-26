@@ -11,14 +11,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from './core/core.module';
 import { BeautyModule } from './beauty/beauty.module';
 import { BlogModule } from './blog/blog.module';
-import { MarketSoonComponent } from './market/market-soon/market-soon.component';
 import { AuthInterceptor } from './authentication/auth.interceptors';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MarketSoonComponent,
   ],
   imports: [
     BrowserModule,

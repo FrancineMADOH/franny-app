@@ -1,7 +1,7 @@
 
 <div class="container">
     <form #addRendezvousForm="ngForm" (ngSubmit)="onSubmit()">
-        <div class="form-group my-2">
+        <!-- <div class="form-group my-2">
             <label for="client_name">Votre nom</label>
             <input type="text"  class="form-control"
             name="client_name"
@@ -11,7 +11,7 @@
             #client_name="ngModel"
             id="client_name">
             <small style="color:red;" *ngIf="!client_name.valid && client_name.touched">Please enter your name</small>
-        </div>
+        </div> -->
         <div class="form-group">
             <label for="client_phone">Enter your phone number</label>
             <input type="text"
@@ -66,7 +66,7 @@
             </select>
         </div> -->
 
-        <div class="form-group my-2">
+        <!-- <div class="form-group my-2">
             <label for="category">Prestation category</label>
                 <select class="form-control"
                 required
@@ -76,7 +76,7 @@
                 <option value="">Choose Category</option>
                     <option *ngFor="let val of categories"  value="{{val}}">{{val}}</option>
                 </select>
-            </div>
+            </div> -->
             <!-- <div class="form-group my-2">
                 <label for="rdvtype">Choose Appointment type</label>
                 <select class="form-control"
@@ -117,14 +117,15 @@
         </div>
         <div class="form-group my-2">
             <label for="quartier">Choose your Quartier</label>
-            <select class="form-control"
+            <input class="form-control"
             required
             ngModel
             #quartier="ngModel"
             name="quartier" id="quartier">
-                <option value="" selected>Quartier</option>
+                <!-- <option value="" selected>Quartier</option>
                 <option *ngFor="let el of allLocation" value="{{el.quartier}}">{{el.quartier}}</option>
-            </select>
+            -->
+         
             <small *ngIf="!quartier.valid && quartier.touched" style="color:red;">Please choose a your quartiier</small>
         </div>
         <div class="form-group my-2">
@@ -136,7 +137,7 @@
             name="comments"></textarea>
         </div>
 
-        <div class="form-group my-2">
+        <!-- <div class="form-group my-2">
             <label for="rdvcode">Appointement Code</label>
                 <input type="text"
                 class="form-control"
@@ -146,7 +147,7 @@
                 value="{{this.rdvcode}}"
                 #rdvcode="ngModel"
                 name="rdvcode" id="rdvcode">
-        </div>
+        </div> -->
         <button type="submit" [disabled]="!addRendezvousForm['valid']" class="btn btn-success m-3  ">{{action}}</button>
     </form>
     <hr>

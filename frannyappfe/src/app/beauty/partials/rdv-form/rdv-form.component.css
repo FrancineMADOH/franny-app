@@ -1,6 +1,9 @@
 small{
     color:red;
 }
+.container{
+    max-width: 900px;
+}
 
 .btn-success{
     margin: 0 auto 0;

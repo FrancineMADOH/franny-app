@@ -46,6 +46,7 @@ main{
     font-family: 'FiraSansRegular';
     font-size: 14px;
     margin: 0 auto;
+   
 }
 h5{
     font-weight: bold;
@@ -126,6 +127,9 @@ h5{
   
  
   @media (max-width:768px){
+    main{
+      height: 100%;
+    }
     .container .box{
       width: 100%;
     }

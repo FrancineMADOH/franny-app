@@ -7,7 +7,7 @@ export class beautyHandler {
     async create(req:Request,res:Response){
         try{
             const data:Beautifyer = req.body;
-            const newbeautif = await beauty.create(data);
+            await beauty.create(data);
             res.status(201).json({message:"Beauty Agent Succesfully Created"});
             
         }catch(err){

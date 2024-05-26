@@ -13,7 +13,6 @@ import { ViewArticleComponent } from './blog/view-article/view-article.component
 import { BibliographieComponent } from './blog/bibliographie/bibliographie.component';
 import { FaqsComponent } from './beauty/faqs/faqs.component';
 import { AboutComponent } from './core/about/about.component';
-import { MarketSoonComponent } from './market/market-soon/market-soon.component';
 import { BeautyPageComponent } from './beauty/beauty-page/beauty-page.component';
 import { RdvComponent } from './beauty/rdv/rdv.component';
 import { BeautifyerComponent } from './beauty/beautifyer/beautifyer.component';
@@ -65,7 +64,6 @@ const routes: Routes = [
   {path:"beauty/faqs", component:FaqsComponent, canActivate:[AuthGuard]},
   {path:"beauty", component:BeautyPageComponent},
   {path:"about",component:AboutComponent},
-  {path:"market", component:MarketSoonComponent},
   {path:"beauty/rendezvous", component:RdvComponent,canActivate:[AuthGuard]},
   {path:"beauty/beautifyers", component:BeautifyerComponent, canActivate:[AuthGuard]},
 

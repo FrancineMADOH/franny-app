@@ -18,7 +18,7 @@ export class RdvComponent implements OnInit {
     this.searchRendezVous.reset();
   }
   goToNewAppointmentPage(){
-    this.router.navigate(['beauty/rendezvous/add']);
+    this.router.navigate(['beauty/']);
   }
 
 }
