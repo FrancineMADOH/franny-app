@@ -5,10 +5,10 @@ import verifyToken from "../../middlewares/auth";
 const methods = new NotificationHandler();
 const notifRouter = express.Router();
 
-notifRouter.post("",methods.create);
-notifRouter.get("",methods.index);
-notifRouter.get("/new",methods.new);
-notifRouter.put("/resolve/",methods.resolve);
+notifRouter.post("",verifyToken, methods.create);
+notifRouter.get("",verifyToken, methods.index);
+notifRouter.get("/new",verifyToken, methods.new);
+notifRouter.put("/resolve/",verifyToken, methods.resolve);
 
 export default notifRouter;
 
