@@ -1,16 +1,19 @@
 import path from "path";
 import ejs from "ejs";
-import express, { Request, Response } from "express";
+import express, { Request, Response,Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import router from "./routes/indexRoute";
 import dotenv from "dotenv"
+import setupSwagger from "./swagger";
 
 dotenv.config();
 const environment = String(process.env.ENV);
 
 
-const app:express.Application = express();
+//const app:express.Application = express();
+const app:Express = express();
+setupSwagger(app);
 const port = 4000;
 let domain:string;
 function set_domain(setdom:string){
@@ -83,6 +86,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.listen(port, () => {
   console.log("Listening on port " + port);
+  console.log('API docs are available at http://localhost:4000/api-docs');
 });
 
 export default app;
